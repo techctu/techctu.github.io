@@ -6,9 +6,31 @@
 </description>
     <link>http://techctu.github.io//</link>
     <atom:link href="http://techctu.github.io//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 04 Dec 2015 20:08:29 +0800</pubDate>
-    <lastBuildDate>Fri, 04 Dec 2015 20:08:29 +0800</lastBuildDate>
+    <pubDate>Fri, 04 Dec 2015 22:56:35 +0800</pubDate>
+    <lastBuildDate>Fri, 04 Dec 2015 22:56:35 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>开始使用Jekyll</title>
+        <description>&lt;h1 id=&quot;section&quot;&gt;缘起&lt;/h1&gt;
+&lt;p&gt;主要是最近喜欢用Markdown，听说GitHub Pages能当主机用，还能挂域名，就换着试试。&lt;/p&gt;
+
+&lt;p&gt;原来用着WordPress每次写点东西都要折腾半天也是累不爱了。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;就是试试Markdown随便写点，看看能不能用&lt;/strong&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sat, 05 Dec 2015 06:25:07 +0800</pubDate>
+        <link>http://techctu.github.io//%E6%9D%82%E9%A1%B9/2015/12/05/%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8jekyll.html</link>
+        <guid isPermaLink="true">http://techctu.github.io//%E6%9D%82%E9%A1%B9/2015/12/05/%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8jekyll.html</guid>
+        
+        <category>jekyll</category>
+        
+        <category>others</category>
+        
+        
+        <category>杂项</category>
+        
+      </item>
     
   </channel>
 </rss>
