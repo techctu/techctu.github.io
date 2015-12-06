@@ -90,13 +90,13 @@
             <article class="post">
               <header>
                 <div class="title">
-                  <h2><a href="/%E6%9D%82%E9%A1%B9/2015/12/05/%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8jekyll.html">开始使用Jekyll</a></h2>
+                  <h2><a href="/jekyll/2015/12/06/%E6%90%AD%E5%BB%BA%E7%AE%80%E5%8D%95jekyll%E5%B0%8F%E8%AE%B0.html">搭建简单jekyll小记</a></h2>
                 <!-- <p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p> -->
                 </div>
                 <div class="meta">
-                  <time class="published" datetime="2015-12-05">December 05, 2015</time>
+                  <time class="published" datetime="2015-12-06">December 06, 2015</time>
                   
-                    <a href="#">杂项</a>
+                    <a href="#">jekyll</a>
                   
 
         <!--
@@ -105,19 +105,27 @@
                 </div>
               </header>
               
-              <h1 id="section">缘起</h1>
-<p>主要是最近喜欢用Markdown，听说GitHub Pages能当主机用，还能挂域名，就换着试试。</p>
+              <p>简单来说，就是<a href="https://pages.github.com/">GitHub Pages</a> + <a href="http://jekyll.bootcss.com/">Jekyll</a> + <a href="http://www.sublimetext.com/3">Sublime Text 3</a>。</p>
 
-<p>原来用着WordPress每次写点东西都要折腾半天也是累不爱了。</p>
+<p>碰到的主要问题有</p>
 
-<p><strong>就是试试Markdown随便写点，看看能不能用</strong></p>
+<h1 id="sublime-text-3jekyll">用Sublime Text 3来写Jekyll博客</h1>
+<p>安装插件参考<a href="/sublimetext3/2015/12/06/%E5%9C%A8mac%E4%B8%8A%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8sublime-text-3%E6%9D%A5%E8%BF%9B%E8%A1%8Cjavascript%E5%BC%80%E5%8F%91.html">在mac上配置使用sublime-text-3来进行javascript开发</a>。</p>
+
+<p>然后安装Jekyll插件来使Sublime Text 3认识Jekyll。</p>
+
+<h1 id="section">文件名中文</h1>
+<p>安装了插件后，可以参考<a href="http://jekyll.bootcss.com/docs/templates/#post_url">这里</a>来引入中文。
+示例如下：</p>
+
+<div class="highlight"><pre><code class="language-liquid" data-lang="liquid">{ % post_url 2015-12-06-在mac上配置使用sublime-text-3来进行javascript开发 %}</code></pre></div>
+
+<p>这里Jekyll使用的pygments不支持liquid，通过{和%之间加空格来显示代码。解决方法可参考<a href="https://alexpearce.me/2012/04/escaping-liquid-tags-in-jekyll/">这里</a>。</p>
 
               <footer>
                 <ul class="stats">
                 
-                  <li><a href="#">jekyll</a></li>
-                
-                  <li><a href="#">others</a></li>
+                  <li><a href="#">Jekyll</a></li>
                 
         <!--
         <li><a href="#">General</a></li>
@@ -129,10 +137,10 @@
            </article>
   					<ul class="actions pagination">
   					  
-  						  <li><a href="#" class="disabled button big previous">Previous Post</a></li>
+  	  				  <li><a href="/sublimetext3/2015/12/06/%E5%9C%A8mac%E4%B8%8A%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8sublime-text-3%E6%9D%A5%E8%BF%9B%E8%A1%8Cjavascript%E5%BC%80%E5%8F%91.html" class="button big previous">Previous Post</a></li>
   						
 							
-  						  <li><a href="/maven/2015/12/06/Maven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94maven%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE.html" class="button big next">Next Post</a></li>
+  						  <li><a href="/%E6%9D%82%E9%A1%B9/2015/12/06/%E7%83%AD%E6%83%85%E6%AC%A3%E8%B5%8F%E8%AF%9A%E5%AE%9E%E5%A4%B4%E8%84%91%E9%A3%8E%E6%9A%B4%E6%88%90%E6%9E%9C%E6%BC%94%E8%AE%B2%E5%8F%8D%E6%80%9D.html" class="button big next">Next Post</a></li>
   						
   					</ul>
 					</div>

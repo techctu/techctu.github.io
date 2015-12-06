@@ -90,13 +90,13 @@
             <article class="post">
               <header>
                 <div class="title">
-                  <h2><a href="/%E6%9D%82%E9%A1%B9/2015/12/05/%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8jekyll.html">开始使用Jekyll</a></h2>
+                  <h2><a href="/javascript/2015/12/06/purejsonepagescrolljavascript%E5%8D%95%E9%A1%B5%E6%BB%9A%E5%8A%A8%E6%8F%92%E4%BB%B6.html">PureJSOnePageScroll——JavaScript单页滚动插件</a></h2>
                 <!-- <p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p> -->
                 </div>
                 <div class="meta">
-                  <time class="published" datetime="2015-12-05">December 05, 2015</time>
+                  <time class="published" datetime="2015-12-06">December 06, 2015</time>
                   
-                    <a href="#">杂项</a>
+                    <a href="#">javascript</a>
                   
 
         <!--
@@ -105,19 +105,64 @@
                 </div>
               </header>
               
-              <h1 id="section">缘起</h1>
-<p>主要是最近喜欢用Markdown，听说GitHub Pages能当主机用，还能挂域名，就换着试试。</p>
+              <h1 id="section">啰嗦的背景</h1>
 
-<p>原来用着WordPress每次写点东西都要折腾半天也是累不爱了。</p>
+<p>最近有人问我像<a href="https://coding.net/">Coding.net</a>啊这样的首页效果是不是很难。当然你让我从零开始弄一个确实很麻烦咯，不过这种肯定是有人做过了。于是找了找，便翻到了<a href="https://github.com/peachananr/onepage-scroll">OnePageScroll</a>。</p>
 
-<p><strong>就是试试Markdown随便写点，看看能不能用</strong></p>
+<p>最开始搜到的这个是基于JQuery的版本，在<a href="https://github.com/peachananr">作者</a>的仓库里还翻到了<a href="https://github.com/peachananr/zepto-onepage-scroll">基于zepto的版本</a>。不过我更喜欢不使用JQuery、Zepto等的更纯净的库，这就是本文介绍的<a href="https://github.com/peachananr/purejs-onepage-scroll">PureJSOnePageScroll</a>。<a href="http://www.thepetedesign.com/demos/purejs_onepage_scroll_demo.html">点击查看特效</a></p>
+
+<h1 id="section-1">使用方式</h1>
+
+<h2 id="section-2">引入文件</h2>
+
+<script type="text/javascript" src="onepagescroll.js"></script>
+<link href="onepage-scroll.css" rel="stylesheet" type="text/css" />
+
+<p>当然你也可以通过require等来插入，贵客都会require了自然也不需要看这部分。</p>
+
+<h2 id="section-3">基本用法</h2>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;body&gt;</span> ... 
+	<span class="c">&lt;!-- main只是作为选择器用，语法是HTML5的document.querySelector，不会请百度 --&gt;</span> 
+	<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;main&quot;</span><span class="nt">&gt;</span> 
+		<span class="c">&lt;!-- section标签可以自定义 --&gt;</span> 
+		<span class="nt">&lt;section&gt;</span>...<span class="nt">&lt;/section&gt;</span> 
+		<span class="nt">&lt;section&gt;</span>...<span class="nt">&lt;/section&gt;</span>
+		 ... 
+	<span class="nt">&lt;/div&gt;</span>
+	 ... 
+<span class="nt">&lt;/body&gt;</span>  
+<span class="nt">&lt;script&gt;</span>   
+	<span class="nx">onePageScroll</span><span class="p">(</span><span class="s2">&quot;.main&quot;</span><span class="p">,</span> <span class="p">{</span>     
+		<span class="nx">sectionContainer</span><span class="o">:</span> <span class="s2">&quot;section&quot;</span><span class="p">,</span>     
+		<span class="nx">loop</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>     
+		<span class="nx">responsiveFallback</span><span class="o">:</span> <span class="kc">false</span>   
+	<span class="p">});</span> 
+<span class="nt">&lt;/script&gt;</span></code></pre></div>
+
+<h2 id="section-4">参数介绍</h2>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">onePageScroll</span><span class="p">(</span><span class="s2">&quot;.main&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="c1">// 选择器，可以用class、id等 </span>
+<span class="nx">sectionContainer</span><span class="o">:</span> <span class="s2">&quot;section&quot;</span><span class="p">,</span> <span class="c1">// 标签名字，随意起，确保是页面容器，不与其它同名即可 </span>
+<span class="nx">easing</span><span class="o">:</span> <span class="s2">&quot;ease&quot;</span><span class="p">,</span> <span class="c1">// CSS3动画效果，&quot;ease&quot;, &quot;linear&quot;, &quot;ease-in&quot;, &quot;ease-out&quot;, &quot;ease-in-out&quot;, 或者&quot;cubic-bezier(0.175, 0.885, 0.420, 1.310)&quot; </span>
+<span class="nx">animationTime</span><span class="o">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="c1">// 动画时间 </span>
+<span class="nx">pagination</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">// true显示分页，false隐藏分页 </span>
+<span class="nx">updateURL</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// 是否更新页面url锚 </span>
+<span class="nx">beforeMove</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">next_el</span><span class="p">)</span> <span class="p">{},</span> <span class="c1">// 页面滚动前调用函数，编号从1开始，移动向第n页则index为n </span>
+<span class="nx">afterMove</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">next_el</span><span class="p">)</span> <span class="p">{},</span> <span class="c1">// 页面滚动后调用函数，移动到第n页index为n </span>
+<span class="nx">loop</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// 是否可以从底部下移到顶部 keyboard: true, // 是否用键盘控制 </span>
+<span class="nx">responsiveFallback</span><span class="o">:</span> <span class="kc">false</span> <span class="c1">// 滚动页面宽度小于定值时，宽度外使用浏览器自带滚动条 });</span></code></pre></div>
+
+<h2 id="section-5">公共方法</h2>
+
+<p>moveUp(“.main”); moveDown(“.main”); moveTo(“.main”, 3); // 这些没啥好解释的，上移、下移和移动到某页</p>
 
               <footer>
                 <ul class="stats">
                 
-                  <li><a href="#">jekyll</a></li>
+                  <li><a href="#">JavaScript</a></li>
                 
-                  <li><a href="#">others</a></li>
+                  <li><a href="#">PureJSOnePageScroll</a></li>
                 
         <!--
         <li><a href="#">General</a></li>
@@ -129,10 +174,10 @@
            </article>
   					<ul class="actions pagination">
   					  
-  						  <li><a href="#" class="disabled button big previous">Previous Post</a></li>
+  	  				  <li><a href="/javascript/2015/12/06/javascript%E7%9A%84amd%E5%92%8Ccmd%E8%A7%84%E8%8C%83%E4%B9%8B%E6%88%91%E7%9A%84%E7%9C%8B%E6%B3%95.html" class="button big previous">Previous Post</a></li>
   						
 							
-  						  <li><a href="/maven/2015/12/06/Maven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94maven%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE.html" class="button big next">Next Post</a></li>
+  						  <li><a href="/%E6%9D%82%E9%A1%B9/2015/12/06/%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F.html" class="button big next">Next Post</a></li>
   						
   					</ul>
 					</div>

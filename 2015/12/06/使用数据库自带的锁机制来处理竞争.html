@@ -90,13 +90,11 @@
             <article class="post">
               <header>
                 <div class="title">
-                  <h2><a href="/%E6%9D%82%E9%A1%B9/2015/12/05/%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8jekyll.html">开始使用Jekyll</a></h2>
+                  <h2><a href="/2015/12/06/%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E8%87%AA%E5%B8%A6%E7%9A%84%E9%94%81%E6%9C%BA%E5%88%B6%E6%9D%A5%E5%A4%84%E7%90%86%E7%AB%9E%E4%BA%89.html">使用数据库自带的锁机制来处理竞争</a></h2>
                 <!-- <p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p> -->
                 </div>
                 <div class="meta">
-                  <time class="published" datetime="2015-12-05">December 05, 2015</time>
-                  
-                    <a href="#">杂项</a>
+                  <time class="published" datetime="2015-12-06">December 06, 2015</time>
                   
 
         <!--
@@ -105,19 +103,42 @@
                 </div>
               </header>
               
-              <h1 id="section">缘起</h1>
-<p>主要是最近喜欢用Markdown，听说GitHub Pages能当主机用，还能挂域名，就换着试试。</p>
+              <p>2013年刚入职的时候，做的p2p项目，有这么个需求。</p>
 
-<p>原来用着WordPress每次写点东西都要折腾半天也是累不爱了。</p>
+<p>众所周知，p2p需要去投标，投标就会有竞争。比如阿猫和阿狗都看到一个项目只剩1份了，两个人同时投标。这时候系统就会判断阿猫买一份，余额刚好一份，可以买；在系统确定了这次购买订单，更新余额前，阿狗的请求也到了，系统还没更新余额，这时系统也让阿狗买了一份。这就导致实际上一份卖出了两份，这样并不好，会出现一系列问题，具体什么问题，出门右转找运营。</p>
 
-<p><strong>就是试试Markdown随便写点，看看能不能用</strong></p>
+<p>那么怎么办呢？就是经典的并发情况下锁机制的设计了。</p>
+
+<p>当时负责我们p2p组的组长决定利用数据库的锁机制来处理，具体就是在数据库中增加一个字段key，通过对a的值的比对来保证投标的顺利进行。</p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">oldKey</span> <span class="o">=</span> <span class="n">getKey</span><span class="o">();</span> <span class="c1">// 获取锁值 </span>
+<span class="n">processing</span><span class="o">();</span> <span class="c1">// 处理 </span>
+<span class="k">if</span> <span class="o">(</span><span class="n">checkKey</span><span class="o">())</span> <span class="o">{</span> <span class="c1">// 检查锁没有变更则更新锁，否则回滚操作 </span>
+	<span class="n">updateKey</span><span class="o">();</span>  
+<span class="o">}</span> <span class="k">else</span> <span class="o">{</span> 
+	<span class="n">rollback</span><span class="o">();</span> 
+<span class="o">}</span></code></pre></div>
+
+<p>这样其实会有个问题，即在chenkKey()和updateKey()之间，会有可能有人也投标成功了。</p>
+
+<p>怎么修改呢？其实很简单。我把chenkKey()和updateKey()合作一个方法checkAndUpdateKey()，直接在数据库中</p>
+
+<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">update</span> <span class="n">a</span> <span class="k">set</span> <span class="k">key</span> <span class="o">=</span> <span class="n">newKey</span> <span class="k">where</span> <span class="k">key</span> <span class="o">=</span> <span class="n">oldKey</span></code></pre></div>
+
+<p>这样代码逻辑就变成了</p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">oldKey</span> <span class="o">=</span> <span class="n">getKey</span><span class="o">();</span> <span class="c1">// 获取锁值 </span>
+<span class="n">processing</span><span class="o">();</span> <span class="c1">// 处理 </span>
+<span class="k">if</span> <span class="o">(!</span><span class="n">checkAndUpdateKey</span><span class="o">())</span> <span class="o">{</span> <span class="c1">// 检查锁值变化并更新锁，失败则回滚操作 </span>
+	<span class="n">rollback</span><span class="o">();</span> 
+<span class="o">}</span></code></pre></div>
+
+<p>搞定。</p>
+
+<p>P.S.当然这样有个很大的问题，竞争多的时候很容易就投不中标。最好还是类似12306先把请求排队进入一个队列，然后再依次处理——比如一个先进先出队列。</p>
 
               <footer>
                 <ul class="stats">
-                
-                  <li><a href="#">jekyll</a></li>
-                
-                  <li><a href="#">others</a></li>
                 
         <!--
         <li><a href="#">General</a></li>
@@ -129,10 +150,10 @@
            </article>
   					<ul class="actions pagination">
   					  
-  						  <li><a href="#" class="disabled button big previous">Previous Post</a></li>
+  	  				  <li><a href="/%E6%9D%82%E9%A1%B9/2015/12/06/%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F.html" class="button big previous">Previous Post</a></li>
   						
 							
-  						  <li><a href="/maven/2015/12/06/Maven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94maven%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE.html" class="button big next">Next Post</a></li>
+  						  <li><a href="/git/2015/12/06/%E5%9C%A8mac%E4%B8%8A%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8git.html" class="button big next">Next Post</a></li>
   						
   					</ul>
 					</div>

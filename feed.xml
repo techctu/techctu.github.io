@@ -6,8 +6,8 @@
 </description>
     <link>http://techctu.github.io//</link>
     <atom:link href="http://techctu.github.io//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 06 Dec 2015 21:02:06 +0800</pubDate>
-    <lastBuildDate>Sun, 06 Dec 2015 21:02:06 +0800</lastBuildDate>
+    <pubDate>Sun, 06 Dec 2015 23:19:51 +0800</pubDate>
+    <lastBuildDate>Sun, 06 Dec 2015 23:19:51 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -48,6 +48,397 @@
       </item>
     
       <item>
+        <title>热情、欣赏、诚实——头脑风暴成果演讲反思</title>
+        <description>&lt;p&gt;最近，Team Leader一直在搞头脑风暴，想要摩擦出火花，采集闪光的瞬间，集齐七个……嗯，就是想解放思想、实事求是。遂，每逢周三，组内汇聚一堂，坐而论道。&lt;/p&gt;
+
+&lt;p&gt;大头目：“TL，你们搞出啥子幺蛾子了吗？”&lt;/p&gt;
+
+&lt;p&gt;TL：“我们展示一下呗！”&lt;/p&gt;
+
+&lt;p&gt;大头目：“好好好！搞搞搞！”&lt;/p&gt;
+
+&lt;p&gt;然后，这个锅我背了。小组分拨，我被分到了天灾。最后deadline到了，居然让我这个五号位划水辅助当carry。最后不负众望，嗝屁了。不过看到近卫的carry台风，很是欣赏，觉得需要学习一下，知耻而后勇嘛。&lt;/p&gt;
+
+&lt;h1 id=&quot;section&quot;&gt;悲剧的开始&lt;/h1&gt;
+&lt;p&gt;作为一个高贵冷艳的程序员，在头脑风暴的时候就是各种划水，只因觉得这种会议太过务虚了。做出一个“惊艳”的产品？什么鬼，简直无法直视。也许是我太挑剔了，也许是我老了，我很少觉得什么东西我会用惊艳这个词去形容。大部分的时候，看到美女会欣赏，看到工具会判断是不是想要的，很少有那种非洲农业不发达看到金坷垃的感觉。而且，也使我想起了每天写文档写了N年还喜欢搞传销的某人。&lt;/p&gt;
+
+&lt;p&gt;大概就是这么反感了，失去了热情，最后自己都不信自己演讲时说的东西了。没有了热情，不相信自己写的东西，演说的时候就会无精打采，这也是演说失败的原因之一。&lt;/p&gt;
+
+&lt;p&gt;其实这样很不好，毕竟在team中，不管这个target对不对，得尽自己一份力。既然过于务虚，那就把它务实，这才是应有之义。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-1&quot;&gt;仓促的准备&lt;/h1&gt;
+&lt;p&gt;头脑风暴小组就这么分成了气宗和剑宗。气宗每天都在进行头脑风暴，还掏出了神器Mac Pro，使出了Keynote大法，还不停刺探我宗情报，并进行了一系列反间谍工作。然而我宗认为领导在对面，本身这个事情又是务虚，所有人都没有放在心上，组员都没有积极参与，无法进行有效的组织。最后，我只能临危受命，将组员最近在研究的一项技术进行介绍。毕竟这项技术和我们演讲的主题有着一定的关联。&lt;/p&gt;
+
+&lt;p&gt;此时，我们手里的材料只有这个未完成待验证的项目；我们知道的是气宗要使用酷炫的Keynote；气宗已经做了一周，而我们的准备时间是从现在起到明天下午开始演讲为止。WTF！没办法，只能想办法吹了。&lt;/p&gt;
+
+&lt;p&gt;正所谓知己知彼，百战不殆。敌方情报工作那么到位，想要与之一战，就只能从了解己方着手了。&lt;/p&gt;
+
+&lt;p&gt;跑了跑那个项目，果然是个未完成品，唯一拿得出手的只有概念——自动化测试了。此时的我已经开始质疑这个项目的重要性——我自己都不能说服自己，拿什么去说服别人呢？只能取巧，依靠一些技法了。&lt;/p&gt;
+
+&lt;p&gt;为了让展示不逊于Keynote，便求助于&lt;a href=&quot;http://impressjs.devpost.com/&quot;&gt;impress.js&lt;/a&gt;，使效果更加酷炫；同时开始计划讲稿，让听众忘记询问项目的不足和完成情况，专注于项目代表的意义。除此之外，最重要的是要我能相信这个项目。然而，我做不到，我不欣赏这个项目。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-2&quot;&gt;悲剧的演讲&lt;/h1&gt;
+&lt;p&gt;上台演讲时，确实成功地让听众惊艳于&lt;a href=&quot;http://impressjs.devpost.com/&quot;&gt;impress.js&lt;/a&gt;的效果，专注于项目的意义，从某种意义上来说，是成功的。然而由于我能明显感到和对手台风的巨大差距，这对我来说并不是一个成功的演讲。我并没有说服我自己去欣赏这个项目，所以演讲的时候我无法感动我自己，也无法感染听众。&lt;/p&gt;
+
+&lt;p&gt;痛定思痛，入手了《像TED一样演讲》。&lt;/p&gt;
+
+&lt;p&gt;于2015年8月阅毕。&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 06 Dec 2015 00:00:00 +0800</pubDate>
+        <link>http://techctu.github.io//%E6%9D%82%E9%A1%B9/2015/12/06/%E7%83%AD%E6%83%85%E6%AC%A3%E8%B5%8F%E8%AF%9A%E5%AE%9E%E5%A4%B4%E8%84%91%E9%A3%8E%E6%9A%B4%E6%88%90%E6%9E%9C%E6%BC%94%E8%AE%B2%E5%8F%8D%E6%80%9D.html</link>
+        <guid isPermaLink="true">http://techctu.github.io//%E6%9D%82%E9%A1%B9/2015/12/06/%E7%83%AD%E6%83%85%E6%AC%A3%E8%B5%8F%E8%AF%9A%E5%AE%9E%E5%A4%B4%E8%84%91%E9%A3%8E%E6%9A%B4%E6%88%90%E6%9E%9C%E6%BC%94%E8%AE%B2%E5%8F%8D%E6%80%9D.html</guid>
+        
+        <category>演讲</category>
+        
+        
+        <category>杂项</category>
+        
+      </item>
+    
+      <item>
+        <title>搭建简单jekyll小记</title>
+        <description>&lt;p&gt;简单来说，就是&lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt; + &lt;a href=&quot;http://jekyll.bootcss.com/&quot;&gt;Jekyll&lt;/a&gt; + &lt;a href=&quot;http://www.sublimetext.com/3&quot;&gt;Sublime Text 3&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;碰到的主要问题有&lt;/p&gt;
+
+&lt;h1 id=&quot;sublime-text-3jekyll&quot;&gt;用Sublime Text 3来写Jekyll博客&lt;/h1&gt;
+&lt;p&gt;安装插件参考&lt;a href=&quot;/sublimetext3/2015/12/06/%E5%9C%A8mac%E4%B8%8A%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8sublime-text-3%E6%9D%A5%E8%BF%9B%E8%A1%8Cjavascript%E5%BC%80%E5%8F%91.html&quot;&gt;在mac上配置使用sublime-text-3来进行javascript开发&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;然后安装Jekyll插件来使Sublime Text 3认识Jekyll。&lt;/p&gt;
+
+&lt;h1 id=&quot;section&quot;&gt;文件名中文&lt;/h1&gt;
+&lt;p&gt;安装了插件后，可以参考&lt;a href=&quot;http://jekyll.bootcss.com/docs/templates/#post_url&quot;&gt;这里&lt;/a&gt;来引入中文。
+示例如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-liquid&quot; data-lang=&quot;liquid&quot;&gt;{ % post_url 2015-12-06-在mac上配置使用sublime-text-3来进行javascript开发 %}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;这里Jekyll使用的pygments不支持liquid，通过{和%之间加空格来显示代码。解决方法可参考&lt;a href=&quot;https://alexpearce.me/2012/04/escaping-liquid-tags-in-jekyll/&quot;&gt;这里&lt;/a&gt;。&lt;/p&gt;
+</description>
+        <pubDate>Sun, 06 Dec 2015 00:00:00 +0800</pubDate>
+        <link>http://techctu.github.io//jekyll/2015/12/06/%E6%90%AD%E5%BB%BA%E7%AE%80%E5%8D%95jekyll%E5%B0%8F%E8%AE%B0.html</link>
+        <guid isPermaLink="true">http://techctu.github.io//jekyll/2015/12/06/%E6%90%AD%E5%BB%BA%E7%AE%80%E5%8D%95jekyll%E5%B0%8F%E8%AE%B0.html</guid>
+        
+        <category>Jekyll</category>
+        
+        
+        <category>jekyll</category>
+        
+      </item>
+    
+      <item>
+        <title>在Mac上配置使用Sublime Text 3来进行JavaScript开发</title>
+        <description>&lt;p&gt;首先去下载&lt;a href=&quot;http://www.sublimetext.com/3&quot; title=&quot;屠龙宝刀&quot;&gt;Sublime Text 3&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h1 id=&quot;packagecontrol&quot;&gt;安装PackageControl&lt;/h1&gt;
+
+&lt;p&gt;作为一个新世纪的攻城💩，自然不能使用下载复制一类的粗鄙乡村方法来安装插件，除非乡村公司不让上外网。所以就需要安装&lt;a href=&quot;https://packagecontrol.io/&quot; title=&quot;点击就送&quot;&gt;PackageControl&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;然后使用ctrl＋`召唤出控制台，&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7xogz7.com1.z0.glb.clouddn.com/callSublimeText3Console.png?imageMogr2/thumbnail/!50p&quot; alt=&quot;召唤控制台&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;复制粘贴以下代码：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;urllib.request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nn&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nn&quot;&gt;hashlib&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;h&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;2915d1851351e5ee549c20394736b442&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;8bc59f460fa1548d1514676163dafc88&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pf&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;Package Control.sublime-package&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ipp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sublime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;installed_packages_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;urllib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;install_opener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;urllib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;build_opener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;urllib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ProxyHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;by&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;urllib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;urlopen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;http://packagecontrol.io/&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39; &amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;%20&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dh&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hashlib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sha256&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;by&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hexdigest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;Error validating download (got &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%s&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; instead of &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%s&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;), please try manual install&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dh&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dh&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;h&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ipp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;wb&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;by&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;注意：官网说了版本不一样神秘代码会有区别，具体还是以官网为准—&amp;gt;&lt;a href=&quot;https://packagecontrol.io/installation&quot; title=&quot;如果不送&quot;&gt;门&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;section&quot;&gt;选择插件包进行安装&lt;/h1&gt;
+
+&lt;p&gt;然后就用&lt;a href=&quot;https://packagecontrol.io/docs/usage&quot; title=&quot;召唤神龙&quot;&gt;cmd＋shift+p&lt;/a&gt;选择需要的插件包安装就好。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7xogz7.com1.z0.glb.clouddn.com/installPackage.png?imageMogr2/thumbnail/770x&quot; alt=&quot;插件开门&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7xogz7.com1.z0.glb.clouddn.com/choosePackage2Install.png?imageMogr2/thumbnail/770x&quot; alt=&quot;皇上掀牌子了&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这里我选择下载了&lt;a href=&quot;https://github.com/kemayo/sublime-text-git&quot; title=&quot;连Git，你懂的&quot;&gt;Git&lt;/a&gt;、&lt;a href=&quot;https://github.com/jisaacks/GitGutter&quot; title=&quot;对比文件&quot;&gt;GitGutter&lt;/a&gt;、&lt;a href=&quot;http://emmet.io/&quot; title=&quot;Zen Coding&quot;&gt;Emmet&lt;/a&gt;、&lt;a href=&quot;https://github.com/alienhard/SublimeAllAutocomplete&quot; title=&quot;全文件检索自动补全&quot;&gt;AllAutocomplete&lt;/a&gt;、&lt;a href=&quot;https://github.com/wbond/sublime_terminal&quot; title=&quot;召唤控制台&quot;&gt;Terminal&lt;/a&gt;、&lt;a href=&quot;https://github.com/spadgos/sublime-jsdocs&quot; title=&quot;注释助手&quot;&gt;DocBlokr&lt;/a&gt; 等。&lt;/p&gt;
+
+&lt;h2 id=&quot;git&quot;&gt;Git的配置&lt;/h2&gt;
+
+&lt;p&gt;其他的插件相对来说简单点，可以在上方链接直接参考文档；Git稍微复杂，单独在下方进行记录。&lt;/p&gt;
+
+&lt;p&gt;可以参考&lt;a href=&quot;https://help.github.com/articles/set-up-git/&quot;&gt;这篇文章&lt;/a&gt;来配置Git。&lt;/p&gt;
+
+&lt;p&gt;参考&lt;a href=&quot;https://help.github.com/articles/generating-ssh-keys/&quot;&gt;这篇文章&lt;/a&gt;来生成SSH Key。&lt;/p&gt;
+
+&lt;p&gt;参考&lt;a href=&quot;https://help.github.com/articles/which-remote-url-should-i-use/#cloning-with-ssh&quot;&gt;这篇文章&lt;/a&gt;来使用SSH来连接GitHub。&lt;/p&gt;
+
+&lt;p&gt;之后，就可以在Sublime Text 3种使用安装的Git插件来进行基本的Git操作了，命令仍然是command+shift+p。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7xogz7.com1.z0.glb.clouddn.com/useGitPlugin.png?imageMogr2/thumbnail/770x&quot; alt=&quot;使用Git插件&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;如果以后使用碰到困难，再另起文章进行记录。&lt;/p&gt;
+</description>
+        <pubDate>Sun, 06 Dec 2015 00:00:00 +0800</pubDate>
+        <link>http://techctu.github.io//sublimetext3/2015/12/06/%E5%9C%A8mac%E4%B8%8A%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8sublime-text-3%E6%9D%A5%E8%BF%9B%E8%A1%8Cjavascript%E5%BC%80%E5%8F%91.html</link>
+        <guid isPermaLink="true">http://techctu.github.io//sublimetext3/2015/12/06/%E5%9C%A8mac%E4%B8%8A%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8sublime-text-3%E6%9D%A5%E8%BF%9B%E8%A1%8Cjavascript%E5%BC%80%E5%8F%91.html</guid>
+        
+        <category>SublimeText3</category>
+        
+        <category>JavaScript</category>
+        
+        
+        <category>sublimetext3</category>
+        
+      </item>
+    
+      <item>
+        <title>在Mac上配置使用git</title>
+        <description>&lt;p&gt;在 &lt;a href=&quot;http://git-scm.com/download&quot; title=&quot;点击穿越&quot;&gt;git&lt;/a&gt;下载Mac安装程序。&lt;/p&gt;
+
+&lt;p&gt;傻瓜安装git。&lt;/p&gt;
+
+&lt;p&gt;打开Terminal，输入git –version来检查。&lt;/p&gt;
+
+&lt;p&gt;下载 &lt;a href=&quot;https://www.sourcetreeapp.com&quot; title=&quot;点击穿越&quot;&gt;SourceTree&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;傻瓜安装SourceTree并配置本地库和远程库。&lt;/p&gt;
+</description>
+        <pubDate>Sun, 06 Dec 2015 00:00:00 +0800</pubDate>
+        <link>http://techctu.github.io//git/2015/12/06/%E5%9C%A8mac%E4%B8%8A%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8git.html</link>
+        <guid isPermaLink="true">http://techctu.github.io//git/2015/12/06/%E5%9C%A8mac%E4%B8%8A%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8git.html</guid>
+        
+        <category>mac</category>
+        
+        <category>git</category>
+        
+        
+        <category>git</category>
+        
+      </item>
+    
+      <item>
+        <title>使用数据库自带的锁机制来处理竞争</title>
+        <description>&lt;p&gt;2013年刚入职的时候，做的p2p项目，有这么个需求。&lt;/p&gt;
+
+&lt;p&gt;众所周知，p2p需要去投标，投标就会有竞争。比如阿猫和阿狗都看到一个项目只剩1份了，两个人同时投标。这时候系统就会判断阿猫买一份，余额刚好一份，可以买；在系统确定了这次购买订单，更新余额前，阿狗的请求也到了，系统还没更新余额，这时系统也让阿狗买了一份。这就导致实际上一份卖出了两份，这样并不好，会出现一系列问题，具体什么问题，出门右转找运营。&lt;/p&gt;
+
+&lt;p&gt;那么怎么办呢？就是经典的并发情况下锁机制的设计了。&lt;/p&gt;
+
+&lt;p&gt;当时负责我们p2p组的组长决定利用数据库的锁机制来处理，具体就是在数据库中增加一个字段key，通过对a的值的比对来保证投标的顺利进行。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;oldKey&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getKey&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 获取锁值 &lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;processing&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 处理 &lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;checkKey&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 检查锁没有变更则更新锁，否则回滚操作 &lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;updateKey&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; 
+	&lt;span class=&quot;n&quot;&gt;rollback&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt; 
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;这样其实会有个问题，即在chenkKey()和updateKey()之间，会有可能有人也投标成功了。&lt;/p&gt;
+
+&lt;p&gt;怎么修改呢？其实很简单。我把chenkKey()和updateKey()合作一个方法checkAndUpdateKey()，直接在数据库中&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span class=&quot;k&quot;&gt;update&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;newKey&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;oldKey&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;这样代码逻辑就变成了&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;oldKey&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getKey&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 获取锁值 &lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;processing&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 处理 &lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;checkAndUpdateKey&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 检查锁值变化并更新锁，失败则回滚操作 &lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;rollback&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt; 
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;搞定。&lt;/p&gt;
+
+&lt;p&gt;P.S.当然这样有个很大的问题，竞争多的时候很容易就投不中标。最好还是类似12306先把请求排队进入一个队列，然后再依次处理——比如一个先进先出队列。&lt;/p&gt;
+</description>
+        <pubDate>Sun, 06 Dec 2015 00:00:00 +0800</pubDate>
+        <link>http://techctu.github.io//2015/12/06/%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E8%87%AA%E5%B8%A6%E7%9A%84%E9%94%81%E6%9C%BA%E5%88%B6%E6%9D%A5%E5%A4%84%E7%90%86%E7%AB%9E%E4%BA%89.html</link>
+        <guid isPermaLink="true">http://techctu.github.io//2015/12/06/%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E8%87%AA%E5%B8%A6%E7%9A%84%E9%94%81%E6%9C%BA%E5%88%B6%E6%9D%A5%E5%A4%84%E7%90%86%E7%AB%9E%E4%BA%89.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>一些好用的小玩意</title>
+        <description>&lt;h1 id=&quot;windows&quot;&gt;Windows&lt;/h1&gt;
+
+&lt;h2 id=&quot;everythinghttpwwwvoidtoolscom&quot;&gt;&lt;a href=&quot;http://www.voidtools.com/&quot;&gt;Everything&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;整理目录确实是个好习惯，但人总有犯懒的时候。也有时候大概有那么个名字的文件，找不到放哪了。&lt;a href=&quot;http://www.voidtools.com/&quot;&gt;Everything&lt;/a&gt;通过索引纪录文件位置，支持模糊搜索，支持正则表达式。担心索引坏磁盘就当我没说。&lt;/p&gt;
+
+&lt;h1 id=&quot;mac&quot;&gt;Mac&lt;/h1&gt;
+
+&lt;h2 id=&quot;scroll-reverserhttppilotmooncomscrollreverser&quot;&gt;&lt;a href=&quot;http://pilotmoon.com/scrollreverser/&quot;&gt;SCROLL REVERSER&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;非常好用的鼠标滚轮反转软件。有多少人像我一样触摸板喜欢上推页面看下一页但鼠标滚轮往下滑看下一页的？用&lt;a href=&quot;http://pilotmoon.com/scrollreverser/&quot;&gt;SCROLL REVERSER&lt;/a&gt;，完美解决这个问题。&lt;/p&gt;
+
+&lt;h2 id=&quot;alfredhttpswwwalfredappcom&quot;&gt;&lt;a href=&quot;https://www.alfredapp.com/&quot;&gt;Alfred&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;功能和&lt;a href=&quot;#everything&quot;&gt;Everything&lt;/a&gt;类似，增加了网络搜索功能。&lt;/p&gt;
+
+&lt;h1 id=&quot;linux&quot;&gt;Linux&lt;/h1&gt;
+</description>
+        <pubDate>Sun, 06 Dec 2015 00:00:00 +0800</pubDate>
+        <link>http://techctu.github.io//%E6%9D%82%E9%A1%B9/2015/12/06/%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F.html</link>
+        <guid isPermaLink="true">http://techctu.github.io//%E6%9D%82%E9%A1%B9/2015/12/06/%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F.html</guid>
+        
+        <category>tool</category>
+        
+        
+        <category>杂项</category>
+        
+      </item>
+    
+      <item>
+        <title>PureJSOnePageScroll——JavaScript单页滚动插件</title>
+        <description>&lt;h1 id=&quot;section&quot;&gt;啰嗦的背景&lt;/h1&gt;
+
+&lt;p&gt;最近有人问我像&lt;a href=&quot;https://coding.net/&quot;&gt;Coding.net&lt;/a&gt;啊这样的首页效果是不是很难。当然你让我从零开始弄一个确实很麻烦咯，不过这种肯定是有人做过了。于是找了找，便翻到了&lt;a href=&quot;https://github.com/peachananr/onepage-scroll&quot;&gt;OnePageScroll&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;最开始搜到的这个是基于JQuery的版本，在&lt;a href=&quot;https://github.com/peachananr&quot;&gt;作者&lt;/a&gt;的仓库里还翻到了&lt;a href=&quot;https://github.com/peachananr/zepto-onepage-scroll&quot;&gt;基于zepto的版本&lt;/a&gt;。不过我更喜欢不使用JQuery、Zepto等的更纯净的库，这就是本文介绍的&lt;a href=&quot;https://github.com/peachananr/purejs-onepage-scroll&quot;&gt;PureJSOnePageScroll&lt;/a&gt;。&lt;a href=&quot;http://www.thepetedesign.com/demos/purejs_onepage_scroll_demo.html&quot;&gt;点击查看特效&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;section-1&quot;&gt;使用方式&lt;/h1&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;引入文件&lt;/h2&gt;
+
+&lt;script type=&quot;text/javascript&quot; src=&quot;onepagescroll.js&quot;&gt;&lt;/script&gt;
+&lt;link href=&quot;onepage-scroll.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+
+&lt;p&gt;当然你也可以通过require等来插入，贵客都会require了自然也不需要看这部分。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;基本用法&lt;/h2&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt; ... 
+	&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- main只是作为选择器用，语法是HTML5的document.querySelector，不会请百度 --&amp;gt;&lt;/span&gt; 
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;main&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt; 
+		&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- section标签可以自定义 --&amp;gt;&lt;/span&gt; 
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;section&amp;gt;&lt;/span&gt;...&lt;span class=&quot;nt&quot;&gt;&amp;lt;/section&amp;gt;&lt;/span&gt; 
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;section&amp;gt;&lt;/span&gt;...&lt;span class=&quot;nt&quot;&gt;&amp;lt;/section&amp;gt;&lt;/span&gt;
+		 ... 
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+	 ... 
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;  
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;   
+	&lt;span class=&quot;nx&quot;&gt;onePageScroll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;.main&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;     
+		&lt;span class=&quot;nx&quot;&gt;sectionContainer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;section&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;     
+		&lt;span class=&quot;nx&quot;&gt;loop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;     
+		&lt;span class=&quot;nx&quot;&gt;responsiveFallback&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;   
+	&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt; 
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;section-4&quot;&gt;参数介绍&lt;/h2&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;onePageScroll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;.main&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 选择器，可以用class、id等 &lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;sectionContainer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;section&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 标签名字，随意起，确保是页面容器，不与其它同名即可 &lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;easing&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;ease&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// CSS3动画效果，&amp;quot;ease&amp;quot;, &amp;quot;linear&amp;quot;, &amp;quot;ease-in&amp;quot;, &amp;quot;ease-out&amp;quot;, &amp;quot;ease-in-out&amp;quot;, 或者&amp;quot;cubic-bezier(0.175, 0.885, 0.420, 1.310)&amp;quot; &lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;animationTime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 动画时间 &lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;pagination&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// true显示分页，false隐藏分页 &lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;updateURL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 是否更新页面url锚 &lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;beforeMove&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;next_el&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{},&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 页面滚动前调用函数，编号从1开始，移动向第n页则index为n &lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;afterMove&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;next_el&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{},&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 页面滚动后调用函数，移动到第n页index为n &lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;loop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 是否可以从底部下移到顶部 keyboard: true, // 是否用键盘控制 &lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;responsiveFallback&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 滚动页面宽度小于定值时，宽度外使用浏览器自带滚动条 });&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;section-5&quot;&gt;公共方法&lt;/h2&gt;
+
+&lt;p&gt;moveUp(“.main”); moveDown(“.main”); moveTo(“.main”, 3); // 这些没啥好解释的，上移、下移和移动到某页&lt;/p&gt;
+</description>
+        <pubDate>Sun, 06 Dec 2015 00:00:00 +0800</pubDate>
+        <link>http://techctu.github.io//javascript/2015/12/06/purejsonepagescrolljavascript%E5%8D%95%E9%A1%B5%E6%BB%9A%E5%8A%A8%E6%8F%92%E4%BB%B6.html</link>
+        <guid isPermaLink="true">http://techctu.github.io//javascript/2015/12/06/purejsonepagescrolljavascript%E5%8D%95%E9%A1%B5%E6%BB%9A%E5%8A%A8%E6%8F%92%E4%BB%B6.html</guid>
+        
+        <category>JavaScript</category>
+        
+        <category>PureJSOnePageScroll</category>
+        
+        
+        <category>javascript</category>
+        
+      </item>
+    
+      <item>
+        <title>JavaScript的AMD和CMD规范之我的看法</title>
+        <description>&lt;p&gt;首先列出相关文献：&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/amdjs/amdjs-api/wiki/AMD-(%E4%B8%AD%E6%96%87%E7%89%88)&quot;&gt;AMD规范&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/seajs/seajs/issues/242&quot;&gt;CMD规范&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://requirejs.org/&quot;&gt;AMD实现之RequireJS&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://seajs.org/docs/&quot;&gt;CMD实现之SeaJS&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/seajs/seajs/issues/277&quot;&gt;与RequireJS的异同&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.douban.com/note/283566440/&quot; title=&quot;注意评论&quot;&gt;SeaJS与RequireJS最大的区别&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://imququ.com/post/amd-simplified-commonjs-wrapping.html&quot;&gt;AMD 的 CommonJS wrapping&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;时值双十一之后，贵宝又在忽悠NodeJS多么多么好，准备研究一下，便避不开这俩规范之争。&lt;/p&gt;
+
+&lt;p&gt;这俩规范的区别是对于这段代码（感谢&lt;a href=&quot;https://imququ.com/post/amd-simplified-commonjs-wrapping.html&quot;&gt;Jerry Qu的代码&lt;/a&gt;）&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;c1&quot;&gt;//mod1.js &lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;define&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;        
+	&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;require module: mod1&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;       
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;          
+		&lt;span class=&quot;nx&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;             
+			&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;hello mod1&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;          
+		&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;       
+	&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt; 
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;//mod2.js &lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;define&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+	&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;require module: mod2&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; 
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+		&lt;span class=&quot;nx&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+			&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;hello mod2&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; 
+		&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+	&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt; 
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;//main.js &lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;define&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;mod1&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;mod2&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mod1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mod2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+	&lt;span class=&quot;c1&quot;&gt;//运行至此，mod1.js 和 mod2.js 已经下载完成； &lt;/span&gt;
+	&lt;span class=&quot;c1&quot;&gt;//mod1、mod2 两个模块已经执行完，直接可用；  &lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;require module: main&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
+&lt;span class=&quot;nx&quot;&gt;mod1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; 
+&lt;span class=&quot;nx&quot;&gt;mod2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;  
+&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;hello main&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;&amp;lt;!--&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;html&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&amp;gt;&lt;/span&gt; 
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; 
+	&lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;main&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt; 
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/script&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;行为不一样。&lt;/p&gt;
+
+&lt;p&gt;在AMD规范下会先加载mod1、mod2、main（加载完成的时间顺序可能不一致），然后依次hello。&lt;/p&gt;
+
+&lt;p&gt;require module: mod1 require module: mod2 require module: main hello mod1 hello mod2 hello main
+在CMD规范下必须是谁要hello就加载对应和依赖的module。&lt;/p&gt;
+
+&lt;p&gt;require module: main  require module: mod1  hello mod1  require module: mod2  hello mod2  hello main
+在各自的文中，都对问题说得很严重。在我看来，事实上，这个分歧主要还是一个着眼于服务器端，一个着眼于客户端（PC浏览器、移动浏览器、WebView等）。&lt;/p&gt;
+
+&lt;p&gt;在服务器端，最重要的事情之一是运维。在CMD这个框架下，代码的行为和作者的目的保持高度一致，同时还具备模块化的特性，自然是用CMD比较好。&lt;/p&gt;
+
+&lt;p&gt;在客户端，最重要的事情就是不要让用户等待。遵循AMD规范，将加载行为提前，可以保证客户端能更好地响应用户。&lt;/p&gt;
+
+&lt;p&gt;这两个环境下本来需求的优先级就不一致，为何非要某个规范一统前后台JavaScript开发？&lt;/p&gt;
+
+&lt;p&gt;让上帝的归上帝，撒旦的归撒旦。&lt;/p&gt;
+</description>
+        <pubDate>Sun, 06 Dec 2015 00:00:00 +0800</pubDate>
+        <link>http://techctu.github.io//javascript/2015/12/06/javascript%E7%9A%84amd%E5%92%8Ccmd%E8%A7%84%E8%8C%83%E4%B9%8B%E6%88%91%E7%9A%84%E7%9C%8B%E6%B3%95.html</link>
+        <guid isPermaLink="true">http://techctu.github.io//javascript/2015/12/06/javascript%E7%9A%84amd%E5%92%8Ccmd%E8%A7%84%E8%8C%83%E4%B9%8B%E6%88%91%E7%9A%84%E7%9C%8B%E6%B3%95.html</guid>
+        
+        <category>JavaScript</category>
+        
+        <category>AMD</category>
+        
+        <category>CMD</category>
+        
+        
+        <category>javascript</category>
+        
+      </item>
+    
+      <item>
         <title>Maven使用记录（二）——在Eclipse中使用Maven来进行项目管理</title>
         <description>&lt;p&gt;在&lt;a href=&quot;/maven/2015/12/06/Maven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94maven%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE.html&quot;&gt;maven使用记录（一）-maven的安装和基础配置中下载和安装好maven&lt;/a&gt;后，使用Eclipse来对项目进行管理。默认使用了J2EE插件。如图。&lt;/p&gt;
 
@@ -63,74 +454,6 @@
         
         
         <category>maven</category>
-        
-      </item>
-    
-      <item>
-        <title>Maven使用记录（一）——maven的安装和基础配置</title>
-        <description>&lt;p&gt;Maven是一款非常好用的项目管理软件，主要用于项目构建，依赖管理等，简介出门右转参见&lt;a href=&quot;http://baike.baidu.com/link?url=Y3LqFKxw2f3uLhfNeAfLscCNtqwhFxjzSKpu9_FCx1YKh2FhzyFSvn-0vT5XCIQf9AJX_R9cL9ztDlPgr0RnXK&quot;&gt;百度百科&lt;/a&gt;，亦或去&lt;a href=&quot;http://maven.apache.org&quot;&gt;官方网站&lt;/a&gt;。
-# 使用和配置
-这里主要介绍windows下maven的使用和配置。&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;要使用maven，首先确保安装了JDK，然后再去官方网站下载maven。根据情况——一般是操作系统和解压工具——选择zip或者tar.gz下载，然后解压到自己选择的目录或是文件夹下，即为maven的根目录。比如，我解压出来的目录结构是D:\LittleThings\apache-maven-3.2.5，包含bin、conf、lib、README.txt等目录和文件。所以，D:\LittleThings\apache-maven-3.2.5即我的maven根目录。​
-配置环境变量，以Windows为例。新增环境变量M2_HOME，我这里值为D:\LittleThings\apache-maven-3.2.5，修改为自己的根目录。在环境变量Path后增加;%M2_HOME%\bin;。这样，就完成了配置。在命令行窗口输入mvn -version，能看到maven的基本信息，如maven home、java version等。​​&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://7xogz7.com1.z0.glb.clouddn.com/mavenconfig.png&quot; alt=&quot;maven配置&quot; /&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;修改settings.xml。settings.xml位于根目录/conf下。一般settings需要修改的有两处：本地仓库的位置和中央仓库的镜像。
-本地仓库一般默认安装在系统盘下，这样，新增的jar包都会下载安装到系统盘。为了避免这个，找到settings.xml中localRepository的注释，添加&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;localRepository&amp;gt;&lt;/span&gt;D:/LittleThings/mvnrepo&lt;span class=&quot;nt&quot;&gt;&amp;lt;/localRepository&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;这里改成自己的本地仓库目录即可。
-一般由于众所周知的原因，很难从maven中央仓库下载下来jar包，因此，一般会添加镜像。&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;mirrors&amp;gt;&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;&amp;lt;mirror&amp;gt;&amp;lt;id&amp;gt;&lt;/span&gt;CN&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;name&amp;gt;&lt;/span&gt;OSChina Central&lt;span class=&quot;nt&quot;&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;http://maven.oschina.net/content/groups/public/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;mirrorOf&amp;gt;&lt;/span&gt;central&lt;span class=&quot;nt&quot;&gt;&amp;lt;/mirrorOf&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;/mirror&amp;gt;&lt;/span&gt; 
-	&lt;span class=&quot;nt&quot;&gt;&amp;lt;mirror&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;ibiblio.org&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;name&amp;gt;&lt;/span&gt;ibiblio Mirror of http://repo1.maven.org/maven2/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/name&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;http://mirrors.ibiblio.org/pub/mirrors/maven2&lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;mirrorOf&amp;gt;&lt;/span&gt;central&lt;span class=&quot;nt&quot;&gt;&amp;lt;/mirrorOf&amp;gt;&lt;/span&gt;  &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- United States, North Carolina --&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/mirror&amp;gt;&lt;/span&gt;  
-	&lt;span class=&quot;nt&quot;&gt;&amp;lt;mirror&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;cica.es&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;http://ftp.cica.es/mirrors/maven2&lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;mirrorOf&amp;gt;&lt;/span&gt;central&lt;span class=&quot;nt&quot;&gt;&amp;lt;/mirrorOf&amp;gt;&lt;/span&gt;  &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- Spain, Sevilla --&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/mirror&amp;gt;&lt;/span&gt; 
-	&lt;span class=&quot;nt&quot;&gt;&amp;lt;mirror&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;maven.org&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;http://repo1.maven.org/maven2/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;mirrorOf&amp;gt;&lt;/span&gt;central&lt;span class=&quot;nt&quot;&gt;&amp;lt;/mirrorOf&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/mirror&amp;gt;&lt;/span&gt;  
-	&lt;span class=&quot;nt&quot;&gt;&amp;lt;mirror&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;jboss.com&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;http://repository.jboss.com/maven2/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;mirrorOf&amp;gt;&lt;/span&gt;central&lt;span class=&quot;nt&quot;&gt;&amp;lt;/mirrorOf&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/mirror&amp;gt;&lt;/span&gt; 
-	&lt;span class=&quot;nt&quot;&gt;&amp;lt;mirror&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;sonatype.org&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;http://repository.sonatype.org/content/groups/public/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;mirrorOf&amp;gt;&lt;/span&gt;central&lt;span class=&quot;nt&quot;&gt;&amp;lt;/mirrorOf&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/mirror&amp;gt;&lt;/span&gt;  &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- mirror | Specifies a repository mirror site to use instead of a given repository. The repository that | this mirror serves has an ID that matches the mirrorOf element of this mirror. IDs are used | for inheritance and direct lookup purposes, and must be unique across the set of mirrors. | &amp;lt;mirror&amp;gt; &amp;lt;id&amp;gt;mirrorId&amp;lt;/id&amp;gt; &amp;lt;mirrorOf&amp;gt;repositoryId&amp;lt;/mirrorOf&amp;gt; &amp;lt;name&amp;gt;Human Readable Name for this Mirror.&amp;lt;/name&amp;gt; &amp;lt;url&amp;gt;http://my.repository.com/repo/path&amp;lt;/url&amp;gt; &amp;lt;/mirror&amp;gt; --&amp;gt;&lt;/span&gt; 
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/mirrors&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;至此，maven就初步安装完成可以使用了。&lt;/p&gt;
-
-</description>
-        <pubDate>Sun, 06 Dec 2015 00:00:00 +0800</pubDate>
-        <link>http://techctu.github.io//maven/2015/12/06/Maven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94maven%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE.html</link>
-        <guid isPermaLink="true">http://techctu.github.io//maven/2015/12/06/Maven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94maven%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE.html</guid>
-        
-        <category>maven</category>
-        
-        
-        <category>maven</category>
-        
-      </item>
-    
-      <item>
-        <title>开始使用Jekyll</title>
-        <description>&lt;h1 id=&quot;section&quot;&gt;缘起&lt;/h1&gt;
-&lt;p&gt;主要是最近喜欢用Markdown，听说GitHub Pages能当主机用，还能挂域名，就换着试试。&lt;/p&gt;
-
-&lt;p&gt;原来用着WordPress每次写点东西都要折腾半天也是累不爱了。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;就是试试Markdown随便写点，看看能不能用&lt;/strong&gt;&lt;/p&gt;
-</description>
-        <pubDate>Sat, 05 Dec 2015 06:25:07 +0800</pubDate>
-        <link>http://techctu.github.io//%E6%9D%82%E9%A1%B9/2015/12/05/%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8jekyll.html</link>
-        <guid isPermaLink="true">http://techctu.github.io//%E6%9D%82%E9%A1%B9/2015/12/05/%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8jekyll.html</guid>
-        
-        <category>jekyll</category>
-        
-        <category>others</category>
-        
-        
-        <category>杂项</category>
         
       </item>
     

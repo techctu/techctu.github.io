@@ -90,13 +90,13 @@
             <article class="post">
               <header>
                 <div class="title">
-                  <h2><a href="/%E6%9D%82%E9%A1%B9/2015/12/05/%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8jekyll.html">开始使用Jekyll</a></h2>
+                  <h2><a href="/sublimetext3/2015/12/06/%E5%9C%A8mac%E4%B8%8A%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8sublime-text-3%E6%9D%A5%E8%BF%9B%E8%A1%8Cjavascript%E5%BC%80%E5%8F%91.html">在Mac上配置使用Sublime Text 3来进行JavaScript开发</a></h2>
                 <!-- <p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p> -->
                 </div>
                 <div class="meta">
-                  <time class="published" datetime="2015-12-05">December 05, 2015</time>
+                  <time class="published" datetime="2015-12-06">December 06, 2015</time>
                   
-                    <a href="#">杂项</a>
+                    <a href="#">sublimetext3</a>
                   
 
         <!--
@@ -105,19 +105,54 @@
                 </div>
               </header>
               
-              <h1 id="section">缘起</h1>
-<p>主要是最近喜欢用Markdown，听说GitHub Pages能当主机用，还能挂域名，就换着试试。</p>
+              <p>首先去下载<a href="http://www.sublimetext.com/3" title="屠龙宝刀">Sublime Text 3</a>。</p>
 
-<p>原来用着WordPress每次写点东西都要折腾半天也是累不爱了。</p>
+<h1 id="packagecontrol">安装PackageControl</h1>
 
-<p><strong>就是试试Markdown随便写点，看看能不能用</strong></p>
+<p>作为一个新世纪的攻城💩，自然不能使用下载复制一类的粗鄙乡村方法来安装插件，除非乡村公司不让上外网。所以就需要安装<a href="https://packagecontrol.io/" title="点击就送">PackageControl</a>。</p>
+
+<p>然后使用ctrl＋`召唤出控制台，</p>
+
+<p><img src="http://7xogz7.com1.z0.glb.clouddn.com/callSublimeText3Console.png?imageMogr2/thumbnail/!50p" alt="召唤控制台" /></p>
+
+<p>复制粘贴以下代码：</p>
+
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">urllib.request</span><span class="o">,</span><span class="nn">os</span><span class="o">,</span><span class="nn">hashlib</span><span class="p">;</span> <span class="n">h</span> <span class="o">=</span> <span class="s">&#39;2915d1851351e5ee549c20394736b442&#39;</span> <span class="o">+</span> <span class="s">&#39;8bc59f460fa1548d1514676163dafc88&#39;</span><span class="p">;</span> <span class="n">pf</span> <span class="o">=</span> <span class="s">&#39;Package Control.sublime-package&#39;</span><span class="p">;</span> <span class="n">ipp</span> <span class="o">=</span> <span class="n">sublime</span><span class="o">.</span><span class="n">installed_packages_path</span><span class="p">();</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">install_opener</span><span class="p">(</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">build_opener</span><span class="p">(</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">ProxyHandler</span><span class="p">())</span> <span class="p">);</span> <span class="n">by</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span> <span class="s">&#39;http://packagecontrol.io/&#39;</span> <span class="o">+</span> <span class="n">pf</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">,</span> <span class="s">&#39;%20&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">();</span> <span class="n">dh</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">by</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">();</span> <span class="k">print</span><span class="p">(</span><span class="s">&#39;Error validating download (got </span><span class="si">%s</span><span class="s"> instead of </span><span class="si">%s</span><span class="s">), please try manual install&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">dh</span><span class="p">,</span> <span class="n">h</span><span class="p">))</span> <span class="k">if</span> <span class="n">dh</span> <span class="o">!=</span> <span class="n">h</span> <span class="k">else</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span> <span class="n">ipp</span><span class="p">,</span> <span class="n">pf</span><span class="p">),</span> <span class="s">&#39;wb&#39;</span> <span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">by</span><span class="p">)</span></code></pre></div>
+
+<p>注意：官网说了版本不一样神秘代码会有区别，具体还是以官网为准—&gt;<a href="https://packagecontrol.io/installation" title="如果不送">门</a></p>
+
+<h1 id="section">选择插件包进行安装</h1>
+
+<p>然后就用<a href="https://packagecontrol.io/docs/usage" title="召唤神龙">cmd＋shift+p</a>选择需要的插件包安装就好。</p>
+
+<p><img src="http://7xogz7.com1.z0.glb.clouddn.com/installPackage.png?imageMogr2/thumbnail/770x" alt="插件开门" /></p>
+
+<p><img src="http://7xogz7.com1.z0.glb.clouddn.com/choosePackage2Install.png?imageMogr2/thumbnail/770x" alt="皇上掀牌子了" /></p>
+
+<p>这里我选择下载了<a href="https://github.com/kemayo/sublime-text-git" title="连Git，你懂的">Git</a>、<a href="https://github.com/jisaacks/GitGutter" title="对比文件">GitGutter</a>、<a href="http://emmet.io/" title="Zen Coding">Emmet</a>、<a href="https://github.com/alienhard/SublimeAllAutocomplete" title="全文件检索自动补全">AllAutocomplete</a>、<a href="https://github.com/wbond/sublime_terminal" title="召唤控制台">Terminal</a>、<a href="https://github.com/spadgos/sublime-jsdocs" title="注释助手">DocBlokr</a> 等。</p>
+
+<h2 id="git">Git的配置</h2>
+
+<p>其他的插件相对来说简单点，可以在上方链接直接参考文档；Git稍微复杂，单独在下方进行记录。</p>
+
+<p>可以参考<a href="https://help.github.com/articles/set-up-git/">这篇文章</a>来配置Git。</p>
+
+<p>参考<a href="https://help.github.com/articles/generating-ssh-keys/">这篇文章</a>来生成SSH Key。</p>
+
+<p>参考<a href="https://help.github.com/articles/which-remote-url-should-i-use/#cloning-with-ssh">这篇文章</a>来使用SSH来连接GitHub。</p>
+
+<p>之后，就可以在Sublime Text 3种使用安装的Git插件来进行基本的Git操作了，命令仍然是command+shift+p。</p>
+
+<p><img src="http://7xogz7.com1.z0.glb.clouddn.com/useGitPlugin.png?imageMogr2/thumbnail/770x" alt="使用Git插件" /></p>
+
+<p>如果以后使用碰到困难，再另起文章进行记录。</p>
 
               <footer>
                 <ul class="stats">
                 
-                  <li><a href="#">jekyll</a></li>
+                  <li><a href="#">SublimeText3</a></li>
                 
-                  <li><a href="#">others</a></li>
+                  <li><a href="#">JavaScript</a></li>
                 
         <!--
         <li><a href="#">General</a></li>
@@ -129,10 +164,10 @@
            </article>
   					<ul class="actions pagination">
   					  
-  						  <li><a href="#" class="disabled button big previous">Previous Post</a></li>
+  	  				  <li><a href="/git/2015/12/06/%E5%9C%A8mac%E4%B8%8A%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8git.html" class="button big previous">Previous Post</a></li>
   						
 							
-  						  <li><a href="/maven/2015/12/06/Maven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94maven%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE.html" class="button big next">Next Post</a></li>
+  						  <li><a href="/jekyll/2015/12/06/%E6%90%AD%E5%BB%BA%E7%AE%80%E5%8D%95jekyll%E5%B0%8F%E8%AE%B0.html" class="button big next">Next Post</a></li>
   						
   					</ul>
 					</div>

@@ -90,13 +90,13 @@
             <article class="post">
               <header>
                 <div class="title">
-                  <h2><a href="/%E6%9D%82%E9%A1%B9/2015/12/05/%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8jekyll.html">开始使用Jekyll</a></h2>
+                  <h2><a href="/javascript/2015/12/06/javascript%E7%9A%84amd%E5%92%8Ccmd%E8%A7%84%E8%8C%83%E4%B9%8B%E6%88%91%E7%9A%84%E7%9C%8B%E6%B3%95.html">JavaScript的AMD和CMD规范之我的看法</a></h2>
                 <!-- <p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p> -->
                 </div>
                 <div class="meta">
-                  <time class="published" datetime="2015-12-05">December 05, 2015</time>
+                  <time class="published" datetime="2015-12-06">December 06, 2015</time>
                   
-                    <a href="#">杂项</a>
+                    <a href="#">javascript</a>
                   
 
         <!--
@@ -105,19 +105,86 @@
                 </div>
               </header>
               
-              <h1 id="section">缘起</h1>
-<p>主要是最近喜欢用Markdown，听说GitHub Pages能当主机用，还能挂域名，就换着试试。</p>
+              <p>首先列出相关文献：</p>
 
-<p>原来用着WordPress每次写点东西都要折腾半天也是累不爱了。</p>
+<p><a href="https://github.com/amdjs/amdjs-api/wiki/AMD-(%E4%B8%AD%E6%96%87%E7%89%88)">AMD规范</a></p>
 
-<p><strong>就是试试Markdown随便写点，看看能不能用</strong></p>
+<p><a href="https://github.com/seajs/seajs/issues/242">CMD规范</a></p>
+
+<p><a href="http://requirejs.org/">AMD实现之RequireJS</a></p>
+
+<p><a href="http://seajs.org/docs/">CMD实现之SeaJS</a></p>
+
+<p><a href="https://github.com/seajs/seajs/issues/277">与RequireJS的异同</a></p>
+
+<p><a href="http://www.douban.com/note/283566440/" title="注意评论">SeaJS与RequireJS最大的区别</a></p>
+
+<p><a href="https://imququ.com/post/amd-simplified-commonjs-wrapping.html">AMD 的 CommonJS wrapping</a></p>
+
+<p>时值双十一之后，贵宝又在忽悠NodeJS多么多么好，准备研究一下，便避不开这俩规范之争。</p>
+
+<p>这俩规范的区别是对于这段代码（感谢<a href="https://imququ.com/post/amd-simplified-commonjs-wrapping.html">Jerry Qu的代码</a>）</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">//mod1.js </span>
+<span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>        
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;require module: mod1&#39;</span><span class="p">);</span>       
+	<span class="k">return</span> <span class="p">{</span>          
+		<span class="nx">hello</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>             
+			<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;hello mod1&quot;</span><span class="p">);</span>          
+		<span class="p">}</span>       
+	<span class="p">};</span> 
+<span class="p">});</span>
+
+<span class="c1">//mod2.js </span>
+<span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;require module: mod2&#39;</span><span class="p">);</span> 
+	<span class="k">return</span> <span class="p">{</span> 
+		<span class="nx">hello</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
+			<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;hello mod2&quot;</span><span class="p">);</span> 
+		<span class="p">}</span> 
+	<span class="p">};</span> 
+<span class="p">});</span>
+
+<span class="c1">//main.js </span>
+<span class="nx">define</span><span class="p">([</span><span class="s1">&#39;mod1&#39;</span><span class="p">,</span> <span class="s1">&#39;mod2&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">mod1</span><span class="p">,</span> <span class="nx">mod2</span><span class="p">)</span> <span class="p">{</span> 
+	<span class="c1">//运行至此，mod1.js 和 mod2.js 已经下载完成； </span>
+	<span class="c1">//mod1、mod2 两个模块已经执行完，直接可用；  </span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;require module: main&#39;</span><span class="p">);</span>  
+<span class="nx">mod1</span><span class="p">.</span><span class="nx">hello</span><span class="p">();</span> 
+<span class="nx">mod2</span><span class="p">.</span><span class="nx">hello</span><span class="p">();</span>  
+<span class="k">return</span> <span class="p">{</span> <span class="nx">hello</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;hello main&#39;</span><span class="p">);</span> <span class="p">}</span> <span class="p">};</span> <span class="p">});</span>
+
+<span class="c">&lt;!--</span><span class="nx">index</span><span class="p">.</span><span class="nx">html</span><span class="o">--&gt;</span> 
+<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span> 
+	<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;main&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">main</span><span class="p">)</span> <span class="p">{</span> <span class="nx">main</span><span class="p">.</span><span class="nx">hello</span><span class="p">();</span> <span class="p">});</span> 
+<span class="o">&lt;</span><span class="err">/script&gt;</span></code></pre></div>
+
+<p>行为不一样。</p>
+
+<p>在AMD规范下会先加载mod1、mod2、main（加载完成的时间顺序可能不一致），然后依次hello。</p>
+
+<p>require module: mod1 require module: mod2 require module: main hello mod1 hello mod2 hello main
+在CMD规范下必须是谁要hello就加载对应和依赖的module。</p>
+
+<p>require module: main  require module: mod1  hello mod1  require module: mod2  hello mod2  hello main
+在各自的文中，都对问题说得很严重。在我看来，事实上，这个分歧主要还是一个着眼于服务器端，一个着眼于客户端（PC浏览器、移动浏览器、WebView等）。</p>
+
+<p>在服务器端，最重要的事情之一是运维。在CMD这个框架下，代码的行为和作者的目的保持高度一致，同时还具备模块化的特性，自然是用CMD比较好。</p>
+
+<p>在客户端，最重要的事情就是不要让用户等待。遵循AMD规范，将加载行为提前，可以保证客户端能更好地响应用户。</p>
+
+<p>这两个环境下本来需求的优先级就不一致，为何非要某个规范一统前后台JavaScript开发？</p>
+
+<p>让上帝的归上帝，撒旦的归撒旦。</p>
 
               <footer>
                 <ul class="stats">
                 
-                  <li><a href="#">jekyll</a></li>
+                  <li><a href="#">JavaScript</a></li>
                 
-                  <li><a href="#">others</a></li>
+                  <li><a href="#">AMD</a></li>
+                
+                  <li><a href="#">CMD</a></li>
                 
         <!--
         <li><a href="#">General</a></li>
@@ -129,10 +196,10 @@
            </article>
   					<ul class="actions pagination">
   					  
-  						  <li><a href="#" class="disabled button big previous">Previous Post</a></li>
+  	  				  <li><a href="/maven/2015/12/06/Maven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E5%9C%A8Eclipse%E4%B8%AD%E4%BD%BF%E7%94%A8Maven%E6%9D%A5%E8%BF%9B%E8%A1%8C%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86.html" class="button big previous">Previous Post</a></li>
   						
 							
-  						  <li><a href="/maven/2015/12/06/Maven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94maven%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE.html" class="button big next">Next Post</a></li>
+  						  <li><a href="/javascript/2015/12/06/purejsonepagescrolljavascript%E5%8D%95%E9%A1%B5%E6%BB%9A%E5%8A%A8%E6%8F%92%E4%BB%B6.html" class="button big next">Next Post</a></li>
   						
   					</ul>
 					</div>
