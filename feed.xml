@@ -6,8 +6,8 @@
 </description>
     <link>http://techctu.github.io//</link>
     <atom:link href="http://techctu.github.io//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 06 Dec 2015 10:18:00 +0800</pubDate>
-    <lastBuildDate>Sun, 06 Dec 2015 10:18:00 +0800</lastBuildDate>
+    <pubDate>Sun, 06 Dec 2015 21:02:06 +0800</pubDate>
+    <lastBuildDate>Sun, 06 Dec 2015 21:02:06 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -44,6 +44,71 @@
         
         
         <category>杂项</category>
+        
+      </item>
+    
+      <item>
+        <title>Maven使用记录（二）——在Eclipse中使用Maven来进行项目管理</title>
+        <description>&lt;p&gt;在&lt;a href=&quot;/maven/2015/12/06/Maven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94maven%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE.html&quot;&gt;maven使用记录（一）-maven的安装和基础配置中下载和安装好maven&lt;/a&gt;后，使用Eclipse来对项目进行管理。默认使用了J2EE插件。如图。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7xogz7.com1.z0.glb.clouddn.com/添加maven设置-300x244.png&quot; alt=&quot;配置1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7xogz7.com1.z0.glb.clouddn.com/添加maven-300x247.png&quot; alt=&quot;配置2&quot; /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sun, 06 Dec 2015 00:00:00 +0800</pubDate>
+        <link>http://techctu.github.io//maven/2015/12/06/Maven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E5%9C%A8Eclipse%E4%B8%AD%E4%BD%BF%E7%94%A8Maven%E6%9D%A5%E8%BF%9B%E8%A1%8C%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86.html</link>
+        <guid isPermaLink="true">http://techctu.github.io//maven/2015/12/06/Maven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E5%9C%A8Eclipse%E4%B8%AD%E4%BD%BF%E7%94%A8Maven%E6%9D%A5%E8%BF%9B%E8%A1%8C%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86.html</guid>
+        
+        <category>maven</category>
+        
+        
+        <category>maven</category>
+        
+      </item>
+    
+      <item>
+        <title>Maven使用记录（一）——maven的安装和基础配置</title>
+        <description>&lt;p&gt;Maven是一款非常好用的项目管理软件，主要用于项目构建，依赖管理等，简介出门右转参见&lt;a href=&quot;http://baike.baidu.com/link?url=Y3LqFKxw2f3uLhfNeAfLscCNtqwhFxjzSKpu9_FCx1YKh2FhzyFSvn-0vT5XCIQf9AJX_R9cL9ztDlPgr0RnXK&quot;&gt;百度百科&lt;/a&gt;，亦或去&lt;a href=&quot;http://maven.apache.org&quot;&gt;官方网站&lt;/a&gt;。
+# 使用和配置
+这里主要介绍windows下maven的使用和配置。&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;要使用maven，首先确保安装了JDK，然后再去官方网站下载maven。根据情况——一般是操作系统和解压工具——选择zip或者tar.gz下载，然后解压到自己选择的目录或是文件夹下，即为maven的根目录。比如，我解压出来的目录结构是D:\LittleThings\apache-maven-3.2.5，包含bin、conf、lib、README.txt等目录和文件。所以，D:\LittleThings\apache-maven-3.2.5即我的maven根目录。​
+配置环境变量，以Windows为例。新增环境变量M2_HOME，我这里值为D:\LittleThings\apache-maven-3.2.5，修改为自己的根目录。在环境变量Path后增加;%M2_HOME%\bin;。这样，就完成了配置。在命令行窗口输入mvn -version，能看到maven的基本信息，如maven home、java version等。​​&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7xogz7.com1.z0.glb.clouddn.com/mavenconfig.png&quot; alt=&quot;maven配置&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;修改settings.xml。settings.xml位于根目录/conf下。一般settings需要修改的有两处：本地仓库的位置和中央仓库的镜像。
+本地仓库一般默认安装在系统盘下，这样，新增的jar包都会下载安装到系统盘。为了避免这个，找到settings.xml中localRepository的注释，添加&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;localRepository&amp;gt;&lt;/span&gt;D:/LittleThings/mvnrepo&lt;span class=&quot;nt&quot;&gt;&amp;lt;/localRepository&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;这里改成自己的本地仓库目录即可。
+一般由于众所周知的原因，很难从maven中央仓库下载下来jar包，因此，一般会添加镜像。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;mirrors&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;mirror&amp;gt;&amp;lt;id&amp;gt;&lt;/span&gt;CN&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;name&amp;gt;&lt;/span&gt;OSChina Central&lt;span class=&quot;nt&quot;&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;http://maven.oschina.net/content/groups/public/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;mirrorOf&amp;gt;&lt;/span&gt;central&lt;span class=&quot;nt&quot;&gt;&amp;lt;/mirrorOf&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;/mirror&amp;gt;&lt;/span&gt; 
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;mirror&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;ibiblio.org&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;name&amp;gt;&lt;/span&gt;ibiblio Mirror of http://repo1.maven.org/maven2/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/name&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;http://mirrors.ibiblio.org/pub/mirrors/maven2&lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;mirrorOf&amp;gt;&lt;/span&gt;central&lt;span class=&quot;nt&quot;&gt;&amp;lt;/mirrorOf&amp;gt;&lt;/span&gt;  &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- United States, North Carolina --&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/mirror&amp;gt;&lt;/span&gt;  
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;mirror&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;cica.es&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;http://ftp.cica.es/mirrors/maven2&lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;mirrorOf&amp;gt;&lt;/span&gt;central&lt;span class=&quot;nt&quot;&gt;&amp;lt;/mirrorOf&amp;gt;&lt;/span&gt;  &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- Spain, Sevilla --&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/mirror&amp;gt;&lt;/span&gt; 
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;mirror&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;maven.org&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;http://repo1.maven.org/maven2/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;mirrorOf&amp;gt;&lt;/span&gt;central&lt;span class=&quot;nt&quot;&gt;&amp;lt;/mirrorOf&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/mirror&amp;gt;&lt;/span&gt;  
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;mirror&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;jboss.com&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;http://repository.jboss.com/maven2/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;mirrorOf&amp;gt;&lt;/span&gt;central&lt;span class=&quot;nt&quot;&gt;&amp;lt;/mirrorOf&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/mirror&amp;gt;&lt;/span&gt; 
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;mirror&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;sonatype.org&lt;span class=&quot;nt&quot;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;http://repository.sonatype.org/content/groups/public/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;mirrorOf&amp;gt;&lt;/span&gt;central&lt;span class=&quot;nt&quot;&gt;&amp;lt;/mirrorOf&amp;gt;&lt;/span&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/mirror&amp;gt;&lt;/span&gt;  &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- mirror | Specifies a repository mirror site to use instead of a given repository. The repository that | this mirror serves has an ID that matches the mirrorOf element of this mirror. IDs are used | for inheritance and direct lookup purposes, and must be unique across the set of mirrors. | &amp;lt;mirror&amp;gt; &amp;lt;id&amp;gt;mirrorId&amp;lt;/id&amp;gt; &amp;lt;mirrorOf&amp;gt;repositoryId&amp;lt;/mirrorOf&amp;gt; &amp;lt;name&amp;gt;Human Readable Name for this Mirror.&amp;lt;/name&amp;gt; &amp;lt;url&amp;gt;http://my.repository.com/repo/path&amp;lt;/url&amp;gt; &amp;lt;/mirror&amp;gt; --&amp;gt;&lt;/span&gt; 
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/mirrors&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;至此，maven就初步安装完成可以使用了。&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 06 Dec 2015 00:00:00 +0800</pubDate>
+        <link>http://techctu.github.io//maven/2015/12/06/Maven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94maven%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE.html</link>
+        <guid isPermaLink="true">http://techctu.github.io//maven/2015/12/06/Maven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94maven%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE.html</guid>
+        
+        <category>maven</category>
+        
+        
+        <category>maven</category>
         
       </item>
     
