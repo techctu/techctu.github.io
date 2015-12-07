@@ -115,8 +115,8 @@
 
 <h2 id="section-2">引入文件</h2>
 
-<script type="text/javascript" src="onepagescroll.js"></script>
-<link href="onepage-scroll.css" rel="stylesheet" type="text/css" />
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;onepagescroll.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span> 
+<span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&#39;onepage-scroll.css&#39;</span> <span class="na">rel=</span><span class="s">&#39;stylesheet&#39;</span> <span class="na">type=</span><span class="s">&#39;text/css&#39;</span><span class="nt">&gt;</span></code></pre></div>
 
 <p>当然你也可以通过require等来插入，贵客都会require了自然也不需要看这部分。</p>
 
@@ -142,9 +142,13 @@
 
 <h2 id="section-4">参数介绍</h2>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">onePageScroll</span><span class="p">(</span><span class="s2">&quot;.main&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="c1">// 选择器，可以用class、id等 </span>
-<span class="nx">sectionContainer</span><span class="o">:</span> <span class="s2">&quot;section&quot;</span><span class="p">,</span> <span class="c1">// 标签名字，随意起，确保是页面容器，不与其它同名即可 </span>
-<span class="nx">easing</span><span class="o">:</span> <span class="s2">&quot;ease&quot;</span><span class="p">,</span> <span class="c1">// CSS3动画效果，&quot;ease&quot;, &quot;linear&quot;, &quot;ease-in&quot;, &quot;ease-out&quot;, &quot;ease-in-out&quot;, 或者&quot;cubic-bezier(0.175, 0.885, 0.420, 1.310)&quot; </span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// 选择器，可以用class、id等 </span>
+<span class="nx">onePageScroll</span><span class="p">(</span><span class="s2">&quot;.main&quot;</span><span class="p">,</span> <span class="p">{</span> 
+<span class="c1">// 标签名字，随意起，确保是页面容器，不与其它同名即可 </span>
+<span class="nx">sectionContainer</span><span class="o">:</span> <span class="s2">&quot;section&quot;</span><span class="p">,</span> 
+<span class="c1">// CSS3动画效果，&quot;ease&quot;, &quot;linear&quot;, &quot;ease-in&quot;, &quot;ease-out&quot;, &quot;ease-in-out&quot;, </span>
+<span class="c1">// 或者&quot;cubic-bezier(0.175, 0.885, 0.420, 1.310)&quot; </span>
+<span class="nx">easing</span><span class="o">:</span> <span class="s2">&quot;ease&quot;</span><span class="p">,</span> 
 <span class="nx">animationTime</span><span class="o">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="c1">// 动画时间 </span>
 <span class="nx">pagination</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">// true显示分页，false隐藏分页 </span>
 <span class="nx">updateURL</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// 是否更新页面url锚 </span>
