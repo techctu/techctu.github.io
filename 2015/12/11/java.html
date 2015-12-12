@@ -87,164 +87,41 @@
 					<div id="main">
 
 						<!-- Post -->
-			      
-  <article class="post">
-    <header>
-      <div class="title">
-        <h2><a href="/%E6%9E%B6%E6%9E%84/2015/12/11/java%E7%B3%BBdubbozookeeper%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1%E6%8B%86%E5%88%86%E8%AE%B0%E5%BD%95.html">Java系Dubbo、Zookeeper系统服务拆分记录</a></h2>
-        <!-- <p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p> -->
-      </div>
-      <div class="meta">
-        <time class="published" datetime="2015-12-11">December 11, 2015</time>
-        
-          <a href="#">架构</a>
-        
+            <article class="post">
+              <header>
+                <div class="title">
+                  <h2><a href="/2015/12/11/java.html">Java</a></h2>
+                <!-- <p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p> -->
+                </div>
+                <div class="meta">
+                  <time class="published" datetime="2015-12-11">December 11, 2015</time>
+                  
+
         <!--
         <a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>
         -->
-      </div>
-    </header>
-    
-    <p>事情发展情况总是偏离人的预想，尤其是业务发展和系统架构设计。一段时间后，一个新业务功能的上线往往伴随着几个相关功能的开发小组加班。同时甲组功能A可能依赖乙组功能B，乙组由于某个需求要更改功能B，而甲组开发新功能需要继续依赖功能B，且分配的开发时间并不一致。这样，协调起来会非常麻烦，效率也十分低下。于是，服务拆分的呼声越来越烈。经过几个月的研究、拆分、测试、上线，终于初步解决了服务间相互依赖的问题，便记录一下。
-# 理想并不丰满
-任何业务系统的架构都是和业务紧密关联的，当时拟定有几个业务产品，一个后台管理，自己建立用户体系和账户体系，对接外系统接口，底层提供一系列日志、事务等平台服务。这个时候，分层逻辑是这样的：</p>
+                </div>
+              </header>
+              
+              
 
-
-    <footer>
-      <ul class="actions">
-        <li><a href="/%E6%9E%B6%E6%9E%84/2015/12/11/java%E7%B3%BBdubbozookeeper%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1%E6%8B%86%E5%88%86%E8%AE%B0%E5%BD%95.html" class="button big">Continue Reading</a></li>
-      </ul>
-      <ul class="stats">
-        
-          <li><a href="#">架构</a></li>
-        
-          <li><a href="#">dubbo</a></li>
-        
-          <li><a href="#">zookeeper</a></li>
-        
+              <footer>
+                <ul class="stats">
+                
         <!--
         <li><a href="#">General</a></li>
         <li><a href="#" class="icon fa-heart">28</a></li>
         <li><a href="#" class="icon fa-comment">128</a></li>
         -->
-      </ul>
-    </footer>
-  </article>
-
-  <article class="post">
-    <header>
-      <div class="title">
-        <h2><a href="/2015/12/11/java.html">Java</a></h2>
-        <!-- <p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p> -->
-      </div>
-      <div class="meta">
-        <time class="published" datetime="2015-12-11">December 11, 2015</time>
-        
-        <!--
-        <a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>
-        -->
-      </div>
-    </header>
-    
-    
-
-    <footer>
-      <ul class="actions">
-        <li><a href="/2015/12/11/java.html" class="button big">Continue Reading</a></li>
-      </ul>
-      <ul class="stats">
-        
-        <!--
-        <li><a href="#">General</a></li>
-        <li><a href="#" class="icon fa-heart">28</a></li>
-        <li><a href="#" class="icon fa-comment">128</a></li>
-        -->
-      </ul>
-    </footer>
-  </article>
-
-  <article class="post">
-    <header>
-      <div class="title">
-        <h2><a href="/%E6%9D%82%E9%A1%B9/2015/12/06/%E7%99%BB%E9%95%BF%E5%9F%8E%E8%AE%B0.html">登长城记</a></h2>
-        <!-- <p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p> -->
-      </div>
-      <div class="meta">
-        <time class="published" datetime="2015-12-06">December 06, 2015</time>
-        
-          <a href="#">杂项</a>
-        
-        <!--
-        <a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>
-        -->
-      </div>
-    </header>
-    
-    <p>十二月正是万物萧索，静心养气的时机。适逢朋友李来京培训，既然来京，便必择一日天气尚可之时，登那长城。</p>
-
-
-    <footer>
-      <ul class="actions">
-        <li><a href="/%E6%9D%82%E9%A1%B9/2015/12/06/%E7%99%BB%E9%95%BF%E5%9F%8E%E8%AE%B0.html" class="button big">Continue Reading</a></li>
-      </ul>
-      <ul class="stats">
-        
-          <li><a href="#">others</a></li>
-        
-        <!--
-        <li><a href="#">General</a></li>
-        <li><a href="#" class="icon fa-heart">28</a></li>
-        <li><a href="#" class="icon fa-comment">128</a></li>
-        -->
-      </ul>
-    </footer>
-  </article>
-
-  <article class="post">
-    <header>
-      <div class="title">
-        <h2><a href="/%E6%9D%82%E9%A1%B9/2015/12/06/%E7%83%AD%E6%83%85%E6%AC%A3%E8%B5%8F%E8%AF%9A%E5%AE%9E%E5%A4%B4%E8%84%91%E9%A3%8E%E6%9A%B4%E6%88%90%E6%9E%9C%E6%BC%94%E8%AE%B2%E5%8F%8D%E6%80%9D.html">热情、欣赏、诚实——头脑风暴成果演讲反思</a></h2>
-        <!-- <p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p> -->
-      </div>
-      <div class="meta">
-        <time class="published" datetime="2015-12-06">December 06, 2015</time>
-        
-          <a href="#">杂项</a>
-        
-        <!--
-        <a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>
-        -->
-      </div>
-    </header>
-    
-    <p>最近，Team Leader一直在搞头脑风暴，想要摩擦出火花，采集闪光的瞬间，集齐七个……嗯，就是想解放思想、实事求是。遂，每逢周三，组内汇聚一堂，坐而论道。</p>
-
-
-    <footer>
-      <ul class="actions">
-        <li><a href="/%E6%9D%82%E9%A1%B9/2015/12/06/%E7%83%AD%E6%83%85%E6%AC%A3%E8%B5%8F%E8%AF%9A%E5%AE%9E%E5%A4%B4%E8%84%91%E9%A3%8E%E6%9A%B4%E6%88%90%E6%9E%9C%E6%BC%94%E8%AE%B2%E5%8F%8D%E6%80%9D.html" class="button big">Continue Reading</a></li>
-      </ul>
-      <ul class="stats">
-        
-          <li><a href="#">演讲</a></li>
-        
-        <!--
-        <li><a href="#">General</a></li>
-        <li><a href="#" class="icon fa-heart">28</a></li>
-        <li><a href="#" class="icon fa-comment">128</a></li>
-        -->
-      </ul>
-    </footer>
-  </article>
-
-
+                </ul>
+              </footer>
+           </article>
   					<ul class="actions pagination">
   					  
-  						  <li><a href="#" class="disabled button big previous">Previous Page</a></li>
+  	  				  <li><a href="/%E6%9D%82%E9%A1%B9/2015/12/06/%E7%99%BB%E9%95%BF%E5%9F%8E%E8%AE%B0.html" class="button big previous">Previous Post</a></li>
   						
-  							<li>1 / 4</li>
 							
-  						  <li><a href="/page2" class="button big next">Next Page</a></li>
+  						  <li><a href="/%E6%9E%B6%E6%9E%84/2015/12/11/java%E7%B3%BBdubbozookeeper%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1%E6%8B%86%E5%88%86%E8%AE%B0%E5%BD%95.html" class="button big next">Next Post</a></li>
   						
   					</ul>
 					</div>

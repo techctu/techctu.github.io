@@ -6,9 +6,108 @@
 </description>
     <link>http://techctu.github.io//</link>
     <atom:link href="http://techctu.github.io//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 07 Dec 2015 22:58:02 +0800</pubDate>
-    <lastBuildDate>Mon, 07 Dec 2015 22:58:02 +0800</lastBuildDate>
+    <pubDate>Sat, 12 Dec 2015 15:22:54 +0800</pubDate>
+    <lastBuildDate>Sat, 12 Dec 2015 15:22:54 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>Java系Dubbo、Zookeeper系统服务拆分记录</title>
+        <description>&lt;p&gt;事情发展情况总是偏离人的预想，尤其是业务发展和系统架构设计。一段时间后，一个新业务功能的上线往往伴随着几个相关功能的开发小组加班。同时甲组功能A可能依赖乙组功能B，乙组由于某个需求要更改功能B，而甲组开发新功能需要继续依赖功能B，且分配的开发时间并不一致。这样，协调起来会非常麻烦，效率也十分低下。于是，服务拆分的呼声越来越烈。经过几个月的研究、拆分、测试、上线，终于初步解决了服务间相互依赖的问题，便记录一下。
+# 理想并不丰满
+任何业务系统的架构都是和业务紧密关联的，当时拟定有几个业务产品，一个后台管理，自己建立用户体系和账户体系，对接外系统接口，底层提供一系列日志、事务等平台服务。这个时候，分层逻辑是这样的：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;页面展现层：web、Controller。 &lt;/li&gt;
+  &lt;li&gt;业务逻辑层：services。&lt;/li&gt;
+  &lt;li&gt;平台服务层：Utils。&lt;/li&gt;
+  &lt;li&gt;基础设施层：Database、Logs。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;项目结构是这样的：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Utils：提供统一异常管理、日志服务、事务处理、服务注册和发布、日期转换等工具类。&lt;/li&gt;
+  &lt;li&gt;Apis：映射数据库表的domain类＋各个业务逻辑的Interfaces。&lt;/li&gt;
+  &lt;li&gt;Services：各个产品服务实现类。&lt;/li&gt;
+  &lt;li&gt;Web：MVC层，访问服务并展示页面。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;并且规定了Service相关的编码规范，如：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;不同产品Service之间需要通过Interface调用，不能直接调用实现。&lt;/li&gt;
+  &lt;li&gt;所有产品业务类Service不能直接调用Dao，需要在上面封装一层基础Service。&lt;/li&gt;
+  &lt;li&gt;Service调用不能形成循环依赖。&lt;/li&gt;
+  &lt;li&gt;业务逻辑必须放在Service中，不能放在Controller里。&lt;/li&gt;
+  &lt;li&gt;分层结构中不允许逆向调用，即下层不允许调用上层的代码。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;看起来不错，然而domain呢？产品直接调用这些参数类型怎么办？各个产品Service相互调用，产品内部是否需要封装别的产品的Interface？后来才知道，这些都是坑。
+# 现实很骨感
+当时工期很紧，团队新组建，还要和别的团队一起开发，技术人员素质参差不齐，到后来规定执行不力，但勉勉强强没出大问题。&lt;/p&gt;
+
+&lt;p&gt;后来，只有三个产品上线，其中两个是用户体系和账户体系，也就是说真正业务部分只有产品A，其它产品都没有什么活力。这时候倒也没有什么问题。可产品是会增加的。产品增加，就会出现如下情况：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7xogz7.com1.z0.glb.clouddn.com/ServiceRef.png?imageMogr2/thumbnail/770x&quot; alt=&quot;Service变更&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;而且，出于项目迭代、运维管理的需要，会有上线窗口，这就导致了Service B 2.0部分代码提交，但还没有上线，Service A却需要上线的情况。更有可能有多个Service依赖不同版本的同一个Service的情况出现。这时候面临的就是一个功能的修改，都可能有好几个小组加班。&lt;/p&gt;
+
+&lt;p&gt;经过几个新产品的开发和外部接口变换导致的内部代码的调整，可以预见，随着产品的增加，整个系统内部的耦合性会急剧增加，新功能、新产品的开发会越来越困难，一个功能点可能会涉及多个产品的更改，并且存在由于种种原因不使用Interface直接使用Service的情况，典型如图所示：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7xogz7.com1.z0.glb.clouddn.com/domainandserviceinfection.png?imageMogr2/thumbnail/770x&quot; alt=&quot;Domain传递和Service依赖&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;ABCD可能属于不同的产品，ACD可能需要不同版本的B的method1的实现，Class B也有可能需要修改，且各自的deadline并不相同。这就存在了B从version 1到version 2的修改过程中，其它产品夹带代码的问题。为了解决这个问题，服务拆分小组对现有代码进行了分析，发现现有代码存在几个问题：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Domain使用了Spring的ApplicationContext.getContext方式来获取Service实例。&lt;/li&gt;
+  &lt;li&gt;Service没有使用Interface，直接使用了实现类。&lt;/li&gt;
+  &lt;li&gt;产品A直接使用了产品B的domain来传递数据。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;为了解决这些问题，服务拆分小组重新设计了服务开发的规范：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Domain不允许使用Service，保持Domain的纯洁。&lt;/li&gt;
+  &lt;li&gt;对外提供服务的返回值采用基本数据类型或者定义VO类。&lt;/li&gt;
+  &lt;li&gt;对外提供的服务必须在实际调用的服务上再封装一层。&lt;/li&gt;
+  &lt;li&gt;调用其他产品的服务必须时必须封装一层，并实现自己的VO，避免对象污染。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;如图：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7xogz7.com1.z0.glb.clouddn.com/improved.png?imageMogr2/thumbnail/770x&quot; alt=&quot;什么鬼&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这样解决了上面的问题，唯一的问题是结构更加复杂了。&lt;/p&gt;
+
+&lt;h1 id=&quot;section&quot;&gt;遗留问题&lt;/h1&gt;
+&lt;p&gt;分布式事务，老大难问题了。&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 11 Dec 2015 00:00:00 +0800</pubDate>
+        <link>http://techctu.github.io//%E6%9E%B6%E6%9E%84/2015/12/11/java%E7%B3%BBdubbozookeeper%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1%E6%8B%86%E5%88%86%E8%AE%B0%E5%BD%95.html</link>
+        <guid isPermaLink="true">http://techctu.github.io//%E6%9E%B6%E6%9E%84/2015/12/11/java%E7%B3%BBdubbozookeeper%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1%E6%8B%86%E5%88%86%E8%AE%B0%E5%BD%95.html</guid>
+        
+        <category>架构</category>
+        
+        <category>dubbo</category>
+        
+        <category>zookeeper</category>
+        
+        
+        <category>架构</category>
+        
+      </item>
+    
+      <item>
+        <title>Java</title>
+        <description>
+</description>
+        <pubDate>Fri, 11 Dec 2015 00:00:00 +0800</pubDate>
+        <link>http://techctu.github.io//2015/12/11/java.html</link>
+        <guid isPermaLink="true">http://techctu.github.io//2015/12/11/java.html</guid>
+        
+        
+      </item>
     
       <item>
         <title>登长城记</title>
@@ -364,114 +463,6 @@
         
         
         <category>javascript</category>
-        
-      </item>
-    
-      <item>
-        <title>JavaScript的AMD和CMD规范之我的看法</title>
-        <description>&lt;p&gt;首先列出相关文献：&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/amdjs/amdjs-api/wiki/AMD-(%E4%B8%AD%E6%96%87%E7%89%88)&quot;&gt;AMD规范&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/seajs/seajs/issues/242&quot;&gt;CMD规范&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://requirejs.org/&quot;&gt;AMD实现之RequireJS&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://seajs.org/docs/&quot;&gt;CMD实现之SeaJS&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/seajs/seajs/issues/277&quot;&gt;与RequireJS的异同&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.douban.com/note/283566440/&quot; title=&quot;注意评论&quot;&gt;SeaJS与RequireJS最大的区别&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://imququ.com/post/amd-simplified-commonjs-wrapping.html&quot;&gt;AMD 的 CommonJS wrapping&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;时值双十一之后，贵宝又在忽悠NodeJS多么多么好，准备研究一下，便避不开这俩规范之争。&lt;/p&gt;
-
-&lt;p&gt;这俩规范的区别是对于这段代码（感谢&lt;a href=&quot;https://imququ.com/post/amd-simplified-commonjs-wrapping.html&quot;&gt;Jerry Qu的代码&lt;/a&gt;）&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;c1&quot;&gt;//mod1.js &lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;define&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;        
-	&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;require module: mod1&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;       
-	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;          
-		&lt;span class=&quot;nx&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;             
-			&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;hello mod1&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;          
-		&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;       
-	&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt; 
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;//mod2.js &lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;define&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
-	&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;require module: mod2&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; 
-	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
-		&lt;span class=&quot;nx&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
-			&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;hello mod2&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; 
-		&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
-	&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt; 
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;//main.js &lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;define&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;mod1&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;mod2&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mod1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mod2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
-	&lt;span class=&quot;c1&quot;&gt;//运行至此，mod1.js 和 mod2.js 已经下载完成； &lt;/span&gt;
-	&lt;span class=&quot;c1&quot;&gt;//mod1、mod2 两个模块已经执行完，直接可用；  &lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;require module: main&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
-&lt;span class=&quot;nx&quot;&gt;mod1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; 
-&lt;span class=&quot;nx&quot;&gt;mod2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;  
-&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;hello main&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;&amp;lt;!--&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;html&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&amp;gt;&lt;/span&gt; 
-&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; 
-	&lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;main&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt; 
-&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/script&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;行为不一样。&lt;/p&gt;
-
-&lt;p&gt;在AMD规范下会先加载mod1、mod2、main（加载完成的时间顺序可能不一致），然后依次hello。&lt;/p&gt;
-
-&lt;p&gt;require module: mod1 require module: mod2 require module: main hello mod1 hello mod2 hello main
-在CMD规范下必须是谁要hello就加载对应和依赖的module。&lt;/p&gt;
-
-&lt;p&gt;require module: main  require module: mod1  hello mod1  require module: mod2  hello mod2  hello main
-在各自的文中，都对问题说得很严重。在我看来，事实上，这个分歧主要还是一个着眼于服务器端，一个着眼于客户端（PC浏览器、移动浏览器、WebView等）。&lt;/p&gt;
-
-&lt;p&gt;在服务器端，最重要的事情之一是运维。在CMD这个框架下，代码的行为和作者的目的保持高度一致，同时还具备模块化的特性，自然是用CMD比较好。&lt;/p&gt;
-
-&lt;p&gt;在客户端，最重要的事情就是不要让用户等待。遵循AMD规范，将加载行为提前，可以保证客户端能更好地响应用户。&lt;/p&gt;
-
-&lt;p&gt;这两个环境下本来需求的优先级就不一致，为何非要某个规范一统前后台JavaScript开发？&lt;/p&gt;
-
-&lt;p&gt;让上帝的归上帝，撒旦的归撒旦。&lt;/p&gt;
-</description>
-        <pubDate>Sun, 06 Dec 2015 00:00:00 +0800</pubDate>
-        <link>http://techctu.github.io//javascript/2015/12/06/javascript%E7%9A%84amd%E5%92%8Ccmd%E8%A7%84%E8%8C%83%E4%B9%8B%E6%88%91%E7%9A%84%E7%9C%8B%E6%B3%95.html</link>
-        <guid isPermaLink="true">http://techctu.github.io//javascript/2015/12/06/javascript%E7%9A%84amd%E5%92%8Ccmd%E8%A7%84%E8%8C%83%E4%B9%8B%E6%88%91%E7%9A%84%E7%9C%8B%E6%B3%95.html</guid>
-        
-        <category>JavaScript</category>
-        
-        <category>AMD</category>
-        
-        <category>CMD</category>
-        
-        
-        <category>javascript</category>
-        
-      </item>
-    
-      <item>
-        <title>Maven使用记录（二）——在Eclipse中使用Maven来进行项目管理</title>
-        <description>&lt;p&gt;在&lt;a href=&quot;/maven/2015/12/06/Maven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94maven%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE.html&quot;&gt;maven使用记录（一）-maven的安装和基础配置中下载和安装好maven&lt;/a&gt;后，使用Eclipse来对项目进行管理。默认使用了J2EE插件。如图。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://7xogz7.com1.z0.glb.clouddn.com/添加maven设置-300x244.png&quot; alt=&quot;配置1&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://7xogz7.com1.z0.glb.clouddn.com/添加maven-300x247.png&quot; alt=&quot;配置2&quot; /&gt;&lt;/p&gt;
-</description>
-        <pubDate>Sun, 06 Dec 2015 00:00:00 +0800</pubDate>
-        <link>http://techctu.github.io//maven/2015/12/06/Maven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E5%9C%A8Eclipse%E4%B8%AD%E4%BD%BF%E7%94%A8Maven%E6%9D%A5%E8%BF%9B%E8%A1%8C%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86.html</link>
-        <guid isPermaLink="true">http://techctu.github.io//maven/2015/12/06/Maven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E5%9C%A8Eclipse%E4%B8%AD%E4%BD%BF%E7%94%A8Maven%E6%9D%A5%E8%BF%9B%E8%A1%8C%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86.html</guid>
-        
-        <category>maven</category>
-        
-        
-        <category>maven</category>
         
       </item>
     
