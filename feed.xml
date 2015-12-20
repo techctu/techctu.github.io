@@ -6,9 +6,86 @@
 </description>
     <link>http://techctu.github.io//</link>
     <atom:link href="http://techctu.github.io//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 13 Dec 2015 14:52:31 +0800</pubDate>
-    <lastBuildDate>Sun, 13 Dec 2015 14:52:31 +0800</lastBuildDate>
+    <pubDate>Sun, 20 Dec 2015 20:45:52 +0800</pubDate>
+    <lastBuildDate>Sun, 20 Dec 2015 20:45:52 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>组件化web开发和UI设计落地的思考</title>
+        <description>&lt;p&gt;最近项目UED小组开了一次会，目的是想了解各个开发小组对前端的需求和目前现有项目的设计规范、技术要点。平台技术大牛在会议中透露了想要进行组件化web开发的想法，然后我就有了点想法。设计和开发之间，总是有那么点沟通或是理解上的差异，加上各自的知识面和约束都不尽相同，这就导致设计出来的UE、UI与开发成果有一定的出入。组件化能不能帮助解决这个问题？边写这篇小文边试验一下也是个不错的方法。&lt;/p&gt;
+
+&lt;h1 id=&quot;section&quot;&gt;需求&lt;/h1&gt;
+&lt;p&gt;首先要明确自己想要的组件是什么样的。&lt;/p&gt;
+
+&lt;p&gt;在大部分情况下，设计出来的UI或多或少会有一定的规则：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;按钮不同状态的形状、颜色等，状态转换时的形状、声音、动画等，如悬浮时颜色的变化，悬浮时菜单的动画。&lt;/li&gt;
+  &lt;li&gt;&lt;/li&gt;
+  &lt;li&gt;组件有自己的css，不和其他未知的css冲突。&lt;/li&gt;
+  &lt;li&gt;组件有自己的js，不和其他未知的js冲突。&lt;/li&gt;
+  &lt;li&gt;不需要占位符，使用者可以自己将组件赋值给变量，用自定的id或者别的选择器来告知组件库识别，并进行初始化。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;section-1&quot;&gt;经历&lt;/h1&gt;
+&lt;p&gt;曾经有几个移动项目，我参与了其中UE设计、UI审核、监督UE和UI落地的工作。更久以前，我还进行过一个大型项目的前端web开发。&lt;/p&gt;
+
+&lt;h2 id=&quot;pc-web&quot;&gt;远古记忆中参与的PC web前端开发&lt;/h2&gt;
+&lt;p&gt;称这个项目为项目pancake好了，简化为项目p，不要问我为什么。项目p的前端为PC web，研发遵循用Axure制作低保真原型并和相关方确认需求的方式，经过多次重构，确定一个版本再进行增量设计的方式。在UI方面，由专门的小组按照UE设计UI，并实现了静态web页面，包括css的编写和基本的页面HTML，确保静态页面和UI设计一致。开发人员则根据静态页面来开发，编写业务逻辑。现在看来，在实施过程中，有这么几个方面的问题。&lt;/p&gt;
+
+&lt;h3 id=&quot;ue&quot;&gt;远古UE&lt;/h3&gt;
+&lt;p&gt;刚开始用Axure，都是赶鸭子上架，啥都不会瞎搞，连个公共库都没有。这时还分了好几个项目组，每个小组设计各自的UE，结果就是一个按钮，有方的，有圆的，有圆角矩形的，有拟物风格的，有扁平风格的，整个就是个大杂烩。不久在一个碰头会上，我们立刻发现了这个问题，UE组遍立刻把实现一个基础的带有导航条、模态框、按钮、分割线等的共享库提高到了最高优先级。&lt;/p&gt;
+
+&lt;h3 id=&quot;ui&quot;&gt;从UI到开发&lt;/h3&gt;
+&lt;p&gt;当时我只涉及了UE设计和前端开发，UI设计和静态页面都是别的团队做的，对UE到UI和UI到静态页面不甚了解。大体情况就是有一个到两个UI设计人员，然后有几个前端工程师将UI设计转化为静态页面。&lt;/p&gt;
+
+&lt;p&gt;这个时候，开发的方式还比较古老，代码里都是这样的：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;stylesheet&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;text/css&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;a.css&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+...
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;stylesheet&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;text/css&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;n.css&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+...
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;xxx&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;class-a class-b ... class n&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+...
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;a.js&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+...
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;n.js&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;在开发过程中，碰到了这么几个问题：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;静态页面按照UE页面分配给不同的人去实现，只有页眉和页脚采用了公共样式，其他部分只有口头约定，并没有设计公共样式，存在大量拷贝复制的css样式。	&lt;/li&gt;
+  &lt;li&gt;css命名不规范，存在大量以人名命名的css样式，后期维护困难。&lt;/li&gt;
+  &lt;li&gt;前端公共库函数开发时遇到css样式冲突和前端业务开发遇到命名冲突的问题。&lt;/li&gt;
+  &lt;li&gt;一个控件的css调整涉及多个页面。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;app&quot;&gt;基于古怪的移动端跨平台框架的app项目&lt;/h2&gt;
+&lt;p&gt;在这几个项目中，UI的实现流程基本上是这样：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;技术比较好的开发人员实现一个典型页面。&lt;/li&gt;
+  &lt;li&gt;其他人拿着UI的标注，对照UE和典型页面，实现自己的页面。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;这种模式下，大部分都是copy-paste，而且很多开发人员并没有写过css，也很少做过直接从UI设计稿实现一个页面的工作，对UE、UI的设计目的的理解不是很到位。同时UI也缺乏一个可参考的规范，标注出某个类型的按钮用在什么场景，有什么样的样式，对应哪种状态。&lt;strong&gt;这就导致页面开发出来和设计稿相去太远。&lt;/strong&gt;很多开发者都需要经过一个项目，才知道如何解读UI设计。当时就想，如果能提供一个组件，开发者只需要引用，可以自己进行赋值，不会造成命名冲突，不需要关注样式，这样能更方便开发出如设计一样的界面吧。&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;吐个槽：这个宣称跨平台一次便携到处编译的框架，基本原理就是写了两个解析器来解析xhtml页面文件，一个对应iOS，一个对应Android，解析成java和objc。效率什么的暂且还是可以的，优化什么的是个谜，代码风格非常hybird，动效想想就好。在这两个项目里，UE和UI的设计由于框架的原因，受到了极大限制，稍微复杂一点的多选项关联修改都很难实现，对关联数据的校验也陷入了泥潭。更可怕的是，到处是不规范的全局变量名，css、lua函数都是每个人各写各的，充满了copy-paste风格的写法，加上类似php+js+html的混杂写法和缺乏有效的语法高亮支持，整个就是个噩梦。
+***&lt;/p&gt;
+</description>
+        <pubDate>Sun, 20 Dec 2015 00:00:00 +0800</pubDate>
+        <link>http://techctu.github.io//%E5%89%8D%E7%AB%AF/2015/12/20/%E7%BB%84%E4%BB%B6%E5%8C%96web%E5%BC%80%E5%8F%91%E5%92%8Cui%E8%AE%BE%E8%AE%A1%E8%90%BD%E5%9C%B0%E7%9A%84%E6%80%9D%E8%80%83.html</link>
+        <guid isPermaLink="true">http://techctu.github.io//%E5%89%8D%E7%AB%AF/2015/12/20/%E7%BB%84%E4%BB%B6%E5%8C%96web%E5%BC%80%E5%8F%91%E5%92%8Cui%E8%AE%BE%E8%AE%A1%E8%90%BD%E5%9C%B0%E7%9A%84%E6%80%9D%E8%80%83.html</guid>
+        
+        <category>前端</category>
+        
+        <category>组件化</category>
+        
+        
+        <category>前端</category>
+        
+      </item>
     
       <item>
         <title>Java系Dubbo、Zookeeper系统服务拆分记录</title>
@@ -93,17 +170,6 @@
         
         
         <category>架构</category>
-        
-      </item>
-    
-      <item>
-        <title>Java</title>
-        <description>
-</description>
-        <pubDate>Fri, 11 Dec 2015 00:00:00 +0800</pubDate>
-        <link>http://techctu.github.io//2015/12/11/java.html</link>
-        <guid isPermaLink="true">http://techctu.github.io//2015/12/11/java.html</guid>
-        
         
       </item>
     
