@@ -6,9 +6,94 @@
 </description>
     <link>http://techctu.github.io//</link>
     <atom:link href="http://techctu.github.io//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 26 Feb 2016 10:46:36 +0800</pubDate>
-    <lastBuildDate>Fri, 26 Feb 2016 10:46:36 +0800</lastBuildDate>
+    <pubDate>Sat, 09 Apr 2016 10:19:18 +0800</pubDate>
+    <lastBuildDate>Sat, 09 Apr 2016 10:19:18 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>使用ReactJS简单封装BaiduMap</title>
+        <description>&lt;p&gt;最近需要使用百度地图来获取地理位置定位，用ReactJS封装了一下。&lt;/p&gt;
+
+&lt;p&gt;要点：
+- 希望百度地图加载不影响ReactJS生命周期
+- 将百度地图回调方法和ReactJS融合&lt;/p&gt;
+
+&lt;p&gt;目前百度地图没有离线API，官网上方式为&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;http://api.map.baidu.com/api?v=2.0&amp;amp;ak=您的密钥&amp;amp;callback=回调方法&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;在页面嵌入了百度地图后，会异步获取一些js脚本，实现地图功能的加载，且加载成功与否难以控制。因此，需要在React组件加载完成的时候加载百度地图。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;componentDidMount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;initBaiduMap&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;createElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;script&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;text/javascript&amp;#39;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;amp;ak=&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ak&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;amp;callback=initBaiduMap&amp;#39;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;initBaiduMap&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;locate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;appendChild&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;componentWillUnmount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;initBaiduMap&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;产生的问题是：
+1. 使用了window对象，将React组件的方法绑定到了全局。
+2. 在网络异常时没有进行处理。&lt;/p&gt;
+
+&lt;p&gt;对于第2点问题，曾经使用了js中的try catch和绑定onerror来处理，没有成功，待解决。&lt;/p&gt;
+</description>
+        <pubDate>Sat, 09 Apr 2016 00:00:00 +0800</pubDate>
+        <link>http://techctu.github.io//2016/04/09/%E4%BD%BF%E7%94%A8reactjs%E7%AE%80%E5%8D%95%E5%B0%81%E8%A3%85baidumap.html</link>
+        <guid isPermaLink="true">http://techctu.github.io//2016/04/09/%E4%BD%BF%E7%94%A8reactjs%E7%AE%80%E5%8D%95%E5%B0%81%E8%A3%85baidumap.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>使用ReactJS实现一个老虎机抽奖组件</title>
+        <description>&lt;h1 id=&quot;section&quot;&gt;背景&lt;/h1&gt;
+&lt;p&gt;最近的项目技术专家组建议使用ReactJS进行移动Web前端页面开发，理由是要Web前端组件化。便进行了一些研究。&lt;/p&gt;
+
+&lt;h1 id=&quot;reactjs&quot;&gt;ReactJS基础&lt;/h1&gt;
+&lt;p&gt;基本的介绍参考&lt;a href=&quot;http://facebook.github.io/react/&quot;&gt;官网&lt;/a&gt;即可。或者参考&lt;a href=&quot;http://www.ruanyifeng.com/blog/2015/03/react.html&quot;&gt;阮一峰的博文&lt;/a&gt;。英文好的可以参考&lt;a href=&quot;http://tylermcginnis.com/reactjs-tutorial-a-comprehensive-guide-to-building-apps-with-react/&quot;&gt;reactjs-tutorial-a-comprehensive-guide&lt;/a&gt;。另外，&lt;a href=&quot;http://my.jikexueyuan.com/4104803609/record/&quot;&gt;极客学院的教程&lt;/a&gt;也不错——如果不嫌时间长的话。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-1&quot;&gt;实现老虎机&lt;/h1&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;设计思路&lt;/h2&gt;
+&lt;p&gt;整个老虎机抽奖流程比较简单：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;进入老虎机界面，根据客户信息判断抽奖资格。&lt;/li&gt;
+  &lt;li&gt;开始抽奖，发送后台请求。&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;获得并显示抽奖结果。
+对于前端老虎机组件，需要做的事有：&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;根据初始化数据初始化老虎机，包括奖品信息图文和主流程之外的如规则说明、即时中奖信息等。&lt;/li&gt;
+  &lt;li&gt;点击开始，生成动画使老虎机的筹码图案不停滚动。&lt;/li&gt;
+  &lt;li&gt;获取到服务器返回结果后，使老虎机图案停止滚动，显示恰当的图案。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;主要难点&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;没有接触过前端动画。&lt;/li&gt;
+  &lt;li&gt;ReactJS属于新接触的技术。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;section-4&quot;&gt;相关参考&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/josex2r/jQuery-SlotMachine&quot;&gt;基于JQuery的老虎机&lt;/a&gt;
+&lt;a href=&quot;https://github.com/pathsofdesign/randomItemSpinner&quot;&gt;基于ReactJS的图片切换DEMO&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section-5&quot;&gt;实现代码&lt;/h2&gt;
+&lt;p&gt;只实现了基本流程，具体使用根据实际UI和业务需要再进行修改。
+&lt;a href=&quot;https://github.com/techctu/reactjs-cui/blob/master/src/components/lottery/SlotMachine/SlotMachine.js&quot;&gt;戳这里，欢迎指正&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sat, 27 Feb 2016 00:00:00 +0800</pubDate>
+        <link>http://techctu.github.io//2016/02/27/%E4%BD%BF%E7%94%A8reactjs%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%80%81%E8%99%8E%E6%9C%BA%E6%8A%BD%E5%A5%96%E7%BB%84%E4%BB%B6.html</link>
+        <guid isPermaLink="true">http://techctu.github.io//2016/02/27/%E4%BD%BF%E7%94%A8reactjs%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%80%81%E8%99%8E%E6%9C%BA%E6%8A%BD%E5%A5%96%E7%BB%84%E4%BB%B6.html</guid>
+        
+        
+      </item>
     
       <item>
         <title>组件化web开发和UI设计落地的思考</title>
@@ -446,108 +531,6 @@
         <link>http://techctu.github.io//2015/12/06/%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E8%87%AA%E5%B8%A6%E7%9A%84%E9%94%81%E6%9C%BA%E5%88%B6%E6%9D%A5%E5%A4%84%E7%90%86%E7%AB%9E%E4%BA%89.html</link>
         <guid isPermaLink="true">http://techctu.github.io//2015/12/06/%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E8%87%AA%E5%B8%A6%E7%9A%84%E9%94%81%E6%9C%BA%E5%88%B6%E6%9D%A5%E5%A4%84%E7%90%86%E7%AB%9E%E4%BA%89.html</guid>
         
-        
-      </item>
-    
-      <item>
-        <title>一些好用的小玩意</title>
-        <description>&lt;h1 id=&quot;windows&quot;&gt;Windows&lt;/h1&gt;
-
-&lt;h2 id=&quot;everythinghttpwwwvoidtoolscom&quot;&gt;&lt;a href=&quot;http://www.voidtools.com/&quot;&gt;Everything&lt;/a&gt;&lt;/h2&gt;
-
-&lt;p&gt;整理目录确实是个好习惯，但人总有犯懒的时候。也有时候大概有那么个名字的文件，找不到放哪了。&lt;a href=&quot;http://www.voidtools.com/&quot;&gt;Everything&lt;/a&gt;通过索引纪录文件位置，支持模糊搜索，支持正则表达式。担心索引坏磁盘就当我没说。&lt;/p&gt;
-
-&lt;h1 id=&quot;mac&quot;&gt;Mac&lt;/h1&gt;
-
-&lt;h2 id=&quot;scroll-reverserhttppilotmooncomscrollreverser&quot;&gt;&lt;a href=&quot;http://pilotmoon.com/scrollreverser/&quot;&gt;SCROLL REVERSER&lt;/a&gt;&lt;/h2&gt;
-
-&lt;p&gt;非常好用的鼠标滚轮反转软件。有多少人像我一样触摸板喜欢上推页面看下一页但鼠标滚轮往下滑看下一页的？用&lt;a href=&quot;http://pilotmoon.com/scrollreverser/&quot;&gt;SCROLL REVERSER&lt;/a&gt;，完美解决这个问题。&lt;/p&gt;
-
-&lt;h2 id=&quot;alfredhttpswwwalfredappcom&quot;&gt;&lt;a href=&quot;https://www.alfredapp.com/&quot;&gt;Alfred&lt;/a&gt;&lt;/h2&gt;
-
-&lt;p&gt;功能和&lt;a href=&quot;#everything&quot;&gt;Everything&lt;/a&gt;类似，增加了网络搜索功能。&lt;/p&gt;
-
-&lt;h1 id=&quot;linux&quot;&gt;Linux&lt;/h1&gt;
-</description>
-        <pubDate>Sun, 06 Dec 2015 00:00:00 +0800</pubDate>
-        <link>http://techctu.github.io//%E6%9D%82%E9%A1%B9/2015/12/06/%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F.html</link>
-        <guid isPermaLink="true">http://techctu.github.io//%E6%9D%82%E9%A1%B9/2015/12/06/%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F.html</guid>
-        
-        <category>tool</category>
-        
-        
-        <category>杂项</category>
-        
-      </item>
-    
-      <item>
-        <title>PureJSOnePageScroll——JavaScript单页滚动插件</title>
-        <description>&lt;h1 id=&quot;section&quot;&gt;啰嗦的背景&lt;/h1&gt;
-
-&lt;p&gt;最近有人问我像&lt;a href=&quot;https://coding.net/&quot;&gt;Coding.net&lt;/a&gt;啊这样的首页效果是不是很难。当然你让我从零开始弄一个确实很麻烦咯，不过这种肯定是有人做过了。于是找了找，便翻到了&lt;a href=&quot;https://github.com/peachananr/onepage-scroll&quot;&gt;OnePageScroll&lt;/a&gt;。&lt;/p&gt;
-
-&lt;p&gt;最开始搜到的这个是基于JQuery的版本，在&lt;a href=&quot;https://github.com/peachananr&quot;&gt;作者&lt;/a&gt;的仓库里还翻到了&lt;a href=&quot;https://github.com/peachananr/zepto-onepage-scroll&quot;&gt;基于zepto的版本&lt;/a&gt;。不过我更喜欢不使用JQuery、Zepto等的更纯净的库，这就是本文介绍的&lt;a href=&quot;https://github.com/peachananr/purejs-onepage-scroll&quot;&gt;PureJSOnePageScroll&lt;/a&gt;。&lt;a href=&quot;http://www.thepetedesign.com/demos/purejs_onepage_scroll_demo.html&quot;&gt;点击查看特效&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;section-1&quot;&gt;使用方式&lt;/h1&gt;
-
-&lt;h2 id=&quot;section-2&quot;&gt;引入文件&lt;/h2&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;onepagescroll.js&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt; 
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;onepage-scroll.css&amp;#39;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;stylesheet&amp;#39;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;text/css&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;当然你也可以通过require等来插入，贵客都会require了自然也不需要看这部分。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-3&quot;&gt;基本用法&lt;/h2&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt; ... 
-	&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- main只是作为选择器用，语法是HTML5的document.querySelector，不会请百度 --&amp;gt;&lt;/span&gt; 
-	&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;main&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt; 
-		&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- section标签可以自定义 --&amp;gt;&lt;/span&gt; 
-		&lt;span class=&quot;nt&quot;&gt;&amp;lt;section&amp;gt;&lt;/span&gt;...&lt;span class=&quot;nt&quot;&gt;&amp;lt;/section&amp;gt;&lt;/span&gt; 
-		&lt;span class=&quot;nt&quot;&gt;&amp;lt;section&amp;gt;&lt;/span&gt;...&lt;span class=&quot;nt&quot;&gt;&amp;lt;/section&amp;gt;&lt;/span&gt;
-		 ... 
-	&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-	 ... 
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;  
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;   
-	&lt;span class=&quot;nx&quot;&gt;onePageScroll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;.main&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;     
-		&lt;span class=&quot;nx&quot;&gt;sectionContainer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;section&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;     
-		&lt;span class=&quot;nx&quot;&gt;loop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;     
-		&lt;span class=&quot;nx&quot;&gt;responsiveFallback&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;   
-	&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt; 
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;section-4&quot;&gt;参数介绍&lt;/h2&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// 选择器，可以用class、id等 &lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;onePageScroll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;.main&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
-&lt;span class=&quot;c1&quot;&gt;// 标签名字，随意起，确保是页面容器，不与其它同名即可 &lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;sectionContainer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;section&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
-&lt;span class=&quot;c1&quot;&gt;// CSS3动画效果，&amp;quot;ease&amp;quot;, &amp;quot;linear&amp;quot;, &amp;quot;ease-in&amp;quot;, &amp;quot;ease-out&amp;quot;, &amp;quot;ease-in-out&amp;quot;, &lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// 或者&amp;quot;cubic-bezier(0.175, 0.885, 0.420, 1.310)&amp;quot; &lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;easing&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;ease&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
-&lt;span class=&quot;nx&quot;&gt;animationTime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 动画时间 &lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;pagination&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// true显示分页，false隐藏分页 &lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;updateURL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 是否更新页面url锚 &lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;beforeMove&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;next_el&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{},&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 页面滚动前调用函数，编号从1开始，移动向第n页则index为n &lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;afterMove&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;next_el&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{},&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 页面滚动后调用函数，移动到第n页index为n &lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;loop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 是否可以从底部下移到顶部 keyboard: true, // 是否用键盘控制 &lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;responsiveFallback&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 滚动页面宽度小于定值时，宽度外使用浏览器自带滚动条 });&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;section-5&quot;&gt;公共方法&lt;/h2&gt;
-
-&lt;p&gt;moveUp(“.main”); moveDown(“.main”); moveTo(“.main”, 3); // 这些没啥好解释的，上移、下移和移动到某页&lt;/p&gt;
-</description>
-        <pubDate>Sun, 06 Dec 2015 00:00:00 +0800</pubDate>
-        <link>http://techctu.github.io//javascript/2015/12/06/purejsonepagescrolljavascript%E5%8D%95%E9%A1%B5%E6%BB%9A%E5%8A%A8%E6%8F%92%E4%BB%B6.html</link>
-        <guid isPermaLink="true">http://techctu.github.io//javascript/2015/12/06/purejsonepagescrolljavascript%E5%8D%95%E9%A1%B5%E6%BB%9A%E5%8A%A8%E6%8F%92%E4%BB%B6.html</guid>
-        
-        <category>JavaScript</category>
-        
-        <category>PureJSOnePageScroll</category>
-        
-        
-        <category>javascript</category>
         
       </item>
     
