@@ -6,9 +6,98 @@
 </description>
     <link>http://techctu.github.io//</link>
     <atom:link href="http://techctu.github.io//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 09 Apr 2016 10:19:18 +0800</pubDate>
-    <lastBuildDate>Sat, 09 Apr 2016 10:19:18 +0800</lastBuildDate>
+    <pubDate>Thu, 19 May 2016 15:42:23 +0800</pubDate>
+    <lastBuildDate>Thu, 19 May 2016 15:42:23 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>Hybird模式下webview中的物理返回键问题的解决方法</title>
+        <description>&lt;p&gt;最近做的一个移动端H5项目，需要嵌入某个移动APP中。&lt;/p&gt;
+</description>
+        <pubDate>Thu, 19 May 2016 00:00:00 +0800</pubDate>
+        <link>http://techctu.github.io//2016/05/19/hybird%E6%A8%A1%E5%BC%8F%E4%B8%8Bwebview%E4%B8%AD%E7%9A%84%E7%89%A9%E7%90%86%E8%BF%94%E5%9B%9E%E9%94%AE%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95.html</link>
+        <guid isPermaLink="true">http://techctu.github.io//2016/05/19/hybird%E6%A8%A1%E5%BC%8F%E4%B8%8Bwebview%E4%B8%AD%E7%9A%84%E7%89%A9%E7%90%86%E8%BF%94%E5%9B%9E%E9%94%AE%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>第一次ReactJS前端开发记录</title>
+        <description>&lt;p&gt;&lt;code&gt;这是一个坑&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;ui&quot;&gt;从UI和静态页面到组件&lt;/h1&gt;
+&lt;p&gt;ReactJS结构和普遍的前端web技术非常不一样。从流程上来说，一个页面的更新，是跟业务相关的：从后台取到初始化数据，进行业务流程的判断，然后将数据加工处理到页面上。而当前很多专门做前端的公司，并不注重技术更新，用的还是JQuery速成培训那一套；同时第一次采用ReactJS并没有设计前端静态页面要求的经验，导致合作起来问题比较多。同时，很多问题在测试时才暴露出来。而且，很多也不够&lt;a href=&quot;http://www.tuicool.com/articles/vuYjUfM&quot;&gt;语义化&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h2 id=&quot;tips&quot;&gt;TIPS&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://blog.csdn.net/yisuowushinian/article/details/50404450&quot;&gt;H5 CSS设置&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.tuicool.com/articles/vuYjUfM&quot;&gt;语义化&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://aseoe.baijia.baidu.com/article/169270&quot;&gt;组件化&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://isux.tencent.com/h5-performance.html&quot;&gt;性能优化&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Sun, 08 May 2016 00:00:00 +0800</pubDate>
+        <link>http://techctu.github.io//2016/05/08/%E7%AC%AC%E4%B8%80%E6%AC%A1reactjs%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95.html</link>
+        <guid isPermaLink="true">http://techctu.github.io//2016/05/08/%E7%AC%AC%E4%B8%80%E6%AC%A1reactjs%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>近期某项目前端开发梳理——无知、未知、摸着石头过河</title>
+        <description>&lt;h1 id=&quot;section&quot;&gt;项目背景&lt;/h1&gt;
+&lt;p&gt;目前大部分传统行业互联网项目都是由于大型互联网公司携用户量，上了新的威胁传统行业的项目，不得不上，本银行项目也不外如是，简称为项目Y吧。项目Y是迫于互联网压力产生的一系列项目群中的一个子项目，说起来很简单，想要实现的功能就是通过加强银行和商户目标用户群的联系来加强银行和商户间的合作关系（项目还没上线，姑且用一种比较晦涩的说法）。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-1&quot;&gt;项目启动&lt;/h1&gt;
+&lt;p&gt;项目启动时一般需要确定的有大体需求、概要设计、需要对接的外系统。分别对应的就是业务、开发、部门合作。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;流程和接口&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;业务和开发：以需求文档为基础，以UE原型为具体交流工具。&lt;/li&gt;
+  &lt;li&gt;对接外系统：行内系统M、行内系统P、行内系统C。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;技术架构&lt;/h2&gt;
+&lt;p&gt;前端：ReactJS、动静分离、Spring-MVC以及某不知名移动端APP框架。
+后台业务层：Dubbo、Zookeeper等。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-4&quot;&gt;设计开发&lt;/h1&gt;
+&lt;p&gt;## 业务需求
+由业务部门提出需求，在UE组的帮助下设计原型，然后和开发进行沟通，讨论是否能实现相关业务需求，设置需求的优先级。讨论过程中设计的外部因素也需要和外部业务和技术部门进行沟通。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-5&quot;&gt;技术架构&lt;/h2&gt;
+&lt;p&gt;### 后端service
+分层架构，包括数据层（一堆访问本系统数据库的dao和收发外系统报文的接口程序）、基础服务层（包装dao和一些基础接口的服务层）、业务服务层（和业务逻辑相关的服务，主要为本系统的服务）。业务服务层通过Dubbo对外暴露。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-6&quot;&gt;前端动态资源&lt;/h3&gt;
+&lt;p&gt;使用Spring-MVC来进行动态资源管理，主要处理ajax请求。暂时不适用shiro、session等技术。使用redis来访问所需的外系统数据。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-7&quot;&gt;前端静态资源&lt;/h3&gt;
+&lt;p&gt;使用ReactJS和相关技术来开发前端UI，暂时没有使用redux等技术方案。ReactJS网页嵌入外部系统的APP客户端中。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-8&quot;&gt;坑&lt;/h1&gt;
+&lt;p&gt;## UE原型由业务绘制
+- 业务人员的主要工作并不是绘制UE原型，学习Axure需要一段时间。
+- 业务人员的日常工作是处理大体的、非具象、需要多方沟通的事务，或是有既定规章可循的常规事务，而不是设计和确认新事物流程细节，更不是设计用户体验。
+- 时间紧迫的情况下，不论什么理由，还是由专业的人做专门的事情，效率比较高。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-9&quot;&gt;未知的技术难度&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;工期紧迫，却因为技术研究小组的推荐放弃了熟悉的基于JQuery前端技术方案，采用更新更适合移动端但学习成本较高的ReactJS。而且由于一些如需要支持优先级更高的事项或是人事变动等原因，技术研究小组的支持力度并不足以支撑开发小组使用新技术。&lt;/li&gt;
+  &lt;li&gt;开发小组组员技术实力参差不齐。大部分研究、示例、实践都表明，增加人员并不一定会提升开发效率，尤其是新增人员本身能力跟不上开发进度时，沟通、指导、修正等成本大大增加。同时，技术实力较强的人员由于这些事务的打断，切换工作状态花费了更多的时间。&lt;/li&gt;
+  &lt;li&gt;较多的正在升级更新的外接系统。如果外接系统稳定，且剧本稳定的可控的测试条件，这部分只是一个比较耗时的工作，难度不是特别大；但在外系统整体需要升级，测试环境不稳定的情况下进行系统对接，对接复杂度直接就变成了f(n) = t^n。而且每个系统都有自己的升级更新打包时间，测试账号可能对多个对接系统提供，系统升级时测试环境可能不同步等，每个系统的协调时间可能需要十分钟到半个小时不等，极大降低开发效率。&lt;em&gt;一个购买选卡支付的流程两周没有走通&lt;/em&gt;。&lt;/li&gt;
+  &lt;li&gt;额外的设计和开发。如为了验证开发结果，需要绕过外接系统进行验证，同时还有对相关数据的维护，以及区分目标生产系统代码和解决环境问题（如业务测试环境、压力测试环境）等产生的额外代码。&lt;/li&gt;
+  &lt;li&gt;传统适配问题。在使用ReactJS且嵌入使用了由于众所周知的原因采用的应用范围极窄的未知框架开发的APP的情况的，适配问题的解决成为了需要众多环节合作的一个流程很长的问题。&lt;/li&gt;
+  &lt;li&gt;ReactJS和其他传统技术合作的问题。比如，难以向UI和静态页面制作方描述清楚需求说明和规格要求；对于一般人员学习成本较高。&lt;/li&gt;
+  &lt;li&gt;传统的设计模式和新的动静分离模式带来的变化，以及前端组件化带来的一系列前端程序设计和优化问题，如代码包结构、压缩、各个环境的资源替换等。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Sat, 23 Apr 2016 00:00:00 +0800</pubDate>
+        <link>http://techctu.github.io//2016/04/23/%E8%BF%91%E6%9C%9F%E6%9F%90%E9%A1%B9%E7%9B%AE%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E6%A2%B3%E7%90%86%E6%97%A0%E7%9F%A5%E6%9C%AA%E7%9F%A5%E6%91%B8%E7%9D%80%E7%9F%B3%E5%A4%B4%E8%BF%87%E6%B2%B3.html</link>
+        <guid isPermaLink="true">http://techctu.github.io//2016/04/23/%E8%BF%91%E6%9C%9F%E6%9F%90%E9%A1%B9%E7%9B%AE%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E6%A2%B3%E7%90%86%E6%97%A0%E7%9F%A5%E6%9C%AA%E7%9F%A5%E6%91%B8%E7%9D%80%E7%9F%B3%E5%A4%B4%E8%BF%87%E6%B2%B3.html</guid>
+        
+        
+      </item>
     
       <item>
         <title>使用ReactJS简单封装BaiduMap</title>
@@ -392,145 +481,6 @@
         
         
         <category>jekyll</category>
-        
-      </item>
-    
-      <item>
-        <title>在Mac上配置使用Sublime Text 3来进行JavaScript开发</title>
-        <description>&lt;p&gt;首先去下载&lt;a href=&quot;http://www.sublimetext.com/3&quot; title=&quot;屠龙宝刀&quot;&gt;Sublime Text 3&lt;/a&gt;。&lt;/p&gt;
-
-&lt;h1 id=&quot;packagecontrol&quot;&gt;安装PackageControl&lt;/h1&gt;
-
-&lt;p&gt;作为一个新世纪的攻城💩，自然不能使用下载复制一类的粗鄙乡村方法来安装插件，除非乡村公司不让上外网。所以就需要安装&lt;a href=&quot;https://packagecontrol.io/&quot; title=&quot;点击就送&quot;&gt;PackageControl&lt;/a&gt;。&lt;/p&gt;
-
-&lt;p&gt;然后使用ctrl＋`召唤出控制台，&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://7xogz7.com1.z0.glb.clouddn.com/callSublimeText3Console.png?imageMogr2/thumbnail/770x&quot; alt=&quot;召唤控制台&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;复制粘贴以下代码：&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;urllib.request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nn&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nn&quot;&gt;hashlib&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
-&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;2915d1851351e5ee549c20394736b442&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;8bc59f460fa1548d1514676163dafc88&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
-&lt;span class=&quot;n&quot;&gt;pf&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;Package Control.sublime-package&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
-&lt;span class=&quot;n&quot;&gt;ipp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sublime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;installed_packages_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; 
-&lt;span class=&quot;n&quot;&gt;urllib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;install_opener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; 
-    &lt;span class=&quot;n&quot;&gt;urllib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;build_opener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; 
-        &lt;span class=&quot;n&quot;&gt;urllib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ProxyHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; 
-&lt;span class=&quot;n&quot;&gt;by&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;urllib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;urlopen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;http://packagecontrol.io/&amp;#39;&lt;/span&gt; 
-    &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39; &amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;%20&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; 
-&lt;span class=&quot;n&quot;&gt;dh&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hashlib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sha256&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;by&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hexdigest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; 
-&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;Error validating download (got &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%s&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; instead of &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%s&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;), &lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;please&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;manual&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;install&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39; % (dh, h)) &lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dh&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;h&lt;/span&gt; 
-&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; 
-    &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ipp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;wb&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;by&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;注意：官网说了版本不一样神秘代码会有区别，具体还是以官网为准—&amp;gt;&lt;a href=&quot;https://packagecontrol.io/installation&quot; title=&quot;如果不送&quot;&gt;门&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;section&quot;&gt;选择插件包进行安装&lt;/h1&gt;
-
-&lt;p&gt;然后就用&lt;a href=&quot;https://packagecontrol.io/docs/usage&quot; title=&quot;召唤神龙&quot;&gt;cmd＋shift+p&lt;/a&gt;选择需要的插件包安装就好。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://7xogz7.com1.z0.glb.clouddn.com/installPackage.png?imageMogr2/thumbnail/770x&quot; alt=&quot;插件开门&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://7xogz7.com1.z0.glb.clouddn.com/choosePackage2Install.png?imageMogr2/thumbnail/770x&quot; alt=&quot;皇上掀牌子了&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;这里我选择下载了&lt;a href=&quot;https://github.com/kemayo/sublime-text-git&quot; title=&quot;连Git，你懂的&quot;&gt;Git&lt;/a&gt;、&lt;a href=&quot;https://github.com/jisaacks/GitGutter&quot; title=&quot;对比文件&quot;&gt;GitGutter&lt;/a&gt;、&lt;a href=&quot;http://emmet.io/&quot; title=&quot;Zen Coding&quot;&gt;Emmet&lt;/a&gt;、&lt;a href=&quot;https://github.com/alienhard/SublimeAllAutocomplete&quot; title=&quot;全文件检索自动补全&quot;&gt;AllAutocomplete&lt;/a&gt;、&lt;a href=&quot;https://github.com/wbond/sublime_terminal&quot; title=&quot;召唤控制台&quot;&gt;Terminal&lt;/a&gt;、&lt;a href=&quot;https://github.com/spadgos/sublime-jsdocs&quot; title=&quot;注释助手&quot;&gt;DocBlokr&lt;/a&gt; 等。&lt;/p&gt;
-
-&lt;h2 id=&quot;git&quot;&gt;Git的配置&lt;/h2&gt;
-
-&lt;p&gt;其他的插件相对来说简单点，可以在上方链接直接参考文档；Git稍微复杂，单独在下方进行记录。&lt;/p&gt;
-
-&lt;p&gt;可以参考&lt;a href=&quot;https://help.github.com/articles/set-up-git/&quot;&gt;这篇文章&lt;/a&gt;来配置Git。&lt;/p&gt;
-
-&lt;p&gt;参考&lt;a href=&quot;https://help.github.com/articles/generating-ssh-keys/&quot;&gt;这篇文章&lt;/a&gt;来生成SSH Key。&lt;/p&gt;
-
-&lt;p&gt;参考&lt;a href=&quot;https://help.github.com/articles/which-remote-url-should-i-use/#cloning-with-ssh&quot;&gt;这篇文章&lt;/a&gt;来使用SSH来连接GitHub。&lt;/p&gt;
-
-&lt;p&gt;之后，就可以在Sublime Text 3种使用安装的Git插件来进行基本的Git操作了，命令仍然是command+shift+p。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://7xogz7.com1.z0.glb.clouddn.com/useGitPlugin.png?imageMogr2/thumbnail/770x&quot; alt=&quot;使用Git插件&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;如果以后使用碰到困难，再另起文章进行记录。&lt;/p&gt;
-</description>
-        <pubDate>Sun, 06 Dec 2015 00:00:00 +0800</pubDate>
-        <link>http://techctu.github.io//sublimetext3/2015/12/06/%E5%9C%A8mac%E4%B8%8A%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8sublime-text-3%E6%9D%A5%E8%BF%9B%E8%A1%8Cjavascript%E5%BC%80%E5%8F%91.html</link>
-        <guid isPermaLink="true">http://techctu.github.io//sublimetext3/2015/12/06/%E5%9C%A8mac%E4%B8%8A%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8sublime-text-3%E6%9D%A5%E8%BF%9B%E8%A1%8Cjavascript%E5%BC%80%E5%8F%91.html</guid>
-        
-        <category>SublimeText3</category>
-        
-        <category>JavaScript</category>
-        
-        
-        <category>sublimetext3</category>
-        
-      </item>
-    
-      <item>
-        <title>在Mac上配置使用git</title>
-        <description>&lt;p&gt;在 &lt;a href=&quot;http://git-scm.com/download&quot; title=&quot;点击穿越&quot;&gt;git&lt;/a&gt;下载Mac安装程序。&lt;/p&gt;
-
-&lt;p&gt;傻瓜安装git。&lt;/p&gt;
-
-&lt;p&gt;打开Terminal，输入git –version来检查。&lt;/p&gt;
-
-&lt;p&gt;下载 &lt;a href=&quot;https://www.sourcetreeapp.com&quot; title=&quot;点击穿越&quot;&gt;SourceTree&lt;/a&gt;。&lt;/p&gt;
-
-&lt;p&gt;傻瓜安装SourceTree并配置本地库和远程库。&lt;/p&gt;
-</description>
-        <pubDate>Sun, 06 Dec 2015 00:00:00 +0800</pubDate>
-        <link>http://techctu.github.io//git/2015/12/06/%E5%9C%A8mac%E4%B8%8A%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8git.html</link>
-        <guid isPermaLink="true">http://techctu.github.io//git/2015/12/06/%E5%9C%A8mac%E4%B8%8A%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8git.html</guid>
-        
-        <category>mac</category>
-        
-        <category>git</category>
-        
-        
-        <category>git</category>
-        
-      </item>
-    
-      <item>
-        <title>使用数据库自带的锁机制来处理竞争</title>
-        <description>&lt;p&gt;2013年刚入职的时候，做的p2p项目，有这么个需求。&lt;/p&gt;
-
-&lt;p&gt;众所周知，p2p需要去投标，投标就会有竞争。比如阿猫和阿狗都看到一个项目只剩1份了，两个人同时投标。这时候系统就会判断阿猫买一份，余额刚好一份，可以买；在系统确定了这次购买订单，更新余额前，阿狗的请求也到了，系统还没更新余额，这时系统也让阿狗买了一份。这就导致实际上一份卖出了两份，这样并不好，会出现一系列问题，具体什么问题，出门右转找运营。&lt;/p&gt;
-
-&lt;p&gt;那么怎么办呢？就是经典的并发情况下锁机制的设计了。&lt;/p&gt;
-
-&lt;p&gt;当时负责我们p2p组的组长决定利用数据库的锁机制来处理，具体就是在数据库中增加一个字段key，通过对a的值的比对来保证投标的顺利进行。&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;oldKey&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getKey&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 获取锁值 &lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;processing&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 处理 &lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;checkKey&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 检查锁没有变更则更新锁，否则回滚操作 &lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;updateKey&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;  
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; 
-	&lt;span class=&quot;n&quot;&gt;rollback&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt; 
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;这样其实会有个问题，即在chenkKey()和updateKey()之间，会有可能有人也投标成功了。&lt;/p&gt;
-
-&lt;p&gt;怎么修改呢？其实很简单。我把chenkKey()和updateKey()合作一个方法checkAndUpdateKey()，直接在数据库中&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span class=&quot;k&quot;&gt;update&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;newKey&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;oldKey&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;这样代码逻辑就变成了&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;oldKey&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getKey&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 获取锁值 &lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;processing&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 处理 &lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;checkAndUpdateKey&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 检查锁值变化并更新锁，失败则回滚操作 &lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;rollback&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt; 
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;搞定。&lt;/p&gt;
-
-&lt;p&gt;P.S.当然这样有个很大的问题，竞争多的时候很容易就投不中标。最好还是类似12306先把请求排队进入一个队列，然后再依次处理——比如一个先进先出队列。&lt;/p&gt;
-</description>
-        <pubDate>Sun, 06 Dec 2015 00:00:00 +0800</pubDate>
-        <link>http://techctu.github.io//2015/12/06/%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E8%87%AA%E5%B8%A6%E7%9A%84%E9%94%81%E6%9C%BA%E5%88%B6%E6%9D%A5%E5%A4%84%E7%90%86%E7%AB%9E%E4%BA%89.html</link>
-        <guid isPermaLink="true">http://techctu.github.io//2015/12/06/%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E8%87%AA%E5%B8%A6%E7%9A%84%E9%94%81%E6%9C%BA%E5%88%B6%E6%9D%A5%E5%A4%84%E7%90%86%E7%AB%9E%E4%BA%89.html</guid>
-        
         
       </item>
     
