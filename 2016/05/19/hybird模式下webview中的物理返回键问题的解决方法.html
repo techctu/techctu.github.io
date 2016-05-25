@@ -103,7 +103,85 @@
                 </div>
               </header>
               
-              <p>最近做的一个移动端H5项目，需要嵌入某个移动APP中。</p>
+              <p>最近做的一个移动端H5项目，需要嵌入某个移动APP中。为了达到近似APP的效果，在H5页面顶部设计了标题栏和返回键。</p>
+
+<h1 id="historygoback">使用history.goback的问题</h1>
+<p>在网页浏览器中，一般使用浏览器的自带回退来返回上一页，网站一般开发只对回退时是否提交上一页表单等问题进行处理，并不修改浏览器的回退行为。而在Hybird模式下，部分功能，如登录、绑卡、支付等流程都是在native下进行，这样就会出现native和webview之间的跳转，会导致history.goback失效。所以需要自己实现一套返回机制。</p>
+
+<h1 id="webview-cookie">使用webview cookie来实现返回</h1>
+<p>在该APP中，多个webview之间共享cookie。利用cookie，我们可以实现类似于native的返回。目前使用的技术有：react、react-router、react-cookie。</p>
+
+<h2 id="v001">歌王争霸栈v0.0.1</h2>
+<p>第一版思路：
+1. 各个页面专注自己的业务逻辑，将返回封装到NavBar。
+2. 压栈操作放在react-router的onEnter方法中来进行操作。</p>
+
+<p>流程如图：</p>
+
+<p><img src="http://7xogz7.com1.z0.glb.clouddn.com/CookieHistoryBeta1.png" alt="歌王争霸栈v0.0.1" /></p>
+
+<p>代码如下：</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// 压栈函数</span>
+<span class="kd">function</span> <span class="nx">pushPageTrace</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">trace</span> <span class="o">=</span> <span class="nx">Cookie</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="nx">Global</span><span class="p">.</span><span class="nx">PAGE_TRACE</span><span class="p">)</span> <span class="o">?</span> <span class="nx">Cookie</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="nx">Global</span><span class="p">.</span><span class="nx">PAGE_TRACE</span><span class="p">)</span> <span class="o">:</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">()</span>
+  <span class="kd">let</span> <span class="nx">storeUrl</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span>
+  <span class="nx">trace</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">storeUrl</span><span class="p">)</span>
+  <span class="nx">Cookie</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="nx">Global</span><span class="p">.</span><span class="nx">PAGE_TRACE</span><span class="p">,</span> <span class="nx">trace</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="c1">// 压栈</span>
+<span class="o">&lt;</span><span class="nx">Route</span> <span class="nx">path</span><span class="o">=</span><span class="s1">&#39;route&#39;</span> <span class="nx">component</span><span class="o">=</span><span class="p">{</span><span class="nx">Com</span><span class="p">}</span> <span class="nx">onEnter</span><span class="o">=</span><span class="p">{</span><span class="kd">function</span><span class="p">(){</span><span class="nx">pushPageTrace</span><span class="p">()}}</span><span class="o">/&gt;</span>
+<span class="c1">// 返回按钮</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="kr">class</span> <span class="nx">NavBar</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+    <span class="nx">goBack</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nx">pageTrace</span> <span class="o">=</span> <span class="nx">Cookie</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="nx">Global</span><span class="p">.</span><span class="nx">PAGE_TRACE</span><span class="p">)</span>
+        <span class="kd">let</span> <span class="nx">backUrl</span>
+        <span class="nx">pageTrace</span><span class="p">.</span><span class="nx">pop</span><span class="p">()</span>
+        <span class="nx">backUrl</span> <span class="o">=</span> <span class="nx">pageTrace</span><span class="p">.</span><span class="nx">pop</span><span class="p">()</span>
+        <span class="nx">Cookie</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="nx">Global</span><span class="p">.</span><span class="nx">PAGE_TRACE</span><span class="p">,</span> <span class="nx">pageTrace</span><span class="p">)</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">backUrl</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+
+<h2 id="v010">守望仙栈v0.1.0</h2>
+<p>在实际使用的过程中，有几个问题：
+1. 需要有个时机来清空栈。
+2. 部分页面需要设置特殊的返回页面，如支付结果页面不再回到支付订单详情确认页面而是回到商品信息页面。
+3. 对栈底需要进行特殊处理，不能空栈。</p>
+
+<p>修改如下：</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// 压栈函数</span>
+<span class="kd">function</span> <span class="nx">pushPageTrace</span><span class="p">(</span><span class="nx">clear</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">specialUrl</span> <span class="o">=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">trace</span> <span class="o">=</span> <span class="nx">clear</span> <span class="o">?</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">()</span> <span class="o">:</span> <span class="nx">Cookie</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="nx">Global</span><span class="p">.</span><span class="nx">PAGE_TRACE</span><span class="p">)</span> <span class="o">?</span> <span class="nx">Cookie</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="nx">Global</span><span class="p">.</span><span class="nx">PAGE_TRACE</span><span class="p">)</span> <span class="o">:</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">()</span>
+  <span class="kd">let</span> <span class="nx">storeUrl</span> <span class="o">=</span> <span class="nx">specialUrl</span> <span class="o">?</span> <span class="nx">specialUrl</span> <span class="o">:</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span>
+  <span class="nx">trace</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">storeUrl</span><span class="p">)</span>
+  <span class="nx">Cookie</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="nx">Global</span><span class="p">.</span><span class="nx">PAGE_TRACE</span><span class="p">,</span> <span class="nx">trace</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="c1">// 返回按钮</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="kr">class</span> <span class="nx">NavBar</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+    <span class="nx">goBack</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">clicked</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span>
+                <span class="nx">clicked</span><span class="o">:</span> <span class="kc">true</span>
+            <span class="p">})</span>
+            <span class="kd">let</span> <span class="nx">pageTrace</span> <span class="o">=</span> <span class="nx">Cookie</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="nx">Global</span><span class="p">.</span><span class="nx">PAGE_TRACE</span><span class="p">)</span>
+            <span class="kd">let</span> <span class="nx">backUrl</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">pageTrace</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">backUrl</span> <span class="o">=</span> <span class="nx">pageTrace</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">pageTrace</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">pageTrace</span><span class="p">.</span><span class="nx">pop</span><span class="p">()</span>
+                <span class="nx">backUrl</span> <span class="o">=</span> <span class="nx">pageTrace</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">pageTrace</span><span class="p">.</span><span class="nx">pop</span><span class="p">()</span>
+                <span class="nx">backUrl</span> <span class="o">=</span> <span class="nx">pageTrace</span><span class="p">.</span><span class="nx">pop</span><span class="p">()</span>
+            <span class="p">}</span>
+            <span class="nx">Cookie</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="nx">Global</span><span class="p">.</span><span class="nx">PAGE_TRACE</span><span class="p">,</span> <span class="nx">pageTrace</span><span class="p">)</span>
+            <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">backUrl</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+
 
               <footer>
                 <ul class="stats">
