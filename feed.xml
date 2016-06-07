@@ -6,8 +6,8 @@
 </description>
     <link>http://techctu.github.io//</link>
     <atom:link href="http://techctu.github.io//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 07 Jun 2016 11:23:00 +0800</pubDate>
-    <lastBuildDate>Tue, 07 Jun 2016 11:23:00 +0800</lastBuildDate>
+    <pubDate>Tue, 07 Jun 2016 13:57:16 +0800</pubDate>
+    <lastBuildDate>Tue, 07 Jun 2016 13:57:16 +0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -357,6 +357,18 @@
         &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;todo&quot;&gt;TODO&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;如何使用browserHistory。&lt;/li&gt;
+  &lt;li&gt;使用Redux。&lt;/li&gt;
+  &lt;li&gt;制作自己的组件库，支持自定义样式。&lt;/li&gt;
+  &lt;li&gt;css压缩优化。&lt;/li&gt;
+  &lt;li&gt;scss和less。&lt;/li&gt;
+  &lt;li&gt;淘宝在移动端和chrome等使用webp，在其他端使用jpeg和png，如何做到。&lt;/li&gt;
+  &lt;li&gt;Controller层session和shiro/JWT与前端路由的使用。&lt;/li&gt;
+  &lt;li&gt;使用webpack插件做到如maven的各个环境独立配置，文本替换，加入js等文件的hash值。&lt;/li&gt;
+&lt;/ul&gt;
 </description>
         <pubDate>Mon, 06 Jun 2016 00:00:00 +0800</pubDate>
         <link>http://techctu.github.io//2016/06/06/react%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97.html</link>
