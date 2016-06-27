@@ -115,7 +115,7 @@
 <h2 id="section">与传统开发比较</h2>
 <p>在传统的前端页面开发中，我们一般会给一个标签设置一个id或是类似的东西，以便对其进行操作，如：</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="s1">&#39;id_xxx&#39;</span><span class="o">&gt;</span><span class="err">这是一个标签</span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">    <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="s1">&#39;id_xxx&#39;</span><span class="o">&gt;</span><span class="err">这是一个标签</span><span class="o">&lt;</span><span class="err">/div&gt;</span>
 
     <span class="c1">// 纯JS</span>
     <span class="nb">document</span><span class="p">.</span><span class="nx">getElementByID</span><span class="p">(</span><span class="s1">&#39;id_xxx&#39;</span><span class="p">)</span>
@@ -123,11 +123,11 @@
     <span class="c1">// JQuery</span>
     <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#id_xxx&#39;</span><span class="p">)</span>
 
-    <span class="c1">// 再去操作</span></code></pre></div>
+    <span class="c1">// 再去操作</span></code></pre></figure>
 
 <p>而在React中，一般这么做：</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// import省略</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// import省略</span>
 <span class="c1">// 为了比较完整展现一下结构，比上面偷懒写的代码多了很多</span>
 <span class="kr">class</span> <span class="nx">ComponentA</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span><span class="p">{</span>
     <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
@@ -144,17 +144,17 @@
         <span class="nx">arrayInfo</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">v</span><span class="p">,</span><span class="nx">i</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="nx">elems</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span> <span class="p">{</span><span class="nx">i</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="nx">v</span><span class="p">}</span> <span class="o">&lt;</span><span class="err">/div&gt;)))</span>
         <span class="k">return</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">title</span><span class="p">}</span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">elems</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/div&gt;&lt;/div&gt;)</span>
     <span class="p">}</span>
-<span class="p">}</span></code></pre></div>
+<span class="p">}</span></code></pre></figure>
 
 <p>这样我们只需要关注什么样的场景下需要进行title值的修改，不需要关注ID之类的维护亦或一些复杂繁琐的DOM操作。想象一下如果是一个复杂的多级下拉选择框，选完了之后对应的列表需要进行自动更新。</p>
 
 <h2 id="react">React结构入门</h2>
 <p>以上面的代码为例。Java从接触的时候的1.5发展到了1.8，多了很多并行运算、模板、闭包、线程安全等新特性，Python也不是一成不变，JavaScript也发展到了es6，es7正在路上。上面的代码，是基于es6。</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// 和大部分语音一致，引用依赖包/库，如Java、Python的import，C系列的include等</span>
-<span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// 和大部分语音一致，引用依赖包/库，如Java、Python的import，C系列的include等</span>
+<span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span></code></pre></figure>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// 定义一个React组件</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// 定义一个React组件</span>
 <span class="c1">// 如果做过其他胖客户端的开发的话，类似Android、VB、C#等，extend View</span>
 <span class="kr">class</span> <span class="nx">ComponentA</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span><span class="p">{</span>
     <span class="c1">// 非常熟悉的面向对象的概念中的构造函数</span>
@@ -184,14 +184,14 @@
         <span class="c1">// 列表需要加入唯一key，如key = {列表名 + 页号 + 下标}</span>
         <span class="k">return</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">title</span><span class="p">}</span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">elems</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/div&gt;&lt;/div&gt;)</span>
     <span class="p">}</span>
-<span class="p">}</span></code></pre></div>
+<span class="p">}</span></code></pre></figure>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// 使用方式如下，传入一个对象到init属性，在ComponentA中通过this.props.init访问</span>
-<span class="o">&lt;</span><span class="nx">ComponentA</span> <span class="nx">init</span><span class="o">=</span> <span class="err">/&gt;</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// 使用方式如下，传入一个对象到init属性，在ComponentA中通过this.props.init访问</span>
+<span class="o">&lt;</span><span class="nx">ComponentA</span> <span class="nx">init</span><span class="o">=</span> <span class="err">/&gt;</span></code></pre></figure>
 
 <h3 id="section-1">常用声明周期函数</h3>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// render之前调用</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// render之前调用</span>
 <span class="nx">componentWillMount</span><span class="p">()</span> <span class="p">{</span>
     <span class="c1">// 修改state</span>
 <span class="p">}</span>
@@ -202,7 +202,7 @@
 <span class="c1">// 销毁之前调用</span>
 <span class="nx">componentWillUnmount</span><span class="p">()</span> <span class="p">{</span>
     <span class="c1">// 清理定时器、中断请求等</span>
-<span class="p">}</span></code></pre></div>
+<span class="p">}</span></code></pre></figure>
 
 <p>更多详情参考<a href="http://www.ruanyifeng.com/blog/2015/03/react.html">阮一峰的React介绍（es5版代码）</a><a href="http://facebook.github.io/react/docs/getting-started.html">或者官网（还是es5）</a></p>
 
@@ -215,7 +215,7 @@
 
 <p>那么，一个基于react的web app可能就是这样：</p>
 
-<div class="highlight"><pre><code class="language-html" data-lang="html">// 入口index.
+<figure class="highlight"><pre><code class="language-html" data-lang="html">// 入口index.
 <span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
 <span class="nt">&lt;head&gt;</span>
@@ -224,9 +224,9 @@
 <span class="nt">&lt;body&gt;</span>
     <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;...app.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
 <span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span></code></pre></div>
+<span class="nt">&lt;/html&gt;</span></code></pre></figure>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
 <span class="kr">class</span> <span class="nx">ComponentA</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span><span class="p">{</span>
     <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
         <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span>
@@ -250,7 +250,7 @@
             <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">componentArrayA</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/div&gt;</span>
         <span class="p">)</span>
     <span class="p">}</span>
-<span class="p">}</span></code></pre></div>
+<span class="p">}</span></code></pre></figure>
 
 <p>很快，就会出现几个问题：
 1. 浏览器里我复制链接，我可以在新的浏览器里粘贴就可以打开对应页面，如果没有登录跳到登录页，使用react如何做到？
@@ -266,7 +266,7 @@
 
 <p>react-router是一个前端路由框架，监听浏览器的url请求，并进行相应的处理。</p>
 
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;Router</span> <span class="na">history=</span><span class="s">{hashHistory}</span><span class="nt">&gt;</span>
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;Router</span> <span class="na">history=</span><span class="s">{hashHistory}</span><span class="nt">&gt;</span>
     <span class="nt">&lt;Route</span> <span class="na">path=</span><span class="s">&quot;/&quot;</span> <span class="na">component=</span><span class="s">{Home}</span>
       <span class="na">onEnter=</span><span class="s">{function(){</span>
         <span class="na">document</span><span class="err">.</span><span class="na">getElementById</span><span class="err">(&#39;</span><span class="na">g-header-line</span><span class="err">&#39;).</span><span class="na">style</span><span class="err">.</span><span class="na">height =</span><span class="err"> </span><span class="s">&#39;0px&#39;</span><span class="err">;/*</span><span class="na">Home</span><span class="err">页面需要进行特殊处理*/</span>
@@ -284,11 +284,11 @@
         }
         document.getElementById(&#39;g-header-line&#39;).style.height = height + &#39;px&#39;;
       }}/&gt;
-<span class="nt">&lt;/Router&gt;</span></code></pre></div>
+<span class="nt">&lt;/Router&gt;</span></code></pre></figure>
 
 <p>hashHistory用的是react-router提供的基于浏览器自带history制作的history.js的一个历史记录数据结构，使用的是http://xxx/#/xxx?hash=xxx的形式。</p>
 
-<route />
+<Route />
 <p>标签中path即#/path，component即自己写的react组件，onEnter即进入页面前的处理，可以在此对路由进行预处理，onLeave同理。通过这种方式，能解决前端路由问题。</p>
 
 <h3 id="section-3">题外</h3>
@@ -332,7 +332,7 @@
 <h3 id="atom">atom</h3>
 <p>atom可以直接问(度娘)[http://jingyan.baidu.com/article/375c8e19c3105a25f2a22901.html]，初始步骤只有一个：</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">npm</span> <span class="nx">install</span> <span class="nx">language</span><span class="o">-</span><span class="nx">asciidoc</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">npm</span> <span class="nx">install</span> <span class="nx">language</span><span class="o">-</span><span class="nx">asciidoc</span></code></pre></figure>
 
 <h3 id="section-5">相关插件</h3>
 <p>离线下载插件包安装地址：<a href="https://packagecontrol.io/">sublime相关</a>，<a href="https://atom.io/packages">atom相关</a>。请阅读英文介绍，使用es6相关的，使用人数较多的插件。</p>
@@ -355,7 +355,7 @@
 <h2 id="webview">缩放和沉浸式webview适配</h2>
 <p>缩放和适配相对比较简单：</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">docEl</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">,</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">docEl</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">,</span>
       <span class="nx">resizeEvt</span> <span class="o">=</span> <span class="s1">&#39;orientationchange&#39;</span> <span class="k">in</span> <span class="nb">window</span> <span class="o">?</span> <span class="s1">&#39;orientationchange&#39;</span> <span class="o">:</span> <span class="s1">&#39;resize&#39;</span><span class="p">,</span>
       <span class="nx">recalc</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="kd">var</span> <span class="nx">parser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">UAParser</span><span class="p">();</span>
@@ -371,7 +371,7 @@
           <span class="p">}</span>
         <span class="p">}</span> 
         
-      <span class="p">};</span></code></pre></div>
+      <span class="p">};</span></code></pre></figure>
 
 <h2 id="android">Android物理返回键处理</h2>
 <p>物理返回键比较复杂，原因主要为，需要切换webview。这里不得不说，有些页面，如登录、支付，还是能做成native弹框以便到处调用比较好，那样就不会有这个问题了。</p>
@@ -390,7 +390,7 @@
 
 <p>代码如下：</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// 压栈函数</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// 压栈函数</span>
 <span class="kd">function</span> <span class="nx">pushPageTrace</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">let</span> <span class="nx">trace</span> <span class="o">=</span> <span class="nx">Cookie</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="nx">Global</span><span class="p">.</span><span class="nx">PAGE_TRACE</span><span class="p">)</span> <span class="o">?</span> <span class="nx">Cookie</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="nx">Global</span><span class="p">.</span><span class="nx">PAGE_TRACE</span><span class="p">)</span> <span class="o">:</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">()</span>
   <span class="kd">let</span> <span class="nx">storeUrl</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span>
@@ -409,7 +409,7 @@
         <span class="nx">Cookie</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="nx">Global</span><span class="p">.</span><span class="nx">PAGE_TRACE</span><span class="p">,</span> <span class="nx">pageTrace</span><span class="p">)</span>
         <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">backUrl</span>
     <span class="p">}</span>
-<span class="p">}</span></code></pre></div>
+<span class="p">}</span></code></pre></figure>
 
 <p>在实际使用的过程中，有几个问题：
 1. 需要有个时机来清空栈。
@@ -418,7 +418,7 @@
 
 <p>修改如下：</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// 压栈函数</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// 压栈函数</span>
 <span class="kd">function</span> <span class="nx">pushPageTrace</span><span class="p">(</span><span class="nx">clear</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">specialUrl</span> <span class="o">=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">let</span> <span class="nx">trace</span> <span class="o">=</span> <span class="nx">clear</span> <span class="o">?</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">()</span> <span class="o">:</span> <span class="nx">Cookie</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="nx">Global</span><span class="p">.</span><span class="nx">PAGE_TRACE</span><span class="p">)</span> <span class="o">?</span> <span class="nx">Cookie</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="nx">Global</span><span class="p">.</span><span class="nx">PAGE_TRACE</span><span class="p">)</span> <span class="o">:</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">()</span>
   <span class="kd">let</span> <span class="nx">storeUrl</span> <span class="o">=</span> <span class="nx">specialUrl</span> <span class="o">?</span> <span class="nx">specialUrl</span> <span class="o">:</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span>
@@ -447,7 +447,7 @@
             <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">backUrl</span>
         <span class="p">}</span>
     <span class="p">}</span>
-<span class="p">}</span></code></pre></div>
+<span class="p">}</span></code></pre></figure>
 
 <h1 id="todo">TODO</h1>
 <ul>
@@ -477,7 +477,7 @@
   	  				  <li><a href="/2016/05/19/hybird%E6%A8%A1%E5%BC%8F%E4%B8%8Bwebview%E4%B8%AD%E7%9A%84%E7%89%A9%E7%90%86%E8%BF%94%E5%9B%9E%E9%94%AE%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95.html" class="button big previous">Previous Post</a></li>
   						
 							
-  						  <li><a href="#" class="disabled button big next">Next Post</a></li>
+  						  <li><a href="/web/2016/06/22/%E9%98%B6%E6%AE%B5%E6%80%A7%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E9%A1%B9%E7%9B%AE%E5%BE%85%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93.html" class="button big next">Next Post</a></li>
   						
   					</ul>
 					</div>
@@ -499,6 +499,26 @@
 						<!-- Mini Posts -->
 						<section>
   <div class="mini-posts">
+    
+      <article class="mini-post">
+  	    <header>
+  		    <h3><a href="/web/2016/06/22/%E9%98%B6%E6%AE%B5%E6%80%A7%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E9%A1%B9%E7%9B%AE%E5%BE%85%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93.html">阶段性前端开发项目待解决问题总结</a></h3>
+		      <time class="published" datetime="2016-06-22">June 22, 2016</time>
+						<!--<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>-->
+			  </header>
+        
+		  </article>
+									<!-- Mini Post -->
+									  <!--
+										<article class="mini-post">
+											<header>
+												<h3><a href="#">Vitae sed condimentum</a></h3>
+												<time class="published" datetime="2015-10-20">October 20, 2015</time>
+												<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>
+											</header>
+											<a href="#" class="image"><img src="/images/pic04.jpg" alt="" /></a>
+										</article>
+									-->
     
       <article class="mini-post">
   	    <header>
@@ -544,26 +564,6 @@
   	    <header>
   		    <h3><a href="/2016/05/08/%E7%AC%AC%E4%B8%80%E6%AC%A1reactjs%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95.html">第一次ReactJS前端开发记录</a></h3>
 		      <time class="published" datetime="2016-05-08">May 08, 2016</time>
-						<!--<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>-->
-			  </header>
-        
-		  </article>
-									<!-- Mini Post -->
-									  <!--
-										<article class="mini-post">
-											<header>
-												<h3><a href="#">Vitae sed condimentum</a></h3>
-												<time class="published" datetime="2015-10-20">October 20, 2015</time>
-												<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>
-											</header>
-											<a href="#" class="image"><img src="/images/pic04.jpg" alt="" /></a>
-										</article>
-									-->
-    
-      <article class="mini-post">
-  	    <header>
-  		    <h3><a href="/2016/04/23/%E8%BF%91%E6%9C%9F%E6%9F%90%E9%A1%B9%E7%9B%AE%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E6%A2%B3%E7%90%86%E6%97%A0%E7%9F%A5%E6%9C%AA%E7%9F%A5%E6%91%B8%E7%9D%80%E7%9F%B3%E5%A4%B4%E8%BF%87%E6%B2%B3.html">近期某项目前端开发梳理——无知、未知、摸着石头过河</a></h3>
-		      <time class="published" datetime="2016-04-23">April 23, 2016</time>
 						<!--<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>-->
 			  </header>
         

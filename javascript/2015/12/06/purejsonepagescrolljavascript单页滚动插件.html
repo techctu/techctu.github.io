@@ -96,7 +96,7 @@
                 <div class="meta">
                   <time class="published" datetime="2015-12-06">December 06, 2015</time>
                   
-                    <a href="#">javascript</a>
+                    <a href="#">JavaScript</a>
                   
 
         <!--
@@ -115,14 +115,14 @@
 
 <h2 id="section-2">引入文件</h2>
 
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;onepagescroll.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span> 
-<span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&#39;onepage-scroll.css&#39;</span> <span class="na">rel=</span><span class="s">&#39;stylesheet&#39;</span> <span class="na">type=</span><span class="s">&#39;text/css&#39;</span><span class="nt">&gt;</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;onepagescroll.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span> 
+<span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&#39;onepage-scroll.css&#39;</span> <span class="na">rel=</span><span class="s">&#39;stylesheet&#39;</span> <span class="na">type=</span><span class="s">&#39;text/css&#39;</span><span class="nt">&gt;</span></code></pre></figure>
 
 <p>当然你也可以通过require等来插入，贵客都会require了自然也不需要看这部分。</p>
 
 <h2 id="section-3">基本用法</h2>
 
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;body&gt;</span> ... 
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;body&gt;</span> ... 
 	<span class="c">&lt;!-- main只是作为选择器用，语法是HTML5的document.querySelector，不会请百度 --&gt;</span> 
 	<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;main&quot;</span><span class="nt">&gt;</span> 
 		<span class="c">&lt;!-- section标签可以自定义 --&gt;</span> 
@@ -138,11 +138,11 @@
 		<span class="nx">loop</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>     
 		<span class="nx">responsiveFallback</span><span class="o">:</span> <span class="kc">false</span>   
 	<span class="p">});</span> 
-<span class="nt">&lt;/script&gt;</span></code></pre></div>
+<span class="nt">&lt;/script&gt;</span> </code></pre></figure>
 
 <h2 id="section-4">参数介绍</h2>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// 选择器，可以用class、id等 </span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// 选择器，可以用class、id等 </span>
 <span class="nx">onePageScroll</span><span class="p">(</span><span class="s2">&quot;.main&quot;</span><span class="p">,</span> <span class="p">{</span> 
 <span class="c1">// 标签名字，随意起，确保是页面容器，不与其它同名即可 </span>
 <span class="nx">sectionContainer</span><span class="o">:</span> <span class="s2">&quot;section&quot;</span><span class="p">,</span> 
@@ -155,7 +155,7 @@
 <span class="nx">beforeMove</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">next_el</span><span class="p">)</span> <span class="p">{},</span> <span class="c1">// 页面滚动前调用函数，编号从1开始，移动向第n页则index为n </span>
 <span class="nx">afterMove</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">next_el</span><span class="p">)</span> <span class="p">{},</span> <span class="c1">// 页面滚动后调用函数，移动到第n页index为n </span>
 <span class="nx">loop</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// 是否可以从底部下移到顶部 keyboard: true, // 是否用键盘控制 </span>
-<span class="nx">responsiveFallback</span><span class="o">:</span> <span class="kc">false</span> <span class="c1">// 滚动页面宽度小于定值时，宽度外使用浏览器自带滚动条 });</span></code></pre></div>
+<span class="nx">responsiveFallback</span><span class="o">:</span> <span class="kc">false</span> <span class="c1">// 滚动页面宽度小于定值时，宽度外使用浏览器自带滚动条 });</span></code></pre></figure>
 
 <h2 id="section-5">公共方法</h2>
 
@@ -206,6 +206,26 @@
     
       <article class="mini-post">
   	    <header>
+  		    <h3><a href="/web/2016/06/22/%E9%98%B6%E6%AE%B5%E6%80%A7%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E9%A1%B9%E7%9B%AE%E5%BE%85%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93.html">阶段性前端开发项目待解决问题总结</a></h3>
+		      <time class="published" datetime="2016-06-22">June 22, 2016</time>
+						<!--<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>-->
+			  </header>
+        
+		  </article>
+									<!-- Mini Post -->
+									  <!--
+										<article class="mini-post">
+											<header>
+												<h3><a href="#">Vitae sed condimentum</a></h3>
+												<time class="published" datetime="2015-10-20">October 20, 2015</time>
+												<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>
+											</header>
+											<a href="#" class="image"><img src="/images/pic04.jpg" alt="" /></a>
+										</article>
+									-->
+    
+      <article class="mini-post">
+  	    <header>
   		    <h3><a href="/2016/06/06/react%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97.html">React开发入门指南</a></h3>
 		      <time class="published" datetime="2016-06-06">June 06, 2016</time>
 						<!--<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>-->
@@ -248,26 +268,6 @@
   	    <header>
   		    <h3><a href="/2016/05/08/%E7%AC%AC%E4%B8%80%E6%AC%A1reactjs%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95.html">第一次ReactJS前端开发记录</a></h3>
 		      <time class="published" datetime="2016-05-08">May 08, 2016</time>
-						<!--<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>-->
-			  </header>
-        
-		  </article>
-									<!-- Mini Post -->
-									  <!--
-										<article class="mini-post">
-											<header>
-												<h3><a href="#">Vitae sed condimentum</a></h3>
-												<time class="published" datetime="2015-10-20">October 20, 2015</time>
-												<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>
-											</header>
-											<a href="#" class="image"><img src="/images/pic04.jpg" alt="" /></a>
-										</article>
-									-->
-    
-      <article class="mini-post">
-  	    <header>
-  		    <h3><a href="/2016/04/23/%E8%BF%91%E6%9C%9F%E6%9F%90%E9%A1%B9%E7%9B%AE%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E6%A2%B3%E7%90%86%E6%97%A0%E7%9F%A5%E6%9C%AA%E7%9F%A5%E6%91%B8%E7%9D%80%E7%9F%B3%E5%A4%B4%E8%BF%87%E6%B2%B3.html">近期某项目前端开发梳理——无知、未知、摸着石头过河</a></h3>
-		      <time class="published" datetime="2016-04-23">April 23, 2016</time>
 						<!--<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>-->
 			  </header>
         

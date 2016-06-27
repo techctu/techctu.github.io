@@ -111,11 +111,11 @@
 
 <p>目前百度地图没有离线API，官网上方式为</p>
 
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;http://api.map.baidu.com/api?v=2.0&amp;ak=您的密钥&amp;callback=回调方法&quot;</span><span class="nt">&gt;&lt;/script&gt;</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;http://api.map.baidu.com/api?v=2.0&amp;ak=您的密钥&amp;callback=回调方法&quot;</span><span class="nt">&gt;&lt;/script&gt;</span></code></pre></figure>
 
 <p>在页面嵌入了百度地图后，会异步获取一些js脚本，实现地图功能的加载，且加载成功与否难以控制。因此，需要在React组件加载完成的时候加载百度地图。</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
     <span class="nb">window</span><span class="p">.</span><span class="nx">initBaiduMap</span> <span class="o">=</span> <span class="kc">null</span>
     <span class="kd">let</span> <span class="nx">script</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">)</span>
     <span class="nx">script</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;text/javascript&#39;</span>
@@ -125,7 +125,7 @@
 <span class="p">}</span>
 <span class="nx">componentWillUnmount</span><span class="p">()</span> <span class="p">{</span>
     <span class="nb">window</span><span class="p">.</span><span class="nx">initBaiduMap</span> <span class="o">=</span> <span class="kc">null</span>
-<span class="p">}</span></code></pre></div>
+<span class="p">}</span></code></pre></figure>
 
 <p>产生的问题是：
 1. 使用了window对象，将React组件的方法绑定到了全局。
@@ -174,6 +174,26 @@
     
       <article class="mini-post">
   	    <header>
+  		    <h3><a href="/web/2016/06/22/%E9%98%B6%E6%AE%B5%E6%80%A7%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E9%A1%B9%E7%9B%AE%E5%BE%85%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93.html">阶段性前端开发项目待解决问题总结</a></h3>
+		      <time class="published" datetime="2016-06-22">June 22, 2016</time>
+						<!--<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>-->
+			  </header>
+        
+		  </article>
+									<!-- Mini Post -->
+									  <!--
+										<article class="mini-post">
+											<header>
+												<h3><a href="#">Vitae sed condimentum</a></h3>
+												<time class="published" datetime="2015-10-20">October 20, 2015</time>
+												<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>
+											</header>
+											<a href="#" class="image"><img src="/images/pic04.jpg" alt="" /></a>
+										</article>
+									-->
+    
+      <article class="mini-post">
+  	    <header>
   		    <h3><a href="/2016/06/06/react%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97.html">React开发入门指南</a></h3>
 		      <time class="published" datetime="2016-06-06">June 06, 2016</time>
 						<!--<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>-->
@@ -216,26 +236,6 @@
   	    <header>
   		    <h3><a href="/2016/05/08/%E7%AC%AC%E4%B8%80%E6%AC%A1reactjs%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95.html">第一次ReactJS前端开发记录</a></h3>
 		      <time class="published" datetime="2016-05-08">May 08, 2016</time>
-						<!--<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>-->
-			  </header>
-        
-		  </article>
-									<!-- Mini Post -->
-									  <!--
-										<article class="mini-post">
-											<header>
-												<h3><a href="#">Vitae sed condimentum</a></h3>
-												<time class="published" datetime="2015-10-20">October 20, 2015</time>
-												<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>
-											</header>
-											<a href="#" class="image"><img src="/images/pic04.jpg" alt="" /></a>
-										</article>
-									-->
-    
-      <article class="mini-post">
-  	    <header>
-  		    <h3><a href="/2016/04/23/%E8%BF%91%E6%9C%9F%E6%9F%90%E9%A1%B9%E7%9B%AE%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E6%A2%B3%E7%90%86%E6%97%A0%E7%9F%A5%E6%9C%AA%E7%9F%A5%E6%91%B8%E7%9D%80%E7%9F%B3%E5%A4%B4%E8%BF%87%E6%B2%B3.html">近期某项目前端开发梳理——无知、未知、摸着石头过河</a></h3>
-		      <time class="published" datetime="2016-04-23">April 23, 2016</time>
 						<!--<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>-->
 			  </header>
         
