@@ -6,9 +6,144 @@
 </description>
     <link>http://techctu.github.io//</link>
     <atom:link href="http://techctu.github.io//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 27 Jun 2016 09:13:55 +0800</pubDate>
-    <lastBuildDate>Mon, 27 Jun 2016 09:13:55 +0800</lastBuildDate>
+    <pubDate>Thu, 30 Jun 2016 15:58:28 +0800</pubDate>
+    <lastBuildDate>Thu, 30 Jun 2016 15:58:28 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>内网配置SublimeLinter和SublimeLinter-contrib-eslint来检查es6 react代码</title>
+        <description>&lt;p&gt;最近一直在做前端技术积累相关方面的事情，其中一项就是要起草一个前端规范。我觉得一切只要求人自觉做到而不提供规范化工具的规范都是耍流氓。参考现在项目使用的为react和es6，以及sublime，我找到了几个有用的东西：
+- &lt;a href=&quot;http://eslint.org/&quot;&gt;eslint&lt;/a&gt;
+- &lt;a href=&quot;https://github.com/yannickcr/eslint-plugin-react&quot;&gt;eslint-plugin-react&lt;/a&gt;
+- &lt;a href=&quot;https://github.com/benmosher/eslint-plugin-import&quot;&gt;eslint-plugin-import&lt;/a&gt;
+- &lt;a href=&quot;http://sublimelinter.readthedocs.io/&quot;&gt;SublimeLinter&lt;/a&gt;
+- &lt;a href=&quot;https://github.com/roadhump/SublimeLinter-eslint&quot;&gt;SublimeLinter-eslint&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;他们的关系是：
+1. eslint检查代码是否符合规范，使用eslint-plugin-react和eslint-plugin-import来检查es6 react语法。eslint已经支持es6，不需要使用babel-eslint。
+2. SublimeLinter是连接SublimeLinter-xlint的框架型sublime插件，将检查结果等在sublime中显示。
+3. SublimeLinter-eslint使用eslint的基于SublimeLinter的插件。SublimeLinter检测到配置的需要检查的文件，调用配置的lint，如SublimeLinter-eslint来检查。而SublimeLinter-eslint则使用eslint加载配置的规则来检查代码。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;安装步骤&lt;/h2&gt;
+&lt;p&gt;前置条件：配置了npm代理可以使用npm安装。
+1. 在项目下运行&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;npm install eslint eslint-plugin-react eslint-plugin-import --save-dev
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;解压下载的&lt;a href=&quot;https://github.com/SublimeLinter/SublimeLinter3/archive/master.zip&quot;&gt;SublimeLinter&lt;/a&gt;和&lt;a href=&quot;https://github.com/roadhump/SublimeLinter-eslint/archive/master.zip&quot;&gt;SublimeLinter-eslint&lt;/a&gt;到sublime的&lt;code&gt;Packages&lt;/code&gt;目录下，SublimeLinter的文件夹必须修改为&lt;code&gt;SublimeLinter&lt;/code&gt;，否则SublimeLinter-eslint找不到SublimeLinter。&lt;/li&gt;
+  &lt;li&gt;（这一步只需要项目创建者执行一次）在项目下配置.eslintrc，或者直接运行&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code&gt;./node_modules/.bin/eslint --init
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可以得到一个基础的校验规则配置。建议参考这个&lt;a href=&quot;https://github.com/coryhouse/react-slingshot/blob/master/.eslintrc&quot;&gt;starter kit&lt;/a&gt;的配置&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
+  &quot;extends&quot;: [
+    &quot;eslint:recommended&quot;,
+    &quot;plugin:import/errors&quot;,
+    &quot;plugin:import/warnings&quot;
+  ],
+  &quot;plugins&quot;: [
+    &quot;react&quot;
+  ],
+  &quot;parserOptions&quot;: {
+    &quot;ecmaVersion&quot;: 6,
+    &quot;sourceType&quot;: &quot;module&quot;,
+    &quot;ecmaFeatures&quot;: {
+      &quot;jsx&quot;: true,
+      &quot;experimentalObjectRestSpread&quot;: true
+    }
+  },
+  &quot;env&quot;: {
+    &quot;es6&quot;: true,
+    &quot;browser&quot;: true,
+    &quot;node&quot;: true,
+    &quot;jquery&quot;: true,
+    &quot;mocha&quot;: true
+  },
+  &quot;rules&quot;: {
+    &quot;quotes&quot;: 0,
+    &quot;no-console&quot;: 1,
+    &quot;no-debugger&quot;: 1,
+    &quot;no-var&quot;: 1,
+    &quot;semi&quot;: [1, &quot;always&quot;],
+    &quot;no-trailing-spaces&quot;: 0,
+    &quot;eol-last&quot;: 0,
+    &quot;no-underscore-dangle&quot;: 0,
+    &quot;no-alert&quot;: 0,
+    &quot;no-lone-blocks&quot;: 0,
+    &quot;jsx-quotes&quot;: 1,
+    &quot;react/display-name&quot;: [ 1, {&quot;ignoreTranspilerName&quot;: false }],
+    &quot;react/forbid-prop-types&quot;: [1, {&quot;forbid&quot;: [&quot;any&quot;]}],
+    &quot;react/jsx-boolean-value&quot;: 0,
+    &quot;react/jsx-closing-bracket-location&quot;: 0,
+    &quot;react/jsx-curly-spacing&quot;: 1,
+    &quot;react/jsx-indent-props&quot;: 0,
+    &quot;react/jsx-key&quot;: 1,
+    &quot;react/jsx-max-props-per-line&quot;: 0,
+    &quot;react/jsx-no-bind&quot;: 0,
+    &quot;react/jsx-no-duplicate-props&quot;: 1,
+    &quot;react/jsx-no-literals&quot;: 0,
+    &quot;react/jsx-no-undef&quot;: 1,
+    &quot;react/jsx-pascal-case&quot;: 1,
+    &quot;react/jsx-sort-prop-types&quot;: 0,
+    &quot;react/jsx-sort-props&quot;: 0,
+    &quot;react/jsx-uses-react&quot;: 1,
+    &quot;react/jsx-uses-vars&quot;: 1,
+    &quot;react/no-danger&quot;: 1,
+    &quot;react/no-did-mount-set-state&quot;: 1,
+    &quot;react/no-did-update-set-state&quot;: 1,
+    &quot;react/no-direct-mutation-state&quot;: 1,
+    &quot;react/no-multi-comp&quot;: 1,
+    &quot;react/no-set-state&quot;: 1,
+    &quot;react/no-unknown-property&quot;: 1,
+    &quot;react/prefer-es6-class&quot;: 1,
+    &quot;react/prop-types&quot;: 1,
+    &quot;react/react-in-jsx-scope&quot;: 1,
+    &quot;react/require-extension&quot;: 1,
+    &quot;react/self-closing-comp&quot;: 1,
+    &quot;react/sort-comp&quot;: 1,
+    &quot;react/wrap-multilines&quot;: 1
+  },
+  &quot;globals&quot;: {
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;打开sublime顶部&lt;code&gt;Tools -&amp;gt; SublimeLinter -&amp;gt; Lint mode&lt;/code&gt;，选择自己喜欢的检查时机。
+    &lt;ul&gt;
+      &lt;li&gt;Background: 准实时提示。&lt;/li&gt;
+      &lt;li&gt;Load/save：打开/保存文件时。&lt;/li&gt;
+      &lt;li&gt;Save only：保存时。&lt;/li&gt;
+      &lt;li&gt;Manual：手动。请去&lt;code&gt;Preferences -&amp;gt; Package Settings -&amp;gt; SublimeLinter -&amp;gt; Key Bindings - Default&lt;/code&gt;查看快捷键设置，建议在&lt;code&gt;Key Bindings - User&lt;/code&gt;里设置自定义快捷键。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;至此，可以发现自己ugly代码左侧行号附近出现了提示，且在行内会有方框标识，且在sublime底部会有提示原因。如果觉得不方便查看，可以设置&lt;code&gt;Tools -&amp;gt; SublimeLinter -&amp;gt; Debug mode&lt;/code&gt;，使用&lt;code&gt;ctrl + `&lt;/code&gt;调出控制台来查看信息。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;TODO：暂时没有具体研究每一项配置。&lt;/p&gt;
+
+&lt;p&gt;参考文章：&lt;a href=&quot;http://devnull.guru/get-started-with-eslint/&quot;&gt;Get Started with ESLint v1.0&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Thu, 30 Jun 2016 00:00:00 +0800</pubDate>
+        <link>http://techctu.github.io//2016/06/30/%E5%86%85%E7%BD%91%E9%85%8D%E7%BD%AEsublimelinter%E5%92%8Csublimelinter-contrib-eslint%E6%9D%A5%E6%A3%80%E6%9F%A5es6-react%E4%BB%A3%E7%A0%81.html</link>
+        <guid isPermaLink="true">http://techctu.github.io//2016/06/30/%E5%86%85%E7%BD%91%E9%85%8D%E7%BD%AEsublimelinter%E5%92%8Csublimelinter-contrib-eslint%E6%9D%A5%E6%A3%80%E6%9F%A5es6-react%E4%BB%A3%E7%A0%81.html</guid>
+        
+        <category>react</category>
+        
+        <category>es6</category>
+        
+        <category>lint</category>
+        
+        <category>eslint</category>
+        
+        
+      </item>
     
       <item>
         <title>阶段性前端开发项目待解决问题总结</title>
@@ -861,43 +996,6 @@
         
         
         <category>架构</category>
-        
-      </item>
-    
-      <item>
-        <title>登长城记</title>
-        <description>&lt;p&gt;十二月正是万物萧索，静心养气的时机。适逢朋友李来京培训，既然来京，便必择一日天气尚可之时，登那长城。&lt;/p&gt;
-
-&lt;p&gt;下了车，路边还有着未化的雪，和更换后的列车倒也相映成趣。大部分人都在八达岭站下了车，有看着像学生，有看着像留学生的，有看着像学生陪着家长的，三三两两出了站。站内看着人多，但毕竟淡季，出战就发现路上车很少，人也很少，一行人就沿着前几天游人踩出的痕迹前行。&lt;/p&gt;
-
-&lt;p&gt;不一会儿，我俩就到了长城脚下。虽然是入口，但不复暑假、国庆、亦或红叶时节的人潮，很容易就买到了票。没有那么多人，启动都快了许多，路也不是很陡，即便有点难度，也没有超出预期，感觉几分钟的时间，就翻过了两座敌楼。这时，开始的兴奋劲儿过去了，稍稍感觉到一丝酸。&lt;/p&gt;
-
-&lt;p&gt;北三楼前，路开始陡了起来。李瞅了瞅，对六十多度的坡表示惊悚，对古人的身体素质表示由衷的羡慕。“真的要继续爬吗？”李问。虽然不记得好汉石到底在哪了，我还是说：“走吧，原版的好汉石就在前边。”说完我便带头向前走去。&lt;/p&gt;
-
-&lt;p&gt;我一直认为在这类景区爬山，其实都是比较容易的。道都修好了，标识也很明显，只要埋头向前走，保持着节奏，就能走很远。唯一有些麻烦的地方就是如果人多的话，速度就会慢下来，节奏也不好保持，容易分神感觉到疲惫，就走不远了。&lt;/p&gt;
-
-&lt;p&gt;到了北四楼，李有些累，靠着墙休息。万幸的是路上虽陡，上周的降雪几本都化干净了，只有点点水渍。在城墙外有条路，尽头有几个人站在护栏里拍照，仿佛是以前到过的好汉石。“好像是原版好汉石，去看看吧。”李双手撑在膝上，咧着嘴说：“你去吧，是的话喊我。”我笑了笑，便往那块去了。果然是好汉石。然而不知为何，上面还有着残雪和冰。&lt;/p&gt;
-
-&lt;p&gt;好汉石上有不少游人合影。手扶着护栏，脚慢慢地在冰面少挪动。排队的人群，险峻的风景，更是平添了不少紧张感。李攀上去时正是逆光，真是如同词本身一般留影。&lt;/p&gt;
-
-&lt;p&gt;从好汉石开始，有不少游人直接返回了。大概是在这里留影已经完成任务，了结心愿。还有部分游人去了滑车。以前在别地玩过一回，速度很快，很有意思。李想着既然看了好汉石，已经可以回去了，只是没找见索道。我觉得既然来了，好歹也是要上北八楼看看，坐索道也要从最高的地方下去。于是我俩继续往前走。&lt;/p&gt;
-
-&lt;p&gt;大概是继续往上的人真的少了，路上可以看到未化开的冰，上边还覆盖着水渍，踩上去极容易滑。这些冰的位置也是十分奇怪。上周有雪，一般人在雪天爬长城，理应攀着护栏，靠两边行走才是，但冰基本集中在右侧护栏下，无声反驳了我的想当然。果然没有亲自来，就不知道他们是怎么做的了。&lt;/p&gt;
-
-&lt;p&gt;终于到了北八楼，游人意外很多。原来是冰雪未化，一边已经封路禁行，只剩下一条楼梯下去。楼梯很窄还有很厚一层冰，所以人们都堵在那儿了。我们便找了个地儿坐下歇歇。&lt;/p&gt;
-
-&lt;p&gt;这时节的长城，没有春季万物复苏的生气；没有夏季的郁郁葱葱；没有秋季漫山遍野的红叶；也没冬季的沁园春。这里有的是轻阳积雪，和枯黄的树木，以及被它们护卫着的点点青松。本来是一片萧条的景色，有了这些青松的存在，倒也别有一番趣味。有橙色的直升机在空中巡逻，大概是消防用的，感觉海拔比我们的位置还低一些。湛蓝的天上时不时有飞机爬升，留下两道不长的航迹云。在这个环境下闲聊，倒也是个不错的体验。&lt;/p&gt;
-
-&lt;p&gt;看看时间，差不多是返程的列车要到了，便下了长城。“可惜晚了点，去不成南楼。”李说。&lt;/p&gt;
-</description>
-        <pubDate>Sun, 06 Dec 2015 03:37:07 +0800</pubDate>
-        <link>http://techctu.github.io//%E6%9D%82%E9%A1%B9/2015/12/06/%E7%99%BB%E9%95%BF%E5%9F%8E%E8%AE%B0.html</link>
-        <guid isPermaLink="true">http://techctu.github.io//%E6%9D%82%E9%A1%B9/2015/12/06/%E7%99%BB%E9%95%BF%E5%9F%8E%E8%AE%B0.html</guid>
-        
-        <category>others</category>
-        
-        
-        <category>杂项</category>
         
       </item>
     
