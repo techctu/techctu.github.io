@@ -90,13 +90,11 @@
             <article class="post">
               <header>
                 <div class="title">
-                  <h2><a href="/maven/2015/12/06/Maven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C-%E5%9C%A8Eclipse%E4%B8%AD%E4%BD%BF%E7%94%A8Maven%E6%9D%A5%E8%BF%9B%E8%A1%8C%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86.html">Maven使用记录（二）——在Eclipse中使用Maven来进行项目管理</a></h2>
+                  <h2><a href="/2016/07/11/%E5%89%8D%E7%AB%AF%E9%87%8D%E6%9E%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%9D%E8%AF%95.html">前端重构第一次尝试</a></h2>
                 <!-- <p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p> -->
                 </div>
                 <div class="meta">
-                  <time class="published" datetime="2015-12-06">December 06, 2015</time>
-                  
-                    <a href="#">maven</a>
+                  <time class="published" datetime="2016-07-11">July 11, 2016</time>
                   
 
         <!--
@@ -105,16 +103,158 @@
                 </div>
               </header>
               
-              <p>在<a href="/maven/2015/12/06/Maven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95-%E4%B8%80-maven%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE.html">maven使用记录（一）-maven的安装和基础配置中下载和安装好maven</a>后，使用Eclipse来对项目进行管理。默认使用了J2EE插件。如图。</p>
+              <p>前段时间自行吐槽了自己参与大部分工作的前端项目，慢慢学习前端工作流到现在，并尝试了重构，记录一下。</p>
 
-<p><img src="http://7xogz7.com1.z0.glb.clouddn.com/添加maven设置-300x244.png" alt="配置1" /></p>
+<h1 id="section">配置管理</h1>
+<p>首先，把和环境相关的配置提取出来，使用webpack.DefinePlugin，避免每次部署时开发环境、测试环境、生产环境的变量手动修改。</p>
 
-<p><img src="http://7xogz7.com1.z0.glb.clouddn.com/添加maven-300x247.png" alt="配置2" /></p>
+<pre><code class="language-js">/* 定义运行环境相关变量 */
+var SITE_STATIC_PREFIX = '/yh-wifi-web/';
+/* ... */
+
+module.exports = {
+  plugins: [
+    new webpack.DefinePlugin({
+      SITE_STATIC_PREFIX: JSON.stringify(SITE_STATIC_PREFIX),
+      SITE_DYNAMIC_PREFIX:JSON.stringify(SITE_DYNAMIC_PREFIX)
+    })
+  ]
+}；
+</code></pre>
+
+<h1 id="section-1">资源管理</h1>
+<p>然后，把css和图片等资源文件从在index.html里直接饮用挪到js中引用，以便将静态资源文件纳入管理，解决热部署问题（<a href="http://zhihu.com/question/20790576/answer/32602154">大公司里怎样开发和部署前端代码？ - 回答作者: 张云龙</a>）。</p>
+
+<pre><code class="language-js">/* 引用静态资源 */
+import zoneMomImage from '../../../image/mom.png';
+import styles from '../../../css/app.css';
+</code></pre>
+<p>在webpack配置中添加对应loader。</p>
+
+<pre><code class="language-js">/* 在webpack配置中添加对应loader */
+module.exports = {
+  module: {
+    loaders: [{
+      test: /\.css$/,
+      loader: loaders: ['style?sourceMap', 'css?modules&amp;camelCase&amp;sourceMap'],
+      include: path.join(__dirname, 'css')
+    }, {
+      test: /\.(png|jpg|gif|svg)$/,
+      loaders: ['url?limit=8192'],
+      include: path.join(__dirname, 'image')
+    }]
+  }
+}；
+</code></pre>
+
+<p>这样，就可以在react中使用css module。</p>
+
+<pre><code class="language-css">.sample-camel{
+  color: red;
+}
+</code></pre>
+
+<p>在react中引用之后，可以使用对应变量表示样式</p>
+
+<pre><code class="language-js">render(
+  return &lt;div className={styles.sampleCamel} /&gt;
+)
+</code></pre>
+
+<p>然而，考虑到现在的前端开发流程，UE-&gt;UI-&gt;HTML+CSS-&gt;react组件，以及现有项目的修改难度，引入了<a href="https://github.com/gajus/react-css-modules">react-css-modules</a>。</p>
+
+<pre><code class="language-js">// ComponentSample.js
+import CSSModules from 'react-css-modules';
+// 修改className为styleName
+render(
+  return &lt;div styleName="sample-camel" /&gt;
+)
+// 装饰组件
+export default CSSModules(ComponentSample, styles, {allowMultiple:true});
+// webpack配置
+module.exports = {
+  module: {
+    loaders: [{
+      test: /\.css$/,
+      loader: loaders: ['style?sourceMap', 'css?modules&amp;importLoaders=1&amp;localIdentName=[path]__[name]__[local]__[hash:base64:5]'],
+      include: path.join(__dirname, 'css')
+    }, {
+      test: /\.(png|jpg|gif|svg)$/,
+      loaders: ['url?limit=8192'],
+      include: path.join(__dirname, 'image')
+    }]
+  }
+}；
+</code></pre>
+
+<p>这样，不论是现有项目修改还是新项目从静态页面到react，都更为方便。</p>
+
+<p>最后修改在生产环境的webpack配置。</p>
+
+<pre><code class="language-js">module.exports = {
+  output: {
+    path: path.join(__dirname, 'asset'),
+    filename: '[name].[chunkhash].js',
+    publicPath: '/'
+  },
+  resolve: {
+    extensions: ['', '.js']
+  },
+  devtool: false,
+  plugins: [
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    }),
+    new webpack.DefinePlugin({
+      SITE_STATIC_PREFIX: JSON.stringify(SITE_STATIC_PREFIX),
+      SITE_DYNAMIC_PREFIX:JSON.stringify(SITE_DYNAMIC_PREFIX)
+    }),
+    new ExtractTextPlugin('[name].[chunkhash].css', {allChunks:true}),
+    new HtmlWebpackPlugin({
+      template:'scripts/index.ejs',
+      minify:{
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURL: true
+      },
+      inject:true
+    })
+  ],
+  module: {
+    loaders: [{test: /.jsx?$/,loaders: ['babel'],include: path.join(__dirname, 'scripts')}, {test: /.js?$/,loaders: ['babel'],include: path.join(__dirname, 'scripts')}, {test: /.css$/,loader: ExtractTextPlugin.extract('style', 'css?modules&amp;importLoaders=1&amp;localIdentName=[path]__[name]__[local]__[hash:base64:5]'),include: path.join(__dirname, 'css')}, {test: /.(png|jpg|gif|svg)$/,loaders: ['url?limit=8192', 'image-webpack?bypassOnDebug&amp;optimizationLevel=7&amp;interlaced=false'],include: path.join(__dirname, 'image')}]
+  }
+};
+</code></pre>
+
+<p>其中尝试加入<a href="https://github.com/tcoopman/image-webpack-loader">图片压缩</a>，但在windows环境下imagemin依赖的库会出现问题，目前没有解决方案，只能考虑在其他步骤中进行处理。</p>
+
+<h1 id="section-2">代码规范</h1>
+<p>按照以下进行了代码重写。
+1. 重申命名规范，组件/页面单独文件夹，文件夹下index.js作为默认导出，使用到的多个组件在文件夹内创建[ComponentName.js]来引用。
+2. 按照要求将react-router的hashHistory替换为browserHistory，在上面的修改完成后，由于使用browserHistory导致的资源路径问题也同步解决了。</p>
 
               <footer>
                 <ul class="stats">
                 
-                  <li><a href="#">maven</a></li>
+                  <li><a href="#">react</a></li>
+                
+                  <li><a href="#">webpack</a></li>
                 
         <!--
         <li><a href="#">General</a></li>
@@ -126,10 +266,10 @@
            </article>
   					<ul class="actions pagination">
   					  
-  	  				  <li><a href="/maven/2015/12/06/Maven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95-%E4%B8%80-maven%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE.html" class="button big previous">Previous Post</a></li>
+  	  				  <li><a href="/2016/07/02/%E4%BD%BF%E7%94%A8esformat%E5%92%8C%E5%85%B6plugin%E6%9D%A5%E6%A0%BC%E5%BC%8F%E5%8C%96es6%E5%8F%8Areact%E4%BB%A3%E7%A0%81.html" class="button big previous">Previous Post</a></li>
   						
 							
-  						  <li><a href="/javascript/2015/12/06/javascript%E7%9A%84amd%E5%92%8Ccmd%E8%A7%84%E8%8C%83%E4%B9%8B%E6%88%91%E7%9A%84%E7%9C%8B%E6%B3%95.html" class="button big next">Next Post</a></li>
+  						  <li><a href="#" class="disabled button big next">Next Post</a></li>
   						
   					</ul>
 					</div>

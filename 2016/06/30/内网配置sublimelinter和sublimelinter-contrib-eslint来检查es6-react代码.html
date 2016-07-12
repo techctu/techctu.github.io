@@ -116,21 +116,21 @@
 3. SublimeLinter-eslint使用eslint的基于SublimeLinter的插件。SublimeLinter检测到配置的需要检查的文件，调用配置的lint，如SublimeLinter-eslint来检查。而SublimeLinter-eslint则使用eslint加载配置的规则来检查代码。</p>
 
 <h2 id="section">安装步骤</h2>
-<p>前置条件：配置了npm代理可以使用npm安装。
-1. 在项目下运行</p>
+<p>前置条件：配置了npm代理可以使用npm安装。</p>
+
+<p>在项目下运行</p>
 
 <pre><code>npm install eslint eslint-plugin-react eslint-plugin-import --save-dev
 </code></pre>
 
-<ol>
-  <li>解压下载的<a href="https://github.com/SublimeLinter/SublimeLinter3/archive/master.zip">SublimeLinter</a>和<a href="https://github.com/roadhump/SublimeLinter-eslint/archive/master.zip">SublimeLinter-eslint</a>到sublime的<code>Packages</code>目录下，SublimeLinter的文件夹必须修改为<code>SublimeLinter</code>，否则SublimeLinter-eslint找不到SublimeLinter。</li>
-  <li>（这一步只需要项目创建者执行一次）在项目下配置.eslintrc，或者直接运行</li>
-</ol>
+<p>解压下载的<a href="https://github.com/SublimeLinter/SublimeLinter3/archive/master.zip">SublimeLinter</a>和<a href="https://github.com/roadhump/SublimeLinter-eslint/archive/master.zip">SublimeLinter-eslint</a>到sublime的<code>Packages</code>目录下，SublimeLinter的文件夹必须修改为<code>SublimeLinter</code>，否则SublimeLinter-eslint找不到SublimeLinter。</p>
+
+<p>（这一步只需要项目创建者执行一次）在项目下配置.eslintrc，或者直接运行</p>
 
 <pre><code>./node_modules/.bin/eslint --init
 </code></pre>
 
-<p>可以得到一个基础的校验规则配置。建议参考这个<a href="https://github.com/coryhouse/react-slingshot/blob/master/.eslintrc">starter kit</a>的配置</p>
+<p>可以得到一个基础的校验规则配置。可以参考这个<a href="https://github.com/coryhouse/react-slingshot/blob/master/.eslintrc">starter kit</a>的配置</p>
 
 <pre><code class="language-json">{
   "extends": [
@@ -205,21 +205,23 @@
 }
 </code></pre>
 
-<ol>
-  <li>打开sublime顶部<code>Tools -&gt; SublimeLinter -&gt; Lint mode</code>，选择自己喜欢的检查时机。
-    <ul>
-      <li>Background: 准实时提示。</li>
-      <li>Load/save：打开/保存文件时。</li>
-      <li>Save only：保存时。</li>
-      <li>Manual：手动。请去<code>Preferences -&gt; Package Settings -&gt; SublimeLinter -&gt; Key Bindings - Default</code>查看快捷键设置，建议在<code>Key Bindings - User</code>里设置自定义快捷键。</li>
-    </ul>
-  </li>
-  <li>至此，可以发现自己ugly代码左侧行号附近出现了提示，且在行内会有方框标识，且在sublime底部会有提示原因。如果觉得不方便查看，可以设置<code>Tools -&gt; SublimeLinter -&gt; Debug mode</code>，使用<code>ctrl + `</code>调出控制台来查看信息。</li>
-</ol>
+<p>也可以参考<a href="https://github.com/yuche/javascript">airbnb</a>配置或者自行配置。</p>
+
+<p>打开sublime顶部<code>Tools -&gt; SublimeLinter -&gt; Lint mode</code>，选择自己喜欢的检查时机。
+- Background: 准实时提示。
+- Load/save：打开/保存文件时。
+- Save only：保存时。
+- Manual：手动。请去<code>Preferences -&gt; Package Settings -&gt; SublimeLinter -&gt; Key Bindings - Default</code>查看快捷键设置，建议在<code>Key Bindings - User</code>里设置自定义快捷键。</p>
+
+<p>至此，可以发现自己ugly代码左侧行号附近出现了提示，且在行内会有方框标识，且在sublime底部会有提示原因。如果觉得不方便查看，可以设置<code>Tools -&gt; SublimeLinter -&gt; Debug mode</code>，使用<code>ctrl + `</code>调出控制台来查看信息。</p>
 
 <p>TODO：暂时没有具体研究每一项配置。</p>
 
-<p>参考文章：<a href="http://devnull.guru/get-started-with-eslint/">Get Started with ESLint v1.0</a></p>
+<p>参考文章：
+- <a href="http://devnull.guru/get-started-with-eslint/">Get Started with ESLint v1.0</a>
+- <a href="https://github.com/airbnb/javascript">Airbnb JavaScript Style Guide</a>
+- <a href="https://github.com/airbnb/javascript/tree/master/react">Airbnb React/JSX Style Guide</a>
+- <a href="https://github.com/minwe/style-guide/blob/master/React.js.md">React/JSX 编码规范</a></p>
 
               <footer>
                 <ul class="stats">
@@ -243,7 +245,7 @@
   	  				  <li><a href="/web/2016/06/22/%E9%98%B6%E6%AE%B5%E6%80%A7%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E9%A1%B9%E7%9B%AE%E5%BE%85%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93.html" class="button big previous">Previous Post</a></li>
   						
 							
-  						  <li><a href="#" class="disabled button big next">Next Post</a></li>
+  						  <li><a href="/2016/07/02/%E4%BD%BF%E7%94%A8esformat%E5%92%8C%E5%85%B6plugin%E6%9D%A5%E6%A0%BC%E5%BC%8F%E5%8C%96es6%E5%8F%8Areact%E4%BB%A3%E7%A0%81.html" class="button big next">Next Post</a></li>
   						
   					</ul>
 					</div>
@@ -265,6 +267,46 @@
 						<!-- Mini Posts -->
 						<section>
   <div class="mini-posts">
+    
+      <article class="mini-post">
+  	    <header>
+  		    <h3><a href="/2016/07/11/%E5%89%8D%E7%AB%AF%E9%87%8D%E6%9E%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%9D%E8%AF%95.html">前端重构第一次尝试</a></h3>
+		      <time class="published" datetime="2016-07-11">July 11, 2016</time>
+						<!--<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>-->
+			  </header>
+        
+		  </article>
+									<!-- Mini Post -->
+									  <!--
+										<article class="mini-post">
+											<header>
+												<h3><a href="#">Vitae sed condimentum</a></h3>
+												<time class="published" datetime="2015-10-20">October 20, 2015</time>
+												<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>
+											</header>
+											<a href="#" class="image"><img src="/images/pic04.jpg" alt="" /></a>
+										</article>
+									-->
+    
+      <article class="mini-post">
+  	    <header>
+  		    <h3><a href="/2016/07/02/%E4%BD%BF%E7%94%A8esformat%E5%92%8C%E5%85%B6plugin%E6%9D%A5%E6%A0%BC%E5%BC%8F%E5%8C%96es6%E5%8F%8Areact%E4%BB%A3%E7%A0%81.html">使用esformat和其plugin来格式化es6及react代码</a></h3>
+		      <time class="published" datetime="2016-07-02">July 02, 2016</time>
+						<!--<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>-->
+			  </header>
+        
+		  </article>
+									<!-- Mini Post -->
+									  <!--
+										<article class="mini-post">
+											<header>
+												<h3><a href="#">Vitae sed condimentum</a></h3>
+												<time class="published" datetime="2015-10-20">October 20, 2015</time>
+												<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>
+											</header>
+											<a href="#" class="image"><img src="/images/pic04.jpg" alt="" /></a>
+										</article>
+									-->
     
       <article class="mini-post">
   	    <header>
@@ -290,46 +332,6 @@
   	    <header>
   		    <h3><a href="/web/2016/06/22/%E9%98%B6%E6%AE%B5%E6%80%A7%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E9%A1%B9%E7%9B%AE%E5%BE%85%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93.html">阶段性前端开发项目待解决问题总结</a></h3>
 		      <time class="published" datetime="2016-06-22">June 22, 2016</time>
-						<!--<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>-->
-			  </header>
-        
-		  </article>
-									<!-- Mini Post -->
-									  <!--
-										<article class="mini-post">
-											<header>
-												<h3><a href="#">Vitae sed condimentum</a></h3>
-												<time class="published" datetime="2015-10-20">October 20, 2015</time>
-												<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>
-											</header>
-											<a href="#" class="image"><img src="/images/pic04.jpg" alt="" /></a>
-										</article>
-									-->
-    
-      <article class="mini-post">
-  	    <header>
-  		    <h3><a href="/2016/06/06/react%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97.html">React开发入门指南</a></h3>
-		      <time class="published" datetime="2016-06-06">June 06, 2016</time>
-						<!--<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>-->
-			  </header>
-        
-		  </article>
-									<!-- Mini Post -->
-									  <!--
-										<article class="mini-post">
-											<header>
-												<h3><a href="#">Vitae sed condimentum</a></h3>
-												<time class="published" datetime="2015-10-20">October 20, 2015</time>
-												<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>
-											</header>
-											<a href="#" class="image"><img src="/images/pic04.jpg" alt="" /></a>
-										</article>
-									-->
-    
-      <article class="mini-post">
-  	    <header>
-  		    <h3><a href="/2016/05/19/hybird%E6%A8%A1%E5%BC%8F%E4%B8%8Bwebview%E4%B8%AD%E7%9A%84%E7%89%A9%E7%90%86%E8%BF%94%E5%9B%9E%E9%94%AE%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95.html">Hybird模式下webview中的物理返回键问题的解决方法</a></h3>
-		      <time class="published" datetime="2016-05-19">May 19, 2016</time>
 						<!--<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>-->
 			  </header>
         

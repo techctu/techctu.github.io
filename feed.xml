@@ -6,9 +6,190 @@
 </description>
     <link>http://techctu.github.io//</link>
     <atom:link href="http://techctu.github.io//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 30 Jun 2016 15:58:28 +0800</pubDate>
-    <lastBuildDate>Thu, 30 Jun 2016 15:58:28 +0800</lastBuildDate>
+    <pubDate>Tue, 12 Jul 2016 16:13:50 +0800</pubDate>
+    <lastBuildDate>Tue, 12 Jul 2016 16:13:50 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>前端重构第一次尝试</title>
+        <description>&lt;p&gt;前段时间自行吐槽了自己参与大部分工作的前端项目，慢慢学习前端工作流到现在，并尝试了重构，记录一下。&lt;/p&gt;
+
+&lt;h1 id=&quot;section&quot;&gt;配置管理&lt;/h1&gt;
+&lt;p&gt;首先，把和环境相关的配置提取出来，使用webpack.DefinePlugin，避免每次部署时开发环境、测试环境、生产环境的变量手动修改。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;/* 定义运行环境相关变量 */
+var SITE_STATIC_PREFIX = &#39;/yh-wifi-web/&#39;;
+/* ... */
+
+module.exports = {
+  plugins: [
+    new webpack.DefinePlugin({
+      SITE_STATIC_PREFIX: JSON.stringify(SITE_STATIC_PREFIX),
+      SITE_DYNAMIC_PREFIX:JSON.stringify(SITE_DYNAMIC_PREFIX)
+    })
+  ]
+}；
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&quot;section-1&quot;&gt;资源管理&lt;/h1&gt;
+&lt;p&gt;然后，把css和图片等资源文件从在index.html里直接饮用挪到js中引用，以便将静态资源文件纳入管理，解决热部署问题（&lt;a href=&quot;http://zhihu.com/question/20790576/answer/32602154&quot;&gt;大公司里怎样开发和部署前端代码？ - 回答作者: 张云龙&lt;/a&gt;）。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;/* 引用静态资源 */
+import zoneMomImage from &#39;../../../image/mom.png&#39;;
+import styles from &#39;../../../css/app.css&#39;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在webpack配置中添加对应loader。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;/* 在webpack配置中添加对应loader */
+module.exports = {
+  module: {
+    loaders: [{
+      test: /\.css$/,
+      loader: loaders: [&#39;style?sourceMap&#39;, &#39;css?modules&amp;amp;camelCase&amp;amp;sourceMap&#39;],
+      include: path.join(__dirname, &#39;css&#39;)
+    }, {
+      test: /\.(png|jpg|gif|svg)$/,
+      loaders: [&#39;url?limit=8192&#39;],
+      include: path.join(__dirname, &#39;image&#39;)
+    }]
+  }
+}；
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这样，就可以在react中使用css module。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.sample-camel{
+  color: red;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;在react中引用之后，可以使用对应变量表示样式&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;render(
+  return &amp;lt;div className={styles.sampleCamel} /&amp;gt;
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然而，考虑到现在的前端开发流程，UE-&amp;gt;UI-&amp;gt;HTML+CSS-&amp;gt;react组件，以及现有项目的修改难度，引入了&lt;a href=&quot;https://github.com/gajus/react-css-modules&quot;&gt;react-css-modules&lt;/a&gt;。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;// ComponentSample.js
+import CSSModules from &#39;react-css-modules&#39;;
+// 修改className为styleName
+render(
+  return &amp;lt;div styleName=&quot;sample-camel&quot; /&amp;gt;
+)
+// 装饰组件
+export default CSSModules(ComponentSample, styles, {allowMultiple:true});
+// webpack配置
+module.exports = {
+  module: {
+    loaders: [{
+      test: /\.css$/,
+      loader: loaders: [&#39;style?sourceMap&#39;, &#39;css?modules&amp;amp;importLoaders=1&amp;amp;localIdentName=[path]__[name]__[local]__[hash:base64:5]&#39;],
+      include: path.join(__dirname, &#39;css&#39;)
+    }, {
+      test: /\.(png|jpg|gif|svg)$/,
+      loaders: [&#39;url?limit=8192&#39;],
+      include: path.join(__dirname, &#39;image&#39;)
+    }]
+  }
+}；
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这样，不论是现有项目修改还是新项目从静态页面到react，都更为方便。&lt;/p&gt;
+
+&lt;p&gt;最后修改在生产环境的webpack配置。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;module.exports = {
+  output: {
+    path: path.join(__dirname, &#39;asset&#39;),
+    filename: &#39;[name].[chunkhash].js&#39;,
+    publicPath: &#39;/&#39;
+  },
+  resolve: {
+    extensions: [&#39;&#39;, &#39;.js&#39;]
+  },
+  devtool: false,
+  plugins: [
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.DefinePlugin({
+      &#39;process.env&#39;: {
+        &#39;NODE_ENV&#39;: JSON.stringify(&#39;production&#39;)
+      }
+    }),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    }),
+    new webpack.DefinePlugin({
+      SITE_STATIC_PREFIX: JSON.stringify(SITE_STATIC_PREFIX),
+      SITE_DYNAMIC_PREFIX:JSON.stringify(SITE_DYNAMIC_PREFIX)
+    }),
+    new ExtractTextPlugin(&#39;[name].[chunkhash].css&#39;, {allChunks:true}),
+    new HtmlWebpackPlugin({
+      template:&#39;scripts/index.ejs&#39;,
+      minify:{
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURL: true
+      },
+      inject:true
+    })
+  ],
+  module: {
+    loaders: [{test: /.jsx?$/,loaders: [&#39;babel&#39;],include: path.join(__dirname, &#39;scripts&#39;)}, {test: /.js?$/,loaders: [&#39;babel&#39;],include: path.join(__dirname, &#39;scripts&#39;)}, {test: /.css$/,loader: ExtractTextPlugin.extract(&#39;style&#39;, &#39;css?modules&amp;amp;importLoaders=1&amp;amp;localIdentName=[path]__[name]__[local]__[hash:base64:5]&#39;),include: path.join(__dirname, &#39;css&#39;)}, {test: /.(png|jpg|gif|svg)$/,loaders: [&#39;url?limit=8192&#39;, &#39;image-webpack?bypassOnDebug&amp;amp;optimizationLevel=7&amp;amp;interlaced=false&#39;],include: path.join(__dirname, &#39;image&#39;)}]
+  }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;其中尝试加入&lt;a href=&quot;https://github.com/tcoopman/image-webpack-loader&quot;&gt;图片压缩&lt;/a&gt;，但在windows环境下imagemin依赖的库会出现问题，目前没有解决方案，只能考虑在其他步骤中进行处理。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-2&quot;&gt;代码规范&lt;/h1&gt;
+&lt;p&gt;按照以下进行了代码重写。
+1. 重申命名规范，组件/页面单独文件夹，文件夹下index.js作为默认导出，使用到的多个组件在文件夹内创建[ComponentName.js]来引用。
+2. 按照要求将react-router的hashHistory替换为browserHistory，在上面的修改完成后，由于使用browserHistory导致的资源路径问题也同步解决了。&lt;/p&gt;
+</description>
+        <pubDate>Mon, 11 Jul 2016 00:00:00 +0800</pubDate>
+        <link>http://techctu.github.io//2016/07/11/%E5%89%8D%E7%AB%AF%E9%87%8D%E6%9E%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%9D%E8%AF%95.html</link>
+        <guid isPermaLink="true">http://techctu.github.io//2016/07/11/%E5%89%8D%E7%AB%AF%E9%87%8D%E6%9E%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%9D%E8%AF%95.html</guid>
+        
+        <category>react</category>
+        
+        <category>webpack</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>使用esformat和其plugin来格式化es6及react代码</title>
+        <description>&lt;ol&gt;
+  &lt;li&gt;使用sublime esfomatter插件。&lt;/li&gt;
+  &lt;li&gt;如eslint一样，配置.esformatter，添加esformatter和esformatter插件为项目依赖。&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Sat, 02 Jul 2016 00:00:00 +0800</pubDate>
+        <link>http://techctu.github.io//2016/07/02/%E4%BD%BF%E7%94%A8esformat%E5%92%8C%E5%85%B6plugin%E6%9D%A5%E6%A0%BC%E5%BC%8F%E5%8C%96es6%E5%8F%8Areact%E4%BB%A3%E7%A0%81.html</link>
+        <guid isPermaLink="true">http://techctu.github.io//2016/07/02/%E4%BD%BF%E7%94%A8esformat%E5%92%8C%E5%85%B6plugin%E6%9D%A5%E6%A0%BC%E5%BC%8F%E5%8C%96es6%E5%8F%8Areact%E4%BB%A3%E7%A0%81.html</guid>
+        
+        <category>es6</category>
+        
+        <category>format</category>
+        
+        <category>react</category>
+        
+        <category>esformat</category>
+        
+        
+      </item>
     
       <item>
         <title>内网配置SublimeLinter和SublimeLinter-contrib-eslint来检查es6 react代码</title>
@@ -25,21 +206,21 @@
 3. SublimeLinter-eslint使用eslint的基于SublimeLinter的插件。SublimeLinter检测到配置的需要检查的文件，调用配置的lint，如SublimeLinter-eslint来检查。而SublimeLinter-eslint则使用eslint加载配置的规则来检查代码。&lt;/p&gt;
 
 &lt;h2 id=&quot;section&quot;&gt;安装步骤&lt;/h2&gt;
-&lt;p&gt;前置条件：配置了npm代理可以使用npm安装。
-1. 在项目下运行&lt;/p&gt;
+&lt;p&gt;前置条件：配置了npm代理可以使用npm安装。&lt;/p&gt;
+
+&lt;p&gt;在项目下运行&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;npm install eslint eslint-plugin-react eslint-plugin-import --save-dev
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;解压下载的&lt;a href=&quot;https://github.com/SublimeLinter/SublimeLinter3/archive/master.zip&quot;&gt;SublimeLinter&lt;/a&gt;和&lt;a href=&quot;https://github.com/roadhump/SublimeLinter-eslint/archive/master.zip&quot;&gt;SublimeLinter-eslint&lt;/a&gt;到sublime的&lt;code&gt;Packages&lt;/code&gt;目录下，SublimeLinter的文件夹必须修改为&lt;code&gt;SublimeLinter&lt;/code&gt;，否则SublimeLinter-eslint找不到SublimeLinter。&lt;/li&gt;
-  &lt;li&gt;（这一步只需要项目创建者执行一次）在项目下配置.eslintrc，或者直接运行&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;解压下载的&lt;a href=&quot;https://github.com/SublimeLinter/SublimeLinter3/archive/master.zip&quot;&gt;SublimeLinter&lt;/a&gt;和&lt;a href=&quot;https://github.com/roadhump/SublimeLinter-eslint/archive/master.zip&quot;&gt;SublimeLinter-eslint&lt;/a&gt;到sublime的&lt;code&gt;Packages&lt;/code&gt;目录下，SublimeLinter的文件夹必须修改为&lt;code&gt;SublimeLinter&lt;/code&gt;，否则SublimeLinter-eslint找不到SublimeLinter。&lt;/p&gt;
+
+&lt;p&gt;（这一步只需要项目创建者执行一次）在项目下配置.eslintrc，或者直接运行&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;./node_modules/.bin/eslint --init
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;可以得到一个基础的校验规则配置。建议参考这个&lt;a href=&quot;https://github.com/coryhouse/react-slingshot/blob/master/.eslintrc&quot;&gt;starter kit&lt;/a&gt;的配置&lt;/p&gt;
+&lt;p&gt;可以得到一个基础的校验规则配置。可以参考这个&lt;a href=&quot;https://github.com/coryhouse/react-slingshot/blob/master/.eslintrc&quot;&gt;starter kit&lt;/a&gt;的配置&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
   &quot;extends&quot;: [
@@ -114,21 +295,23 @@
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;打开sublime顶部&lt;code&gt;Tools -&amp;gt; SublimeLinter -&amp;gt; Lint mode&lt;/code&gt;，选择自己喜欢的检查时机。
-    &lt;ul&gt;
-      &lt;li&gt;Background: 准实时提示。&lt;/li&gt;
-      &lt;li&gt;Load/save：打开/保存文件时。&lt;/li&gt;
-      &lt;li&gt;Save only：保存时。&lt;/li&gt;
-      &lt;li&gt;Manual：手动。请去&lt;code&gt;Preferences -&amp;gt; Package Settings -&amp;gt; SublimeLinter -&amp;gt; Key Bindings - Default&lt;/code&gt;查看快捷键设置，建议在&lt;code&gt;Key Bindings - User&lt;/code&gt;里设置自定义快捷键。&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;至此，可以发现自己ugly代码左侧行号附近出现了提示，且在行内会有方框标识，且在sublime底部会有提示原因。如果觉得不方便查看，可以设置&lt;code&gt;Tools -&amp;gt; SublimeLinter -&amp;gt; Debug mode&lt;/code&gt;，使用&lt;code&gt;ctrl + `&lt;/code&gt;调出控制台来查看信息。&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;也可以参考&lt;a href=&quot;https://github.com/yuche/javascript&quot;&gt;airbnb&lt;/a&gt;配置或者自行配置。&lt;/p&gt;
+
+&lt;p&gt;打开sublime顶部&lt;code&gt;Tools -&amp;gt; SublimeLinter -&amp;gt; Lint mode&lt;/code&gt;，选择自己喜欢的检查时机。
+- Background: 准实时提示。
+- Load/save：打开/保存文件时。
+- Save only：保存时。
+- Manual：手动。请去&lt;code&gt;Preferences -&amp;gt; Package Settings -&amp;gt; SublimeLinter -&amp;gt; Key Bindings - Default&lt;/code&gt;查看快捷键设置，建议在&lt;code&gt;Key Bindings - User&lt;/code&gt;里设置自定义快捷键。&lt;/p&gt;
+
+&lt;p&gt;至此，可以发现自己ugly代码左侧行号附近出现了提示，且在行内会有方框标识，且在sublime底部会有提示原因。如果觉得不方便查看，可以设置&lt;code&gt;Tools -&amp;gt; SublimeLinter -&amp;gt; Debug mode&lt;/code&gt;，使用&lt;code&gt;ctrl + `&lt;/code&gt;调出控制台来查看信息。&lt;/p&gt;
 
 &lt;p&gt;TODO：暂时没有具体研究每一项配置。&lt;/p&gt;
 
-&lt;p&gt;参考文章：&lt;a href=&quot;http://devnull.guru/get-started-with-eslint/&quot;&gt;Get Started with ESLint v1.0&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;参考文章：
+- &lt;a href=&quot;http://devnull.guru/get-started-with-eslint/&quot;&gt;Get Started with ESLint v1.0&lt;/a&gt;
+- &lt;a href=&quot;https://github.com/airbnb/javascript&quot;&gt;Airbnb JavaScript Style Guide&lt;/a&gt;
+- &lt;a href=&quot;https://github.com/airbnb/javascript/tree/master/react&quot;&gt;Airbnb React/JSX Style Guide&lt;/a&gt;
+- &lt;a href=&quot;https://github.com/minwe/style-guide/blob/master/React.js.md&quot;&gt;React/JSX 编码规范&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Thu, 30 Jun 2016 00:00:00 +0800</pubDate>
         <link>http://techctu.github.io//2016/06/30/%E5%86%85%E7%BD%91%E9%85%8D%E7%BD%AEsublimelinter%E5%92%8Csublimelinter-contrib-eslint%E6%9D%A5%E6%A3%80%E6%9F%A5es6-react%E4%BB%A3%E7%A0%81.html</link>
@@ -812,190 +995,6 @@
         <link>http://techctu.github.io//2016/02/27/%E4%BD%BF%E7%94%A8reactjs%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%80%81%E8%99%8E%E6%9C%BA%E6%8A%BD%E5%A5%96%E7%BB%84%E4%BB%B6.html</link>
         <guid isPermaLink="true">http://techctu.github.io//2016/02/27/%E4%BD%BF%E7%94%A8reactjs%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%80%81%E8%99%8E%E6%9C%BA%E6%8A%BD%E5%A5%96%E7%BB%84%E4%BB%B6.html</guid>
         
-        
-      </item>
-    
-      <item>
-        <title>组件化web开发和UI设计落地的思考</title>
-        <description>&lt;h1 id=&quot;reactjsinline-stylecss-module&quot;&gt;此文废弃，ReactJS和inline style，css module就是我想要的&lt;/h1&gt;
-
-&lt;h1 id=&quot;section&quot;&gt;背景&lt;/h1&gt;
-&lt;p&gt;最近项目UED小组开了一次会，目的是想了解各个开发小组对前端的需求和目前现有项目的设计规范、技术要点。平台技术大牛在会议中透露了想要进行组件化web开发的想法，然后我就有了点想法。设计和开发之间，总是有那么点沟通或是理解上的差异，加上各自的知识面和约束都不尽相同，这就导致设计出来的UE、UI与开发成果有一定的出入。组件化能不能帮助解决这个问题？边写这篇小文边试验一下也是个不错的方法。&lt;/p&gt;
-
-&lt;h1 id=&quot;section-1&quot;&gt;需求&lt;/h1&gt;
-&lt;p&gt;首先要明确自己想要的组件是什么样的。&lt;/p&gt;
-
-&lt;p&gt;目前，我们大概有这么几种需要进行web开发的地方
-- PC web
-- Mobile phone web（触屏）
-- App webview
-- Pad web&lt;/p&gt;
-
-&lt;h2 id=&quot;ui&quot;&gt;UI设计&lt;/h2&gt;
-&lt;p&gt;在大部分情况下，设计出来的UI或多或少会有一定的规则：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;按照一般思路，UE倾向于将常用的组件行为统一，最典型的就是确认弹出框的确定居右，颜色绿色，取消按钮灰色等设置。&lt;/li&gt;
-  &lt;li&gt;按钮不同状态的形状、颜色等，状态转换时的形状、声音、动画等，如悬浮时颜色的变化，悬浮时菜单的动画。&lt;/li&gt;
-  &lt;li&gt;打开新页面和返回的动画方向相反，激活的标签图标字体更大更显眼等。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;section-2&quot;&gt;组件设计&lt;/h2&gt;
-&lt;p&gt;类似这样的设计，一方面可以指导用户体验一致性的实现，不至于出现同是弹出警告一个标题背景红色一个绿色的情况；另一方面也可以便于前端工程师将同类组件封装，供其他人调用。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;组件有自己的样式，不和其他未知的样式冲突。&lt;/li&gt;
-  &lt;li&gt;组件有自己的相关逻辑代码，不和其他未知的逻辑代码冲突。&lt;/li&gt;
-  &lt;li&gt;不需要占位符，使用者可以自己将组件赋值给变量，用自定的id或者别的选择器来告知组件库识别，并进行初始化。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;section-3&quot;&gt;相关技术&lt;/h2&gt;
-&lt;p&gt;### Web
-### 非Web&lt;/p&gt;
-
-&lt;h1 id=&quot;section-4&quot;&gt;经历&lt;/h1&gt;
-&lt;p&gt;曾经有几个移动项目，我参与了其中UE设计、UI审核、监督UE和UI落地的工作。更久以前，我还进行过一个大型项目的前端web开发。&lt;/p&gt;
-
-&lt;h2 id=&quot;pc-web&quot;&gt;远古记忆中参与的PC web前端开发&lt;/h2&gt;
-&lt;p&gt;称这个项目为项目pancake好了，简化为项目p，不要问我为什么。项目p的前端为PC web，研发遵循用Axure制作低保真原型并和相关方确认需求的方式，经过多次重构，确定一个版本再进行增量设计的方式。在UI方面，由专门的小组按照UE设计UI，并实现了静态web页面，包括css的编写和基本的页面HTML，确保静态页面和UI设计一致。开发人员则根据静态页面来开发，编写业务逻辑。现在看来，在实施过程中，有这么几个方面的问题。&lt;/p&gt;
-
-&lt;h3 id=&quot;ue&quot;&gt;远古UE&lt;/h3&gt;
-&lt;p&gt;刚开始用Axure，都是赶鸭子上架，啥都不会瞎搞，连个公共库都没有。这时还分了好几个项目组，每个小组设计各自的UE，结果就是一个按钮，有方的，有圆的，有圆角矩形的，有拟物风格的，有扁平风格的，整个就是个大杂烩。不久在一个碰头会上，我们立刻发现了这个问题，UE组遍立刻把实现一个基础的带有导航条、模态框、按钮、分割线等的共享库提高到了最高优先级。&lt;/p&gt;
-
-&lt;h3 id=&quot;ui-1&quot;&gt;从UI到开发&lt;/h3&gt;
-&lt;p&gt;当时我只涉及了UE设计和前端开发，UI设计和静态页面都是别的团队做的，对UE到UI和UI到静态页面不甚了解。大体情况就是有一个到两个UI设计人员，然后有几个前端工程师将UI设计转化为静态页面。&lt;/p&gt;
-
-&lt;p&gt;这个时候，开发的方式还比较古老，代码里都是这样的：&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;stylesheet&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;text/css&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;a.css&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-...
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;stylesheet&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;text/css&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;n.css&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-...
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;xxx&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;class-a class-b ... class n&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-...
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;a.js&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-...
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;n.js&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;在开发过程中，碰到了这么几个问题：&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;静态页面按照UE页面分配给不同的人去实现，只有页眉和页脚采用了公共样式，其他部分只有口头约定，并没有设计公共样式，存在大量拷贝复制的css样式。&lt;/li&gt;
-  &lt;li&gt;css命名不规范，存在大量以人名命名的css样式，后期维护困难。&lt;/li&gt;
-  &lt;li&gt;前端公共库函数开发时遇到css样式冲突和前端业务开发遇到命名冲突的问题。&lt;/li&gt;
-  &lt;li&gt;一个控件的css调整涉及多个页面。&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;app&quot;&gt;基于古怪的移动端跨平台框架的app项目&lt;/h2&gt;
-&lt;p&gt;在这几个项目中，UI的实现流程基本上是这样：&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;技术比较好的开发人员实现一个典型页面。&lt;/li&gt;
-  &lt;li&gt;其他人拿着UI的标注，对照UE和典型页面，实现自己的页面。&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;这种模式下，大部分都是copy-paste，而且很多开发人员并没有写过css，也很少做过直接从UI设计稿实现一个页面的工作，对UE、UI的设计目的的理解不是很到位。同时UI也缺乏一个可参考的规范，标注出某个类型的按钮用在什么场景，有什么样的样式，对应哪种状态。&lt;strong&gt;这就导致页面开发出来和设计稿相去太远。&lt;/strong&gt;很多开发者都需要经过一个项目，才知道如何解读UI设计。当时就想，如果能提供一个组件，开发者只需要引用，可以自己进行赋值，不会造成命名冲突，不需要关注样式，这样能更方便开发出如设计一样的界面吧。&lt;/p&gt;
-
-&lt;hr /&gt;
-&lt;p&gt;吐个槽：这个宣称跨平台一次便携到处编译的框架，基本原理就是写了两个解析器来解析xhtml页面文件，一个对应iOS，一个对应Android，解析成java和objc。效率什么的暂且还是可以的，优化什么的是个谜，代码风格非常hybird，动效想想就好。在这两个项目里，UE和UI的设计由于框架的原因，受到了极大限制，稍微复杂一点的多选项关联修改都很难实现，对关联数据的校验也陷入了泥潭。更可怕的是，到处是不规范的全局变量名，css、lua函数都是每个人各写各的，充满了copy-paste风格的写法，加上类似php+js+html的混杂写法和缺乏有效的语法高亮支持，整个就是个噩梦。
-***&lt;/p&gt;
-</description>
-        <pubDate>Sun, 20 Dec 2015 00:00:00 +0800</pubDate>
-        <link>http://techctu.github.io//%E5%89%8D%E7%AB%AF/2015/12/20/%E7%BB%84%E4%BB%B6%E5%8C%96web%E5%BC%80%E5%8F%91%E5%92%8Cui%E8%AE%BE%E8%AE%A1%E8%90%BD%E5%9C%B0%E7%9A%84%E6%80%9D%E8%80%83.html</link>
-        <guid isPermaLink="true">http://techctu.github.io//%E5%89%8D%E7%AB%AF/2015/12/20/%E7%BB%84%E4%BB%B6%E5%8C%96web%E5%BC%80%E5%8F%91%E5%92%8Cui%E8%AE%BE%E8%AE%A1%E8%90%BD%E5%9C%B0%E7%9A%84%E6%80%9D%E8%80%83.html</guid>
-        
-        <category>前端</category>
-        
-        <category>组件化</category>
-        
-        
-        <category>前端</category>
-        
-      </item>
-    
-      <item>
-        <title>Java系Dubbo、Zookeeper系统服务拆分记录</title>
-        <description>&lt;p&gt;事情发展情况总是偏离人的预想，尤其是业务发展和系统架构设计。一段时间后，一个新业务功能的上线往往伴随着几个相关功能的开发小组加班。同时甲组功能A可能依赖乙组功能B，乙组由于某个需求要更改功能B，而甲组开发新功能需要继续依赖功能B，且分配的开发时间并不一致。这样，协调起来会非常麻烦，效率也十分低下。于是，服务拆分的呼声越来越烈。经过几个月的研究、拆分、测试、上线，终于初步解决了服务间相互依赖的问题，便记录一下。
-# 理想并不丰满
-任何业务系统的架构都是和业务紧密关联的，当时拟定有几个业务产品，一个后台管理，自己建立用户体系和账户体系，对接外系统接口，底层提供一系列日志、事务等平台服务。这个时候，分层逻辑是这样的：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;页面展现层：web、Controller。&lt;/li&gt;
-  &lt;li&gt;业务逻辑层：services。&lt;/li&gt;
-  &lt;li&gt;平台服务层：Utils。&lt;/li&gt;
-  &lt;li&gt;基础设施层：Database、Logs。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;项目结构是这样的：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Utils：提供统一异常管理、日志服务、事务处理、服务注册和发布、日期转换等工具类。&lt;/li&gt;
-  &lt;li&gt;Apis：映射数据库表的domain类＋各个业务逻辑的Interfaces。&lt;/li&gt;
-  &lt;li&gt;Services：各个产品服务实现类。&lt;/li&gt;
-  &lt;li&gt;Web：MVC层，访问服务并展示页面。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;并且规定了Service相关的编码规范，如：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;不同产品Service之间需要通过Interface调用，不能直接调用实现。&lt;/li&gt;
-  &lt;li&gt;所有产品业务类Service不能直接调用Dao，需要在上面封装一层基础Service。&lt;/li&gt;
-  &lt;li&gt;Service调用不能形成循环依赖。&lt;/li&gt;
-  &lt;li&gt;业务逻辑必须放在Service中，不能放在Controller里。&lt;/li&gt;
-  &lt;li&gt;分层结构中不允许逆向调用，即下层不允许调用上层的代码。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;看起来不错，然而domain呢？产品直接调用这些参数类型怎么办？各个产品Service相互调用，产品内部是否需要封装别的产品的Interface？后来才知道，这些都是坑。
-# 现实很骨感
-当时工期很紧，团队新组建，还要和别的团队一起开发，技术人员素质参差不齐，到后来规定执行不力，但勉勉强强没出大问题。&lt;/p&gt;
-
-&lt;p&gt;后来，只有三个产品上线，其中两个是用户体系和账户体系，也就是说真正业务部分只有产品A，其它产品都没有什么活力。这时候倒也没有什么问题。可产品是会增加的。产品增加，就会出现如下情况：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://7xogz7.com1.z0.glb.clouddn.com/ServiceRef.png?imageMogr2/thumbnail/770x&quot; alt=&quot;Service变更&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;而且，出于项目迭代、运维管理的需要，会有上线窗口，这就导致了Service B 2.0部分代码提交，但还没有上线，Service A却需要上线的情况。更有可能有多个Service依赖不同版本的同一个Service的情况出现。这时候面临的就是一个功能的修改，都可能有好几个小组加班。&lt;/p&gt;
-
-&lt;p&gt;经过几个新产品的开发和外部接口变换导致的内部代码的调整，可以预见，随着产品的增加，整个系统内部的耦合性会急剧增加，新功能、新产品的开发会越来越困难，一个功能点可能会涉及多个产品的更改，并且存在由于种种原因不使用Interface直接使用Service的情况，典型如图所示：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://7xogz7.com1.z0.glb.clouddn.com/domainandserviceinfection.png?imageMogr2/thumbnail/770x&quot; alt=&quot;Domain传递和Service依赖&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;ABCD可能属于不同的产品，ACD可能需要不同版本的B的method1的实现，Class B也有可能需要修改，且各自的deadline并不相同。这就存在了B从version 1到version 2的修改过程中，其它产品夹带代码的问题。为了解决这个问题，服务拆分小组对现有代码进行了分析，发现现有代码存在几个问题：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Domain使用了Spring的ApplicationContext.getContext方式来获取Service实例。&lt;/li&gt;
-  &lt;li&gt;Service没有使用Interface，直接使用了实现类。&lt;/li&gt;
-  &lt;li&gt;产品A直接使用了产品B的domain来传递数据。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;为了解决这些问题，服务拆分小组重新设计了服务开发的规范：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Domain不允许使用Service，保持Domain的纯洁。&lt;/li&gt;
-  &lt;li&gt;对外提供服务的返回值采用基本数据类型或者定义VO类。&lt;/li&gt;
-  &lt;li&gt;对外提供的服务必须在实际调用的服务上再封装一层。&lt;/li&gt;
-  &lt;li&gt;调用其他产品的服务必须时必须封装一层，并实现自己的VO，避免对象污染。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;如图：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://7xogz7.com1.z0.glb.clouddn.com/improved.png?imageMogr2/thumbnail/770x&quot; alt=&quot;什么鬼&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;这样解决了上面的问题，唯一的问题是结构更加复杂了。&lt;/p&gt;
-
-&lt;h1 id=&quot;section&quot;&gt;遗留问题&lt;/h1&gt;
-&lt;p&gt;分布式事务，老大难问题了。&lt;/p&gt;
-
-</description>
-        <pubDate>Fri, 11 Dec 2015 00:00:00 +0800</pubDate>
-        <link>http://techctu.github.io//%E6%9E%B6%E6%9E%84/2015/12/11/java%E7%B3%BBdubbozookeeper%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1%E6%8B%86%E5%88%86%E8%AE%B0%E5%BD%95.html</link>
-        <guid isPermaLink="true">http://techctu.github.io//%E6%9E%B6%E6%9E%84/2015/12/11/java%E7%B3%BBdubbozookeeper%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1%E6%8B%86%E5%88%86%E8%AE%B0%E5%BD%95.html</guid>
-        
-        <category>架构</category>
-        
-        <category>IoC</category>
-        
-        
-        <category>架构</category>
         
       </item>
     
