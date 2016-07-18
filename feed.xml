@@ -6,9 +6,55 @@
 </description>
     <link>http://techctu.github.io//</link>
     <atom:link href="http://techctu.github.io//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 12 Jul 2016 16:13:50 +0800</pubDate>
-    <lastBuildDate>Tue, 12 Jul 2016 16:13:50 +0800</lastBuildDate>
+    <pubDate>Thu, 14 Jul 2016 21:53:37 +0800</pubDate>
+    <lastBuildDate>Thu, 14 Jul 2016 21:53:37 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>前端重构第一次尝试后思路整理</title>
+        <description>&lt;p&gt;最近做了一个项目的前端开发，上线了，然而怎么看都是一个玩具一般的东西，需要一次强力升级。前段时间也看了很多博客，翻了很多文档，对项目进行了一次小小的外科手术，但随着了解深入，收获的知识越来越多，接触到的问题也越来越多。道高一尺魔高一丈，也许也能这样解释？得整理一下思路，降服一下心魔了。&lt;/p&gt;
+
+&lt;h1 id=&quot;section&quot;&gt;目前项目状态&lt;/h1&gt;
+&lt;p&gt;初始状态：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;参考之前jQuery + Velocity年代，目录分为css、scripts、img，scripts下分为pages和util。&lt;/li&gt;
+  &lt;li&gt;项目较小，为嵌入APP webview中的H5项目，css放入一个统一的css文件中。&lt;/li&gt;
+  &lt;li&gt;引入react、react-router。&lt;/li&gt;
+  &lt;li&gt;使用webpack打包，只输出bundle.js到asset目录下，bundle.js和css文件直接在index.html中引用。&lt;/li&gt;
+  &lt;li&gt;图片和css样式在react组件中直接以&lt;code&gt;className=&quot;class-a class-b&quot;&lt;/code&gt;和&lt;code&gt;&amp;lt;img src=&quot;../../img/a/png&quot; /&amp;gt;&lt;/code&gt;的方式使用。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;一个这样的项目，怎么就这样上线了？除了在生产打包使用了&lt;code&gt;webpack.optimize.UglifyJsPlugin&lt;/code&gt;这种打包压缩js之外，看不到现代前端工程的痕迹。虽然是个小项目，可以不那么重视性能，但连gzip都没有开是怎么回事？一个400多k的bundle.js在webview中请求并加载运行的速度完全不能接受。而且这个项目可能要作为模板在其他项目中使用。作为一个有代码和工程洁癖的人，怎么能忍受这样的事情？&lt;/p&gt;
+
+&lt;p&gt;然后有了之前的&lt;a href=&quot;/2016/07/11/%E5%89%8D%E7%AB%AF%E9%87%8D%E6%9E%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%9D%E8%AF%95.html&quot;&gt;进阶修改&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;此时，了解的知识和碰到的问题越来越多，如&lt;a href=&quot;https://csspod.com/frontend-performance-best-practices/&quot;&gt;前端性能优化最佳实践&lt;/a&gt;，&lt;a href=&quot;https://github.com/fouber/blog&quot;&gt;某技术总监的前端博文&lt;/a&gt;等；也发现了不少帮助解决前端工程问题的工具，如&lt;a href=&quot;http://fis.baidu.com/&quot;&gt;fis3@Baidu-FEX-team&lt;/a&gt;，&lt;a href=&quot;http://yeoman.io/&quot;&gt;yo@Google-Yeoman-team&lt;/a&gt;。已经有不少前辈趟过雷踩过坑，很多文章都很精彩，但并不一定适合我所在team的环境。也许，需要针对我厂特点进行一个定制了。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-1&quot;&gt;需求分析&lt;/h1&gt;
+&lt;p&gt;现有环境：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;苛刻的资源权限管理：生产环境、代码资源、测试环境、外网环境等申请困难重重。&lt;/li&gt;
+  &lt;li&gt;内网环境开发和部署，可以支持代理上npm。&lt;/li&gt;
+  &lt;li&gt;代码版本管理可能使用TFS/SVN/Git等多种版本管理工具，目前使用TFS。&lt;/li&gt;
+  &lt;li&gt;前端开发人员前端开发技能熟练度不高，对JQuery系不很熟练的程度，更不用说es6、react、组件化。&lt;/li&gt;
+  &lt;li&gt;打包部署流程有待考察。&lt;/li&gt;
+  &lt;li&gt;不一定适用CDN，目标运行环境主要为移动设备，包括手机、平板、笔记本。&lt;/li&gt;
+  &lt;li&gt;目前为粗暴缩放，缺乏精细多屏适配设计与实现。&lt;/li&gt;
+&lt;/ol&gt;
+
+</description>
+        <pubDate>Thu, 14 Jul 2016 00:00:00 +0800</pubDate>
+        <link>http://techctu.github.io//2016/07/14/%E5%89%8D%E7%AB%AF%E9%87%8D%E6%9E%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%9D%E8%AF%95%E5%90%8E%E6%80%9D%E8%B7%AF%E6%95%B4%E7%90%86.html</link>
+        <guid isPermaLink="true">http://techctu.github.io//2016/07/14/%E5%89%8D%E7%AB%AF%E9%87%8D%E6%9E%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%9D%E8%AF%95%E5%90%8E%E6%80%9D%E8%B7%AF%E6%95%B4%E7%90%86.html</guid>
+        
+        <category>react</category>
+        
+        <category>webpack</category>
+        
+        
+      </item>
     
       <item>
         <title>前端重构第一次尝试</title>
@@ -948,52 +994,6 @@ module.exports = {
         <pubDate>Sat, 09 Apr 2016 00:00:00 +0800</pubDate>
         <link>http://techctu.github.io//2016/04/09/%E4%BD%BF%E7%94%A8reactjs%E7%AE%80%E5%8D%95%E5%B0%81%E8%A3%85baidumap.html</link>
         <guid isPermaLink="true">http://techctu.github.io//2016/04/09/%E4%BD%BF%E7%94%A8reactjs%E7%AE%80%E5%8D%95%E5%B0%81%E8%A3%85baidumap.html</guid>
-        
-        
-      </item>
-    
-      <item>
-        <title>使用ReactJS实现一个老虎机抽奖组件</title>
-        <description>&lt;h1 id=&quot;section&quot;&gt;背景&lt;/h1&gt;
-&lt;p&gt;最近的项目技术专家组建议使用ReactJS进行移动Web前端页面开发，理由是要Web前端组件化。便进行了一些研究。&lt;/p&gt;
-
-&lt;h1 id=&quot;reactjs&quot;&gt;ReactJS基础&lt;/h1&gt;
-&lt;p&gt;基本的介绍参考&lt;a href=&quot;http://facebook.github.io/react/&quot;&gt;官网&lt;/a&gt;即可。或者参考&lt;a href=&quot;http://www.ruanyifeng.com/blog/2015/03/react.html&quot;&gt;阮一峰的博文&lt;/a&gt;。英文好的可以参考&lt;a href=&quot;http://tylermcginnis.com/reactjs-tutorial-a-comprehensive-guide-to-building-apps-with-react/&quot;&gt;reactjs-tutorial-a-comprehensive-guide&lt;/a&gt;。另外，&lt;a href=&quot;http://my.jikexueyuan.com/4104803609/record/&quot;&gt;极客学院的教程&lt;/a&gt;也不错——如果不嫌时间长的话。&lt;/p&gt;
-
-&lt;h1 id=&quot;section-1&quot;&gt;实现老虎机&lt;/h1&gt;
-
-&lt;h2 id=&quot;section-2&quot;&gt;设计思路&lt;/h2&gt;
-&lt;p&gt;整个老虎机抽奖流程比较简单：&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;进入老虎机界面，根据客户信息判断抽奖资格。&lt;/li&gt;
-  &lt;li&gt;开始抽奖，发送后台请求。&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;获得并显示抽奖结果。
-对于前端老虎机组件，需要做的事有：&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;根据初始化数据初始化老虎机，包括奖品信息图文和主流程之外的如规则说明、即时中奖信息等。&lt;/li&gt;
-  &lt;li&gt;点击开始，生成动画使老虎机的筹码图案不停滚动。&lt;/li&gt;
-  &lt;li&gt;获取到服务器返回结果后，使老虎机图案停止滚动，显示恰当的图案。&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;section-3&quot;&gt;主要难点&lt;/h2&gt;
-&lt;ol&gt;
-  &lt;li&gt;没有接触过前端动画。&lt;/li&gt;
-  &lt;li&gt;ReactJS属于新接触的技术。&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;section-4&quot;&gt;相关参考&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/josex2r/jQuery-SlotMachine&quot;&gt;基于JQuery的老虎机&lt;/a&gt;
-&lt;a href=&quot;https://github.com/pathsofdesign/randomItemSpinner&quot;&gt;基于ReactJS的图片切换DEMO&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;section-5&quot;&gt;实现代码&lt;/h2&gt;
-&lt;p&gt;只实现了基本流程，具体使用根据实际UI和业务需要再进行修改。
-&lt;a href=&quot;https://github.com/techctu/reactjs-cui/blob/master/src/components/lottery/SlotMachine/SlotMachine.js&quot;&gt;戳这里，欢迎指正&lt;/a&gt;&lt;/p&gt;
-</description>
-        <pubDate>Sat, 27 Feb 2016 00:00:00 +0800</pubDate>
-        <link>http://techctu.github.io//2016/02/27/%E4%BD%BF%E7%94%A8reactjs%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%80%81%E8%99%8E%E6%9C%BA%E6%8A%BD%E5%A5%96%E7%BB%84%E4%BB%B6.html</link>
-        <guid isPermaLink="true">http://techctu.github.io//2016/02/27/%E4%BD%BF%E7%94%A8reactjs%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%80%81%E8%99%8E%E6%9C%BA%E6%8A%BD%E5%A5%96%E7%BB%84%E4%BB%B6.html</guid>
         
         
       </item>

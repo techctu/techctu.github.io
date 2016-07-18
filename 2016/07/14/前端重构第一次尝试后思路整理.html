@@ -90,11 +90,11 @@
             <article class="post">
               <header>
                 <div class="title">
-                  <h2><a href="/2016/04/09/%E4%BD%BF%E7%94%A8reactjs%E7%AE%80%E5%8D%95%E5%B0%81%E8%A3%85baidumap.html">使用ReactJS简单封装BaiduMap</a></h2>
+                  <h2><a href="/2016/07/14/%E5%89%8D%E7%AB%AF%E9%87%8D%E6%9E%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%9D%E8%AF%95%E5%90%8E%E6%80%9D%E8%B7%AF%E6%95%B4%E7%90%86.html">前端重构第一次尝试后思路整理</a></h2>
                 <!-- <p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p> -->
                 </div>
                 <div class="meta">
-                  <time class="published" datetime="2016-04-09">April 09, 2016</time>
+                  <time class="published" datetime="2016-07-14">July 14, 2016</time>
                   
 
         <!--
@@ -103,38 +103,45 @@
                 </div>
               </header>
               
-              <p>最近需要使用百度地图来获取地理位置定位，用ReactJS封装了一下。</p>
+              <p>最近做了一个项目的前端开发，上线了，然而怎么看都是一个玩具一般的东西，需要一次强力升级。前段时间也看了很多博客，翻了很多文档，对项目进行了一次小小的外科手术，但随着了解深入，收获的知识越来越多，接触到的问题也越来越多。道高一尺魔高一丈，也许也能这样解释？得整理一下思路，降服一下心魔了。</p>
 
-<p>要点：
-- 希望百度地图加载不影响ReactJS生命周期
-- 将百度地图回调方法和ReactJS融合</p>
+<h1 id="section">目前项目状态</h1>
+<p>初始状态：</p>
 
-<p>目前百度地图没有离线API，官网上方式为</p>
+<ul>
+  <li>参考之前jQuery + Velocity年代，目录分为css、scripts、img，scripts下分为pages和util。</li>
+  <li>项目较小，为嵌入APP webview中的H5项目，css放入一个统一的css文件中。</li>
+  <li>引入react、react-router。</li>
+  <li>使用webpack打包，只输出bundle.js到asset目录下，bundle.js和css文件直接在index.html中引用。</li>
+  <li>图片和css样式在react组件中直接以<code>className="class-a class-b"</code>和<code>&lt;img src="../../img/a/png" /&gt;</code>的方式使用。</li>
+</ul>
 
-<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;http://api.map.baidu.com/api?v=2.0&amp;ak=您的密钥&amp;callback=回调方法&quot;</span><span class="nt">&gt;&lt;/script&gt;</span></code></pre></figure>
+<p>一个这样的项目，怎么就这样上线了？除了在生产打包使用了<code>webpack.optimize.UglifyJsPlugin</code>这种打包压缩js之外，看不到现代前端工程的痕迹。虽然是个小项目，可以不那么重视性能，但连gzip都没有开是怎么回事？一个400多k的bundle.js在webview中请求并加载运行的速度完全不能接受。而且这个项目可能要作为模板在其他项目中使用。作为一个有代码和工程洁癖的人，怎么能忍受这样的事情？</p>
 
-<p>在页面嵌入了百度地图后，会异步获取一些js脚本，实现地图功能的加载，且加载成功与否难以控制。因此，需要在React组件加载完成的时候加载百度地图。</p>
+<p>然后有了之前的<a href="/2016/07/11/%E5%89%8D%E7%AB%AF%E9%87%8D%E6%9E%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%9D%E8%AF%95.html">进阶修改</a>。</p>
 
-<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nb">window</span><span class="p">.</span><span class="nx">initBaiduMap</span> <span class="o">=</span> <span class="kc">null</span>
-    <span class="kd">let</span> <span class="nx">script</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">)</span>
-    <span class="nx">script</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;text/javascript&#39;</span>
-    <span class="nx">script</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">url</span> <span class="o">+</span> <span class="s1">&#39;&amp;ak=&#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">ak</span> <span class="o">+</span> <span class="s1">&#39;&amp;callback=initBaiduMap&#39;</span>
-    <span class="nb">window</span><span class="p">.</span><span class="nx">initBaiduMap</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">locate</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
-    <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">script</span><span class="p">)</span>
-<span class="p">}</span>
-<span class="nx">componentWillUnmount</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nb">window</span><span class="p">.</span><span class="nx">initBaiduMap</span> <span class="o">=</span> <span class="kc">null</span>
-<span class="p">}</span></code></pre></figure>
+<p>此时，了解的知识和碰到的问题越来越多，如<a href="https://csspod.com/frontend-performance-best-practices/">前端性能优化最佳实践</a>，<a href="https://github.com/fouber/blog">某技术总监的前端博文</a>等；也发现了不少帮助解决前端工程问题的工具，如<a href="http://fis.baidu.com/">fis3@Baidu-FEX-team</a>，<a href="http://yeoman.io/">yo@Google-Yeoman-team</a>。已经有不少前辈趟过雷踩过坑，很多文章都很精彩，但并不一定适合我所在team的环境。也许，需要针对我厂特点进行一个定制了。</p>
 
-<p>产生的问题是：
-1. 使用了window对象，将React组件的方法绑定到了全局。
-2. 在网络异常时没有进行处理。</p>
+<h1 id="section-1">需求分析</h1>
+<p>现有环境：</p>
 
-<p>对于第2点问题，曾经使用了js中的try catch和绑定onerror来处理，没有成功，待解决。</p>
+<ol>
+  <li>苛刻的资源权限管理：生产环境、代码资源、测试环境、外网环境等申请困难重重。</li>
+  <li>内网环境开发和部署，可以支持代理上npm。</li>
+  <li>代码版本管理可能使用TFS/SVN/Git等多种版本管理工具，目前使用TFS。</li>
+  <li>前端开发人员前端开发技能熟练度不高，对JQuery系不很熟练的程度，更不用说es6、react、组件化。</li>
+  <li>打包部署流程有待考察。</li>
+  <li>不一定适用CDN，目标运行环境主要为移动设备，包括手机、平板、笔记本。</li>
+  <li>目前为粗暴缩放，缺乏精细多屏适配设计与实现。</li>
+</ol>
+
 
               <footer>
                 <ul class="stats">
+                
+                  <li><a href="#">react</a></li>
+                
+                  <li><a href="#">webpack</a></li>
                 
         <!--
         <li><a href="#">General</a></li>
@@ -146,10 +153,10 @@
            </article>
   					<ul class="actions pagination">
   					  
-  	  				  <li><a href="/2016/02/27/%E4%BD%BF%E7%94%A8reactjs%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%80%81%E8%99%8E%E6%9C%BA%E6%8A%BD%E5%A5%96%E7%BB%84%E4%BB%B6.html" class="button big previous">Previous Post</a></li>
+  	  				  <li><a href="/2016/07/11/%E5%89%8D%E7%AB%AF%E9%87%8D%E6%9E%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%9D%E8%AF%95.html" class="button big previous">Previous Post</a></li>
   						
 							
-  						  <li><a href="/2016/04/23/%E8%BF%91%E6%9C%9F%E6%9F%90%E9%A1%B9%E7%9B%AE%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E6%A2%B3%E7%90%86%E6%97%A0%E7%9F%A5%E6%9C%AA%E7%9F%A5%E6%91%B8%E7%9D%80%E7%9F%B3%E5%A4%B4%E8%BF%87%E6%B2%B3.html" class="button big next">Next Post</a></li>
+  						  <li><a href="#" class="disabled button big next">Next Post</a></li>
   						
   					</ul>
 					</div>
