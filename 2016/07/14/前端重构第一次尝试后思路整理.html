@@ -135,6 +135,34 @@
   <li>目前为粗暴缩放，缺乏精细多屏适配设计与实现。</li>
 </ol>
 
+<p>需求：</p>
+
+<ol>
+  <li><strong>开发规范</strong>：基于es6、react、webpack开发，要有开发规范，快速定位开发问题，提高开发效率。</li>
+  <li><strong>模块化/组件化</strong>：有自己的模块/组件仓库，解决命名空间、组件独立、依赖管理、按需加载执行、安全合并等问题，区分开业务相关和业务无关的模块和组件。</li>
+  <li><strong>react技术</strong>：使用react作为UI组件，使用react-router管理前端路由，使用redux管理前端状态，状态数据结构必须immutable。</li>
+  <li><strong>性能优化</strong>：通过工程化方法进行性能优化，包括加速首屏加载，图片压缩合并，CSS Sprite，Base64图片，缓存和缓存更新，性能提升统计评估等。</li>
+  <li><strong>项目部署</strong>：开发资源组织规则和部署资源组织规则分离，支持动静分离、静态资源缓存、CDN、非覆盖式发布等。</li>
+  <li><strong>开发流程</strong>：内网环境开发，支持通过代理访问外网npm，代码托管在内网windows server TFS上，构建也位于windows server，可以通过代理访问外网npm，生产构建位于windows。</li>
+  <li><strong>开发工具</strong>：内网开发，编辑器、IDE、构建与优化工具、开发-调试-部署等流程工具，以及组件库获取、提交等相关工具，甚至运营、文档、配置发布等平台工具。</li>
+  <li><strong>协作流程</strong>：业务提交需求，厂商提供UEUI和静态页面，组内开发人员根据静态页面编写react页面。</li>
+  <li><strong>后台</strong>：目前使用Java SpringMVC，动态请求发送POST到Controller，Service层使用Dubbo。</li>
+  <li><strong>其他</strong>：待发掘。</li>
+</ol>
+
+<p>分析：</p>
+
+<ul>
+  <li>对于第1点，前期的改造基本完成。</li>
+  <li>第2、3点需要修改目录结构，提供samples。</li>
+  <li>第4点目前已经使用了缓存、hash、gzip压缩、base64等技术，Java环境下的react首页直出有待研究。</li>
+  <li>第5、6点和本厂大环境相关，只考虑开发和打包过程，从代码仓库抽取到打包环境和打包环境到生产部署的过程和工具暂不考虑。</li>
+  <li>第7点已经编写了内网环境下搭建基于sublime的开发环境的教程。</li>
+  <li>第8点主要在于本组静态页面开发能力较弱，需要长期培养。</li>
+  <li>第9点主要用于考虑后期使用node替换SpringMVC使web前后端同构，java只负责服务层。</li>
+</ul>
+
+<p>所以目前主要考虑的应该是，静态资源开发和组织的工程化，在<a href="/2016/07/11/%E5%89%8D%E7%AB%AF%E9%87%8D%E6%9E%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%9D%E8%AF%95.html">进阶修改</a>的基础上引入redux及其相关技术，进一步组件化，构建自己的组件仓库，提供samples等。可以先研究<a href="http://yeoman.io/">yeoman</a>这样的构造工具。国内fis3这样的工具不像yeoman这样透明直观，使用时对其机理存疑。</p>
 
               <footer>
                 <ul class="stats">
@@ -156,7 +184,7 @@
   	  				  <li><a href="/2016/07/11/%E5%89%8D%E7%AB%AF%E9%87%8D%E6%9E%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%9D%E8%AF%95.html" class="button big previous">Previous Post</a></li>
   						
 							
-  						  <li><a href="#" class="disabled button big next">Next Post</a></li>
+  						  <li><a href="/2016/07/31/react-router%E4%BB%8Ehashhistory%E5%88%B0browserhistory.html" class="button big next">Next Post</a></li>
   						
   					</ul>
 					</div>
@@ -178,6 +206,26 @@
 						<!-- Mini Posts -->
 						<section>
   <div class="mini-posts">
+    
+      <article class="mini-post">
+  	    <header>
+  		    <h3><a href="/2016/07/31/react-router%E4%BB%8Ehashhistory%E5%88%B0browserhistory.html">react-router：从hashHistory到browserHistory</a></h3>
+		      <time class="published" datetime="2016-07-31">July 31, 2016</time>
+						<!--<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>-->
+			  </header>
+        
+		  </article>
+									<!-- Mini Post -->
+									  <!--
+										<article class="mini-post">
+											<header>
+												<h3><a href="#">Vitae sed condimentum</a></h3>
+												<time class="published" datetime="2015-10-20">October 20, 2015</time>
+												<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>
+											</header>
+											<a href="#" class="image"><img src="/images/pic04.jpg" alt="" /></a>
+										</article>
+									-->
     
       <article class="mini-post">
   	    <header>
@@ -223,26 +271,6 @@
   	    <header>
   		    <h3><a href="/2016/07/02/%E4%BD%BF%E7%94%A8esformat%E5%92%8C%E5%85%B6plugin%E6%9D%A5%E6%A0%BC%E5%BC%8F%E5%8C%96es6%E5%8F%8Areact%E4%BB%A3%E7%A0%81.html">使用esformat和其plugin来格式化es6及react代码</a></h3>
 		      <time class="published" datetime="2016-07-02">July 02, 2016</time>
-						<!--<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>-->
-			  </header>
-        
-		  </article>
-									<!-- Mini Post -->
-									  <!--
-										<article class="mini-post">
-											<header>
-												<h3><a href="#">Vitae sed condimentum</a></h3>
-												<time class="published" datetime="2015-10-20">October 20, 2015</time>
-												<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>
-											</header>
-											<a href="#" class="image"><img src="/images/pic04.jpg" alt="" /></a>
-										</article>
-									-->
-    
-      <article class="mini-post">
-  	    <header>
-  		    <h3><a href="/2016/06/30/%E5%86%85%E7%BD%91%E9%85%8D%E7%BD%AEsublimelinter%E5%92%8Csublimelinter-contrib-eslint%E6%9D%A5%E6%A3%80%E6%9F%A5es6-react%E4%BB%A3%E7%A0%81.html">内网配置SublimeLinter和SublimeLinter-contrib-eslint来检查es6 react代码</a></h3>
-		      <time class="published" datetime="2016-06-30">June 30, 2016</time>
 						<!--<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>-->
 			  </header>
         

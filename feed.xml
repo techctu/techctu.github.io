@@ -6,9 +6,80 @@
 </description>
     <link>http://techctu.github.io//</link>
     <atom:link href="http://techctu.github.io//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 14 Jul 2016 21:53:37 +0800</pubDate>
-    <lastBuildDate>Thu, 14 Jul 2016 21:53:37 +0800</lastBuildDate>
+    <pubDate>Sun, 31 Jul 2016 14:28:36 +0800</pubDate>
+    <lastBuildDate>Sun, 31 Jul 2016 14:28:36 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>react-router：从hashHistory到browserHistory</title>
+        <description>&lt;p&gt;项目开始使用react-router时由于工期原因，使用了hashHistory，在url末尾会形成&lt;code&gt;/#/user/haishanh?_k=adseis&lt;/code&gt;中&lt;code&gt;_k=adseis&lt;/code&gt;的query字符串。这在浏览器中打开时会让用户感到迷惑。&lt;/p&gt;
+
+&lt;h1 id=&quot;hashhistoryquerykey&quot;&gt;hashHistory和queryKey&lt;/h1&gt;
+&lt;p&gt;在一些旧的浏览器中，不支持H5提供的新的接口如pushState，则使用了该方法生成key来读写window.sessionStorage的内容，实现页面跳转和回退时保持页面状态的功能，如类似新浪微博列表页请求了几次更多微博，进入详情页面后返回到列表页之前获取的微博仍然在里面无需重复之前的请求；又或者一个流程多个复杂表格填写，在前进、后退过程中保持之前填写的内容。&lt;/p&gt;
+
+&lt;p&gt;在&lt;a href=&quot;http://react-china.org/t/react-router-hashhistory-browserhistory/6799/4&quot;&gt;【react-router】hashhistory 与 browserhistory有什么区别&lt;/a&gt;中有简单设置以去掉&lt;code&gt;_k=abc123&lt;/code&gt;。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;import { createHashHistory } from &#39;history&#39;;
+
+const appHistory = useRouterHistory(createHashHistory)({ queryKey: false });
+
+ReactDOM.render(
+  &amp;lt;Router history={appHistory}&amp;gt;
+    {routes}
+  &amp;lt;/Router&amp;gt;,
+  document.getElementById(&#39;app&#39;)
+);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;问题：无法使用state保持页面状态，无法使用state来渲染链接对应页面，如&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;const path = {
+  pathname: &#39;business/BaiduSearch/update&#39;,
+  state: { id: record.id } 
+}
+&amp;lt;Link to={path}&amp;gt;修改&amp;lt;/Link&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&quot;browserhistory&quot;&gt;使用browserHistory&lt;/h1&gt;
+&lt;p&gt;在一些框架、库提供的糖面前，我倾向于不使用改变更广泛的标准的做法。如上面通过使用hashHistory和queryKey来获取state来渲染页面的方法，我更倾向于使用&lt;code&gt;http://example.com/the/path?the=query&amp;amp;id=recordId&lt;/code&gt;的方式获取相关信息渲染页面，这样在分享链接时也更为方便。&lt;/p&gt;
+
+&lt;h2 id=&quot;browserhistory-1&quot;&gt;创建browserHistory&lt;/h2&gt;
+&lt;p&gt;本来可以直接使用&lt;code&gt;react-router&lt;/code&gt;提供的&lt;code&gt;browserHistory&lt;/code&gt;，但考虑到该项目对应的域名为&lt;code&gt;xxx.xxx.com/xx&lt;/code&gt;，而且本地开发环境使用localhost:port访问，所以引入&lt;a href=&quot;https://www.npmjs.com/package/history&quot;&gt;history&lt;/a&gt;。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;import {createHistory} from &#39;history&#39;
+import {
+  Router,
+  Route,
+  useRouterHistory
+}
+const browserHistory = useRouterHistory(createHistory)({basename: process.env.NODE_ENV === &#39;production&#39;? &#39;/xx&#39;: &#39;&#39;})
+const routes = (
+  &amp;lt;Router history={browserHistory}&amp;gt;
+  ...
+  &amp;lt;/Router&amp;gt;
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;同时，需要修改对应的web容器配置，使其知道/xx/下的所有uri路由到单页面应用。目前使用的nginx。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;location /xx/ {
+    try_files $uri /xx/index.html;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;state&quot;&gt;state&lt;/h2&gt;
+&lt;p&gt;目前state的作用主要是提供了保持页面状态的功能，包括相关的存取功能。这部分功能可以使用很多方式实现，如history的location.state，cookie，甚至是引入redux等。&lt;/p&gt;
+</description>
+        <pubDate>Sun, 31 Jul 2016 00:00:00 +0800</pubDate>
+        <link>http://techctu.github.io//2016/07/31/react-router%E4%BB%8Ehashhistory%E5%88%B0browserhistory.html</link>
+        <guid isPermaLink="true">http://techctu.github.io//2016/07/31/react-router%E4%BB%8Ehashhistory%E5%88%B0browserhistory.html</guid>
+        
+        <category>react-router</category>
+        
+        <category>react</category>
+        
+        
+      </item>
     
       <item>
         <title>前端重构第一次尝试后思路整理</title>
@@ -44,6 +115,34 @@
   &lt;li&gt;目前为粗暴缩放，缺乏精细多屏适配设计与实现。&lt;/li&gt;
 &lt;/ol&gt;
 
+&lt;p&gt;需求：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;开发规范&lt;/strong&gt;：基于es6、react、webpack开发，要有开发规范，快速定位开发问题，提高开发效率。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;模块化/组件化&lt;/strong&gt;：有自己的模块/组件仓库，解决命名空间、组件独立、依赖管理、按需加载执行、安全合并等问题，区分开业务相关和业务无关的模块和组件。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;react技术&lt;/strong&gt;：使用react作为UI组件，使用react-router管理前端路由，使用redux管理前端状态，状态数据结构必须immutable。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;性能优化&lt;/strong&gt;：通过工程化方法进行性能优化，包括加速首屏加载，图片压缩合并，CSS Sprite，Base64图片，缓存和缓存更新，性能提升统计评估等。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;项目部署&lt;/strong&gt;：开发资源组织规则和部署资源组织规则分离，支持动静分离、静态资源缓存、CDN、非覆盖式发布等。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;开发流程&lt;/strong&gt;：内网环境开发，支持通过代理访问外网npm，代码托管在内网windows server TFS上，构建也位于windows server，可以通过代理访问外网npm，生产构建位于windows。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;开发工具&lt;/strong&gt;：内网开发，编辑器、IDE、构建与优化工具、开发-调试-部署等流程工具，以及组件库获取、提交等相关工具，甚至运营、文档、配置发布等平台工具。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;协作流程&lt;/strong&gt;：业务提交需求，厂商提供UEUI和静态页面，组内开发人员根据静态页面编写react页面。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;后台&lt;/strong&gt;：目前使用Java SpringMVC，动态请求发送POST到Controller，Service层使用Dubbo。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;其他&lt;/strong&gt;：待发掘。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;分析：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;对于第1点，前期的改造基本完成。&lt;/li&gt;
+  &lt;li&gt;第2、3点需要修改目录结构，提供samples。&lt;/li&gt;
+  &lt;li&gt;第4点目前已经使用了缓存、hash、gzip压缩、base64等技术，Java环境下的react首页直出有待研究。&lt;/li&gt;
+  &lt;li&gt;第5、6点和本厂大环境相关，只考虑开发和打包过程，从代码仓库抽取到打包环境和打包环境到生产部署的过程和工具暂不考虑。&lt;/li&gt;
+  &lt;li&gt;第7点已经编写了内网环境下搭建基于sublime的开发环境的教程。&lt;/li&gt;
+  &lt;li&gt;第8点主要在于本组静态页面开发能力较弱，需要长期培养。&lt;/li&gt;
+  &lt;li&gt;第9点主要用于考虑后期使用node替换SpringMVC使web前后端同构，java只负责服务层。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;所以目前主要考虑的应该是，静态资源开发和组织的工程化，在&lt;a href=&quot;/2016/07/11/%E5%89%8D%E7%AB%AF%E9%87%8D%E6%9E%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%9D%E8%AF%95.html&quot;&gt;进阶修改&lt;/a&gt;的基础上引入redux及其相关技术，进一步组件化，构建自己的组件仓库，提供samples等。可以先研究&lt;a href=&quot;http://yeoman.io/&quot;&gt;yeoman&lt;/a&gt;这样的构造工具。国内fis3这样的工具不像yeoman这样透明直观，使用时对其机理存疑。&lt;/p&gt;
 </description>
         <pubDate>Thu, 14 Jul 2016 00:00:00 +0800</pubDate>
         <link>http://techctu.github.io//2016/07/14/%E5%89%8D%E7%AB%AF%E9%87%8D%E6%9E%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%9D%E8%AF%95%E5%90%8E%E6%80%9D%E8%B7%AF%E6%95%B4%E7%90%86.html</link>
@@ -955,45 +1054,6 @@ module.exports = {
         <pubDate>Sat, 23 Apr 2016 00:00:00 +0800</pubDate>
         <link>http://techctu.github.io//2016/04/23/%E8%BF%91%E6%9C%9F%E6%9F%90%E9%A1%B9%E7%9B%AE%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E6%A2%B3%E7%90%86%E6%97%A0%E7%9F%A5%E6%9C%AA%E7%9F%A5%E6%91%B8%E7%9D%80%E7%9F%B3%E5%A4%B4%E8%BF%87%E6%B2%B3.html</link>
         <guid isPermaLink="true">http://techctu.github.io//2016/04/23/%E8%BF%91%E6%9C%9F%E6%9F%90%E9%A1%B9%E7%9B%AE%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E6%A2%B3%E7%90%86%E6%97%A0%E7%9F%A5%E6%9C%AA%E7%9F%A5%E6%91%B8%E7%9D%80%E7%9F%B3%E5%A4%B4%E8%BF%87%E6%B2%B3.html</guid>
-        
-        
-      </item>
-    
-      <item>
-        <title>使用ReactJS简单封装BaiduMap</title>
-        <description>&lt;p&gt;最近需要使用百度地图来获取地理位置定位，用ReactJS封装了一下。&lt;/p&gt;
-
-&lt;p&gt;要点：
-- 希望百度地图加载不影响ReactJS生命周期
-- 将百度地图回调方法和ReactJS融合&lt;/p&gt;
-
-&lt;p&gt;目前百度地图没有离线API，官网上方式为&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;http://api.map.baidu.com/api?v=2.0&amp;amp;ak=您的密钥&amp;amp;callback=回调方法&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;在页面嵌入了百度地图后，会异步获取一些js脚本，实现地图功能的加载，且加载成功与否难以控制。因此，需要在React组件加载完成的时候加载百度地图。&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;componentDidMount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;initBaiduMap&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;createElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;script&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;text/javascript&amp;#39;&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;amp;ak=&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ak&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;amp;callback=initBaiduMap&amp;#39;&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;initBaiduMap&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;locate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;appendChild&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;componentWillUnmount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;initBaiduMap&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;产生的问题是：
-1. 使用了window对象，将React组件的方法绑定到了全局。
-2. 在网络异常时没有进行处理。&lt;/p&gt;
-
-&lt;p&gt;对于第2点问题，曾经使用了js中的try catch和绑定onerror来处理，没有成功，待解决。&lt;/p&gt;
-</description>
-        <pubDate>Sat, 09 Apr 2016 00:00:00 +0800</pubDate>
-        <link>http://techctu.github.io//2016/04/09/%E4%BD%BF%E7%94%A8reactjs%E7%AE%80%E5%8D%95%E5%B0%81%E8%A3%85baidumap.html</link>
-        <guid isPermaLink="true">http://techctu.github.io//2016/04/09/%E4%BD%BF%E7%94%A8reactjs%E7%AE%80%E5%8D%95%E5%B0%81%E8%A3%85baidumap.html</guid>
         
         
       </item>
