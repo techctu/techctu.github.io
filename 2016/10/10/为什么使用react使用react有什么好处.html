@@ -1,0 +1,404 @@
+<!DOCTYPE HTML>
+<!--
+	Future Imperfect by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+  <title>Avalon</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!--[if lte IE 8]><script src="js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="/css/main.css" />
+	<link rel="stylesheet" href="/css/pygments.css">
+	<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+</head>
+
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+<header id="header">
+  <h1><a href="http://techctu.github.io/">Avalon</a></h1>
+	<nav class="links">
+    <!--
+    <ul>
+      <li><a href="#">Lorem</a></li>
+			<li><a href="#">Ipsum</a></li>
+			<li><a href="#">Feugiat</a></li>
+			<li><a href="#">Tempus</a></li>
+			<li><a href="#">Adipiscing</a></li>
+		</ul>
+  -->
+	</nav>
+	<nav class="main">
+    <ul>
+                <!--
+								<li class="search">
+									<a class="fa-search" href="#search">Search</a>
+									<form id="search" method="get" action="#">
+										<input type="text" name="query" placeholder="Search" />
+									</form>
+								</li>
+              -->
+		  <li class="menu">
+		  	<a class="fa-bars" href="#menu">Menu</a>
+			</li>
+		</ul>
+	</nav>
+</header>
+
+<!-- Menu -->
+<section id="menu">
+  <!-- Search -->
+  <!--
+  <section>
+	  <form class="search" method="get" action="#">
+	    <input type="text" name="query" placeholder="Search" />
+		</form>
+	</section>
+  -->
+	<!-- Links -->
+	<section>
+	  <ul class="links">
+	    <li>
+		    <a href="/acknowledgement">
+				  <h3>Acknowledgement</h3>
+				  <p>Acknowledgement</p>
+				</a>
+			</li>
+    </ul>
+	</section>
+	<!-- Actions -->
+  <!--
+  <section>
+	  <ul class="actions vertical">
+	    <li><a href="#" class="button big fit">Log In</a></li>
+    </ul>
+  </section>
+  -->
+</section>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+            <article class="post">
+              <header>
+                <div class="title">
+                  <h2><a href="/2016/10/10/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8react%E4%BD%BF%E7%94%A8react%E6%9C%89%E4%BB%80%E4%B9%88%E5%A5%BD%E5%A4%84.html">为什么使用react/使用react有什么好处？</a></h2>
+                <!-- <p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p> -->
+                </div>
+                <div class="meta">
+                  <time class="published" datetime="2016-10-10">October 10, 2016</time>
+                  
+
+        <!--
+        <a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>
+        -->
+                </div>
+              </header>
+              
+              <p>接手前端后，摸着石头过河，采用推荐的新的react框架，踩过不少坑，终于项目平稳上线。随之而来就会有许多人问：</p>
+
+<blockquote>
+  <p>为什么要使用react？react有什么好处？和jQuery/velocity/bootstrap/AngularJS/Vue.js相比有什么优点？</p>
+</blockquote>
+
+<p>其中我只用过jQuery+velocity，用过一点bootstrap，AngularJS和Vue.js都是道听途说，没有真正接触，不敢妄加评论，只能从自身经历，提供一点浅见。</p>
+
+<h1 id="section">问题的本质</h1>
+<p>这个问题的应该需求分析一下：
+1. 使用react开发H5页面复杂吗？对新人的学习曲线怎么样？开发是否方便快捷？调试是否方便？
+2. react能解决哪些方面的问题？不能解决哪些方面的问题？还需要什么补充？
+3. 好像没有3了。</p>
+
+<h1 id="react">React和现在使用的相关技术</h1>
+<p>首先，重申一点，react是一个UI框架，更正确的说法，应该只是提供了构建自己的UI框架的底层库。举个栗子，蚂蚁金服的ant design和啊妹子UI，都可以说是基于react构建的UI框架，包含了大家熟悉的按钮、轮播图、单选按钮组等组件。</p>
+
+<p>而前端的客户端部分，也是存在MVC，或者流行的MV*结构的。所以，react肯定是需要其他方面技术补充的。</p>
+
+<blockquote>
+  <p>为什么不直接使用ant design/Amaze UI？</p>
+</blockquote>
+
+<pre><code>我们构建的是面客系统，会有自己的设计风格，而使用ant design或是其他框架，其框架太重，不适合按照我们的特殊需求进行定制。这类框架比较适合内部系统或者是管理系统使用。
+</code></pre>
+
+<p>由于React只是一个底层库，所以react需要一些其他的技术来构建SPA（单页面应用），如：依赖管理和打包的webpack、前端路由react-router、状态管理flux/redux/reflux等。</p>
+
+<p>下面从我的经验介绍一下React及其系列相关技术的优缺点。</p>
+
+<h1 id="react-1">React开发的优点</h1>
+<p>React的开发其实是一件非常简单的事情。React的开发除了一个由于保留字需要把HTML的 <code>class</code> 替换成 <code>className</code>，剩下的就是专注于使用流程和状态来控制页面（JavaScript），以及将状态对应到正确的样式上（JSX）。</p>
+
+<h2 id="section-1">简单，封装</h2>
+<p>如果使用过jQuery的第三方组件，或者bootstrap等，一旦页面比较复杂，就会碰到重命名、选择器等问题；如果使用过AngularJS，或者一些其他模板引擎，一定会学习这些库特有的一些语法，或是标签，如：</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// AngularJS的循环遍历</span>
+<span class="o">&lt;</span><span class="nx">ul</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">li</span> <span class="o">*</span><span class="nx">ngFor</span><span class="o">=</span><span class="s2">&quot;#hero of heroes&quot;</span><span class="o">&gt;</span>
+    
+  <span class="o">&lt;</span><span class="err">/li&gt;</span>
+<span class="o">&lt;</span><span class="err">/ul&gt;</span></code></pre></figure>
+
+<p>而在react里，你只需要会HTML和JavaScript。什么是jsx？</p>
+
+<p>这是html：</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">    <span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">&quot;background-color: #fff;&quot;</span><span class="nt">&gt;</span>这是HTML<span class="nt">&lt;/div&gt;</span></code></pre></figure>
+
+<p>这是JavaScript（ECMAScript 2015/ES6）：</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">SomeClass</span> <span class="p">{</span>
+    <span class="nx">functionA</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>这是JSX：</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">let</span> <span class="nx">myDivElement</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="s2">&quot;foo&quot;</span> <span class="o">/&gt;</span><span class="p">;</span>
+<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">myDivElement</span><span class="p">,</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;example&#39;</span><span class="p">));</span>
+
+<span class="c1">// 更高级一点，自定义组件</span>
+<span class="kr">class</span> <span class="nx">MyComponent</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+    <span class="c1">// 面向对象中眼熟的继承</span>
+    <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// react封装的自定义组件的参数传递方式</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="nx">hello</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">hello</span>
+        <span class="p">};</span>
+    <span class="p">}</span>
+
+    <span class="c1">// react的组件渲染方法</span>
+    <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span><span class="p">(</span>
+            <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="nx">label</span><span class="o">&gt;</span><span class="err">自定义</span><span class="nx">react</span><span class="err">组件</span><span class="o">&lt;</span><span class="err">/label&gt;&lt;lable&gt;{this.state.hello}&lt;/lable&gt;</span>
+            <span class="o">&lt;</span><span class="err">/div&gt;)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">hello</span> <span class="o">=</span> <span class="s1">&#39;world&#39;</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">myDivElement</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">MyComponent</span> <span class="nx">hello</span><span class="o">=</span><span class="p">{</span><span class="nx">hello</span><span class="p">}</span><span class="o">/&gt;</span><span class="p">;</span> <span class="c1">// 给自定义组件传参</span>
+<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">myDivElement</span><span class="p">,</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;example&#39;</span><span class="p">));</span></code></pre></figure>
+
+<p>JSX很简单，就是在js中使用HTML标签组成的HTML片段，<strong>没有奇怪的属性，标签，方法</strong>，<strong>没有奇怪的属性，标签，方法</strong>，<strong>没有奇怪的属性，标签，方法</strong>，我喜欢的特性说三遍。</p>
+
+<p>所以，react的核心思想就是，让开发人员关注业务流程变化导致的状态变化，将状态对应到具体的页面展示上，而对DOM的操作，交给react来进行。这样的方式，非常适用于目前由第三方出静态页面，我们的开发人员来实现最终效果的分工方式。</p>
+
+<h2 id="section-2">强大的开发工具</h2>
+<p>在Java开发的时候，我们已经习惯了代码高亮、自动补全、语法提示、源码定位、规范检查、压缩混淆打包等功能，react开发自然也是有这一系列工具的，涵盖了Sublime、Atom、VSCode等多种编辑器，还具有在Chrome、Firefox进行调试的插件。</p>
+
+<p>虽然经常有人吹牛说能用记事本写出千行代码，然而那只是个人能力，总不能要求所有人都具备这种能力，所以有好用的工具为何不用呢？自动化工具的使用，才利于项目的工程化，提高项目组整体的实施水平，极大提高开发效率，甚至一个好的代码高亮主题还能吸引妹子在你身后围观你编码。</p>
+
+<h2 id="unix">UNIX哲学</h2>
+<p>专注于解决一个问题，小而精，而非大而全。</p>
+
+<p>尤其是在我们目前使用SpringMVC处理动态请求，使用nginx处理静态请求的架构下；具有自己的UE和UI设计的条件下，那些大而全的现有框架的一些隐蔽的使用条件，如某些库所需的支持等，和按照设计对一些内容进行改造等，非常繁琐不便利。</p>
+
+<p>React提供了一个完整的UI渲染更新流程，设计了一个组件封装的生命周期。使用react，将DOM操作交给react，能使开发人员专注于业务流程，减少繁琐的DOM操作的开发，降低由于DOM操作导致的bug（在使用jQuery的年代很常见，bootstrap也是，很多以HTML为设计核心的难以封装模板引擎也是）。</p>
+
+<p>使用小而精的工具，能使我们对手中的项目了若指掌，避免莫名的问题。</p>
+
+<h2 id="section-3">丰富的库支持</h2>
+<p><a href="https://www.npmjs.com/search?q=react">21465 results for ‘react’.</a></p>
+
+<h2 id="section-4">社区和文档支持等</h2>
+<p>React具有<a href="https://facebook.github.io/react/docs/getting-started.html">比较详细的文档</a>、<a href="https://facebook.github.io/react/docs/videos.html">教学视频</a>和大量的<a href="https://github.com/facebook/react/wiki/Examples">示例代码、脚手架</a>，在<a href="https://github.com/">某知名大型国际同性交友网站</a>上能找到<a href="https://github.com/search?utf8=%E2%9C%93&amp;q=react">10W+相关代码</a>。</p>
+
+<h1 id="react-2">React开发的缺点</h1>
+<p>大致说完了优点，来说说缺点。</p>
+
+<h2 id="javascript">JavaScript发展快速，导致了混乱</h2>
+<p>这几年是JavaScript，嗯，ECMAScript发展迅速的一年，前端相关们都各有各的野心，浏览器厂商和标准组织合纵连横，谷歌微软苹果互相掐架，微软Mozilla眉来眼去，两年就从ES5到了ES6眼看着又要马不停蹄奔向ES7了，这就导致目前百度搜索到的react示例大部分使用ES5，一部分使用ES6，少量使用ES7，<strong>不利于初学者学习</strong>，尤其是大部分人都是从学习<a href="http://www.ruanyifeng.com/blog/2015/03/react.html">写blog写到阿里的某大牛</a>开始。</p>
+
+<p>而我们，使用的是ES6。</p>
+
+<p><em>注：JavaScript是ECMA-262标准的实现和扩展，我们使用的ES6基于ECMA-262 6th Edition。</em></p>
+
+<h2 id="section-5">太多工具</h2>
+<p>既然要拥抱UNIX哲学，那么就会面临大量工具选择的问题：编辑器、构建、脚手架、规则校验、测试等，都需要进行选择、配置，以便项目组进行开发。</p>
+
+<p><em>虽然我写了一些工具配置使用说明，但不知为何很多人还是使用一个没有安装任何插件的Sublime/Atom进行开发，难道都是记事本写十万行不出bug的大牛？</em></p>
+
+<h2 id="react-3">React设计思想</h2>
+<p>React和相关系列技术的设计思想，是开发人员使用react的最大门槛。</p>
+
+<p>React的willMount-didMount-willReceiveProps-shouldUpdate-willUpdate-didUpdate-willUnmount的生命周期，规范了DOM的更新，同时也提高了学习门槛。开发人员需要了解何时重写生命周期方法，这就要求开发人员对页面可能发生的状态迁移和目标结果有充分了解。事实上，我觉得，开发人员也应该清楚页面的状态迁移和目标结果——至少是大部分的。</p>
+
+<p>同时，react支持多种创建组件的方式：React.createClass、ES6 Classes和stateless functional components（无状态组件）。</p>
+
+<p>应该使用哪个方式？开发人员会面临混乱。</p>
+
+<p>React官方指出应该分为两层：使用无状态组件渲染页面各个部分；使用ES6 Classes保持页面状态；React.createClass是ES5及其之前的东西，请勿使用——恰巧这是目前国内大部分示例使用的方式。</p>
+
+<p>同时目前由于页面不是很复杂所以没有采用的各大状态管理机制，也暂时降低了开发难度。</p>
+
+<p><em>从开发的支持筛选、搜索的商户列表页来看，似乎马上也要使用flux/redux/reflux一类了，蓝瘦，香菇。</em></p>
+
+<h1 id="section-6">总结</h1>
+<p>在项目从2015年底需求研究开始到2016年4月开始一个月开发一个月测试投产上线，再到10月的二期期间，经历了接触react、webpack、ES6、react-router等到利用空档偷偷摸摸重构项目、修改目录结构、修改代码编写范例、利用非工作时间充电等，对这一系列技术有了一定的了解。</p>
+
+<p>总的来说，react的使用和大部分技术一样，在一个团队里，只需要一个技术比较好的人搭建了boilerplate，写了几个sample，其他人依样画葫芦就可以了。而项目质量，从来不是一门语言、一个库或者框架就能决定的。</p>
+
+              <footer>
+                <ul class="stats">
+                
+                  <li><a href="#">react</a></li>
+                
+        <!--
+        <li><a href="#">General</a></li>
+        <li><a href="#" class="icon fa-heart">28</a></li>
+        <li><a href="#" class="icon fa-comment">128</a></li>
+        -->
+                </ul>
+              </footer>
+           </article>
+  					<ul class="actions pagination">
+  					  
+  	  				  <li><a href="/2016/07/31/react-router%E4%BB%8Ehashhistory%E5%88%B0browserhistory.html" class="button big previous">Previous Post</a></li>
+  						
+							
+  						  <li><a href="#" class="disabled button big next">Next Post</a></li>
+  						
+  					</ul>
+					</div>
+
+				<!-- Sidebar -->
+					<section id="sidebar">
+
+						<!-- Intro -->
+						<section id="intro">
+  <a href="http://techctu.github.io/" class="logo"><img src="/images/logo.jpg" alt="" /></a>
+	<header>
+    <h2>Avalon</h2>
+		<p>反正不要钱 多少写一点
+    </p>
+	</header>
+</section>
+
+
+						<!-- Mini Posts -->
+						<section>
+  <div class="mini-posts">
+    
+      <article class="mini-post">
+  	    <header>
+  		    <h3><a href="/2016/10/10/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8react%E4%BD%BF%E7%94%A8react%E6%9C%89%E4%BB%80%E4%B9%88%E5%A5%BD%E5%A4%84.html">为什么使用react/使用react有什么好处？</a></h3>
+		      <time class="published" datetime="2016-10-10">October 10, 2016</time>
+						<!--<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>-->
+			  </header>
+        
+		  </article>
+									<!-- Mini Post -->
+									  <!--
+										<article class="mini-post">
+											<header>
+												<h3><a href="#">Vitae sed condimentum</a></h3>
+												<time class="published" datetime="2015-10-20">October 20, 2015</time>
+												<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>
+											</header>
+											<a href="#" class="image"><img src="/images/pic04.jpg" alt="" /></a>
+										</article>
+									-->
+    
+      <article class="mini-post">
+  	    <header>
+  		    <h3><a href="/2016/07/31/react-router%E4%BB%8Ehashhistory%E5%88%B0browserhistory.html">react-router：从hashHistory到browserHistory</a></h3>
+		      <time class="published" datetime="2016-07-31">July 31, 2016</time>
+						<!--<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>-->
+			  </header>
+        
+		  </article>
+									<!-- Mini Post -->
+									  <!--
+										<article class="mini-post">
+											<header>
+												<h3><a href="#">Vitae sed condimentum</a></h3>
+												<time class="published" datetime="2015-10-20">October 20, 2015</time>
+												<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>
+											</header>
+											<a href="#" class="image"><img src="/images/pic04.jpg" alt="" /></a>
+										</article>
+									-->
+    
+      <article class="mini-post">
+  	    <header>
+  		    <h3><a href="/2016/07/14/%E5%89%8D%E7%AB%AF%E9%87%8D%E6%9E%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%9D%E8%AF%95%E5%90%8E%E6%80%9D%E8%B7%AF%E6%95%B4%E7%90%86.html">前端重构第一次尝试后思路整理</a></h3>
+		      <time class="published" datetime="2016-07-14">July 14, 2016</time>
+						<!--<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>-->
+			  </header>
+        
+		  </article>
+									<!-- Mini Post -->
+									  <!--
+										<article class="mini-post">
+											<header>
+												<h3><a href="#">Vitae sed condimentum</a></h3>
+												<time class="published" datetime="2015-10-20">October 20, 2015</time>
+												<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>
+											</header>
+											<a href="#" class="image"><img src="/images/pic04.jpg" alt="" /></a>
+										</article>
+									-->
+    
+      <article class="mini-post">
+  	    <header>
+  		    <h3><a href="/2016/07/11/%E5%89%8D%E7%AB%AF%E9%87%8D%E6%9E%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%9D%E8%AF%95.html">前端重构第一次尝试</a></h3>
+		      <time class="published" datetime="2016-07-11">July 11, 2016</time>
+						<!--<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>-->
+			  </header>
+        
+		  </article>
+									<!-- Mini Post -->
+									  <!--
+										<article class="mini-post">
+											<header>
+												<h3><a href="#">Vitae sed condimentum</a></h3>
+												<time class="published" datetime="2015-10-20">October 20, 2015</time>
+												<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>
+											</header>
+											<a href="#" class="image"><img src="/images/pic04.jpg" alt="" /></a>
+										</article>
+									-->
+    
+  </div>
+</section>
+
+
+						<!-- Posts List -->
+
+						<!-- About -->
+					  <section class="blurb">
+	<p>抱朴 守拙
+</p>
+</section>
+
+
+						<!-- Footer -->
+						<section id="footer">
+  <ul class="icons">
+		<li><a href="https://github.com/techctu" class="fa-github"><span class="label">GitHub</span></a></li>
+		<li><a href="/feed.xml" class="fa-rss"><span class="label">RSS</span></a></li>
+		<li><a href="mailto:unlitechc@yahoo.com" class="fa-envelope"><span class="label">Email</span></a></li>
+	</ul>
+  <p class="copyright">Copyright &copy; 2015 techctu</p>
+</section>
+
+					</section>
+			</div>
+		<!-- Scripts -->
+		<script src="/js/jquery.min.js"></script>
+<script src="/js/skel.min.js"></script>
+<script src="/js/util.js"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="/js/main.js"></script>
+
+	</body>
+</html>

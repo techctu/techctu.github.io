@@ -6,9 +6,164 @@
 </description>
     <link>http://techctu.github.io//</link>
     <atom:link href="http://techctu.github.io//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 31 Jul 2016 14:28:36 +0800</pubDate>
-    <lastBuildDate>Sun, 31 Jul 2016 14:28:36 +0800</lastBuildDate>
+    <pubDate>Wed, 12 Oct 2016 17:40:56 +0800</pubDate>
+    <lastBuildDate>Wed, 12 Oct 2016 17:40:56 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>为什么使用react/使用react有什么好处？</title>
+        <description>&lt;p&gt;接手前端后，摸着石头过河，采用推荐的新的react框架，踩过不少坑，终于项目平稳上线。随之而来就会有许多人问：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;为什么要使用react？react有什么好处？和jQuery/velocity/bootstrap/AngularJS/Vue.js相比有什么优点？&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;其中我只用过jQuery+velocity，用过一点bootstrap，AngularJS和Vue.js都是道听途说，没有真正接触，不敢妄加评论，只能从自身经历，提供一点浅见。&lt;/p&gt;
+
+&lt;h1 id=&quot;section&quot;&gt;问题的本质&lt;/h1&gt;
+&lt;p&gt;这个问题的应该需求分析一下：
+1. 使用react开发H5页面复杂吗？对新人的学习曲线怎么样？开发是否方便快捷？调试是否方便？
+2. react能解决哪些方面的问题？不能解决哪些方面的问题？还需要什么补充？
+3. 好像没有3了。&lt;/p&gt;
+
+&lt;h1 id=&quot;react&quot;&gt;React和现在使用的相关技术&lt;/h1&gt;
+&lt;p&gt;首先，重申一点，react是一个UI框架，更正确的说法，应该只是提供了构建自己的UI框架的底层库。举个栗子，蚂蚁金服的ant design和啊妹子UI，都可以说是基于react构建的UI框架，包含了大家熟悉的按钮、轮播图、单选按钮组等组件。&lt;/p&gt;
+
+&lt;p&gt;而前端的客户端部分，也是存在MVC，或者流行的MV*结构的。所以，react肯定是需要其他方面技术补充的。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;为什么不直接使用ant design/Amaze UI？&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;我们构建的是面客系统，会有自己的设计风格，而使用ant design或是其他框架，其框架太重，不适合按照我们的特殊需求进行定制。这类框架比较适合内部系统或者是管理系统使用。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;由于React只是一个底层库，所以react需要一些其他的技术来构建SPA（单页面应用），如：依赖管理和打包的webpack、前端路由react-router、状态管理flux/redux/reflux等。&lt;/p&gt;
+
+&lt;p&gt;下面从我的经验介绍一下React及其系列相关技术的优缺点。&lt;/p&gt;
+
+&lt;h1 id=&quot;react-1&quot;&gt;React开发的优点&lt;/h1&gt;
+&lt;p&gt;React的开发其实是一件非常简单的事情。React的开发除了一个由于保留字需要把HTML的 &lt;code&gt;class&lt;/code&gt; 替换成 &lt;code&gt;className&lt;/code&gt;，剩下的就是专注于使用流程和状态来控制页面（JavaScript），以及将状态对应到正确的样式上（JSX）。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;简单，封装&lt;/h2&gt;
+&lt;p&gt;如果使用过jQuery的第三方组件，或者bootstrap等，一旦页面比较复杂，就会碰到重命名、选择器等问题；如果使用过AngularJS，或者一些其他模板引擎，一定会学习这些库特有的一些语法，或是标签，如：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// AngularJS的循环遍历&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ul&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;li&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ngFor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;#hero of heroes&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+    
+  &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/li&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/ul&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;而在react里，你只需要会HTML和JavaScript。什么是jsx？&lt;/p&gt;
+
+&lt;p&gt;这是html：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;style=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;background-color: #fff;&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;这是HTML&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;这是JavaScript（ECMAScript 2015/ES6）：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;SomeClass&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;functionA&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;这是JSX：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;myDivElement&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;className&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;foo&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;ReactDOM&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;myDivElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;example&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 更高级一点，自定义组件&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;MyComponent&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;React&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Component&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 面向对象中眼熟的继承&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// react封装的自定义组件的参数传递方式&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;hello&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// react的组件渲染方法&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;自定义&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;react&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;组件&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/label&amp;gt;&amp;lt;lable&amp;gt;{this.state.hello}&amp;lt;/lable&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/div&amp;gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;hello&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;world&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;myDivElement&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;MyComponent&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 给自定义组件传参&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;ReactDOM&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;myDivElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;example&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;JSX很简单，就是在js中使用HTML标签组成的HTML片段，&lt;strong&gt;没有奇怪的属性，标签，方法&lt;/strong&gt;，&lt;strong&gt;没有奇怪的属性，标签，方法&lt;/strong&gt;，&lt;strong&gt;没有奇怪的属性，标签，方法&lt;/strong&gt;，我喜欢的特性说三遍。&lt;/p&gt;
+
+&lt;p&gt;所以，react的核心思想就是，让开发人员关注业务流程变化导致的状态变化，将状态对应到具体的页面展示上，而对DOM的操作，交给react来进行。这样的方式，非常适用于目前由第三方出静态页面，我们的开发人员来实现最终效果的分工方式。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;强大的开发工具&lt;/h2&gt;
+&lt;p&gt;在Java开发的时候，我们已经习惯了代码高亮、自动补全、语法提示、源码定位、规范检查、压缩混淆打包等功能，react开发自然也是有这一系列工具的，涵盖了Sublime、Atom、VSCode等多种编辑器，还具有在Chrome、Firefox进行调试的插件。&lt;/p&gt;
+
+&lt;p&gt;虽然经常有人吹牛说能用记事本写出千行代码，然而那只是个人能力，总不能要求所有人都具备这种能力，所以有好用的工具为何不用呢？自动化工具的使用，才利于项目的工程化，提高项目组整体的实施水平，极大提高开发效率，甚至一个好的代码高亮主题还能吸引妹子在你身后围观你编码。&lt;/p&gt;
+
+&lt;h2 id=&quot;unix&quot;&gt;UNIX哲学&lt;/h2&gt;
+&lt;p&gt;专注于解决一个问题，小而精，而非大而全。&lt;/p&gt;
+
+&lt;p&gt;尤其是在我们目前使用SpringMVC处理动态请求，使用nginx处理静态请求的架构下；具有自己的UE和UI设计的条件下，那些大而全的现有框架的一些隐蔽的使用条件，如某些库所需的支持等，和按照设计对一些内容进行改造等，非常繁琐不便利。&lt;/p&gt;
+
+&lt;p&gt;React提供了一个完整的UI渲染更新流程，设计了一个组件封装的生命周期。使用react，将DOM操作交给react，能使开发人员专注于业务流程，减少繁琐的DOM操作的开发，降低由于DOM操作导致的bug（在使用jQuery的年代很常见，bootstrap也是，很多以HTML为设计核心的难以封装模板引擎也是）。&lt;/p&gt;
+
+&lt;p&gt;使用小而精的工具，能使我们对手中的项目了若指掌，避免莫名的问题。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;丰富的库支持&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.npmjs.com/search?q=react&quot;&gt;21465 results for ‘react’.&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section-4&quot;&gt;社区和文档支持等&lt;/h2&gt;
+&lt;p&gt;React具有&lt;a href=&quot;https://facebook.github.io/react/docs/getting-started.html&quot;&gt;比较详细的文档&lt;/a&gt;、&lt;a href=&quot;https://facebook.github.io/react/docs/videos.html&quot;&gt;教学视频&lt;/a&gt;和大量的&lt;a href=&quot;https://github.com/facebook/react/wiki/Examples&quot;&gt;示例代码、脚手架&lt;/a&gt;，在&lt;a href=&quot;https://github.com/&quot;&gt;某知名大型国际同性交友网站&lt;/a&gt;上能找到&lt;a href=&quot;https://github.com/search?utf8=%E2%9C%93&amp;amp;q=react&quot;&gt;10W+相关代码&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h1 id=&quot;react-2&quot;&gt;React开发的缺点&lt;/h1&gt;
+&lt;p&gt;大致说完了优点，来说说缺点。&lt;/p&gt;
+
+&lt;h2 id=&quot;javascript&quot;&gt;JavaScript发展快速，导致了混乱&lt;/h2&gt;
+&lt;p&gt;这几年是JavaScript，嗯，ECMAScript发展迅速的一年，前端相关们都各有各的野心，浏览器厂商和标准组织合纵连横，谷歌微软苹果互相掐架，微软Mozilla眉来眼去，两年就从ES5到了ES6眼看着又要马不停蹄奔向ES7了，这就导致目前百度搜索到的react示例大部分使用ES5，一部分使用ES6，少量使用ES7，&lt;strong&gt;不利于初学者学习&lt;/strong&gt;，尤其是大部分人都是从学习&lt;a href=&quot;http://www.ruanyifeng.com/blog/2015/03/react.html&quot;&gt;写blog写到阿里的某大牛&lt;/a&gt;开始。&lt;/p&gt;
+
+&lt;p&gt;而我们，使用的是ES6。&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;注：JavaScript是ECMA-262标准的实现和扩展，我们使用的ES6基于ECMA-262 6th Edition。&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section-5&quot;&gt;太多工具&lt;/h2&gt;
+&lt;p&gt;既然要拥抱UNIX哲学，那么就会面临大量工具选择的问题：编辑器、构建、脚手架、规则校验、测试等，都需要进行选择、配置，以便项目组进行开发。&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;虽然我写了一些工具配置使用说明，但不知为何很多人还是使用一个没有安装任何插件的Sublime/Atom进行开发，难道都是记事本写十万行不出bug的大牛？&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;react-3&quot;&gt;React设计思想&lt;/h2&gt;
+&lt;p&gt;React和相关系列技术的设计思想，是开发人员使用react的最大门槛。&lt;/p&gt;
+
+&lt;p&gt;React的willMount-didMount-willReceiveProps-shouldUpdate-willUpdate-didUpdate-willUnmount的生命周期，规范了DOM的更新，同时也提高了学习门槛。开发人员需要了解何时重写生命周期方法，这就要求开发人员对页面可能发生的状态迁移和目标结果有充分了解。事实上，我觉得，开发人员也应该清楚页面的状态迁移和目标结果——至少是大部分的。&lt;/p&gt;
+
+&lt;p&gt;同时，react支持多种创建组件的方式：React.createClass、ES6 Classes和stateless functional components（无状态组件）。&lt;/p&gt;
+
+&lt;p&gt;应该使用哪个方式？开发人员会面临混乱。&lt;/p&gt;
+
+&lt;p&gt;React官方指出应该分为两层：使用无状态组件渲染页面各个部分；使用ES6 Classes保持页面状态；React.createClass是ES5及其之前的东西，请勿使用——恰巧这是目前国内大部分示例使用的方式。&lt;/p&gt;
+
+&lt;p&gt;同时目前由于页面不是很复杂所以没有采用的各大状态管理机制，也暂时降低了开发难度。&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;从开发的支持筛选、搜索的商户列表页来看，似乎马上也要使用flux/redux/reflux一类了，蓝瘦，香菇。&lt;/em&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;section-6&quot;&gt;总结&lt;/h1&gt;
+&lt;p&gt;在项目从2015年底需求研究开始到2016年4月开始一个月开发一个月测试投产上线，再到10月的二期期间，经历了接触react、webpack、ES6、react-router等到利用空档偷偷摸摸重构项目、修改目录结构、修改代码编写范例、利用非工作时间充电等，对这一系列技术有了一定的了解。&lt;/p&gt;
+
+&lt;p&gt;总的来说，react的使用和大部分技术一样，在一个团队里，只需要一个技术比较好的人搭建了boilerplate，写了几个sample，其他人依样画葫芦就可以了。而项目质量，从来不是一门语言、一个库或者框架就能决定的。&lt;/p&gt;
+</description>
+        <pubDate>Mon, 10 Oct 2016 00:00:00 +0800</pubDate>
+        <link>http://techctu.github.io//2016/10/10/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8react%E4%BD%BF%E7%94%A8react%E6%9C%89%E4%BB%80%E4%B9%88%E5%A5%BD%E5%A4%84.html</link>
+        <guid isPermaLink="true">http://techctu.github.io//2016/10/10/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8react%E4%BD%BF%E7%94%A8react%E6%9C%89%E4%BB%80%E4%B9%88%E5%A5%BD%E5%A4%84.html</guid>
+        
+        <category>react</category>
+        
+        
+      </item>
     
       <item>
         <title>react-router：从hashHistory到browserHistory</title>
@@ -998,62 +1153,6 @@ module.exports = {
         <pubDate>Sun, 08 May 2016 00:00:00 +0800</pubDate>
         <link>http://techctu.github.io//2016/05/08/%E7%AC%AC%E4%B8%80%E6%AC%A1reactjs%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95.html</link>
         <guid isPermaLink="true">http://techctu.github.io//2016/05/08/%E7%AC%AC%E4%B8%80%E6%AC%A1reactjs%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95.html</guid>
-        
-        
-      </item>
-    
-      <item>
-        <title>近期某项目前端开发梳理——无知、未知、摸着石头过河</title>
-        <description>&lt;h1 id=&quot;section&quot;&gt;项目背景&lt;/h1&gt;
-&lt;p&gt;目前大部分传统行业互联网项目都是由于大型互联网公司携用户量，上了新的威胁传统行业的项目，不得不上，本银行项目也不外如是，简称为项目Y吧。项目Y是迫于互联网压力产生的一系列项目群中的一个子项目，说起来很简单，想要实现的功能就是通过加强银行和商户目标用户群的联系来加强银行和商户间的合作关系（项目还没上线，姑且用一种比较晦涩的说法）。&lt;/p&gt;
-
-&lt;h1 id=&quot;section-1&quot;&gt;项目启动&lt;/h1&gt;
-&lt;p&gt;项目启动时一般需要确定的有大体需求、概要设计、需要对接的外系统。分别对应的就是业务、开发、部门合作。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-2&quot;&gt;流程和接口&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;业务和开发：以需求文档为基础，以UE原型为具体交流工具。&lt;/li&gt;
-  &lt;li&gt;对接外系统：行内系统M、行内系统P、行内系统C。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;section-3&quot;&gt;技术架构&lt;/h2&gt;
-&lt;p&gt;前端：ReactJS、动静分离、Spring-MVC以及某不知名移动端APP框架。
-后台业务层：Dubbo、Zookeeper等。&lt;/p&gt;
-
-&lt;h1 id=&quot;section-4&quot;&gt;设计开发&lt;/h1&gt;
-&lt;p&gt;## 业务需求
-由业务部门提出需求，在UE组的帮助下设计原型，然后和开发进行沟通，讨论是否能实现相关业务需求，设置需求的优先级。讨论过程中设计的外部因素也需要和外部业务和技术部门进行沟通。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-5&quot;&gt;技术架构&lt;/h2&gt;
-&lt;p&gt;### 后端service
-分层架构，包括数据层（一堆访问本系统数据库的dao和收发外系统报文的接口程序）、基础服务层（包装dao和一些基础接口的服务层）、业务服务层（和业务逻辑相关的服务，主要为本系统的服务）。业务服务层通过Dubbo对外暴露。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-6&quot;&gt;前端动态资源&lt;/h3&gt;
-&lt;p&gt;使用Spring-MVC来进行动态资源管理，主要处理ajax请求。暂时不适用shiro、session等技术。使用redis来访问所需的外系统数据。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-7&quot;&gt;前端静态资源&lt;/h3&gt;
-&lt;p&gt;使用ReactJS和相关技术来开发前端UI，暂时没有使用redux等技术方案。ReactJS网页嵌入外部系统的APP客户端中。&lt;/p&gt;
-
-&lt;h1 id=&quot;section-8&quot;&gt;坑&lt;/h1&gt;
-&lt;p&gt;## UE原型由业务绘制
-- 业务人员的主要工作并不是绘制UE原型，学习Axure需要一段时间。
-- 业务人员的日常工作是处理大体的、非具象、需要多方沟通的事务，或是有既定规章可循的常规事务，而不是设计和确认新事物流程细节，更不是设计用户体验。
-- 时间紧迫的情况下，不论什么理由，还是由专业的人做专门的事情，效率比较高。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-9&quot;&gt;未知的技术难度&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;工期紧迫，却因为技术研究小组的推荐放弃了熟悉的基于JQuery前端技术方案，采用更新更适合移动端但学习成本较高的ReactJS。而且由于一些如需要支持优先级更高的事项或是人事变动等原因，技术研究小组的支持力度并不足以支撑开发小组使用新技术。&lt;/li&gt;
-  &lt;li&gt;开发小组组员技术实力参差不齐。大部分研究、示例、实践都表明，增加人员并不一定会提升开发效率，尤其是新增人员本身能力跟不上开发进度时，沟通、指导、修正等成本大大增加。同时，技术实力较强的人员由于这些事务的打断，切换工作状态花费了更多的时间。&lt;/li&gt;
-  &lt;li&gt;较多的正在升级更新的外接系统。如果外接系统稳定，且剧本稳定的可控的测试条件，这部分只是一个比较耗时的工作，难度不是特别大；但在外系统整体需要升级，测试环境不稳定的情况下进行系统对接，对接复杂度直接就变成了f(n) = t^n。而且每个系统都有自己的升级更新打包时间，测试账号可能对多个对接系统提供，系统升级时测试环境可能不同步等，每个系统的协调时间可能需要十分钟到半个小时不等，极大降低开发效率。&lt;em&gt;一个购买选卡支付的流程两周没有走通&lt;/em&gt;。&lt;/li&gt;
-  &lt;li&gt;额外的设计和开发。如为了验证开发结果，需要绕过外接系统进行验证，同时还有对相关数据的维护，以及区分目标生产系统代码和解决环境问题（如业务测试环境、压力测试环境）等产生的额外代码。&lt;/li&gt;
-  &lt;li&gt;传统适配问题。在使用ReactJS且嵌入使用了由于众所周知的原因采用的应用范围极窄的未知框架开发的APP的情况的，适配问题的解决成为了需要众多环节合作的一个流程很长的问题。&lt;/li&gt;
-  &lt;li&gt;ReactJS和其他传统技术合作的问题。比如，难以向UI和静态页面制作方描述清楚需求说明和规格要求；对于一般人员学习成本较高。&lt;/li&gt;
-  &lt;li&gt;传统的设计模式和新的动静分离模式带来的变化，以及前端组件化带来的一系列前端程序设计和优化问题，如代码包结构、压缩、各个环境的资源替换等。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Sat, 23 Apr 2016 00:00:00 +0800</pubDate>
-        <link>http://techctu.github.io//2016/04/23/%E8%BF%91%E6%9C%9F%E6%9F%90%E9%A1%B9%E7%9B%AE%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E6%A2%B3%E7%90%86%E6%97%A0%E7%9F%A5%E6%9C%AA%E7%9F%A5%E6%91%B8%E7%9D%80%E7%9F%B3%E5%A4%B4%E8%BF%87%E6%B2%B3.html</link>
-        <guid isPermaLink="true">http://techctu.github.io//2016/04/23/%E8%BF%91%E6%9C%9F%E6%9F%90%E9%A1%B9%E7%9B%AE%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E6%A2%B3%E7%90%86%E6%97%A0%E7%9F%A5%E6%9C%AA%E7%9F%A5%E6%91%B8%E7%9D%80%E7%9F%B3%E5%A4%B4%E8%BF%87%E6%B2%B3.html</guid>
         
         
       </item>
