@@ -6,8 +6,8 @@
 </description>
     <link>http://techctu.github.io//</link>
     <atom:link href="http://techctu.github.io//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 12 Oct 2016 17:40:56 +0800</pubDate>
-    <lastBuildDate>Wed, 12 Oct 2016 17:40:56 +0800</lastBuildDate>
+    <pubDate>Wed, 12 Oct 2016 17:42:52 +0800</pubDate>
+    <lastBuildDate>Wed, 12 Oct 2016 17:42:52 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -21,10 +21,13 @@
 &lt;p&gt;其中我只用过jQuery+velocity，用过一点bootstrap，AngularJS和Vue.js都是道听途说，没有真正接触，不敢妄加评论，只能从自身经历，提供一点浅见。&lt;/p&gt;
 
 &lt;h1 id=&quot;section&quot;&gt;问题的本质&lt;/h1&gt;
-&lt;p&gt;这个问题的应该需求分析一下：
-1. 使用react开发H5页面复杂吗？对新人的学习曲线怎么样？开发是否方便快捷？调试是否方便？
-2. react能解决哪些方面的问题？不能解决哪些方面的问题？还需要什么补充？
-3. 好像没有3了。&lt;/p&gt;
+&lt;p&gt;这个问题的应该需求分析一下：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;使用react开发H5页面复杂吗？对新人的学习曲线怎么样？开发是否方便快捷？调试是否方便？&lt;/li&gt;
+  &lt;li&gt;react能解决哪些方面的问题？不能解决哪些方面的问题？还需要什么补充？&lt;/li&gt;
+  &lt;li&gt;好像没有3了。&lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;h1 id=&quot;react&quot;&gt;React和现在使用的相关技术&lt;/h1&gt;
 &lt;p&gt;首先，重申一点，react是一个UI框架，更正确的说法，应该只是提供了构建自己的UI框架的底层库。举个栗子，蚂蚁金服的ant design和啊妹子UI，都可以说是基于react构建的UI框架，包含了大家熟悉的按钮、轮播图、单选按钮组等组件。&lt;/p&gt;
