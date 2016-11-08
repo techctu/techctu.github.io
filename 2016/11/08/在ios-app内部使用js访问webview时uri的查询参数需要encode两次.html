@@ -90,11 +90,11 @@
             <article class="post">
               <header>
                 <div class="title">
-                  <h2><a href="/2016/07/31/react-router%E4%BB%8Ehashhistory%E5%88%B0browserhistory.html">react-router：从hashHistory到browserHistory</a></h2>
+                  <h2><a href="/2016/11/08/%E5%9C%A8ios-app%E5%86%85%E9%83%A8%E4%BD%BF%E7%94%A8js%E8%AE%BF%E9%97%AEwebview%E6%97%B6uri%E7%9A%84%E6%9F%A5%E8%AF%A2%E5%8F%82%E6%95%B0%E9%9C%80%E8%A6%81encode%E4%B8%A4%E6%AC%A1.html">在iOS APP内部使用JS访问webview时uri的查询参数需要encode两次</a></h2>
                 <!-- <p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p> -->
                 </div>
                 <div class="meta">
-                  <time class="published" datetime="2016-07-31">July 31, 2016</time>
+                  <time class="published" datetime="2016-11-08">November 08, 2016</time>
                   
 
         <!--
@@ -103,70 +103,33 @@
                 </div>
               </header>
               
-              <p>项目开始使用react-router时由于工期原因，使用了hashHistory，在url末尾会形成<code>/#/user/haishanh?_k=adseis</code>中<code>_k=adseis</code>的query字符串。这在浏览器中打开时会让用户感到迷惑。</p>
+              <h1 id="section">背景</h1>
+<p>最近在使用开发运行于第三方APP内的SPA时，需要打开浏览器访问百度地图。APP提供了一个 <code>[prefix-to-open-browser]/[url-to-visit]</code> 的格式，可以在webview内使用 <code>window.location.href = '[prefix-to-open-browser]/[url-to-visit]'</code> 的方法来打开浏览器。</p>
 
-<h1 id="hashhistoryquerykey">hashHistory和queryKey</h1>
-<p>在一些旧的浏览器中，不支持H5提供的新的接口如pushState，则使用了该方法生成key来读写window.sessionStorage的内容，实现页面跳转和回退时保持页面状态的功能，如类似新浪微博列表页请求了几次更多微博，进入详情页面后返回到列表页之前获取的微博仍然在里面无需重复之前的请求；又或者一个流程多个复杂表格填写，在前进、后退过程中保持之前填写的内容。</p>
+<h1 id="section-1">问题</h1>
+<p>使用 <code>[prefix-to-open-browser]/https://www.baidu.com</code> 时没有问题，但uri中包含中文参数时，使用 <code>encodeURI([uri])</code> 无法打开浏览器。</p>
 
-<p>在<a href="http://react-china.org/t/react-router-hashhistory-browserhistory/6799/4">【react-router】hashhistory 与 browserhistory有什么区别</a>中有简单设置以去掉<code>_k=abc123</code>。</p>
+<h1 id="section-2">跟踪</h1>
+<p>在浏览器中进行测试，<code>encodeURI</code> 确实能将uri中的字符串进行编码：</p>
 
-<pre><code class="language-js">import { createHashHistory } from 'history';
+<pre><code>encodeURI之前：https://www.baidu.com/s?wd=编码
 
-const appHistory = useRouterHistory(createHashHistory)({ queryKey: false });
-
-ReactDOM.render(
-  &lt;Router history={appHistory}&gt;
-    {routes}
-  &lt;/Router&gt;,
-  document.getElementById('app')
-);
+encodeURI之后：https://www.baidu.com/s?wd=%E7%BC%96%E7%A0%81
 </code></pre>
 
-<p>问题：无法使用state保持页面状态，无法使用state来渲染链接对应页面，如</p>
+<p>而在APP内部获取到的却是 <code>https://www.baidu.com/s?wd=编码</code>，导致APP无法打开浏览器。</p>
 
-<pre><code class="language-js">const path = {
-  pathname: 'business/BaiduSearch/update',
-  state: { id: record.id } 
-}
-&lt;Link to={path}&gt;修改&lt;/Link&gt;
-</code></pre>
-
-<h1 id="browserhistory">使用browserHistory</h1>
-<p>在一些框架、库提供的糖面前，我倾向于不使用改变更广泛的标准的做法。如上面通过使用hashHistory和queryKey来获取state来渲染页面的方法，我更倾向于使用<code>http://example.com/the/path?the=query&amp;id=recordId</code>的方式获取相关信息渲染页面，这样在分享链接时也更为方便。</p>
-
-<h2 id="browserhistory-1">创建browserHistory</h2>
-<p>本来可以直接使用<code>react-router</code>提供的<code>browserHistory</code>，但考虑到该项目对应的域名为<code>xxx.xxx.com/xx</code>，而且本地开发环境使用localhost:port访问，所以引入<a href="https://www.npmjs.com/package/history">history</a>。</p>
-
-<pre><code class="language-js">import {createHistory} from 'history'
-import {
-  Router,
-  Route,
-  useRouterHistory
-}
-const browserHistory = useRouterHistory(createHistory)({basename: process.env.NODE_ENV === 'production'? '/xx': ''})
-const routes = (
-  &lt;Router history={browserHistory}&gt;
-  ...
-  &lt;/Router&gt;
-)
-</code></pre>
-
-<p>同时，需要修改对应的web容器配置，使其知道/xx/下的所有uri路由到单页面应用。目前使用的nginx。</p>
-
-<pre><code>location /xx/ {
-    try_files $uri /xx/index.html;
-}
-</code></pre>
-
-<h2 id="state">state</h2>
-<p>目前state的作用主要是提供了保持页面状态的功能，包括相关的存取功能。这部分功能可以使用很多方式实现，如history的location.state，cookie，甚至是引入redux等。</p>
+<h1 id="section-3">解决</h1>
+<p>最后在浏览器中发现，<strong>encodeURI之后，在浏览器中访问时，会自动decodeURI一次</strong>。在使用两次encodeURI之后，就解决了这个问题。</p>
 
               <footer>
                 <ul class="stats">
                 
-                  <li><a href="#">react-router</a></li>
+                  <li><a href="#">iOS</a></li>
                 
-                  <li><a href="#">react</a></li>
+                  <li><a href="#">webview</a></li>
+                
+                  <li><a href="#">javascript</a></li>
                 
         <!--
         <li><a href="#">General</a></li>
@@ -178,10 +141,10 @@ const routes = (
            </article>
   					<ul class="actions pagination">
   					  
-  	  				  <li><a href="/2016/07/14/%E5%89%8D%E7%AB%AF%E9%87%8D%E6%9E%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%9D%E8%AF%95%E5%90%8E%E6%80%9D%E8%B7%AF%E6%95%B4%E7%90%86.html" class="button big previous">Previous Post</a></li>
+  	  				  <li><a href="/2016/10/10/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8react%E4%BD%BF%E7%94%A8react%E6%9C%89%E4%BB%80%E4%B9%88%E5%A5%BD%E5%A4%84.html" class="button big previous">Previous Post</a></li>
   						
 							
-  						  <li><a href="/2016/10/10/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8react%E4%BD%BF%E7%94%A8react%E6%9C%89%E4%BB%80%E4%B9%88%E5%A5%BD%E5%A4%84.html" class="button big next">Next Post</a></li>
+  						  <li><a href="#" class="disabled button big next">Next Post</a></li>
   						
   					</ul>
 					</div>

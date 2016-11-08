@@ -6,9 +6,51 @@
 </description>
     <link>http://techctu.github.io//</link>
     <atom:link href="http://techctu.github.io//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 12 Oct 2016 17:42:52 +0800</pubDate>
-    <lastBuildDate>Wed, 12 Oct 2016 17:42:52 +0800</lastBuildDate>
+    <pubDate>Tue, 08 Nov 2016 10:25:14 +0800</pubDate>
+    <lastBuildDate>Tue, 08 Nov 2016 10:25:14 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>在iOS APP内部使用JS访问webview时uri的查询参数需要encode两次</title>
+        <description>&lt;h1 id=&quot;section&quot;&gt;背景&lt;/h1&gt;
+&lt;p&gt;最近在使用开发运行于第三方APP内的SPA时，需要打开浏览器访问百度地图。APP提供了一个 &lt;code&gt;[prefix-to-open-browser]/[url-to-visit]&lt;/code&gt; 的格式，可以在webview内使用 &lt;code&gt;window.location.href = &#39;[prefix-to-open-browser]/[url-to-visit]&#39;&lt;/code&gt; 的方法来打开浏览器。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-1&quot;&gt;问题&lt;/h1&gt;
+&lt;p&gt;使用 &lt;code&gt;[prefix-to-open-browser]/https://www.baidu.com&lt;/code&gt; 时没有问题，但uri中包含中文参数时，使用 &lt;code&gt;encodeURI([uri])&lt;/code&gt; 无法打开浏览器。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-2&quot;&gt;跟踪&lt;/h1&gt;
+&lt;p&gt;在浏览器中进行测试，&lt;code&gt;encodeURI&lt;/code&gt; 确实能将uri中的字符串进行编码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;encodeURI之前：https://www.baidu.com/s?wd=编码
+
+encodeURI之后：https://www.baidu.com/s?wd=%E7%BC%96%E7%A0%81
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;而在APP内部获取到的却是 &lt;code&gt;https://www.baidu.com/s?wd=编码&lt;/code&gt;，导致APP无法打开浏览器。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-3&quot;&gt;解决&lt;/h1&gt;
+&lt;p&gt;最后在浏览器中发现，&lt;strong&gt;encodeURI之后，在浏览器中访问时，会自动decodeURI一次&lt;/strong&gt;。在使用两次encodeURI之后，就解决了这个问题。&lt;/p&gt;
+</description>
+        <pubDate>Tue, 08 Nov 2016 00:00:00 +0800</pubDate>
+        <link>http://techctu.github.io//2016/11/08/%E5%9C%A8ios-app%E5%86%85%E9%83%A8%E4%BD%BF%E7%94%A8js%E8%AE%BF%E9%97%AEwebview%E6%97%B6uri%E7%9A%84%E6%9F%A5%E8%AF%A2%E5%8F%82%E6%95%B0%E9%9C%80%E8%A6%81encode%E4%B8%A4%E6%AC%A1.html</link>
+        <guid isPermaLink="true">http://techctu.github.io//2016/11/08/%E5%9C%A8ios-app%E5%86%85%E9%83%A8%E4%BD%BF%E7%94%A8js%E8%AE%BF%E9%97%AEwebview%E6%97%B6uri%E7%9A%84%E6%9F%A5%E8%AF%A2%E5%8F%82%E6%95%B0%E9%9C%80%E8%A6%81encode%E4%B8%A4%E6%AC%A1.html</guid>
+        
+        <category>iOS</category>
+        
+        <category>webview</category>
+        
+        <category>javascript</category>
+        
+        <category>js</category>
+        
+        <category>uri</category>
+        
+        <category>encode</category>
+        
+        <category>encodeURI</category>
+        
+        
+      </item>
     
       <item>
         <title>为什么使用react/使用react有什么好处？</title>
@@ -154,7 +196,10 @@
 
 &lt;p&gt;&lt;em&gt;从开发的支持筛选、搜索的商户列表页来看，似乎马上也要使用flux/redux/reflux一类了，蓝瘦，香菇。&lt;/em&gt;&lt;/p&gt;
 
-&lt;h1 id=&quot;section-6&quot;&gt;总结&lt;/h1&gt;
+&lt;h2 id=&quot;section-6&quot;&gt;语言障碍&lt;/h2&gt;
+&lt;p&gt;目前国内大部分示例停留在ES5，已过期，需要翻墙去寻找示例。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-7&quot;&gt;总结&lt;/h1&gt;
 &lt;p&gt;在项目从2015年底需求研究开始到2016年4月开始一个月开发一个月测试投产上线，再到10月的二期期间，经历了接触react、webpack、ES6、react-router等到利用空档偷偷摸摸重构项目、修改目录结构、修改代码编写范例、利用非工作时间充电等，对这一系列技术有了一定的了解。&lt;/p&gt;
 
 &lt;p&gt;总的来说，react的使用和大部分技术一样，在一个团队里，只需要一个技术比较好的人搭建了boilerplate，写了几个sample，其他人依样画葫芦就可以了。而项目质量，从来不是一门语言、一个库或者框架就能决定的。&lt;/p&gt;
@@ -1134,28 +1179,6 @@ module.exports = {
         <pubDate>Thu, 19 May 2016 00:00:00 +0800</pubDate>
         <link>http://techctu.github.io//2016/05/19/hybird%E6%A8%A1%E5%BC%8F%E4%B8%8Bwebview%E4%B8%AD%E7%9A%84%E7%89%A9%E7%90%86%E8%BF%94%E5%9B%9E%E9%94%AE%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95.html</link>
         <guid isPermaLink="true">http://techctu.github.io//2016/05/19/hybird%E6%A8%A1%E5%BC%8F%E4%B8%8Bwebview%E4%B8%AD%E7%9A%84%E7%89%A9%E7%90%86%E8%BF%94%E5%9B%9E%E9%94%AE%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95.html</guid>
-        
-        
-      </item>
-    
-      <item>
-        <title>第一次ReactJS前端开发记录</title>
-        <description>&lt;p&gt;&lt;code&gt;这是一个坑&lt;/code&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;ui&quot;&gt;从UI和静态页面到组件&lt;/h1&gt;
-&lt;p&gt;ReactJS结构和普遍的前端web技术非常不一样。从流程上来说，一个页面的更新，是跟业务相关的：从后台取到初始化数据，进行业务流程的判断，然后将数据加工处理到页面上。而当前很多专门做前端的公司，并不注重技术更新，用的还是JQuery速成培训那一套；同时第一次采用ReactJS并没有设计前端静态页面要求的经验，导致合作起来问题比较多。同时，很多问题在测试时才暴露出来。而且，很多也不够&lt;a href=&quot;http://www.tuicool.com/articles/vuYjUfM&quot;&gt;语义化&lt;/a&gt;。&lt;/p&gt;
-
-&lt;h2 id=&quot;tips&quot;&gt;TIPS&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://blog.csdn.net/yisuowushinian/article/details/50404450&quot;&gt;H5 CSS设置&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.tuicool.com/articles/vuYjUfM&quot;&gt;语义化&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://aseoe.baijia.baidu.com/article/169270&quot;&gt;组件化&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://isux.tencent.com/h5-performance.html&quot;&gt;性能优化&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Sun, 08 May 2016 00:00:00 +0800</pubDate>
-        <link>http://techctu.github.io//2016/05/08/%E7%AC%AC%E4%B8%80%E6%AC%A1reactjs%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95.html</link>
-        <guid isPermaLink="true">http://techctu.github.io//2016/05/08/%E7%AC%AC%E4%B8%80%E6%AC%A1reactjs%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95.html</guid>
         
         
       </item>

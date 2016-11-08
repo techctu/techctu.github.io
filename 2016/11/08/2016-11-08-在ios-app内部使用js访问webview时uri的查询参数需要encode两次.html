@@ -1,0 +1,18 @@
+<h1 id="section">背景</h1>
+<p>最近在使用开发运行于第三方APP内的SPA时，需要打开浏览器访问百度地图。APP提供了一个 <code>[prefix-to-open-browser]/[url-to-visit]</code> 的格式，可以在webview内使用 <code>window.location.href = '[prefix-to-open-browser]/[url-to-visit]'</code> 的方法来打开浏览器。</p>
+
+<h1 id="section-1">问题</h1>
+<p>使用 <code>[prefix-to-open-browser]/https://www.baidu.com</code> 时没有问题，但uri中包含中文参数时，使用 <code>encodeURI([uri])</code> 无法打开浏览器。</p>
+
+<h1 id="section-2">跟踪</h1>
+<p>在浏览器中进行测试，<code>encodeURI</code> 确实能将uri中的字符串进行编码：</p>
+
+<pre><code>encodeURI之前：https://www.baidu.com/s?wd=编码
+
+encodeURI之后：https://www.baidu.com/s?wd=%E7%BC%96%E7%A0%81
+</code></pre>
+
+<p>而在APP内部获取到的却是 <code>https://www.baidu.com/s?wd=编码</code>，导致APP无法打开浏览器。</p>
+
+<h1 id="section-3">解决</h1>
+<p>最后在浏览器中发现，<strong>encodeURI之后，在浏览器中访问时，会自动decodeURI一次</strong>。在使用两次encodeURI之后，就解决了这个问题。</p>
