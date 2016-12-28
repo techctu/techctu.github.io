@@ -87,64 +87,94 @@
 					<div id="main">
 
 						<!-- Post -->
-            <article class="post">
-              <header>
-                <div class="title">
-                  <h2><a href="/2016/11/08/%E5%9C%A8ios-app%E5%86%85%E9%83%A8%E4%BD%BF%E7%94%A8js%E8%AE%BF%E9%97%AEwebview%E6%97%B6uri%E7%9A%84%E6%9F%A5%E8%AF%A2%E5%8F%82%E6%95%B0%E9%9C%80%E8%A6%81encode%E4%B8%A4%E6%AC%A1.html">在iOS APP内部使用JS访问webview时uri的查询参数需要encode两次</a></h2>
-                <!-- <p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p> -->
-                </div>
-                <div class="meta">
-                  <time class="published" datetime="2016-11-08">November 08, 2016</time>
-                  
-
+			      
+  <article class="post">
+    <header>
+      <div class="title">
+        <h2><a href="/maven/2015/12/06/Maven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95-%E4%B8%80-maven%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE.html">Maven使用记录（一）——maven的安装和基础配置</a></h2>
+        <!-- <p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p> -->
+      </div>
+      <div class="meta">
+        <time class="published" datetime="2015-12-06">December 06, 2015</time>
+        
+          <a href="#">maven</a>
+        
         <!--
         <a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>
         -->
-                </div>
-              </header>
-              
-              <h1 id="section">背景</h1>
-<p>最近在使用开发运行于第三方APP内的SPA时，需要打开浏览器访问百度地图。APP提供了一个 <code>[prefix-to-open-browser]/[url-to-visit]</code> 的格式，可以在webview内使用 <code>window.location.href = '[prefix-to-open-browser]/[url-to-visit]'</code> 的方法来打开浏览器。</p>
+      </div>
+    </header>
+    
+    <p>Maven是一款非常好用的项目管理软件，主要用于项目构建，依赖管理等，简介出门右转参见<a href="http://baike.baidu.com/link?url=Y3LqFKxw2f3uLhfNeAfLscCNtqwhFxjzSKpu9_FCx1YKh2FhzyFSvn-0vT5XCIQf9AJX_R9cL9ztDlPgr0RnXK">百度百科</a>，亦或去<a href="http://maven.apache.org">官方网站</a>。
+# 使用和配置
+这里主要介绍windows下maven的使用和配置。</p>
 
-<h1 id="section-1">问题</h1>
-<p>使用 <code>[prefix-to-open-browser]/https://www.baidu.com</code> 时没有问题，但uri中包含中文参数时，使用 <code>encodeURI([uri])</code> 无法打开浏览器。</p>
 
-<h1 id="section-2">跟踪</h1>
-<p>在浏览器中进行测试，<code>encodeURI</code> 确实能将uri中的字符串进行编码：</p>
-
-<pre><code>encodeURI之前：https://www.baidu.com/s?wd=编码
-
-encodeURI之后：https://www.baidu.com/s?wd=%E7%BC%96%E7%A0%81
-</code></pre>
-
-<p>而在APP内部获取到的却是 <code>https://www.baidu.com/s?wd=编码</code>，导致APP无法打开浏览器。</p>
-
-<h1 id="section-3">解决</h1>
-<p>最后在浏览器中发现，<strong>encodeURI之后，在浏览器中访问时，会自动decodeURI一次</strong>。在使用两次encodeURI之后，就解决了这个问题。</p>
-
-              <footer>
-                <ul class="stats">
-                
-                  <li><a href="#">iOS</a></li>
-                
-                  <li><a href="#">webview</a></li>
-                
-                  <li><a href="#">javascript</a></li>
-                
+    <footer>
+      <ul class="actions">
+        <li><a href="/maven/2015/12/06/Maven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95-%E4%B8%80-maven%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE.html" class="button big">Continue Reading</a></li>
+      </ul>
+      <ul class="stats">
+        
+          <li><a href="#">maven</a></li>
+        
         <!--
         <li><a href="#">General</a></li>
         <li><a href="#" class="icon fa-heart">28</a></li>
         <li><a href="#" class="icon fa-comment">128</a></li>
         -->
-                </ul>
-              </footer>
-           </article>
+      </ul>
+    </footer>
+  </article>
+
+  <article class="post">
+    <header>
+      <div class="title">
+        <h2><a href="/%E6%9D%82%E9%A1%B9/2015/12/05/%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8jekyll.html">开始使用Jekyll</a></h2>
+        <!-- <p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p> -->
+      </div>
+      <div class="meta">
+        <time class="published" datetime="2015-12-05">December 05, 2015</time>
+        
+          <a href="#">杂项</a>
+        
+        <!--
+        <a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>
+        -->
+      </div>
+    </header>
+    
+    <h1 id="section">缘起</h1>
+<p>主要是最近喜欢用Markdown，听说GitHub Pages能当主机用，还能挂域名，就换着试试。</p>
+
+
+    <footer>
+      <ul class="actions">
+        <li><a href="/%E6%9D%82%E9%A1%B9/2015/12/05/%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8jekyll.html" class="button big">Continue Reading</a></li>
+      </ul>
+      <ul class="stats">
+        
+          <li><a href="#">jekyll</a></li>
+        
+          <li><a href="#">others</a></li>
+        
+        <!--
+        <li><a href="#">General</a></li>
+        <li><a href="#" class="icon fa-heart">28</a></li>
+        <li><a href="#" class="icon fa-comment">128</a></li>
+        -->
+      </ul>
+    </footer>
+  </article>
+
+
   					<ul class="actions pagination">
   					  
-  	  				  <li><a href="/2016/10/10/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8react%E4%BD%BF%E7%94%A8react%E6%9C%89%E4%BB%80%E4%B9%88%E5%A5%BD%E5%A4%84.html" class="button big previous">Previous Post</a></li>
+  	  				  <li><a href="/page7" class="button big previous">Previous Page</a></li>
   						
+  							<li>8 / 8</li>
 							
-  						  <li><a href="/2016/12/07/x-www-form-urlencoded%E5%92%8Cjson.html" class="button big next">Next Post</a></li>
+  						  <li><a href="#" class="disabled button big next">Next Page</a></li>
   						
   					</ul>
 					</div>
