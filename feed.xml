@@ -6,9 +6,109 @@
 </description>
     <link>http://techctu.github.io//</link>
     <atom:link href="http://techctu.github.io//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 28 Dec 2016 20:04:54 +0800</pubDate>
-    <lastBuildDate>Wed, 28 Dec 2016 20:04:54 +0800</lastBuildDate>
+    <pubDate>Tue, 10 Jan 2017 10:53:50 +0800</pubDate>
+    <lastBuildDate>Tue, 10 Jan 2017 10:53:50 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>在Babel6中使用ES7 Decorator</title>
+        <description>&lt;p&gt;在做下拉的时候搜寻到的&lt;a href=&quot;http://technologyadvice.github.io/es7-decorators-babel6/&quot;&gt;资料&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h1 id=&quot;decorator&quot;&gt;增加decorator支持&lt;/h1&gt;
+&lt;p&gt;&lt;em&gt;假设你已经安装过 &lt;code&gt;babel-preset-2015&lt;/code&gt; 和 &lt;code&gt;babel-preset-react&lt;/code&gt; 等，并配置完毕。&lt;/em&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;npm install --save-dev babel-plugin-transform-decorators-legacy
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后在 &lt;code&gt;.babelrc&lt;/code&gt; 中添加：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &quot;plugins&quot;: [&quot;transform-decorators-legacy&quot;]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;或者在webpack配置文件中：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;module: {
+  loaders: [
+    {
+      test: /\.js$/,
+      exclude: /node_modules\/(?!(stardust))/,
+      loader: &#39;babel&#39;,
+      query: {
+        plugins: [
+          &#39;transform-decorators-legacy&#39;,
+        ]
+      },
+    }
+  ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&quot;section&quot;&gt;使用方式&lt;/h1&gt;
+&lt;p&gt;在我项目代码中使用了&lt;a href=&quot;https://github.com/gajus/react-css-modules&quot;&gt;react-css-modules&lt;/a&gt;。原来是这样的：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;import CSSModules from &#39;react-css-modules&#39;;
+import styles from &#39;app.css&#39;;
+import {Component} from &#39;react&#39;
+
+class A extends Component {
+
+}
+
+export default CSSModules(A, styles, {allowMultiple: true});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;使用之后是这样的：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;import CSSModules from &#39;react-css-modules&#39;;
+import styles from &#39;app.css&#39;;
+import {Component} from &#39;react&#39;
+
+@CSSModules(styles, {allowMultiple: true})
+class A extends Component {
+
+}
+
+export default A;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&quot;section-1&quot;&gt;总结&lt;/h1&gt;
+&lt;p&gt;为什么要用decorator？在实现下拉的时候，我就在想，如果能在实现一个动画效果后，能应用到任意组件上就好了，所以才找到了decorator。&lt;/p&gt;
+
+&lt;p&gt;参考：&lt;/p&gt;
+
+&lt;p&gt;-&lt;a href=&quot;http://jamesknelson.com/structuring-react-applications-higher-order-components/&quot;&gt;Structuring React Applications: Higher-Order Components&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;-&lt;a href=&quot;https://medium.com/@cheapsteak/reusing-reacttransitiongroup-animations-with-higher-order-components-1e7043451f91#.61d51t159&quot;&gt;Reusing ReactTransitionGroup animations with Higher-order Components&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Tue, 10 Jan 2017 00:00:00 +0800</pubDate>
+        <link>http://techctu.github.io//2017/01/10/%E5%9C%A8babel6%E4%B8%AD%E4%BD%BF%E7%94%A8es7-decorator.html</link>
+        <guid isPermaLink="true">http://techctu.github.io//2017/01/10/%E5%9C%A8babel6%E4%B8%AD%E4%BD%BF%E7%94%A8es7-decorator.html</guid>
+        
+        <category>babel</category>
+        
+        <category>decorator</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>记一次react下拉刷新上拉加载更多的实现</title>
+        <description>
+</description>
+        <pubDate>Wed, 04 Jan 2017 00:00:00 +0800</pubDate>
+        <link>http://techctu.github.io//2017/01/04/%E8%AE%B0%E4%B8%80%E6%AC%A1react%E4%B8%8B%E6%8B%89%E5%88%B7%E6%96%B0%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E6%9B%B4%E5%A4%9A%E7%9A%84%E5%AE%9E%E7%8E%B0.html</link>
+        <guid isPermaLink="true">http://techctu.github.io//2017/01/04/%E8%AE%B0%E4%B8%80%E6%AC%A1react%E4%B8%8B%E6%8B%89%E5%88%B7%E6%96%B0%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E6%9B%B4%E5%A4%9A%E7%9A%84%E5%AE%9E%E7%8E%B0.html</guid>
+        
+        <category>react</category>
+        
+        <category>pull to refresh</category>
+        
+        <category>push to load more</category>
+        
+        
+      </item>
     
       <item>
         <title>2016年年终总结</title>
@@ -110,7 +210,10 @@
 &lt;h3 id=&quot;app-1&quot;&gt;抽取第三方APP相关的接口代码&lt;/h3&gt;
 &lt;p&gt;将路由、登录、支付代码从页面代码和内部公共代码部分抽离，以备后期代码复用时配置化管理。&lt;/p&gt;
 
-&lt;h1 id=&quot;section-8&quot;&gt;团队建设&lt;/h1&gt;
+&lt;h3 id=&quot;section-8&quot;&gt;部署配置纳入管理&lt;/h3&gt;
+&lt;p&gt;最近投产发生了替换静态资源后大面积出现404的问题，原因是之前应该投产的配置文件修改由于种种原因没有投产，导致出错。现将配置文件纳入管理。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-9&quot;&gt;团队建设&lt;/h1&gt;
 &lt;p&gt;严格来说，技术团队的建设谈不上特别复杂，相对来说比较单纯——你技术强大家就会听你的。只不过在我们的开发中技术团队的构成比较复杂一点：&lt;/p&gt;
 
 &lt;ul&gt;
@@ -696,194 +799,6 @@ module.exports = {
         
         <category>esformat</category>
         
-        
-      </item>
-    
-      <item>
-        <title>内网配置SublimeLinter和SublimeLinter-contrib-eslint来检查es6 react代码</title>
-        <description>&lt;p&gt;最近一直在做前端技术积累相关方面的事情，其中一项就是要起草一个前端规范。我觉得一切只要求人自觉做到而不提供规范化工具的规范都是耍流氓。参考现在项目使用的为react和es6，以及sublime，我找到了几个有用的东西：
-- &lt;a href=&quot;http://eslint.org/&quot;&gt;eslint&lt;/a&gt;
-- &lt;a href=&quot;https://github.com/yannickcr/eslint-plugin-react&quot;&gt;eslint-plugin-react&lt;/a&gt;
-- &lt;a href=&quot;https://github.com/benmosher/eslint-plugin-import&quot;&gt;eslint-plugin-import&lt;/a&gt;
-- &lt;a href=&quot;http://sublimelinter.readthedocs.io/&quot;&gt;SublimeLinter&lt;/a&gt;
-- &lt;a href=&quot;https://github.com/roadhump/SublimeLinter-eslint&quot;&gt;SublimeLinter-eslint&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;他们的关系是：
-1. eslint检查代码是否符合规范，使用eslint-plugin-react和eslint-plugin-import来检查es6 react语法。eslint已经支持es6，不需要使用babel-eslint。
-2. SublimeLinter是连接SublimeLinter-xlint的框架型sublime插件，将检查结果等在sublime中显示。
-3. SublimeLinter-eslint使用eslint的基于SublimeLinter的插件。SublimeLinter检测到配置的需要检查的文件，调用配置的lint，如SublimeLinter-eslint来检查。而SublimeLinter-eslint则使用eslint加载配置的规则来检查代码。&lt;/p&gt;
-
-&lt;h2 id=&quot;section&quot;&gt;安装步骤&lt;/h2&gt;
-&lt;p&gt;前置条件：配置了npm代理可以使用npm安装。&lt;/p&gt;
-
-&lt;p&gt;在项目下运行&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;npm install eslint eslint-plugin-react eslint-plugin-import --save-dev
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;解压下载的&lt;a href=&quot;https://github.com/SublimeLinter/SublimeLinter3/archive/master.zip&quot;&gt;SublimeLinter&lt;/a&gt;和&lt;a href=&quot;https://github.com/roadhump/SublimeLinter-eslint/archive/master.zip&quot;&gt;SublimeLinter-eslint&lt;/a&gt;到sublime的&lt;code&gt;Packages&lt;/code&gt;目录下，SublimeLinter的文件夹必须修改为&lt;code&gt;SublimeLinter&lt;/code&gt;，否则SublimeLinter-eslint找不到SublimeLinter。&lt;/p&gt;
-
-&lt;p&gt;（这一步只需要项目创建者执行一次）在项目下配置.eslintrc，或者直接运行&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;./node_modules/.bin/eslint --init
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;可以得到一个基础的校验规则配置。可以参考这个&lt;a href=&quot;https://github.com/coryhouse/react-slingshot/blob/master/.eslintrc&quot;&gt;starter kit&lt;/a&gt;的配置&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
-  &quot;extends&quot;: [
-    &quot;eslint:recommended&quot;,
-    &quot;plugin:import/errors&quot;,
-    &quot;plugin:import/warnings&quot;
-  ],
-  &quot;plugins&quot;: [
-    &quot;react&quot;
-  ],
-  &quot;parserOptions&quot;: {
-    &quot;ecmaVersion&quot;: 6,
-    &quot;sourceType&quot;: &quot;module&quot;,
-    &quot;ecmaFeatures&quot;: {
-      &quot;jsx&quot;: true,
-      &quot;experimentalObjectRestSpread&quot;: true
-    }
-  },
-  &quot;env&quot;: {
-    &quot;es6&quot;: true,
-    &quot;browser&quot;: true,
-    &quot;node&quot;: true,
-    &quot;jquery&quot;: true,
-    &quot;mocha&quot;: true
-  },
-  &quot;rules&quot;: {
-    &quot;quotes&quot;: 0,
-    &quot;no-console&quot;: 1,
-    &quot;no-debugger&quot;: 1,
-    &quot;no-var&quot;: 1,
-    &quot;semi&quot;: [1, &quot;always&quot;],
-    &quot;no-trailing-spaces&quot;: 0,
-    &quot;eol-last&quot;: 0,
-    &quot;no-underscore-dangle&quot;: 0,
-    &quot;no-alert&quot;: 0,
-    &quot;no-lone-blocks&quot;: 0,
-    &quot;jsx-quotes&quot;: 1,
-    &quot;react/display-name&quot;: [ 1, {&quot;ignoreTranspilerName&quot;: false }],
-    &quot;react/forbid-prop-types&quot;: [1, {&quot;forbid&quot;: [&quot;any&quot;]}],
-    &quot;react/jsx-boolean-value&quot;: 0,
-    &quot;react/jsx-closing-bracket-location&quot;: 0,
-    &quot;react/jsx-curly-spacing&quot;: 1,
-    &quot;react/jsx-indent-props&quot;: 0,
-    &quot;react/jsx-key&quot;: 1,
-    &quot;react/jsx-max-props-per-line&quot;: 0,
-    &quot;react/jsx-no-bind&quot;: 0,
-    &quot;react/jsx-no-duplicate-props&quot;: 1,
-    &quot;react/jsx-no-literals&quot;: 0,
-    &quot;react/jsx-no-undef&quot;: 1,
-    &quot;react/jsx-pascal-case&quot;: 1,
-    &quot;react/jsx-sort-prop-types&quot;: 0,
-    &quot;react/jsx-sort-props&quot;: 0,
-    &quot;react/jsx-uses-react&quot;: 1,
-    &quot;react/jsx-uses-vars&quot;: 1,
-    &quot;react/no-danger&quot;: 1,
-    &quot;react/no-did-mount-set-state&quot;: 1,
-    &quot;react/no-did-update-set-state&quot;: 1,
-    &quot;react/no-direct-mutation-state&quot;: 1,
-    &quot;react/no-multi-comp&quot;: 1,
-    &quot;react/no-set-state&quot;: 1,
-    &quot;react/no-unknown-property&quot;: 1,
-    &quot;react/prefer-es6-class&quot;: 1,
-    &quot;react/prop-types&quot;: 1,
-    &quot;react/react-in-jsx-scope&quot;: 1,
-    &quot;react/require-extension&quot;: 1,
-    &quot;react/self-closing-comp&quot;: 1,
-    &quot;react/sort-comp&quot;: 1,
-    &quot;react/wrap-multilines&quot;: 1
-  },
-  &quot;globals&quot;: {
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;也可以参考&lt;a href=&quot;https://github.com/yuche/javascript&quot;&gt;airbnb&lt;/a&gt;配置或者自行配置。&lt;/p&gt;
-
-&lt;p&gt;打开sublime顶部&lt;code&gt;Tools -&amp;gt; SublimeLinter -&amp;gt; Lint mode&lt;/code&gt;，选择自己喜欢的检查时机。
-- Background: 准实时提示。
-- Load/save：打开/保存文件时。
-- Save only：保存时。
-- Manual：手动。请去&lt;code&gt;Preferences -&amp;gt; Package Settings -&amp;gt; SublimeLinter -&amp;gt; Key Bindings - Default&lt;/code&gt;查看快捷键设置，建议在&lt;code&gt;Key Bindings - User&lt;/code&gt;里设置自定义快捷键。&lt;/p&gt;
-
-&lt;p&gt;至此，可以发现自己ugly代码左侧行号附近出现了提示，且在行内会有方框标识，且在sublime底部会有提示原因。如果觉得不方便查看，可以设置&lt;code&gt;Tools -&amp;gt; SublimeLinter -&amp;gt; Debug mode&lt;/code&gt;，使用&lt;code&gt;ctrl + `&lt;/code&gt;调出控制台来查看信息。&lt;/p&gt;
-
-&lt;p&gt;TODO：暂时没有具体研究每一项配置。&lt;/p&gt;
-
-&lt;p&gt;参考文章：
-- &lt;a href=&quot;http://devnull.guru/get-started-with-eslint/&quot;&gt;Get Started with ESLint v1.0&lt;/a&gt;
-- &lt;a href=&quot;https://github.com/airbnb/javascript&quot;&gt;Airbnb JavaScript Style Guide&lt;/a&gt;
-- &lt;a href=&quot;https://github.com/airbnb/javascript/tree/master/react&quot;&gt;Airbnb React/JSX Style Guide&lt;/a&gt;
-- &lt;a href=&quot;https://github.com/minwe/style-guide/blob/master/React.js.md&quot;&gt;React/JSX 编码规范&lt;/a&gt;&lt;/p&gt;
-</description>
-        <pubDate>Thu, 30 Jun 2016 00:00:00 +0800</pubDate>
-        <link>http://techctu.github.io//2016/06/30/%E5%86%85%E7%BD%91%E9%85%8D%E7%BD%AEsublimelinter%E5%92%8Csublimelinter-contrib-eslint%E6%9D%A5%E6%A3%80%E6%9F%A5es6-react%E4%BB%A3%E7%A0%81.html</link>
-        <guid isPermaLink="true">http://techctu.github.io//2016/06/30/%E5%86%85%E7%BD%91%E9%85%8D%E7%BD%AEsublimelinter%E5%92%8Csublimelinter-contrib-eslint%E6%9D%A5%E6%A3%80%E6%9F%A5es6-react%E4%BB%A3%E7%A0%81.html</guid>
-        
-        <category>react</category>
-        
-        <category>es6</category>
-        
-        <category>lint</category>
-        
-        <category>eslint</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>阶段性前端开发项目待解决问题总结</title>
-        <description>&lt;p&gt;最近项目即将上线，终于有时间回顾这个以基于第三方框架制作的APP的webview为基础环境的webpack-react项目了。&lt;/p&gt;
-
-&lt;h1 id=&quot;section&quot;&gt;待解决的问题&lt;/h1&gt;
-&lt;p&gt;## 配置管理
-开始使用webpack时对其不了解，也没有进行过开发环境、各个测试环境和生产环境方面的配置，对这方面不太了解，一些在不同环境下应该进行不同配置的全局变量需要在各个环境手动修改。该部分应该通过webpack的&lt;a href=&quot;http://webpack.github.io/docs/list-of-plugins.html#defineplugin&quot;&gt;DefinePlugin&lt;/a&gt;进行设置，如&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;webpack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;DefinePlugin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;VERSION&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;JSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;stringify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;5fa3b9&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;BROWSER_SUPPORTS_HTML5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;TWO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;1+1&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;s2&quot;&gt;&amp;quot;typeof window&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;JSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;stringify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;object&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;同时对于入口文件html引用的路径，使用模板的方式，如html-webpack-plugin来处理，以在不同环境下进行不同的配置。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;三方库管理&lt;/h2&gt;
-&lt;p&gt;在目前的实现中，为了实现安卓的物理键功能，在入口页面html文件中引用了几个第三方js库。这些第三方库在js中也重复引入了，仅仅因为JS压缩等原因无法复用。&lt;/p&gt;
-
-&lt;p&gt;可以通过webpack的CommonsChunkPlugin将公共JS提取为公共文件以复用。同时配合html-webpack-plugin来解决物理键功能的问题。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-2&quot;&gt;组件化&lt;/h2&gt;
-&lt;p&gt;目前的站点在实现上，依然采用之前的目录结构，没有采用组件化的目录结构来开发。具体表现在将原来的html页面简单映射为react的一个js文件（一个component），其对应一个react-router的route。具体在页面内部，无法复用组件。如标签页、导航等。&lt;/p&gt;
-
-&lt;p&gt;这部分必须参考现有的优秀的react组件，区分出单个组件和框架的区别。哪些可以作为组件单独封装，哪些部分或功能封装成组件可能会影响页面其他部分，必须仔细斟酌，形成一个标准。&lt;/p&gt;
-
-&lt;p&gt;目前比较优秀的组件主要有react-modal、react-swipe等。至于一些很容易在百度上搜到的国内的知名组件库，如amaze ui react，或是ant design的&lt;a href=&quot;https://github.com/react-component&quot;&gt;react component&lt;/a&gt;，其组件质量良莠不齐，部分组件容易出现上述的影响页面其他部分的问题。不过最近看似乎amaze ui项目来了个新的技术主管的样子，新出的react组件质量好像高了不少。&lt;/p&gt;
-
-&lt;p&gt;在这个项目里，标准化是一个比较复杂的问题，只因为这是一个奇怪的hybird模式。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-3&quot;&gt;性能优化&lt;/h2&gt;
-&lt;p&gt;找到了一个非常好的&lt;a href=&quot;https://csspod.com/frontend-performance-best-practices/&quot;&gt;总结和TODOs的文章&lt;/a&gt;&lt;/p&gt;
-</description>
-        <pubDate>Wed, 22 Jun 2016 00:00:00 +0800</pubDate>
-        <link>http://techctu.github.io//web/2016/06/22/%E9%98%B6%E6%AE%B5%E6%80%A7%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E9%A1%B9%E7%9B%AE%E5%BE%85%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93.html</link>
-        <guid isPermaLink="true">http://techctu.github.io//web/2016/06/22/%E9%98%B6%E6%AE%B5%E6%80%A7%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E9%A1%B9%E7%9B%AE%E5%BE%85%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93.html</guid>
-        
-        <category>webpack</category>
-        
-        <category>hybird</category>
-        
-        <category>react</category>
-        
-        <category>前端优化</category>
-        
-        
-        <category>web</category>
         
       </item>
     

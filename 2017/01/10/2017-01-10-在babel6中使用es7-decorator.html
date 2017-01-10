@@ -1,0 +1,68 @@
+<p>在做下拉的时候搜寻到的<a href="http://technologyadvice.github.io/es7-decorators-babel6/">资料</a>。</p>
+
+<h1 id="decorator">增加decorator支持</h1>
+<p><em>假设你已经安装过 <code>babel-preset-2015</code> 和 <code>babel-preset-react</code> 等，并配置完毕。</em></p>
+
+<pre><code>npm install --save-dev babel-plugin-transform-decorators-legacy
+</code></pre>
+
+<p>然后在 <code>.babelrc</code> 中添加：</p>
+
+<pre><code>{
+  "plugins": ["transform-decorators-legacy"]
+}
+</code></pre>
+
+<p>或者在webpack配置文件中：</p>
+
+<pre><code>module: {
+  loaders: [
+    {
+      test: /\.js$/,
+      exclude: /node_modules\/(?!(stardust))/,
+      loader: 'babel',
+      query: {
+        plugins: [
+          'transform-decorators-legacy',
+        ]
+      },
+    }
+  ]
+}
+</code></pre>
+
+<h1 id="section">使用方式</h1>
+<p>在我项目代码中使用了<a href="https://github.com/gajus/react-css-modules">react-css-modules</a>。原来是这样的：</p>
+
+<pre><code class="language-js">import CSSModules from 'react-css-modules';
+import styles from 'app.css';
+import {Component} from 'react'
+
+class A extends Component {
+
+}
+
+export default CSSModules(A, styles, {allowMultiple: true});
+</code></pre>
+
+<p>使用之后是这样的：</p>
+
+<pre><code class="language-js">import CSSModules from 'react-css-modules';
+import styles from 'app.css';
+import {Component} from 'react'
+
+@CSSModules(styles, {allowMultiple: true})
+class A extends Component {
+
+}
+
+export default A;
+</code></pre>
+
+<h1 id="section-1">总结</h1>
+<p>为什么要用decorator？在实现下拉的时候，我就在想，如果能在实现一个动画效果后，能应用到任意组件上就好了，所以才找到了decorator。</p>
+
+<p>参考：</p>
+
+<p>-<a href="http://jamesknelson.com/structuring-react-applications-higher-order-components/">Structuring React Applications: Higher-Order Components</a>
+-<a href="https://medium.com/@cheapsteak/reusing-reacttransitiongroup-animations-with-higher-order-components-1e7043451f91#.61d51t159">Reusing ReactTransitionGroup animations with Higher-order Components</a></p>
