@@ -90,13 +90,11 @@
             <article class="post">
               <header>
                 <div class="title">
-                  <h2><a href="/%E6%9D%82%E9%A1%B9/2015/12/06/%E7%83%AD%E6%83%85%E6%AC%A3%E8%B5%8F%E8%AF%9A%E5%AE%9E%E5%A4%B4%E8%84%91%E9%A3%8E%E6%9A%B4%E6%88%90%E6%9E%9C%E6%BC%94%E8%AE%B2%E5%8F%8D%E6%80%9D.html">热情、欣赏、诚实——头脑风暴成果演讲反思</a></h2>
+                  <h2><a href="/2017/01/11/%E4%BD%BF%E7%94%A8gsap%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0react%E5%88%97%E8%A1%A8%E4%B8%AD%E7%9A%84%E4%B8%8B%E6%8B%89%E5%88%B7%E6%96%B0%E5%92%8C%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E6%9B%B4%E5%A4%9A.html">使用GSAP简单实现react列表中的下拉刷新和上拉加载更多</a></h2>
                 <!-- <p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p> -->
                 </div>
                 <div class="meta">
-                  <time class="published" datetime="2015-12-06">December 06, 2015</time>
-                  
-                    <a href="#">杂项</a>
+                  <time class="published" datetime="2017-01-11">January 11, 2017</time>
                   
 
         <!--
@@ -105,46 +103,176 @@
                 </div>
               </header>
               
-              <p>最近，Team Leader一直在搞头脑风暴，想要摩擦出火花，采集闪光的瞬间，集齐七个……嗯，就是想解放思想、实事求是。遂，每逢周三，组内汇聚一堂，坐而论道。</p>
+              <p>项目上线后看着列表不能下拉刷新不能上拉加载非常不爽，就做了个简单的实现。</p>
 
-<p>大头目：“TL，你们搞出啥子幺蛾子了吗？”</p>
+<p><em>为什么自己造轮子？用react不想添加jQuery，同时GitHub上的大部分代码都不能同时支持上拉和下拉。</em></p>
 
-<p>TL：“我们展示一下呗！”</p>
+<h1 id="section">准备</h1>
+<p>找个现成的项目新建一个页面，写个timeout模拟异步请求。</p>
 
-<p>大头目：“好好好！搞搞搞！”</p>
+<pre><code class="language-js">refresh() {
+  setTimeout(()=&gt;{this.setState({
+    items: [1,2,3,4,5]
+  })}, 1000);
+}
 
-<p>然后，这个锅我背了。小组分拨，我被分到了天灾。最后deadline到了，居然让我这个五号位划水辅助当carry。最后不负众望，嗝屁了。不过看到近卫的carry台风，很是欣赏，觉得需要学习一下，知耻而后勇嘛。</p>
+loadMore() {
+  setTimeout(()=&gt;{this.setState({
+    items: this.state.items.concat([1,2,3,4,5])
+  })}, 1000);
+}
+</code></pre>
 
-<h1 id="section">悲剧的开始</h1>
-<p>作为一个高贵冷艳的程序员，在头脑风暴的时候就是各种划水，只因觉得这种会议太过务虚了。做出一个“惊艳”的产品？什么鬼，简直无法直视。也许是我太挑剔了，也许是我老了，我很少觉得什么东西我会用惊艳这个词去形容。大部分的时候，看到美女会欣赏，看到工具会判断是不是想要的，很少有那种非洲农业不发达看到金坷垃的感觉。而且，也使我想起了每天写文档写了N年还喜欢搞传销的某人。</p>
+<p>再整个生成列表。</p>
 
-<p>大概就是这么反感了，失去了热情，最后自己都不信自己演讲时说的东西了。没有了热情，不相信自己写的东西，演说的时候就会无精打采，这也是演说失败的原因之一。</p>
+<pre><code class="language-js">function renderList(list) {
+  return (list.map((v, i) =&gt; (
+    &lt;li key={i} onClick={function() {browserHistory.push('/MerchantDetail/' + v.id + '/' + v.distance);}}&gt;
+      &lt;div styleName="m-shop-right"&gt;
+        &lt;h1&gt;
+          {i}
+        &lt;/h1&gt;
+      &lt;/div&gt;
+    &lt;/li&gt;)
+    )
+  );
+}
+</code></pre>
 
-<p>其实这样很不好，毕竟在team中，不管这个target对不对，得尽自己一份力。既然过于务虚，那就把它务实，这才是应有之义。</p>
+<p>然后开始搞事情。</p>
 
-<h1 id="section-1">仓促的准备</h1>
-<p>头脑风暴小组就这么分成了气宗和剑宗。气宗每天都在进行头脑风暴，还掏出了神器Mac Pro，使出了Keynote大法，还不停刺探我宗情报，并进行了一系列反间谍工作。然而我宗认为领导在对面，本身这个事情又是务虚，所有人都没有放在心上，组员都没有积极参与，无法进行有效的组织。最后，我只能临危受命，将组员最近在研究的一项技术进行介绍。毕竟这项技术和我们演讲的主题有着一定的关联。</p>
+<h1 id="section-1">实现下拉和上拉</h1>
 
-<p>此时，我们手里的材料只有这个未完成待验证的项目；我们知道的是气宗要使用酷炫的Keynote；气宗已经做了一周，而我们的准备时间是从现在起到明天下午开始演讲为止。WTF！没办法，只能想办法吹了。</p>
+<h2 id="section-2">设计</h2>
+<p>现在的上拉和下拉大部分是：</p>
 
-<p>正所谓知己知彼，百战不殆。敌方情报工作那么到位，想要与之一战，就只能从了解己方着手了。</p>
+<ol>
+  <li>监听ontouchstart, ontouchmove, ontouchend三个事件。</li>
+  <li>判断上拉下拉边界，进行对应的CSS transform和transition。</li>
+</ol>
 
-<p>跑了跑那个项目，果然是个未完成品，唯一拿得出手的只有概念——自动化测试了。此时的我已经开始质疑这个项目的重要性——我自己都不能说服自己，拿什么去说服别人呢？只能取巧，依靠一些技法了。</p>
+<pre><code class="language-js">// sample，监听list的事件，修改list-header
+&lt;div id="list"&gt;
+    &lt;div id="list-header" /&gt;
+    &lt;div id="list-items" /&gt;
+&lt;/div&gt;
+</code></pre>
 
-<p>为了让展示不逊于Keynote，便求助于<a href="http://impressjs.devpost.com/">impress.js</a>，使效果更加酷炫；同时开始计划讲稿，让听众忘记询问项目的不足和完成情况，专注于项目代表的意义。除此之外，最重要的是要我能相信这个项目。然而，我做不到，我不欣赏这个项目。</p>
+<h2 id="section-3">实现</h2>
+<p>最开始想用 <code>react-css-transition-group</code> 或 <code>react-transition-group</code> 来实现上拉和下拉效果，像这样：</p>
 
-<h1 id="section-2">悲剧的演讲</h1>
-<p>上台演讲时，确实成功地让听众惊艳于<a href="http://impressjs.devpost.com/">impress.js</a>的效果，专注于项目的意义，从某种意义上来说，是成功的。然而由于我能明显感到和对手台风的巨大差距，这对我来说并不是一个成功的演讲。我并没有说服我自己去欣赏这个项目，所以演讲的时候我无法感动我自己，也无法感染听众。</p>
+<pre><code class="language-js">&lt;reactcsstransitiongroup ref={(el) =&gt; this._ref = el}&gt;
+    &lt;div id="list-header" /&gt;
+    &lt;div id="list-items" /&gt;
+&lt;/reactcsstransitiongroup&gt;
+</code></pre>
 
-<p>痛定思痛，入手了《像TED一样演讲》。</p>
+<p>然而仔细阅读了之后，发现只能在 <code>mount</code> 和 <code>unmount</code> 这两个关键点触发动画，在 <code>update</code> 的时候无法触发。</p>
 
-<p>于2015年8月阅毕。</p>
+<p>我非常不希望通过 <code>&lt;div style=/&gt;</code> 的方式，每次滑动的时候就render一次。于是去找GitHub提了issue，和大佬对话的<a href="https://github.com/reactjs/react-transition-group/issues/8">传送门</a>，大意就是说现在没法直接获得list-header的ref，得 <code>findDOMNode(this._ref).children[0]</code>。</p>
 
+<p>这个就非常微妙了，既然如此，我为何一定要用 <code>react-css-transition-group</code> 或 <code>react-transition-group</code> 呢？简单点不好么？直接把这部分动画操作放在直接的DOM操作里绕开react，然后在ontouchend里回调，也是一种不错的思路。</p>
+
+<pre><code class="language-js">&lt;div id="g-wrap" onTouchStart={(e) =&gt; this.handleTouchStart(e)} 
+  onTouchMove={(e) =&gt; this.handleTouchMove(e)} 
+  onTouchEnd={(e) =&gt; this.handleTouchEnd(e)}&gt; 
+    // ...
+&lt;/div&gt;
+</code></pre>
+
+<pre><code class="language-js">handleTouchStart(e) {
+  this._touchStartPosY = e.touches[0].pageY;//记录触摸开始位置
+  this._gmainDefaultPaddingTopRem = '1.8rem';//记录初始列表头部位置，可改成接收参数
+  this._gmainDefaultPaddingTop = parseInt(
+    this._gmainDefaultPaddingTopRem.substr(0, this._gmainDefaultPaddingTopRem.length - 3));
+  this._gmainDefaultPaddingBottom = 0;//底部
+  this._lastScrollY = -1;//用于记录上一次滚动位置
+  this._equalScroll = false;//用于标记上拉到了底部
+}
+
+handleTouchMove(e) {
+  this._touchEndPosY = e.touches[0].pageY;
+
+  // 下拉到顶
+  if (window.scrollY &lt;= 0) {
+    this._lastScrollY = window.scrollY;
+    // 拉且限制拉的距离
+    if (this._touchEndPosY - this._touchStartPosY &gt; 0 &amp;&amp; this._touchEndPosY - this._touchStartPosY &lt; 100) {
+      let gmain = findDOMNode(this._gmain);
+      // 偷懒使用TweenMax来生成动画
+      TweenMax.to(gmain, 0, 
+        {paddingTop: this._gmainDefaultPaddingTop + 
+            (this._touchEndPosY - this._touchStartPosY)/20 + 'rem', 
+            ease: Power0.easeInOut});
+    }
+  } else {
+    // 上拉到底
+    if (window.scrollY == this._lastScrollY) {
+      if (!this._equalScroll) {
+        this._equalScroll = true;
+        this._equalScrollY = window.scrollY;
+        this._equalClientY = e.touches[0].clientY;
+      } 
+      let gmain = findDOMNode(this._gmain);
+      e.preventDefault();
+      // 限制上拉距离生成动画
+      let offsetY = this._touchEndPosY&gt;100?100:this._touchEndPosY;
+      TweenMax.to(gmain, 0, 
+        {paddingBottom: this._gmainDefaultPaddingBottom + offsetY/20&gt; + 'rem', 
+        ease: Power0.easeInOut});
+      
+    } else {
+      this._lastScrollY = window.scrollY;
+    }
+  }
+}
+
+handleTouchEnd(e) {
+  if (window.scrollY &lt;= 0) {
+    if (this._touchEndPosY - this._touchStartPosY &gt; 0) {
+      let gmain = findDOMNode(this._gmain);
+      // 弹回
+      TweenMax.to(gmain, 1, 
+        {paddingTop: this._gmainDefaultPaddingTopRem, 
+            ease: Back.easeInOut});
+      this.refresh();
+    }
+  } else {
+    if (this._equalScroll) {
+      let gmain = findDOMNode(this._gmain);
+      // 弹回
+      TweenMax.to(gmain, 1, 
+        {paddingBottom: this._gmainDefaultPaddingBottom, 
+            ease: Power3.easeInOut});
+      this.loadMore();
+    }
+  }
+}
+</code></pre>
+
+<h1 id="section-4">总结</h1>
+<p>整个思路就是：通过起始 <code>pageY</code> 和结束 <code>pageY</code> 判断用户垂直滑动方向，在根据 <code>window.scrollY</code> 和保存的上一次滑动位置来判断是否到顶（或者到底），到顶（或者到底）后执行 tansform，touchEnd的时候进行回调。</p>
+
+<p>当然这只是个简单实践，还需要进一步优化，比如：</p>
+
+<ul>
+  <li>支持传入回调函数。</li>
+  <li>支持定义限制的上拉下拉高度。</li>
+  <li>支持上拉下拉时载入自定义的静态资源，如活动动画或是刷新效果等。</li>
+  <li>设置默认参数。</li>
+  <li>将TweenMax改为原生方法实现减少大小。</li>
+  <li>抽取为high-order-component。</li>
+  <li>最近这种纯前端的东西做的有点多，是时候拿 nodejs 和 express/koa 搞事情了。</li>
+</ul>
 
               <footer>
                 <ul class="stats">
                 
-                  <li><a href="#">演讲</a></li>
+                  <li><a href="#">gsap</a></li>
+                
+                  <li><a href="#">react</a></li>
+                
+                  <li><a href="#">pull to refresh</a></li>
                 
         <!--
         <li><a href="#">General</a></li>
@@ -156,10 +284,10 @@
            </article>
   					<ul class="actions pagination">
   					  
-  	  				  <li><a href="/jekyll/2015/12/06/%E6%90%AD%E5%BB%BA%E7%AE%80%E5%8D%95jekyll%E5%B0%8F%E8%AE%B0.html" class="button big previous">Previous Post</a></li>
+  	  				  <li><a href="/2017/01/10/%E5%9C%A8babel6%E4%B8%AD%E4%BD%BF%E7%94%A8es7-decorator.html" class="button big previous">Previous Post</a></li>
   						
 							
-  						  <li><a href="/%E6%9D%82%E9%A1%B9/2015/12/06/%E7%99%BB%E9%95%BF%E5%9F%8E%E8%AE%B0.html" class="button big next">Next Post</a></li>
+  						  <li><a href="#" class="disabled button big next">Next Post</a></li>
   						
   					</ul>
 					</div>

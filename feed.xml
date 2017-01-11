@@ -4,11 +4,190 @@
     <title>Avalon</title>
     <description>抱朴 守拙
 </description>
-    <link>http://techctu.github.io//</link>
-    <atom:link href="http://techctu.github.io//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 10 Jan 2017 10:53:50 +0800</pubDate>
-    <lastBuildDate>Tue, 10 Jan 2017 10:53:50 +0800</lastBuildDate>
+    <link>https://techctu.github.io//</link>
+    <atom:link href="https://techctu.github.io//feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Wed, 11 Jan 2017 21:27:31 +0800</pubDate>
+    <lastBuildDate>Wed, 11 Jan 2017 21:27:31 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>使用GSAP简单实现react列表中的下拉刷新和上拉加载更多</title>
+        <description>&lt;p&gt;项目上线后看着列表不能下拉刷新不能上拉加载非常不爽，就做了个简单的实现。&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;为什么自己造轮子？用react不想添加jQuery，同时GitHub上的大部分代码都不能同时支持上拉和下拉。&lt;/em&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;section&quot;&gt;准备&lt;/h1&gt;
+&lt;p&gt;找个现成的项目新建一个页面，写个timeout模拟异步请求。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;refresh() {
+  setTimeout(()=&amp;gt;{this.setState({
+    items: [1,2,3,4,5]
+  })}, 1000);
+}
+
+loadMore() {
+  setTimeout(()=&amp;gt;{this.setState({
+    items: this.state.items.concat([1,2,3,4,5])
+  })}, 1000);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;再整个生成列表。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;function renderList(list) {
+  return (list.map((v, i) =&amp;gt; (
+    &amp;lt;li key={i} onClick={function() {browserHistory.push(&#39;/MerchantDetail/&#39; + v.id + &#39;/&#39; + v.distance);}}&amp;gt;
+      &amp;lt;div styleName=&quot;m-shop-right&quot;&amp;gt;
+        &amp;lt;h1&amp;gt;
+          {i}
+        &amp;lt;/h1&amp;gt;
+      &amp;lt;/div&amp;gt;
+    &amp;lt;/li&amp;gt;)
+    )
+  );
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后开始搞事情。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-1&quot;&gt;实现下拉和上拉&lt;/h1&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;设计&lt;/h2&gt;
+&lt;p&gt;现在的上拉和下拉大部分是：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;监听ontouchstart, ontouchmove, ontouchend三个事件。&lt;/li&gt;
+  &lt;li&gt;判断上拉下拉边界，进行对应的CSS transform和transition。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;// sample，监听list的事件，修改list-header
+&amp;lt;div id=&quot;list&quot;&amp;gt;
+    &amp;lt;div id=&quot;list-header&quot; /&amp;gt;
+    &amp;lt;div id=&quot;list-items&quot; /&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;实现&lt;/h2&gt;
+&lt;p&gt;最开始想用 &lt;code&gt;react-css-transition-group&lt;/code&gt; 或 &lt;code&gt;react-transition-group&lt;/code&gt; 来实现上拉和下拉效果，像这样：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;&amp;lt;reactcsstransitiongroup ref={(el) =&amp;gt; this._ref = el}&amp;gt;
+    &amp;lt;div id=&quot;list-header&quot; /&amp;gt;
+    &amp;lt;div id=&quot;list-items&quot; /&amp;gt;
+&amp;lt;/reactcsstransitiongroup&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然而仔细阅读了之后，发现只能在 &lt;code&gt;mount&lt;/code&gt; 和 &lt;code&gt;unmount&lt;/code&gt; 这两个关键点触发动画，在 &lt;code&gt;update&lt;/code&gt; 的时候无法触发。&lt;/p&gt;
+
+&lt;p&gt;我非常不希望通过 &lt;code&gt;&amp;lt;div style=/&amp;gt;&lt;/code&gt; 的方式，每次滑动的时候就render一次。于是去找GitHub提了issue，和大佬对话的&lt;a href=&quot;https://github.com/reactjs/react-transition-group/issues/8&quot;&gt;传送门&lt;/a&gt;，大意就是说现在没法直接获得list-header的ref，得 &lt;code&gt;findDOMNode(this._ref).children[0]&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;这个就非常微妙了，既然如此，我为何一定要用 &lt;code&gt;react-css-transition-group&lt;/code&gt; 或 &lt;code&gt;react-transition-group&lt;/code&gt; 呢？简单点不好么？直接把这部分动画操作放在直接的DOM操作里绕开react，然后在ontouchend里回调，也是一种不错的思路。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;&amp;lt;div id=&quot;g-wrap&quot; onTouchStart={(e) =&amp;gt; this.handleTouchStart(e)} 
+  onTouchMove={(e) =&amp;gt; this.handleTouchMove(e)} 
+  onTouchEnd={(e) =&amp;gt; this.handleTouchEnd(e)}&amp;gt; 
+    // ...
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;handleTouchStart(e) {
+  this._touchStartPosY = e.touches[0].pageY;//记录触摸开始位置
+  this._gmainDefaultPaddingTopRem = &#39;1.8rem&#39;;//记录初始列表头部位置，可改成接收参数
+  this._gmainDefaultPaddingTop = parseInt(
+    this._gmainDefaultPaddingTopRem.substr(0, this._gmainDefaultPaddingTopRem.length - 3));
+  this._gmainDefaultPaddingBottom = 0;//底部
+  this._lastScrollY = -1;//用于记录上一次滚动位置
+  this._equalScroll = false;//用于标记上拉到了底部
+}
+
+handleTouchMove(e) {
+  this._touchEndPosY = e.touches[0].pageY;
+
+  // 下拉到顶
+  if (window.scrollY &amp;lt;= 0) {
+    this._lastScrollY = window.scrollY;
+    // 拉且限制拉的距离
+    if (this._touchEndPosY - this._touchStartPosY &amp;gt; 0 &amp;amp;&amp;amp; this._touchEndPosY - this._touchStartPosY &amp;lt; 100) {
+      let gmain = findDOMNode(this._gmain);
+      // 偷懒使用TweenMax来生成动画
+      TweenMax.to(gmain, 0, 
+        {paddingTop: this._gmainDefaultPaddingTop + 
+            (this._touchEndPosY - this._touchStartPosY)/20 + &#39;rem&#39;, 
+            ease: Power0.easeInOut});
+    }
+  } else {
+    // 上拉到底
+    if (window.scrollY == this._lastScrollY) {
+      if (!this._equalScroll) {
+        this._equalScroll = true;
+        this._equalScrollY = window.scrollY;
+        this._equalClientY = e.touches[0].clientY;
+      } 
+      let gmain = findDOMNode(this._gmain);
+      e.preventDefault();
+      // 限制上拉距离生成动画
+      let offsetY = this._touchEndPosY&amp;gt;100?100:this._touchEndPosY;
+      TweenMax.to(gmain, 0, 
+        {paddingBottom: this._gmainDefaultPaddingBottom + offsetY/20&amp;gt; + &#39;rem&#39;, 
+        ease: Power0.easeInOut});
+      
+    } else {
+      this._lastScrollY = window.scrollY;
+    }
+  }
+}
+
+handleTouchEnd(e) {
+  if (window.scrollY &amp;lt;= 0) {
+    if (this._touchEndPosY - this._touchStartPosY &amp;gt; 0) {
+      let gmain = findDOMNode(this._gmain);
+      // 弹回
+      TweenMax.to(gmain, 1, 
+        {paddingTop: this._gmainDefaultPaddingTopRem, 
+            ease: Back.easeInOut});
+      this.refresh();
+    }
+  } else {
+    if (this._equalScroll) {
+      let gmain = findDOMNode(this._gmain);
+      // 弹回
+      TweenMax.to(gmain, 1, 
+        {paddingBottom: this._gmainDefaultPaddingBottom, 
+            ease: Power3.easeInOut});
+      this.loadMore();
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&quot;section-4&quot;&gt;总结&lt;/h1&gt;
+&lt;p&gt;整个思路就是：通过起始 &lt;code&gt;pageY&lt;/code&gt; 和结束 &lt;code&gt;pageY&lt;/code&gt; 判断用户垂直滑动方向，在根据 &lt;code&gt;window.scrollY&lt;/code&gt; 和保存的上一次滑动位置来判断是否到顶（或者到底），到顶（或者到底）后执行 tansform，touchEnd的时候进行回调。&lt;/p&gt;
+
+&lt;p&gt;当然这只是个简单实践，还需要进一步优化，比如：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;支持传入回调函数。&lt;/li&gt;
+  &lt;li&gt;支持定义限制的上拉下拉高度。&lt;/li&gt;
+  &lt;li&gt;支持上拉下拉时载入自定义的静态资源，如活动动画或是刷新效果等。&lt;/li&gt;
+  &lt;li&gt;设置默认参数。&lt;/li&gt;
+  &lt;li&gt;将TweenMax改为原生方法实现减少大小。&lt;/li&gt;
+  &lt;li&gt;抽取为high-order-component。&lt;/li&gt;
+  &lt;li&gt;最近这种纯前端的东西做的有点多，是时候拿 nodejs 和 express/koa 搞事情了。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Wed, 11 Jan 2017 00:00:00 +0800</pubDate>
+        <link>https://techctu.github.io//2017/01/11/%E4%BD%BF%E7%94%A8gsap%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0react%E5%88%97%E8%A1%A8%E4%B8%AD%E7%9A%84%E4%B8%8B%E6%8B%89%E5%88%B7%E6%96%B0%E5%92%8C%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E6%9B%B4%E5%A4%9A.html</link>
+        <guid isPermaLink="true">https://techctu.github.io//2017/01/11/%E4%BD%BF%E7%94%A8gsap%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0react%E5%88%97%E8%A1%A8%E4%B8%AD%E7%9A%84%E4%B8%8B%E6%8B%89%E5%88%B7%E6%96%B0%E5%92%8C%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E6%9B%B4%E5%A4%9A.html</guid>
+        
+        <category>gsap</category>
+        
+        <category>react</category>
+        
+        <category>pull to refresh</category>
+        
+        <category>push to load more</category>
+        
+        
+      </item>
     
       <item>
         <title>在Babel6中使用ES7 Decorator</title>
@@ -83,29 +262,12 @@ export default A;
 &lt;p&gt;-&lt;a href=&quot;https://medium.com/@cheapsteak/reusing-reacttransitiongroup-animations-with-higher-order-components-1e7043451f91#.61d51t159&quot;&gt;Reusing ReactTransitionGroup animations with Higher-order Components&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Tue, 10 Jan 2017 00:00:00 +0800</pubDate>
-        <link>http://techctu.github.io//2017/01/10/%E5%9C%A8babel6%E4%B8%AD%E4%BD%BF%E7%94%A8es7-decorator.html</link>
-        <guid isPermaLink="true">http://techctu.github.io//2017/01/10/%E5%9C%A8babel6%E4%B8%AD%E4%BD%BF%E7%94%A8es7-decorator.html</guid>
+        <link>https://techctu.github.io//2017/01/10/%E5%9C%A8babel6%E4%B8%AD%E4%BD%BF%E7%94%A8es7-decorator.html</link>
+        <guid isPermaLink="true">https://techctu.github.io//2017/01/10/%E5%9C%A8babel6%E4%B8%AD%E4%BD%BF%E7%94%A8es7-decorator.html</guid>
         
         <category>babel</category>
         
         <category>decorator</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>记一次react下拉刷新上拉加载更多的实现</title>
-        <description>
-</description>
-        <pubDate>Wed, 04 Jan 2017 00:00:00 +0800</pubDate>
-        <link>http://techctu.github.io//2017/01/04/%E8%AE%B0%E4%B8%80%E6%AC%A1react%E4%B8%8B%E6%8B%89%E5%88%B7%E6%96%B0%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E6%9B%B4%E5%A4%9A%E7%9A%84%E5%AE%9E%E7%8E%B0.html</link>
-        <guid isPermaLink="true">http://techctu.github.io//2017/01/04/%E8%AE%B0%E4%B8%80%E6%AC%A1react%E4%B8%8B%E6%8B%89%E5%88%B7%E6%96%B0%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E6%9B%B4%E5%A4%9A%E7%9A%84%E5%AE%9E%E7%8E%B0.html</guid>
-        
-        <category>react</category>
-        
-        <category>pull to refresh</category>
-        
-        <category>push to load more</category>
         
         
       </item>
@@ -227,8 +389,8 @@ export default A;
 
 </description>
         <pubDate>Sat, 17 Dec 2016 00:00:00 +0800</pubDate>
-        <link>http://techctu.github.io//2016/12/17/2016%E5%B9%B4%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93.html</link>
-        <guid isPermaLink="true">http://techctu.github.io//2016/12/17/2016%E5%B9%B4%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93.html</guid>
+        <link>https://techctu.github.io//2016/12/17/2016%E5%B9%B4%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93.html</link>
+        <guid isPermaLink="true">https://techctu.github.io//2016/12/17/2016%E5%B9%B4%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93.html</guid>
         
         <category>年终总结</category>
         
@@ -259,8 +421,8 @@ Content-Type:application/json
 &lt;p&gt;以上需要在Spring里进行配置。&lt;/p&gt;
 </description>
         <pubDate>Wed, 07 Dec 2016 00:00:00 +0800</pubDate>
-        <link>http://techctu.github.io//2016/12/07/x-www-form-urlencoded%E5%92%8Cjson.html</link>
-        <guid isPermaLink="true">http://techctu.github.io//2016/12/07/x-www-form-urlencoded%E5%92%8Cjson.html</guid>
+        <link>https://techctu.github.io//2016/12/07/x-www-form-urlencoded%E5%92%8Cjson.html</link>
+        <guid isPermaLink="true">https://techctu.github.io//2016/12/07/x-www-form-urlencoded%E5%92%8Cjson.html</guid>
         
         <category>Context-Type</category>
         
@@ -295,8 +457,8 @@ encodeURI之后：https://www.baidu.com/s?wd=%E7%BC%96%E7%A0%81
 &lt;p&gt;最后在浏览器中发现，&lt;strong&gt;encodeURI之后，在浏览器中访问时，会自动decodeURI一次&lt;/strong&gt;。在使用两次encodeURI之后，就解决了这个问题。&lt;/p&gt;
 </description>
         <pubDate>Tue, 08 Nov 2016 00:00:00 +0800</pubDate>
-        <link>http://techctu.github.io//2016/11/08/%E5%9C%A8ios-app%E5%86%85%E9%83%A8%E4%BD%BF%E7%94%A8js%E8%AE%BF%E9%97%AEwebview%E6%97%B6uri%E7%9A%84%E6%9F%A5%E8%AF%A2%E5%8F%82%E6%95%B0%E9%9C%80%E8%A6%81encode%E4%B8%A4%E6%AC%A1.html</link>
-        <guid isPermaLink="true">http://techctu.github.io//2016/11/08/%E5%9C%A8ios-app%E5%86%85%E9%83%A8%E4%BD%BF%E7%94%A8js%E8%AE%BF%E9%97%AEwebview%E6%97%B6uri%E7%9A%84%E6%9F%A5%E8%AF%A2%E5%8F%82%E6%95%B0%E9%9C%80%E8%A6%81encode%E4%B8%A4%E6%AC%A1.html</guid>
+        <link>https://techctu.github.io//2016/11/08/%E5%9C%A8ios-app%E5%86%85%E9%83%A8%E4%BD%BF%E7%94%A8js%E8%AE%BF%E9%97%AEwebview%E6%97%B6uri%E7%9A%84%E6%9F%A5%E8%AF%A2%E5%8F%82%E6%95%B0%E9%9C%80%E8%A6%81encode%E4%B8%A4%E6%AC%A1.html</link>
+        <guid isPermaLink="true">https://techctu.github.io//2016/11/08/%E5%9C%A8ios-app%E5%86%85%E9%83%A8%E4%BD%BF%E7%94%A8js%E8%AE%BF%E9%97%AEwebview%E6%97%B6uri%E7%9A%84%E6%9F%A5%E8%AF%A2%E5%8F%82%E6%95%B0%E9%9C%80%E8%A6%81encode%E4%B8%A4%E6%AC%A1.html</guid>
         
         <category>iOS</category>
         
@@ -468,8 +630,8 @@ encodeURI之后：https://www.baidu.com/s?wd=%E7%BC%96%E7%A0%81
 &lt;p&gt;总的来说，react的使用和大部分技术一样，在一个团队里，只需要一个技术比较好的人搭建了boilerplate，写了几个sample，其他人依样画葫芦就可以了。而项目质量，从来不是一门语言、一个库或者框架就能决定的。&lt;/p&gt;
 </description>
         <pubDate>Mon, 10 Oct 2016 00:00:00 +0800</pubDate>
-        <link>http://techctu.github.io//2016/10/10/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8react%E4%BD%BF%E7%94%A8react%E6%9C%89%E4%BB%80%E4%B9%88%E5%A5%BD%E5%A4%84.html</link>
-        <guid isPermaLink="true">http://techctu.github.io//2016/10/10/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8react%E4%BD%BF%E7%94%A8react%E6%9C%89%E4%BB%80%E4%B9%88%E5%A5%BD%E5%A4%84.html</guid>
+        <link>https://techctu.github.io//2016/10/10/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8react%E4%BD%BF%E7%94%A8react%E6%9C%89%E4%BB%80%E4%B9%88%E5%A5%BD%E5%A4%84.html</link>
+        <guid isPermaLink="true">https://techctu.github.io//2016/10/10/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8react%E4%BD%BF%E7%94%A8react%E6%9C%89%E4%BB%80%E4%B9%88%E5%A5%BD%E5%A4%84.html</guid>
         
         <category>react</category>
         
@@ -537,8 +699,8 @@ const routes = (
 &lt;p&gt;目前state的作用主要是提供了保持页面状态的功能，包括相关的存取功能。这部分功能可以使用很多方式实现，如history的location.state，cookie，甚至是引入redux等。&lt;/p&gt;
 </description>
         <pubDate>Sun, 31 Jul 2016 00:00:00 +0800</pubDate>
-        <link>http://techctu.github.io//2016/07/31/react-router%E4%BB%8Ehashhistory%E5%88%B0browserhistory.html</link>
-        <guid isPermaLink="true">http://techctu.github.io//2016/07/31/react-router%E4%BB%8Ehashhistory%E5%88%B0browserhistory.html</guid>
+        <link>https://techctu.github.io//2016/07/31/react-router%E4%BB%8Ehashhistory%E5%88%B0browserhistory.html</link>
+        <guid isPermaLink="true">https://techctu.github.io//2016/07/31/react-router%E4%BB%8Ehashhistory%E5%88%B0browserhistory.html</guid>
         
         <category>react-router</category>
         
@@ -611,8 +773,8 @@ const routes = (
 &lt;p&gt;所以目前主要考虑的应该是，静态资源开发和组织的工程化，在&lt;a href=&quot;/2016/07/11/%E5%89%8D%E7%AB%AF%E9%87%8D%E6%9E%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%9D%E8%AF%95.html&quot;&gt;进阶修改&lt;/a&gt;的基础上引入redux及其相关技术，进一步组件化，构建自己的组件仓库，提供samples等。可以先研究&lt;a href=&quot;http://yeoman.io/&quot;&gt;yeoman&lt;/a&gt;这样的构造工具。国内fis3这样的工具不像yeoman这样透明直观，使用时对其机理存疑。&lt;/p&gt;
 </description>
         <pubDate>Thu, 14 Jul 2016 00:00:00 +0800</pubDate>
-        <link>http://techctu.github.io//2016/07/14/%E5%89%8D%E7%AB%AF%E9%87%8D%E6%9E%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%9D%E8%AF%95%E5%90%8E%E6%80%9D%E8%B7%AF%E6%95%B4%E7%90%86.html</link>
-        <guid isPermaLink="true">http://techctu.github.io//2016/07/14/%E5%89%8D%E7%AB%AF%E9%87%8D%E6%9E%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%9D%E8%AF%95%E5%90%8E%E6%80%9D%E8%B7%AF%E6%95%B4%E7%90%86.html</guid>
+        <link>https://techctu.github.io//2016/07/14/%E5%89%8D%E7%AB%AF%E9%87%8D%E6%9E%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%9D%E8%AF%95%E5%90%8E%E6%80%9D%E8%B7%AF%E6%95%B4%E7%90%86.html</link>
+        <guid isPermaLink="true">https://techctu.github.io//2016/07/14/%E5%89%8D%E7%AB%AF%E9%87%8D%E6%9E%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%9D%E8%AF%95%E5%90%8E%E6%80%9D%E8%B7%AF%E6%95%B4%E7%90%86.html</guid>
         
         <category>react</category>
         
@@ -770,8 +932,8 @@ module.exports = {
 2. 按照要求将react-router的hashHistory替换为browserHistory，在上面的修改完成后，由于使用browserHistory导致的资源路径问题也同步解决了。&lt;/p&gt;
 </description>
         <pubDate>Mon, 11 Jul 2016 00:00:00 +0800</pubDate>
-        <link>http://techctu.github.io//2016/07/11/%E5%89%8D%E7%AB%AF%E9%87%8D%E6%9E%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%9D%E8%AF%95.html</link>
-        <guid isPermaLink="true">http://techctu.github.io//2016/07/11/%E5%89%8D%E7%AB%AF%E9%87%8D%E6%9E%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%9D%E8%AF%95.html</guid>
+        <link>https://techctu.github.io//2016/07/11/%E5%89%8D%E7%AB%AF%E9%87%8D%E6%9E%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%9D%E8%AF%95.html</link>
+        <guid isPermaLink="true">https://techctu.github.io//2016/07/11/%E5%89%8D%E7%AB%AF%E9%87%8D%E6%9E%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%9D%E8%AF%95.html</guid>
         
         <category>react</category>
         
@@ -788,8 +950,8 @@ module.exports = {
 &lt;/ol&gt;
 </description>
         <pubDate>Sat, 02 Jul 2016 00:00:00 +0800</pubDate>
-        <link>http://techctu.github.io//2016/07/02/%E4%BD%BF%E7%94%A8esformat%E5%92%8C%E5%85%B6plugin%E6%9D%A5%E6%A0%BC%E5%BC%8F%E5%8C%96es6%E5%8F%8Areact%E4%BB%A3%E7%A0%81.html</link>
-        <guid isPermaLink="true">http://techctu.github.io//2016/07/02/%E4%BD%BF%E7%94%A8esformat%E5%92%8C%E5%85%B6plugin%E6%9D%A5%E6%A0%BC%E5%BC%8F%E5%8C%96es6%E5%8F%8Areact%E4%BB%A3%E7%A0%81.html</guid>
+        <link>https://techctu.github.io//2016/07/02/%E4%BD%BF%E7%94%A8esformat%E5%92%8C%E5%85%B6plugin%E6%9D%A5%E6%A0%BC%E5%BC%8F%E5%8C%96es6%E5%8F%8Areact%E4%BB%A3%E7%A0%81.html</link>
+        <guid isPermaLink="true">https://techctu.github.io//2016/07/02/%E4%BD%BF%E7%94%A8esformat%E5%92%8C%E5%85%B6plugin%E6%9D%A5%E6%A0%BC%E5%BC%8F%E5%8C%96es6%E5%8F%8Areact%E4%BB%A3%E7%A0%81.html</guid>
         
         <category>es6</category>
         
