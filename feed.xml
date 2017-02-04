@@ -6,9 +6,22 @@
 </description>
     <link>https://techctu.github.io//</link>
     <atom:link href="https://techctu.github.io//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 11 Jan 2017 21:27:31 +0800</pubDate>
-    <lastBuildDate>Wed, 11 Jan 2017 21:27:31 +0800</lastBuildDate>
+    <pubDate>Sat, 04 Feb 2017 20:29:24 +0800</pubDate>
+    <lastBuildDate>Sat, 04 Feb 2017 20:29:24 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>停止更新，使用issues来记录</title>
+        <description>&lt;p&gt;最后一篇，以后使用 &lt;a href=&quot;https://github.com/techctu/techctu.github.io/issues&quot;&gt;issues&lt;/a&gt; 来记录。&lt;/p&gt;
+
+&lt;p&gt;有空了再挑挑文章来迁移。&lt;/p&gt;
+</description>
+        <pubDate>Sat, 04 Feb 2017 00:00:00 +0800</pubDate>
+        <link>https://techctu.github.io//2017/02/04/%E5%81%9C%E6%AD%A2%E6%9B%B4%E6%96%B0%E4%BD%BF%E7%94%A8issues%E6%9D%A5%E8%AE%B0%E5%BD%95.html</link>
+        <guid isPermaLink="true">https://techctu.github.io//2017/02/04/%E5%81%9C%E6%AD%A2%E6%9B%B4%E6%96%B0%E4%BD%BF%E7%94%A8issues%E6%9D%A5%E8%AE%B0%E5%BD%95.html</guid>
+        
+        
+      </item>
     
       <item>
         <title>使用GSAP简单实现react列表中的下拉刷新和上拉加载更多</title>
@@ -938,28 +951,6 @@ module.exports = {
         <category>react</category>
         
         <category>webpack</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>使用esformat和其plugin来格式化es6及react代码</title>
-        <description>&lt;ol&gt;
-  &lt;li&gt;使用sublime esfomatter插件。&lt;/li&gt;
-  &lt;li&gt;如eslint一样，配置.esformatter，添加esformatter和esformatter插件为项目依赖。&lt;/li&gt;
-&lt;/ol&gt;
-</description>
-        <pubDate>Sat, 02 Jul 2016 00:00:00 +0800</pubDate>
-        <link>https://techctu.github.io//2016/07/02/%E4%BD%BF%E7%94%A8esformat%E5%92%8C%E5%85%B6plugin%E6%9D%A5%E6%A0%BC%E5%BC%8F%E5%8C%96es6%E5%8F%8Areact%E4%BB%A3%E7%A0%81.html</link>
-        <guid isPermaLink="true">https://techctu.github.io//2016/07/02/%E4%BD%BF%E7%94%A8esformat%E5%92%8C%E5%85%B6plugin%E6%9D%A5%E6%A0%BC%E5%BC%8F%E5%8C%96es6%E5%8F%8Areact%E4%BB%A3%E7%A0%81.html</guid>
-        
-        <category>es6</category>
-        
-        <category>format</category>
-        
-        <category>react</category>
-        
-        <category>esformat</category>
         
         
       </item>

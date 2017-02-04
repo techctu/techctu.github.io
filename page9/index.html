@@ -87,76 +87,55 @@
 					<div id="main">
 
 						<!-- Post -->
-            <article class="post">
-              <header>
-                <div class="title">
-                  <h2><a href="/maven/2015/12/06/Maven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95-%E4%B8%80-maven%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE.html">Maven使用记录（一）——maven的安装和基础配置</a></h2>
-                <!-- <p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p> -->
-                </div>
-                <div class="meta">
-                  <time class="published" datetime="2015-12-06">December 06, 2015</time>
-                  
-                    <a href="#">maven</a>
-                  
-
+			      
+  <article class="post">
+    <header>
+      <div class="title">
+        <h2><a href="/%E6%9D%82%E9%A1%B9/2015/12/05/%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8jekyll.html">开始使用Jekyll</a></h2>
+        <!-- <p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p> -->
+      </div>
+      <div class="meta">
+        <time class="published" datetime="2015-12-05">December 05, 2015</time>
+        
+          <a href="#">杂项</a>
+        
         <!--
         <a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>
         -->
-                </div>
-              </header>
-              
-              <p>Maven是一款非常好用的项目管理软件，主要用于项目构建，依赖管理等，简介出门右转参见<a href="http://baike.baidu.com/link?url=Y3LqFKxw2f3uLhfNeAfLscCNtqwhFxjzSKpu9_FCx1YKh2FhzyFSvn-0vT5XCIQf9AJX_R9cL9ztDlPgr0RnXK">百度百科</a>，亦或去<a href="http://maven.apache.org">官方网站</a>。
-# 使用和配置
-这里主要介绍windows下maven的使用和配置。</p>
-
-<ol>
-  <li>要使用maven，首先确保安装了JDK，然后再去官方网站下载maven。根据情况——一般是操作系统和解压工具——选择zip或者tar.gz下载，然后解压到自己选择的目录或是文件夹下，即为maven的根目录。比如，我解压出来的目录结构是D:\LittleThings\apache-maven-3.2.5，包含bin、conf、lib、README.txt等目录和文件。所以，D:\LittleThings\apache-maven-3.2.5即我的maven根目录。​
-配置环境变量，以Windows为例。新增环境变量M2_HOME，我这里值为D:\LittleThings\apache-maven-3.2.5，修改为自己的根目录。在环境变量Path后增加;%M2_HOME%\bin;。这样，就完成了配置。在命令行窗口输入mvn -version，能看到maven的基本信息，如maven home、java version等。​​</li>
-</ol>
-
-<p><img src="http://7xogz7.com1.z0.glb.clouddn.com/mavenconfig.png" alt="maven配置" /></p>
-
-<ol>
-  <li>修改settings.xml。settings.xml位于根目录/conf下。一般settings需要修改的有两处：本地仓库的位置和中央仓库的镜像。
-本地仓库一般默认安装在系统盘下，这样，新增的jar包都会下载安装到系统盘。为了避免这个，找到settings.xml中localRepository的注释，添加</li>
-</ol>
-
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;localRepository&gt;</span>D:/LittleThings/mvnrepo<span class="nt">&lt;/localRepository&gt;</span></code></pre></figure>
-
-<p>这里改成自己的本地仓库目录即可。
-一般由于众所周知的原因，很难从maven中央仓库下载下来jar包，因此，一般会添加镜像。</p>
-
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;mirrors&gt;</span>
-	<span class="nt">&lt;mirror&gt;&lt;id&gt;</span>CN<span class="nt">&lt;/id&gt;</span> <span class="nt">&lt;name&gt;</span>OSChina Central<span class="nt">&lt;/name&gt;</span>  <span class="nt">&lt;url&gt;</span>http://maven.oschina.net/content/groups/public/<span class="nt">&lt;/url&gt;</span> <span class="nt">&lt;mirrorOf&gt;</span>central<span class="nt">&lt;/mirrorOf&gt;</span> <span class="nt">&lt;/mirror&gt;</span> 
-	<span class="nt">&lt;mirror&gt;</span> <span class="nt">&lt;id&gt;</span>ibiblio.org<span class="nt">&lt;/id&gt;</span> <span class="nt">&lt;name&gt;</span>ibiblio Mirror of http://repo1.maven.org/maven2/<span class="nt">&lt;/name&gt;</span> <span class="nt">&lt;url&gt;</span>http://mirrors.ibiblio.org/pub/mirrors/maven2<span class="nt">&lt;/url&gt;</span> <span class="nt">&lt;mirrorOf&gt;</span>central<span class="nt">&lt;/mirrorOf&gt;</span>  <span class="c">&lt;!-- United States, North Carolina --&gt;</span>  <span class="nt">&lt;/mirror&gt;</span>  
-	<span class="nt">&lt;mirror&gt;</span>  <span class="nt">&lt;id&gt;</span>cica.es<span class="nt">&lt;/id&gt;</span>  <span class="nt">&lt;url&gt;</span>http://ftp.cica.es/mirrors/maven2<span class="nt">&lt;/url&gt;</span>  <span class="nt">&lt;mirrorOf&gt;</span>central<span class="nt">&lt;/mirrorOf&gt;</span>  <span class="c">&lt;!-- Spain, Sevilla --&gt;</span>  <span class="nt">&lt;/mirror&gt;</span> 
-	<span class="nt">&lt;mirror&gt;</span>  <span class="nt">&lt;id&gt;</span>maven.org<span class="nt">&lt;/id&gt;</span>  <span class="nt">&lt;url&gt;</span>http://repo1.maven.org/maven2/<span class="nt">&lt;/url&gt;</span>  <span class="nt">&lt;mirrorOf&gt;</span>central<span class="nt">&lt;/mirrorOf&gt;</span>  <span class="nt">&lt;/mirror&gt;</span>  
-	<span class="nt">&lt;mirror&gt;</span>  <span class="nt">&lt;id&gt;</span>jboss.com<span class="nt">&lt;/id&gt;</span>  <span class="nt">&lt;url&gt;</span>http://repository.jboss.com/maven2/<span class="nt">&lt;/url&gt;</span>  <span class="nt">&lt;mirrorOf&gt;</span>central<span class="nt">&lt;/mirrorOf&gt;</span>  <span class="nt">&lt;/mirror&gt;</span> 
-	<span class="nt">&lt;mirror&gt;</span>  <span class="nt">&lt;id&gt;</span>sonatype.org<span class="nt">&lt;/id&gt;</span>  <span class="nt">&lt;url&gt;</span>http://repository.sonatype.org/content/groups/public/<span class="nt">&lt;/url&gt;</span>  <span class="nt">&lt;mirrorOf&gt;</span>central<span class="nt">&lt;/mirrorOf&gt;</span>  <span class="nt">&lt;/mirror&gt;</span>  <span class="c">&lt;!-- mirror | Specifies a repository mirror site to use instead of a given repository. The repository that | this mirror serves has an ID that matches the mirrorOf element of this mirror. IDs are used | for inheritance and direct lookup purposes, and must be unique across the set of mirrors. | &lt;mirror&gt; &lt;id&gt;mirrorId&lt;/id&gt; &lt;mirrorOf&gt;repositoryId&lt;/mirrorOf&gt; &lt;name&gt;Human Readable Name for this Mirror.&lt;/name&gt; &lt;url&gt;http://my.repository.com/repo/path&lt;/url&gt; &lt;/mirror&gt; --&gt;</span> 
-<span class="nt">&lt;/mirrors&gt;</span></code></pre></figure>
-
-<p>至此，maven就初步安装完成可以使用了。</p>
+      </div>
+    </header>
+    
+    <h1 id="section">缘起</h1>
+<p>主要是最近喜欢用Markdown，听说GitHub Pages能当主机用，还能挂域名，就换着试试。</p>
 
 
-              <footer>
-                <ul class="stats">
-                
-                  <li><a href="#">maven</a></li>
-                
+    <footer>
+      <ul class="actions">
+        <li><a href="/%E6%9D%82%E9%A1%B9/2015/12/05/%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8jekyll.html" class="button big">Continue Reading</a></li>
+      </ul>
+      <ul class="stats">
+        
+          <li><a href="#">jekyll</a></li>
+        
+          <li><a href="#">others</a></li>
+        
         <!--
         <li><a href="#">General</a></li>
         <li><a href="#" class="icon fa-heart">28</a></li>
         <li><a href="#" class="icon fa-comment">128</a></li>
         -->
-                </ul>
-              </footer>
-           </article>
+      </ul>
+    </footer>
+  </article>
+
+
   					<ul class="actions pagination">
   					  
-  	  				  <li><a href="/%E6%9D%82%E9%A1%B9/2015/12/05/%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8jekyll.html" class="button big previous">Previous Post</a></li>
+  	  				  <li><a href="/page8" class="button big previous">Previous Page</a></li>
   						
+  							<li>9 / 9</li>
 							
-  						  <li><a href="/maven/2015/12/06/Maven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C-%E5%9C%A8Eclipse%E4%B8%AD%E4%BD%BF%E7%94%A8Maven%E6%9D%A5%E8%BF%9B%E8%A1%8C%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86.html" class="button big next">Next Post</a></li>
+  						  <li><a href="#" class="disabled button big next">Next Page</a></li>
   						
   					</ul>
 					</div>
