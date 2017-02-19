@@ -6,9 +6,240 @@
 </description>
     <link>https://techctu.github.io//</link>
     <atom:link href="https://techctu.github.io//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 04 Feb 2017 20:29:24 +0800</pubDate>
-    <lastBuildDate>Sat, 04 Feb 2017 20:29:24 +0800</lastBuildDate>
+    <pubDate>Sun, 19 Feb 2017 20:30:53 +0800</pubDate>
+    <lastBuildDate>Sun, 19 Feb 2017 20:30:53 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>在 html 中使用 react 和 jsx —— 不使用 nodejs</title>
+        <description>&lt;p&gt;今天有人跟我提了一个非常奇怪的需求：想使用 reactjs 来组件化，重写以前封装的组件。但他们的 leader 又觉得 node 、 npm 、 webpack 那一套很麻烦，太复杂了，只想要 react 封装组件。所以他想要的可能是这样：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;组件封装在 js 里，使用 react 封装。&lt;/li&gt;
+  &lt;li&gt;访问某个页面时，返回对应的 html 文件，文件中引入 js ，非 SPA 。&lt;/li&gt;
+  &lt;li&gt;绝对不使用 node 、 npm 、 webpack 。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;html--react&quot;&gt;在 html 中使用 react&lt;/h1&gt;
+&lt;p&gt;可以参考 &lt;a href=&quot;https://www.sitepoint.com/getting-started-react-jsx/&quot;&gt;Getting Started with React&lt;/a&gt;  （&lt;em&gt;不能访问请翻墙&lt;/em&gt;）。&lt;/p&gt;
+
+&lt;h2 id=&quot;react&quot;&gt;开始使用 react&lt;/h2&gt;
+&lt;p&gt;去国内 CDN 去找到 react 、 react-dom 、 browser 三个库，如 &lt;a href=&quot;http://www.bootcdn.cn/&quot;&gt;BootCDN&lt;/a&gt; 。&lt;/p&gt;
+
+&lt;p&gt;参考一下官网的 &lt;a href=&quot;https://facebook.github.io/react/docs/hello-world.html&quot;&gt;hello-world&lt;/a&gt; 。&lt;/p&gt;
+
+&lt;p&gt;找个地方创建目录，写一个 &lt;code&gt;index.html&lt;/code&gt; 。&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;lang=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;zh-cmn-Hans&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;My First React Example&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;greeting-div&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;http://cdn.bootcss.com/react/15.4.2/react.js&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;http://cdn.bootcss.com/react/15.4.2/react-dom.js&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;http://cdn.bootcss.com/babel-core/6.1.19/browser.js&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;text/babel&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Greeting&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;React&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;createClass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Hello&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Universe&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/p&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+      &lt;span class=&quot;nx&quot;&gt;ReactDOM&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Greeting&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;greeting-div&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;这段代码创建了一个名为 &lt;code&gt;Greeting&lt;/code&gt; 的 &lt;code&gt;react&lt;/code&gt; 组件，然后在 &lt;code&gt;greeting-div&lt;/code&gt; 这个 &lt;code&gt;div&lt;/code&gt; 下使用 &lt;code&gt;react-dom&lt;/code&gt; 的 &lt;code&gt;render&lt;/code&gt; 方法来渲染成如下代码：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;greeting-div&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;Hello, Universe&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;em&gt;原文其他部分不再翻译，毕竟这篇文章不是为了翻译，只是记录一下怎么在浏览器中使用 react 。语法部分的问题参考其他文章即可&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;webpack-&quot;&gt;与使用 webpack 等的区别&lt;/h2&gt;
+&lt;p&gt;在一般的开发过程中，使用的是 node + npm + webpack + babel + react + react-dom ， 可能还要使用 redux 系列的库来开发，项目多为 SPA 。从开发到浏览器访问的处理过程一般为：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;react 组件/页面（ es6 语法）--（ webpack 、 babel ）--&amp;gt; es5 语法的 js chunk
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果不使用这些，辣么就得在浏览器中通过 &lt;code&gt;browser.js&lt;/code&gt; 来将 es6 的语法转换成 es5 。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;这样做很有可能会降低页面渲染速度。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;对最终目录结构的猜想&lt;/h2&gt;
+&lt;p&gt;可能是类似这样：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/
+|__view
+|   |__home
+|   |   |__index.html // 页面入口html
+|   |   |__index.js  // 页面入口js
+|   |   |__ComA.js  // 页面使用的组件
+|__common
+|__|__header
+|__|__footer // 在这里的 html 模板片段中引入 react 、 react-dom 和 browser
+|__css // 可能 css 就是一个文件
+|__image
+&lt;/code&gt;&lt;/pre&gt;
+
+</description>
+        <pubDate>Sat, 18 Feb 2017 00:00:00 +0800</pubDate>
+        <link>https://techctu.github.io//2017/02/18/%E5%9C%A8-html-%E4%B8%AD%E4%BD%BF%E7%94%A8-react-%E5%92%8C-jsx-%E4%B8%8D%E4%BD%BF%E7%94%A8-nodejs.html</link>
+        <guid isPermaLink="true">https://techctu.github.io//2017/02/18/%E5%9C%A8-html-%E4%B8%AD%E4%BD%BF%E7%94%A8-react-%E5%92%8C-jsx-%E4%B8%8D%E4%BD%BF%E7%94%A8-nodejs.html</guid>
+        
+        <category>react</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>使用 nodejs zip / tar 目录 / 文件夹</title>
+        <description>&lt;p&gt;有某个大佬想要搞自动发布，问我能不能搞一个 zip 静态资源目录的脚本。我瞅了瞅他，看在 windows 环境的面子上，就没有要求他自己写 shell 脚本了。&lt;/p&gt;
+
+&lt;h1 id=&quot;npm-&quot;&gt;去 npm 找一个库&lt;/h1&gt;
+&lt;p&gt;万能的 npm 上有个 &lt;a href=&quot;https://www.npmjs.com/package/archiver&quot;&gt;archiver&lt;/a&gt; ，正好可以打包目录，和那些只能 appendFile 的妖艳贱货都不一样呢。&lt;/p&gt;
+
+&lt;h1 id=&quot;section&quot;&gt;写打包脚本&lt;/h1&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;你会写nodejs吗？
+我也不知道什么算会写啊，写个这个脚本打包个目录算不算？&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;直接上代码：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;fs&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;archiver&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;archiver&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;moment&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;moment&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 使用 nodejs 封装的接口检查是否存在输出目录&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;checkOutputDir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;archiver/&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Promise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;reject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// nodejs版本更新后将fs.R_OK挪到了fs.constants.R_OK&lt;/span&gt;
+    &lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;R_OK&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;R_OK&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;constants&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;R_OK&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;W_OK&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;W_OK&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;constants&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;W_OK&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;access&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;R_OK&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;W_OK&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;try to create archiver directory&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mkdir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+          &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;fail: create archiver directory&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;reject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+          &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;can&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;read&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;write&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 压缩资源&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;zip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;targetEnv&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;production&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;asset/&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;archiver/&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;projName&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  
+  &lt;span class=&quot;nx&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;checkOutputDir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Promise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;reject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+   
+    &lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;file&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;targetEnv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;moment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;YYYYMMDD-HHmmss&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)}.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;zip&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prepare&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;create&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;zipped&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;archive&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;archiver&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;zip&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;zlib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;level&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}});&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;out&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;createWriteStream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;close&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;archive&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pointer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39; total bytes&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;archiver finalized&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;archive&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;error&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;reject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);});&lt;/span&gt;
+    
+    &lt;span class=&quot;nx&quot;&gt;archive&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;directory&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    
+    &lt;span class=&quot;nx&quot;&gt;archive&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;archive&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;finalize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kr&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;zip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h1 id=&quot;todos&quot;&gt;TODOs&lt;/h1&gt;
+&lt;p&gt;干脆用command整个命令得了。&lt;/p&gt;
+</description>
+        <pubDate>Sat, 18 Feb 2017 00:00:00 +0800</pubDate>
+        <link>https://techctu.github.io//2017/02/18/%E4%BD%BF%E7%94%A8-nodejs-zip-tar-%E7%9B%AE%E5%BD%95-%E6%96%87%E4%BB%B6%E5%A4%B9.html</link>
+        <guid isPermaLink="true">https://techctu.github.io//2017/02/18/%E4%BD%BF%E7%94%A8-nodejs-zip-tar-%E7%9B%AE%E5%BD%95-%E6%96%87%E4%BB%B6%E5%A4%B9.html</guid>
+        
+        <category>nodejs</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>从 webpack 1.x 迁移到 webpack 2.x</title>
+        <description>&lt;p&gt;项目搭建使用的 webpack 1.3.1 来作为打包工具，webpack 2.2 已经发布。&lt;/p&gt;
+
+&lt;h1 id=&quot;section&quot;&gt;升级项目依赖&lt;/h1&gt;
+&lt;p&gt;备份，在 &lt;code&gt;package.json&lt;/code&gt; 中移除 &lt;code&gt;webpack&lt;/code&gt; 依赖。使用了 &lt;code&gt;extract-text-webpack-plugin&lt;/code&gt; 的话这个插件也需要更新。&lt;/p&gt;
+
+&lt;h1 id=&quot;webpackconfig&quot;&gt;修改 webpack.config&lt;/h1&gt;
+
+&lt;h2 id=&quot;debug&quot;&gt;debug&lt;/h2&gt;
+
+&lt;p&gt;1.x 中使用了 &lt;code&gt;debug:true&lt;/code&gt; 的配置，在 2.x 中改为：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;nx&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt; 
+    &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;webpack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;LoaderOptionsPlugin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;debug&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt; 
+  &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;resolve&quot;&gt;resolve&lt;/h2&gt;
+&lt;p&gt;resolve.extensions 不再需要传入空字符串。&lt;/p&gt;
+
+&lt;h2 id=&quot;proxy&quot;&gt;proxy&lt;/h2&gt;
+&lt;p&gt;因为动静分离，1.x 中使用了 &lt;code&gt;proxy:{&#39;/uri/*&#39;:{target:&#39;https://host&#39;}}&lt;/code&gt; 来进行代理。在 2.x 中将这部分配置挪到了启动 webpack-dev-server 的脚本中：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;WebpackDevServer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bundler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+    &lt;span class=&quot;nx&quot;&gt;proxy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+        &lt;span class=&quot;s1&quot;&gt;&amp;#39;/yh-web/*&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+          &lt;span class=&quot;c1&quot;&gt;//target: &amp;#39;http://localhost:9080&amp;#39; &lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;http://10.230.146.19:9080&amp;#39;&lt;/span&gt; 
+        &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; 
+        &lt;span class=&quot;s1&quot;&gt;&amp;#39;/yx-web/*&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+          &lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;http://localhost:9090&amp;#39;&lt;/span&gt; 
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;noerrorsplugin&quot;&gt;NoErrorsPlugin&lt;/h2&gt;
+&lt;p&gt;废弃，使用 &lt;code&gt;NoEmitOnErrorsPlugin&lt;/code&gt; 。&lt;/p&gt;
+
+&lt;h2 id=&quot;module&quot;&gt;module&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;module.loaders&lt;/code&gt; 修改为 &lt;code&gt;module.rules&lt;/code&gt; 。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-1&quot;&gt;参考&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.zcfy.cc/article/migrating-from-v1-to-v2-2378.html&quot;&gt;从 webpack v1 迁移到 webpack v2&lt;/a&gt;
+&lt;a href=&quot;http://imweb.io/topic/5868e1abb3ce6d8e3f9f99bb&quot;&gt;webpack 2终极优化&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sat, 18 Feb 2017 00:00:00 +0800</pubDate>
+        <link>https://techctu.github.io//2017/02/18/%E4%BB%8E-webpack-1x-%E8%BF%81%E7%A7%BB%E5%88%B0-webpack-2x.html</link>
+        <guid isPermaLink="true">https://techctu.github.io//2017/02/18/%E4%BB%8E-webpack-1x-%E8%BF%81%E7%A7%BB%E5%88%B0-webpack-2x.html</guid>
+        
+        <category>webpack</category>
+        
+        
+      </item>
     
       <item>
         <title>停止更新，使用issues来记录</title>
@@ -647,310 +878,6 @@ encodeURI之后：https://www.baidu.com/s?wd=%E7%BC%96%E7%A0%81
         <guid isPermaLink="true">https://techctu.github.io//2016/10/10/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8react%E4%BD%BF%E7%94%A8react%E6%9C%89%E4%BB%80%E4%B9%88%E5%A5%BD%E5%A4%84.html</guid>
         
         <category>react</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>react-router：从hashHistory到browserHistory</title>
-        <description>&lt;p&gt;项目开始使用react-router时由于工期原因，使用了hashHistory，在url末尾会形成&lt;code&gt;/#/user/haishanh?_k=adseis&lt;/code&gt;中&lt;code&gt;_k=adseis&lt;/code&gt;的query字符串。这在浏览器中打开时会让用户感到迷惑。&lt;/p&gt;
-
-&lt;h1 id=&quot;hashhistoryquerykey&quot;&gt;hashHistory和queryKey&lt;/h1&gt;
-&lt;p&gt;在一些旧的浏览器中，不支持H5提供的新的接口如pushState，则使用了该方法生成key来读写window.sessionStorage的内容，实现页面跳转和回退时保持页面状态的功能，如类似新浪微博列表页请求了几次更多微博，进入详情页面后返回到列表页之前获取的微博仍然在里面无需重复之前的请求；又或者一个流程多个复杂表格填写，在前进、后退过程中保持之前填写的内容。&lt;/p&gt;
-
-&lt;p&gt;在&lt;a href=&quot;http://react-china.org/t/react-router-hashhistory-browserhistory/6799/4&quot;&gt;【react-router】hashhistory 与 browserhistory有什么区别&lt;/a&gt;中有简单设置以去掉&lt;code&gt;_k=abc123&lt;/code&gt;。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;import { createHashHistory } from &#39;history&#39;;
-
-const appHistory = useRouterHistory(createHashHistory)({ queryKey: false });
-
-ReactDOM.render(
-  &amp;lt;Router history={appHistory}&amp;gt;
-    {routes}
-  &amp;lt;/Router&amp;gt;,
-  document.getElementById(&#39;app&#39;)
-);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;问题：无法使用state保持页面状态，无法使用state来渲染链接对应页面，如&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;const path = {
-  pathname: &#39;business/BaiduSearch/update&#39;,
-  state: { id: record.id } 
-}
-&amp;lt;Link to={path}&amp;gt;修改&amp;lt;/Link&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id=&quot;browserhistory&quot;&gt;使用browserHistory&lt;/h1&gt;
-&lt;p&gt;在一些框架、库提供的糖面前，我倾向于不使用改变更广泛的标准的做法。如上面通过使用hashHistory和queryKey来获取state来渲染页面的方法，我更倾向于使用&lt;code&gt;http://example.com/the/path?the=query&amp;amp;id=recordId&lt;/code&gt;的方式获取相关信息渲染页面，这样在分享链接时也更为方便。&lt;/p&gt;
-
-&lt;h2 id=&quot;browserhistory-1&quot;&gt;创建browserHistory&lt;/h2&gt;
-&lt;p&gt;本来可以直接使用&lt;code&gt;react-router&lt;/code&gt;提供的&lt;code&gt;browserHistory&lt;/code&gt;，但考虑到该项目对应的域名为&lt;code&gt;xxx.xxx.com/xx&lt;/code&gt;，而且本地开发环境使用localhost:port访问，所以引入&lt;a href=&quot;https://www.npmjs.com/package/history&quot;&gt;history&lt;/a&gt;。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;import {createHistory} from &#39;history&#39;
-import {
-  Router,
-  Route,
-  useRouterHistory
-}
-const browserHistory = useRouterHistory(createHistory)({basename: process.env.NODE_ENV === &#39;production&#39;? &#39;/xx&#39;: &#39;&#39;})
-const routes = (
-  &amp;lt;Router history={browserHistory}&amp;gt;
-  ...
-  &amp;lt;/Router&amp;gt;
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;同时，需要修改对应的web容器配置，使其知道/xx/下的所有uri路由到单页面应用。目前使用的nginx。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;location /xx/ {
-    try_files $uri /xx/index.html;
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&quot;state&quot;&gt;state&lt;/h2&gt;
-&lt;p&gt;目前state的作用主要是提供了保持页面状态的功能，包括相关的存取功能。这部分功能可以使用很多方式实现，如history的location.state，cookie，甚至是引入redux等。&lt;/p&gt;
-</description>
-        <pubDate>Sun, 31 Jul 2016 00:00:00 +0800</pubDate>
-        <link>https://techctu.github.io//2016/07/31/react-router%E4%BB%8Ehashhistory%E5%88%B0browserhistory.html</link>
-        <guid isPermaLink="true">https://techctu.github.io//2016/07/31/react-router%E4%BB%8Ehashhistory%E5%88%B0browserhistory.html</guid>
-        
-        <category>react-router</category>
-        
-        <category>react</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>前端重构第一次尝试后思路整理</title>
-        <description>&lt;p&gt;最近做了一个项目的前端开发，上线了，然而怎么看都是一个玩具一般的东西，需要一次强力升级。前段时间也看了很多博客，翻了很多文档，对项目进行了一次小小的外科手术，但随着了解深入，收获的知识越来越多，接触到的问题也越来越多。道高一尺魔高一丈，也许也能这样解释？得整理一下思路，降服一下心魔了。&lt;/p&gt;
-
-&lt;h1 id=&quot;section&quot;&gt;目前项目状态&lt;/h1&gt;
-&lt;p&gt;初始状态：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;参考之前jQuery + Velocity年代，目录分为css、scripts、img，scripts下分为pages和util。&lt;/li&gt;
-  &lt;li&gt;项目较小，为嵌入APP webview中的H5项目，css放入一个统一的css文件中。&lt;/li&gt;
-  &lt;li&gt;引入react、react-router。&lt;/li&gt;
-  &lt;li&gt;使用webpack打包，只输出bundle.js到asset目录下，bundle.js和css文件直接在index.html中引用。&lt;/li&gt;
-  &lt;li&gt;图片和css样式在react组件中直接以&lt;code&gt;className=&quot;class-a class-b&quot;&lt;/code&gt;和&lt;code&gt;&amp;lt;img src=&quot;../../img/a/png&quot; /&amp;gt;&lt;/code&gt;的方式使用。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;一个这样的项目，怎么就这样上线了？除了在生产打包使用了&lt;code&gt;webpack.optimize.UglifyJsPlugin&lt;/code&gt;这种打包压缩js之外，看不到现代前端工程的痕迹。虽然是个小项目，可以不那么重视性能，但连gzip都没有开是怎么回事？一个400多k的bundle.js在webview中请求并加载运行的速度完全不能接受。而且这个项目可能要作为模板在其他项目中使用。作为一个有代码和工程洁癖的人，怎么能忍受这样的事情？&lt;/p&gt;
-
-&lt;p&gt;然后有了之前的&lt;a href=&quot;/2016/07/11/%E5%89%8D%E7%AB%AF%E9%87%8D%E6%9E%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%9D%E8%AF%95.html&quot;&gt;进阶修改&lt;/a&gt;。&lt;/p&gt;
-
-&lt;p&gt;此时，了解的知识和碰到的问题越来越多，如&lt;a href=&quot;https://csspod.com/frontend-performance-best-practices/&quot;&gt;前端性能优化最佳实践&lt;/a&gt;，&lt;a href=&quot;https://github.com/fouber/blog&quot;&gt;某技术总监的前端博文&lt;/a&gt;等；也发现了不少帮助解决前端工程问题的工具，如&lt;a href=&quot;http://fis.baidu.com/&quot;&gt;fis3@Baidu-FEX-team&lt;/a&gt;，&lt;a href=&quot;http://yeoman.io/&quot;&gt;yo@Google-Yeoman-team&lt;/a&gt;。已经有不少前辈趟过雷踩过坑，很多文章都很精彩，但并不一定适合我所在team的环境。也许，需要针对我厂特点进行一个定制了。&lt;/p&gt;
-
-&lt;h1 id=&quot;section-1&quot;&gt;需求分析&lt;/h1&gt;
-&lt;p&gt;现有环境：&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;苛刻的资源权限管理：生产环境、代码资源、测试环境、外网环境等申请困难重重。&lt;/li&gt;
-  &lt;li&gt;内网环境开发和部署，可以支持代理上npm。&lt;/li&gt;
-  &lt;li&gt;代码版本管理可能使用TFS/SVN/Git等多种版本管理工具，目前使用TFS。&lt;/li&gt;
-  &lt;li&gt;前端开发人员前端开发技能熟练度不高，对JQuery系不很熟练的程度，更不用说es6、react、组件化。&lt;/li&gt;
-  &lt;li&gt;打包部署流程有待考察。&lt;/li&gt;
-  &lt;li&gt;不一定适用CDN，目标运行环境主要为移动设备，包括手机、平板、笔记本。&lt;/li&gt;
-  &lt;li&gt;目前为粗暴缩放，缺乏精细多屏适配设计与实现。&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;需求：&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;strong&gt;开发规范&lt;/strong&gt;：基于es6、react、webpack开发，要有开发规范，快速定位开发问题，提高开发效率。&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;模块化/组件化&lt;/strong&gt;：有自己的模块/组件仓库，解决命名空间、组件独立、依赖管理、按需加载执行、安全合并等问题，区分开业务相关和业务无关的模块和组件。&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;react技术&lt;/strong&gt;：使用react作为UI组件，使用react-router管理前端路由，使用redux管理前端状态，状态数据结构必须immutable。&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;性能优化&lt;/strong&gt;：通过工程化方法进行性能优化，包括加速首屏加载，图片压缩合并，CSS Sprite，Base64图片，缓存和缓存更新，性能提升统计评估等。&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;项目部署&lt;/strong&gt;：开发资源组织规则和部署资源组织规则分离，支持动静分离、静态资源缓存、CDN、非覆盖式发布等。&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;开发流程&lt;/strong&gt;：内网环境开发，支持通过代理访问外网npm，代码托管在内网windows server TFS上，构建也位于windows server，可以通过代理访问外网npm，生产构建位于windows。&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;开发工具&lt;/strong&gt;：内网开发，编辑器、IDE、构建与优化工具、开发-调试-部署等流程工具，以及组件库获取、提交等相关工具，甚至运营、文档、配置发布等平台工具。&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;协作流程&lt;/strong&gt;：业务提交需求，厂商提供UEUI和静态页面，组内开发人员根据静态页面编写react页面。&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;后台&lt;/strong&gt;：目前使用Java SpringMVC，动态请求发送POST到Controller，Service层使用Dubbo。&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;其他&lt;/strong&gt;：待发掘。&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;分析：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;对于第1点，前期的改造基本完成。&lt;/li&gt;
-  &lt;li&gt;第2、3点需要修改目录结构，提供samples。&lt;/li&gt;
-  &lt;li&gt;第4点目前已经使用了缓存、hash、gzip压缩、base64等技术，Java环境下的react首页直出有待研究。&lt;/li&gt;
-  &lt;li&gt;第5、6点和本厂大环境相关，只考虑开发和打包过程，从代码仓库抽取到打包环境和打包环境到生产部署的过程和工具暂不考虑。&lt;/li&gt;
-  &lt;li&gt;第7点已经编写了内网环境下搭建基于sublime的开发环境的教程。&lt;/li&gt;
-  &lt;li&gt;第8点主要在于本组静态页面开发能力较弱，需要长期培养。&lt;/li&gt;
-  &lt;li&gt;第9点主要用于考虑后期使用node替换SpringMVC使web前后端同构，java只负责服务层。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;所以目前主要考虑的应该是，静态资源开发和组织的工程化，在&lt;a href=&quot;/2016/07/11/%E5%89%8D%E7%AB%AF%E9%87%8D%E6%9E%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%9D%E8%AF%95.html&quot;&gt;进阶修改&lt;/a&gt;的基础上引入redux及其相关技术，进一步组件化，构建自己的组件仓库，提供samples等。可以先研究&lt;a href=&quot;http://yeoman.io/&quot;&gt;yeoman&lt;/a&gt;这样的构造工具。国内fis3这样的工具不像yeoman这样透明直观，使用时对其机理存疑。&lt;/p&gt;
-</description>
-        <pubDate>Thu, 14 Jul 2016 00:00:00 +0800</pubDate>
-        <link>https://techctu.github.io//2016/07/14/%E5%89%8D%E7%AB%AF%E9%87%8D%E6%9E%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%9D%E8%AF%95%E5%90%8E%E6%80%9D%E8%B7%AF%E6%95%B4%E7%90%86.html</link>
-        <guid isPermaLink="true">https://techctu.github.io//2016/07/14/%E5%89%8D%E7%AB%AF%E9%87%8D%E6%9E%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%9D%E8%AF%95%E5%90%8E%E6%80%9D%E8%B7%AF%E6%95%B4%E7%90%86.html</guid>
-        
-        <category>react</category>
-        
-        <category>webpack</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>前端重构第一次尝试</title>
-        <description>&lt;p&gt;前段时间自行吐槽了自己参与大部分工作的前端项目，慢慢学习前端工作流到现在，并尝试了重构，记录一下。&lt;/p&gt;
-
-&lt;h1 id=&quot;section&quot;&gt;配置管理&lt;/h1&gt;
-&lt;p&gt;首先，把和环境相关的配置提取出来，使用webpack.DefinePlugin，避免每次部署时开发环境、测试环境、生产环境的变量手动修改。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;/* 定义运行环境相关变量 */
-var SITE_STATIC_PREFIX = &#39;/yh-wifi-web/&#39;;
-/* ... */
-
-module.exports = {
-  plugins: [
-    new webpack.DefinePlugin({
-      SITE_STATIC_PREFIX: JSON.stringify(SITE_STATIC_PREFIX),
-      SITE_DYNAMIC_PREFIX:JSON.stringify(SITE_DYNAMIC_PREFIX)
-    })
-  ]
-}；
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id=&quot;section-1&quot;&gt;资源管理&lt;/h1&gt;
-&lt;p&gt;然后，把css和图片等资源文件从在index.html里直接饮用挪到js中引用，以便将静态资源文件纳入管理，解决热部署问题（&lt;a href=&quot;http://zhihu.com/question/20790576/answer/32602154&quot;&gt;大公司里怎样开发和部署前端代码？ - 回答作者: 张云龙&lt;/a&gt;）。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;/* 引用静态资源 */
-import zoneMomImage from &#39;../../../image/mom.png&#39;;
-import styles from &#39;../../../css/app.css&#39;;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;在webpack配置中添加对应loader。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;/* 在webpack配置中添加对应loader */
-module.exports = {
-  module: {
-    loaders: [{
-      test: /\.css$/,
-      loader: loaders: [&#39;style?sourceMap&#39;, &#39;css?modules&amp;amp;camelCase&amp;amp;sourceMap&#39;],
-      include: path.join(__dirname, &#39;css&#39;)
-    }, {
-      test: /\.(png|jpg|gif|svg)$/,
-      loaders: [&#39;url?limit=8192&#39;],
-      include: path.join(__dirname, &#39;image&#39;)
-    }]
-  }
-}；
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;这样，就可以在react中使用css module。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.sample-camel{
-  color: red;
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;在react中引用之后，可以使用对应变量表示样式&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;render(
-  return &amp;lt;div className={styles.sampleCamel} /&amp;gt;
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;然而，考虑到现在的前端开发流程，UE-&amp;gt;UI-&amp;gt;HTML+CSS-&amp;gt;react组件，以及现有项目的修改难度，引入了&lt;a href=&quot;https://github.com/gajus/react-css-modules&quot;&gt;react-css-modules&lt;/a&gt;。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;// ComponentSample.js
-import CSSModules from &#39;react-css-modules&#39;;
-// 修改className为styleName
-render(
-  return &amp;lt;div styleName=&quot;sample-camel&quot; /&amp;gt;
-)
-// 装饰组件
-export default CSSModules(ComponentSample, styles, {allowMultiple:true});
-// webpack配置
-module.exports = {
-  module: {
-    loaders: [{
-      test: /\.css$/,
-      loader: loaders: [&#39;style?sourceMap&#39;, &#39;css?modules&amp;amp;importLoaders=1&amp;amp;localIdentName=[path]__[name]__[local]__[hash:base64:5]&#39;],
-      include: path.join(__dirname, &#39;css&#39;)
-    }, {
-      test: /\.(png|jpg|gif|svg)$/,
-      loaders: [&#39;url?limit=8192&#39;],
-      include: path.join(__dirname, &#39;image&#39;)
-    }]
-  }
-}；
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;这样，不论是现有项目修改还是新项目从静态页面到react，都更为方便。&lt;/p&gt;
-
-&lt;p&gt;最后修改在生产环境的webpack配置。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;module.exports = {
-  output: {
-    path: path.join(__dirname, &#39;asset&#39;),
-    filename: &#39;[name].[chunkhash].js&#39;,
-    publicPath: &#39;/&#39;
-  },
-  resolve: {
-    extensions: [&#39;&#39;, &#39;.js&#39;]
-  },
-  devtool: false,
-  plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.DefinePlugin({
-      &#39;process.env&#39;: {
-        &#39;NODE_ENV&#39;: JSON.stringify(&#39;production&#39;)
-      }
-    }),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    }),
-    new webpack.DefinePlugin({
-      SITE_STATIC_PREFIX: JSON.stringify(SITE_STATIC_PREFIX),
-      SITE_DYNAMIC_PREFIX:JSON.stringify(SITE_DYNAMIC_PREFIX)
-    }),
-    new ExtractTextPlugin(&#39;[name].[chunkhash].css&#39;, {allChunks:true}),
-    new HtmlWebpackPlugin({
-      template:&#39;scripts/index.ejs&#39;,
-      minify:{
-        removeComments: true,
-        collapseWhitespace: true,
-        removeRedundantAttributes: true,
-        useShortDoctype: true,
-        removeEmptyAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        keepClosingSlash: true,
-        minifyJS: true,
-        minifyCSS: true,
-        minifyURL: true
-      },
-      inject:true
-    })
-  ],
-  module: {
-    loaders: [{test: /.jsx?$/,loaders: [&#39;babel&#39;],include: path.join(__dirname, &#39;scripts&#39;)}, {test: /.js?$/,loaders: [&#39;babel&#39;],include: path.join(__dirname, &#39;scripts&#39;)}, {test: /.css$/,loader: ExtractTextPlugin.extract(&#39;style&#39;, &#39;css?modules&amp;amp;importLoaders=1&amp;amp;localIdentName=[path]__[name]__[local]__[hash:base64:5]&#39;),include: path.join(__dirname, &#39;css&#39;)}, {test: /.(png|jpg|gif|svg)$/,loaders: [&#39;url?limit=8192&#39;, &#39;image-webpack?bypassOnDebug&amp;amp;optimizationLevel=7&amp;amp;interlaced=false&#39;],include: path.join(__dirname, &#39;image&#39;)}]
-  }
-};
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;其中尝试加入&lt;a href=&quot;https://github.com/tcoopman/image-webpack-loader&quot;&gt;图片压缩&lt;/a&gt;，但在windows环境下imagemin依赖的库会出现问题，目前没有解决方案，只能考虑在其他步骤中进行处理。&lt;/p&gt;
-
-&lt;h1 id=&quot;section-2&quot;&gt;代码规范&lt;/h1&gt;
-&lt;p&gt;按照以下进行了代码重写。
-1. 重申命名规范，组件/页面单独文件夹，文件夹下index.js作为默认导出，使用到的多个组件在文件夹内创建[ComponentName.js]来引用。
-2. 按照要求将react-router的hashHistory替换为browserHistory，在上面的修改完成后，由于使用browserHistory导致的资源路径问题也同步解决了。&lt;/p&gt;
-</description>
-        <pubDate>Mon, 11 Jul 2016 00:00:00 +0800</pubDate>
-        <link>https://techctu.github.io//2016/07/11/%E5%89%8D%E7%AB%AF%E9%87%8D%E6%9E%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%9D%E8%AF%95.html</link>
-        <guid isPermaLink="true">https://techctu.github.io//2016/07/11/%E5%89%8D%E7%AB%AF%E9%87%8D%E6%9E%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%9D%E8%AF%95.html</guid>
-        
-        <category>react</category>
-        
-        <category>webpack</category>
         
         
       </item>
