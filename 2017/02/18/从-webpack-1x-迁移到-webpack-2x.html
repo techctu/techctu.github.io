@@ -108,7 +108,7 @@
 <h1 id="section">升级项目依赖</h1>
 <p>备份，在 <code>package.json</code> 中移除 <code>webpack</code> 依赖。使用了 <code>extract-text-webpack-plugin</code> 的话这个插件也需要更新。</p>
 
-<h1 id="webpackconfig">修改 webpack.config</h1>
+<h1 id="webpackconfig-">修改 webpack.config （开发）</h1>
 
 <h2 id="debug">debug</h2>
 
@@ -119,7 +119,9 @@
   <span class="p">]</span> </code></pre></figure>
 
 <h2 id="resolve">resolve</h2>
-<p>resolve.extensions 不再需要传入空字符串。</p>
+<p>resolve.extensions 不再需要传入空字符串，<code>extensions: ['', 'js']</code> -&gt; <code>extensions: ['js']</code>。</p>
+
+<p>增加 modules 配置来加速加载 <code>modules: [path.resolve(__dirname, './scripts'), 'node_modules']</code> 。</p>
 
 <h2 id="proxy">proxy</h2>
 <p>因为动静分离，1.x 中使用了 <code>proxy:{'/uri/*':{target:'https://host'}}</code> 来进行代理。在 2.x 中将这部分配置挪到了启动 webpack-dev-server 的脚本中：</p>
@@ -142,9 +144,35 @@
 <h2 id="module">module</h2>
 <p><code>module.loaders</code> 修改为 <code>module.rules</code> 。</p>
 
+<p>Loaders 需要添加 <code>-loader</code>，如 <code>babel</code> -&gt; <code>babel-loader</code> 。</p>
+
+<h1 id="webpackconfigproductionjs">修改生产配置 webpack.config.production.js</h1>
+<p>除了上述修改，目前主要为 extract-text-webpack-plugin 的配置修改。</p>
+
+<h2 id="extract-text-webpack-plugin">extract-text-webpack-plugin</h2>
+<ul>
+  <li>Plugin 中的参数 <code>new ExtractTextPlugin('css/[name].[chunkhash].css', {allChunks: true})</code> 修改为 <code>new ExtractTextPlugin({filename: 'css/[name].[chunkhash].css', allChunks: true}</code></li>
+  <li>rules 中 css 抽取修改为 <code>use: ExtractTextPlugin.extract({fallback: 'style-loader', use: 'css-loader?modules&amp;minimize&amp;importLoaders=1&amp;localIdentName=[hash:base64:5]'})</code></li>
+</ul>
+
+<h2 id="occurenceorderplugin--dedupeplugin">OccurenceOrderPlugin 和 DedupePlugin</h2>
+<p>废弃，webpack 2.x 自带，不再使用。</p>
+
+<h2 id="uglifyjsplugin">UglifyJsPlugin</h2>
+<p><a href="https://webpack.js.org/guides/migrating/#uglifyjsplugin-sourcemap">官方默认配置</a>已修改，这里配置改为</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="k">new</span> <span class="nx">webpack</span><span class="p">.</span><span class="nx">optimize</span><span class="p">.</span><span class="nx">UglifyJsPlugin</span><span class="p">({</span>
+  <span class="nx">compress</span><span class="o">:</span> <span class="p">{</span><span class="nx">warnings</span><span class="o">:</span> <span class="kc">false</span><span class="p">},</span>
+  <span class="nx">souceMap</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="nx">minimize</span><span class="o">:</span> <span class="kc">true</span>
+<span class="p">})</span></code></pre></figure>
+
 <h1 id="section-1">参考</h1>
-<p><a href="http://www.zcfy.cc/article/migrating-from-v1-to-v2-2378.html">从 webpack v1 迁移到 webpack v2</a>
-<a href="http://imweb.io/topic/5868e1abb3ce6d8e3f9f99bb">webpack 2终极优化</a></p>
+<p><a href="https://webpack.js.org/guides/migrating/">Migrating from v1 to v2</a></p>
+
+<p><a href="http://www.zcfy.cc/article/migrating-from-v1-to-v2-2378.html">从 webpack v1 迁移到 webpack v2</a></p>
+
+<p><a href="http://imweb.io/topic/5868e1abb3ce6d8e3f9f99bb">webpack 2终极优化</a></p>
 
               <footer>
                 <ul class="stats">

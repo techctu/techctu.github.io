@@ -6,8 +6,8 @@
 </description>
     <link>https://techctu.github.io//</link>
     <atom:link href="https://techctu.github.io//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 19 Feb 2017 20:30:53 +0800</pubDate>
-    <lastBuildDate>Sun, 19 Feb 2017 20:30:53 +0800</lastBuildDate>
+    <pubDate>Mon, 20 Feb 2017 17:26:48 +0800</pubDate>
+    <lastBuildDate>Mon, 20 Feb 2017 17:26:48 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -194,7 +194,7 @@
 &lt;h1 id=&quot;section&quot;&gt;升级项目依赖&lt;/h1&gt;
 &lt;p&gt;备份，在 &lt;code&gt;package.json&lt;/code&gt; 中移除 &lt;code&gt;webpack&lt;/code&gt; 依赖。使用了 &lt;code&gt;extract-text-webpack-plugin&lt;/code&gt; 的话这个插件也需要更新。&lt;/p&gt;
 
-&lt;h1 id=&quot;webpackconfig&quot;&gt;修改 webpack.config&lt;/h1&gt;
+&lt;h1 id=&quot;webpackconfig-&quot;&gt;修改 webpack.config （开发）&lt;/h1&gt;
 
 &lt;h2 id=&quot;debug&quot;&gt;debug&lt;/h2&gt;
 
@@ -205,7 +205,9 @@
   &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h2 id=&quot;resolve&quot;&gt;resolve&lt;/h2&gt;
-&lt;p&gt;resolve.extensions 不再需要传入空字符串。&lt;/p&gt;
+&lt;p&gt;resolve.extensions 不再需要传入空字符串，&lt;code&gt;extensions: [&#39;&#39;, &#39;js&#39;]&lt;/code&gt; -&amp;gt; &lt;code&gt;extensions: [&#39;js&#39;]&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;增加 modules 配置来加速加载 &lt;code&gt;modules: [path.resolve(__dirname, &#39;./scripts&#39;), &#39;node_modules&#39;]&lt;/code&gt; 。&lt;/p&gt;
 
 &lt;h2 id=&quot;proxy&quot;&gt;proxy&lt;/h2&gt;
 &lt;p&gt;因为动静分离，1.x 中使用了 &lt;code&gt;proxy:{&#39;/uri/*&#39;:{target:&#39;https://host&#39;}}&lt;/code&gt; 来进行代理。在 2.x 中将这部分配置挪到了启动 webpack-dev-server 的脚本中：&lt;/p&gt;
@@ -228,9 +230,35 @@
 &lt;h2 id=&quot;module&quot;&gt;module&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;module.loaders&lt;/code&gt; 修改为 &lt;code&gt;module.rules&lt;/code&gt; 。&lt;/p&gt;
 
+&lt;p&gt;Loaders 需要添加 &lt;code&gt;-loader&lt;/code&gt;，如 &lt;code&gt;babel&lt;/code&gt; -&amp;gt; &lt;code&gt;babel-loader&lt;/code&gt; 。&lt;/p&gt;
+
+&lt;h1 id=&quot;webpackconfigproductionjs&quot;&gt;修改生产配置 webpack.config.production.js&lt;/h1&gt;
+&lt;p&gt;除了上述修改，目前主要为 extract-text-webpack-plugin 的配置修改。&lt;/p&gt;
+
+&lt;h2 id=&quot;extract-text-webpack-plugin&quot;&gt;extract-text-webpack-plugin&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Plugin 中的参数 &lt;code&gt;new ExtractTextPlugin(&#39;css/[name].[chunkhash].css&#39;, {allChunks: true})&lt;/code&gt; 修改为 &lt;code&gt;new ExtractTextPlugin({filename: &#39;css/[name].[chunkhash].css&#39;, allChunks: true}&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;rules 中 css 抽取修改为 &lt;code&gt;use: ExtractTextPlugin.extract({fallback: &#39;style-loader&#39;, use: &#39;css-loader?modules&amp;amp;minimize&amp;amp;importLoaders=1&amp;amp;localIdentName=[hash:base64:5]&#39;})&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;occurenceorderplugin--dedupeplugin&quot;&gt;OccurenceOrderPlugin 和 DedupePlugin&lt;/h2&gt;
+&lt;p&gt;废弃，webpack 2.x 自带，不再使用。&lt;/p&gt;
+
+&lt;h2 id=&quot;uglifyjsplugin&quot;&gt;UglifyJsPlugin&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://webpack.js.org/guides/migrating/#uglifyjsplugin-sourcemap&quot;&gt;官方默认配置&lt;/a&gt;已修改，这里配置改为&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;webpack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;optimize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;UglifyJsPlugin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;compress&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;warnings&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;souceMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;minimize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
 &lt;h1 id=&quot;section-1&quot;&gt;参考&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.zcfy.cc/article/migrating-from-v1-to-v2-2378.html&quot;&gt;从 webpack v1 迁移到 webpack v2&lt;/a&gt;
-&lt;a href=&quot;http://imweb.io/topic/5868e1abb3ce6d8e3f9f99bb&quot;&gt;webpack 2终极优化&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://webpack.js.org/guides/migrating/&quot;&gt;Migrating from v1 to v2&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.zcfy.cc/article/migrating-from-v1-to-v2-2378.html&quot;&gt;从 webpack v1 迁移到 webpack v2&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://imweb.io/topic/5868e1abb3ce6d8e3f9f99bb&quot;&gt;webpack 2终极优化&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Sat, 18 Feb 2017 00:00:00 +0800</pubDate>
         <link>https://techctu.github.io//2017/02/18/%E4%BB%8E-webpack-1x-%E8%BF%81%E7%A7%BB%E5%88%B0-webpack-2x.html</link>
