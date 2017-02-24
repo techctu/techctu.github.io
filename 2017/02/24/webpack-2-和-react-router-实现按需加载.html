@@ -1,0 +1,451 @@
+<!DOCTYPE HTML>
+<!--
+	Future Imperfect by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+  <title>Avalon</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!--[if lte IE 8]><script src="js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="/css/main.css" />
+	<link rel="stylesheet" href="/css/pygments.css">
+	<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+</head>
+
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+<header id="header">
+  <h1><a href="https://techctu.github.io/">Avalon</a></h1>
+	<nav class="links">
+    <!--
+    <ul>
+      <li><a href="#">Lorem</a></li>
+			<li><a href="#">Ipsum</a></li>
+			<li><a href="#">Feugiat</a></li>
+			<li><a href="#">Tempus</a></li>
+			<li><a href="#">Adipiscing</a></li>
+		</ul>
+  -->
+	</nav>
+	<nav class="main">
+    <ul>
+                <!--
+								<li class="search">
+									<a class="fa-search" href="#search">Search</a>
+									<form id="search" method="get" action="#">
+										<input type="text" name="query" placeholder="Search" />
+									</form>
+								</li>
+              -->
+		  <li class="menu">
+		  	<a class="fa-bars" href="#menu">Menu</a>
+			</li>
+		</ul>
+	</nav>
+</header>
+
+<!-- Menu -->
+<section id="menu">
+  <!-- Search -->
+  <!--
+  <section>
+	  <form class="search" method="get" action="#">
+	    <input type="text" name="query" placeholder="Search" />
+		</form>
+	</section>
+  -->
+	<!-- Links -->
+	<section>
+	  <ul class="links">
+	    <li>
+		    <a href="/acknowledgement">
+				  <h3>Acknowledgement</h3>
+				  <p>Acknowledgement</p>
+				</a>
+			</li>
+    </ul>
+	</section>
+	<!-- Actions -->
+  <!--
+  <section>
+	  <ul class="actions vertical">
+	    <li><a href="#" class="button big fit">Log In</a></li>
+    </ul>
+  </section>
+  -->
+</section>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+            <article class="post">
+              <header>
+                <div class="title">
+                  <h2><a href="/2017/02/24/webpack-2-%E5%92%8C-react-router-%E5%AE%9E%E7%8E%B0%E6%8C%89%E9%9C%80%E5%8A%A0%E8%BD%BD.html">webpack 2 和 react-router 实现按需加载</a></h2>
+                <!-- <p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p> -->
+                </div>
+                <div class="meta">
+                  <time class="published" datetime="2017-02-24">February 24, 2017</time>
+                  
+
+        <!--
+        <a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>
+        -->
+                </div>
+              </header>
+              
+              <p>产品上线了一段时日，偷偷摸摸把 webpack 升级到了 2.x ，出现了很多优化需求，意味着很多新的库、新的代码，以及，更大的 bundle 。怎么办呢？ Code Splitting 呗！按需加载、懒加载┏ (゜ω゜)=☞。</p>
+
+<h1 id="code-splitting-">Code Splitting 的方式</h1>
+<p>前端代码一般需要进行拆分的地方有：
+- 公共代码拆分，如所有代码共用的三方库，某些业务模块或页面用的三方库。
+- 特定业务场景加速，如首页，或者多页面入口时的入口页面加速。比如现在老板要你做个地理位置的AR，总不能直接把这个包和常规业务代码丢一块加载吧。</p>
+
+<h1 id="babel--webpack-">babel 、 webpack 依赖配置</h1>
+<p>很多人都说 ES6 、 ES7 会毁了 JavaScript ，但各大语言语法趋向一致不是大趋势吗？难道之前的人开发写了一堆 polyfill 来解决各种诡异的问题后纷纷走向高级岗位，还要像吹牛逼说自己拿记事本写上万行代码一样，要求后来者也会写这堆 polyfill 吗？使用成熟的工具，是团队成功的必要条件之一吧。新的版本的曙光已经到来，不必抱残守缺。</p>
+
+<h2 id="section">基础配置</h2>
+<p>这里使用的 webpack 为 2.2.1 。按照 <a href="https://webpack.js.org/guides/code-splitting/">webpack 官网文档</a>，需要先安装 babel 相关插件。</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">npm</span> <span class="nx">install</span> <span class="o">--</span><span class="nx">save</span><span class="o">-</span><span class="nx">dev</span> <span class="nx">babel</span><span class="o">-</span><span class="nx">core</span> <span class="nx">babel</span><span class="o">-</span><span class="nx">loader</span> <span class="nx">babel</span><span class="o">-</span><span class="nx">plugin</span><span class="o">-</span><span class="nx">syntax</span><span class="o">-</span><span class="nx">dynamic</span><span class="o">-</span><span class="kr">import</span> <span class="nx">babel</span><span class="o">-</span><span class="nx">preset</span><span class="o">-</span><span class="nx">es2015</span></code></pre></figure>
+
+<p>然后在 <code>.babelrc</code> 里，或是在 <code>package.json</code> 的 <code>"babel"</code> 里，亦或在 <code>webpack.config</code> 的 <code>module -&gt; rules -&gt; use -&gt; loader: 'babel-loader'</code> 的同级下配置。这里我是在 <code>package.json</code> 里配置。</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&quot;babel&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;presets&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;es2015&quot;</span><span class="p">],</span>
+    <span class="nt">&quot;plugins&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;syntax-dynamic-import&quot;</span><span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>这样就可以这样写代码。</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">determineDate</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kr">import</span><span class="p">(</span><span class="s1">&#39;moment&#39;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">moment</span> <span class="o">=&gt;</span> <span class="nx">moment</span><span class="p">().</span><span class="nx">format</span><span class="p">(</span><span class="s1">&#39;LLLL&#39;</span><span class="p">))</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">str</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">))</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Failed to load moment&#39;</span><span class="p">,</span> <span class="nx">err</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="nx">determineDate</span><span class="p">();</span></code></pre></figure>
+
+<p>目前这样已经可以使用 webpack 和 babel 来进行代码拆分了。</p>
+
+<h2 id="section-1">尝鲜配置</h2>
+<p>目前 ES7 的 async/await 语法都要出来了，只配置这些怎么够？所以我这样配置。</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">npm</span> <span class="nx">install</span> <span class="o">--</span><span class="nx">save</span><span class="o">-</span><span class="nx">dev</span> <span class="nx">babel</span><span class="o">-</span><span class="nx">preset</span><span class="o">-</span><span class="nx">es2015</span> <span class="nx">babel</span><span class="o">-</span><span class="nx">preset</span><span class="o">-</span><span class="nx">es2016</span> <span class="nx">babel</span><span class="o">-</span><span class="nx">preset</span><span class="o">-</span><span class="mi">2017</span> <span class="nx">babel</span><span class="o">-</span><span class="nx">preset</span><span class="o">-</span><span class="nx">stage</span><span class="o">-</span><span class="mi">0</span> <span class="nx">babel</span><span class="o">-</span><span class="nx">plugin</span><span class="o">-</span><span class="nx">transform</span><span class="o">-</span><span class="nx">decorators</span> <span class="nx">babel</span><span class="o">-</span><span class="nx">plugin</span><span class="o">-</span><span class="nx">transform</span><span class="o">-</span><span class="nx">decorators</span><span class="o">-</span><span class="nx">legacy</span> <span class="nx">babel</span><span class="o">-</span><span class="nx">plugin</span><span class="o">-</span><span class="nx">transform</span><span class="o">-</span><span class="nx">object</span><span class="o">-</span><span class="nx">rest</span><span class="o">-</span><span class="nx">spread</span> <span class="nx">babel</span><span class="o">-</span><span class="nx">preset</span><span class="o">-</span><span class="nx">react</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&quot;babel&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;presets&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;es2015&quot;</span><span class="p">,</span><span class="s2">&quot;es2016&quot;</span><span class="p">,</span><span class="s2">&quot;es2017&quot;</span><span class="p">,</span><span class="s2">&quot;stage-0&quot;</span><span class="p">,</span><span class="s2">&quot;react&quot;</span><span class="p">],</span>
+    <span class="nt">&quot;plugins&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;syntax-dynamic-import&quot;</span><span class="p">,</span><span class="s2">&quot;transform-decorators-legacy&quot;</span><span class="p">,</span><span class="s2">&quot;transform-object-rest-spread&quot;</span><span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>然后就可以用各种新特性，比如箭头函数、async/await、装饰器等。</p>
+
+<h1 id="react-router-">基于 react-router 的代码拆分</h1>
+<p>在 <a href="https://github.com/ReactTraining/react-router/tree/master/examples/huge-apps">react-router的示例代码 huge-apps</a> 里有非常经典的基于路由的代码拆分方案。</p>
+
+<blockquote>
+  <p>为什么基于路由拆分？一般一个路由对应一个逻辑上的业务页面，而一般多个业务页面在一个子路由下构成了业务流程，其代码依赖也比较相近，适合做代码拆分。</p>
+</blockquote>
+
+<h2 id="section-2">基础路由配置</h2>
+<p>不拆分的路由长 <a href="https://github.com/ReactTraining/react-router/blob/master/docs/guides/RouteConfiguration.md">这样</a> 。</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">  <span class="nt">&lt;Router&gt;</span>
+    <span class="nt">&lt;Route</span> <span class="na">path=</span><span class="s">&quot;/&quot;</span> <span class="na">component=</span><span class="s">{App}</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;Route</span> <span class="na">path=</span><span class="s">&quot;about&quot;</span> <span class="na">component=</span><span class="s">{About}</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;Route</span> <span class="na">path=</span><span class="s">&quot;inbox&quot;</span> <span class="na">component=</span><span class="s">{Inbox}</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;Route</span> <span class="na">path=</span><span class="s">&quot;messages/:id&quot;</span> <span class="na">component=</span><span class="s">{Message}</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/Route&gt;</span>
+    <span class="nt">&lt;/Route&gt;</span>
+  <span class="nt">&lt;/Router&gt;</span></code></pre></figure>
+
+<p>或者 <a href="https://github.com/ReactTraining/react-router/blob/master/docs/guides/RouteConfiguration.md">这样</a> 。</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">routes</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span>
+  <span class="nx">component</span><span class="o">:</span> <span class="nx">App</span><span class="p">,</span>
+  <span class="nx">indexRoute</span><span class="o">:</span> <span class="p">{</span> <span class="nx">component</span><span class="o">:</span> <span class="nx">Dashboard</span> <span class="p">},</span>
+  <span class="nx">childRoutes</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span> <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;about&#39;</span><span class="p">,</span> <span class="nx">component</span><span class="o">:</span> <span class="nx">About</span> <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;inbox&#39;</span><span class="p">,</span>
+      <span class="nx">component</span><span class="o">:</span> <span class="nx">Inbox</span><span class="p">,</span>
+      <span class="nx">childRoutes</span><span class="o">:</span> <span class="p">[{</span>
+        <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;messages/:id&#39;</span><span class="p">,</span>
+        <span class="nx">onEnter</span><span class="o">:</span> <span class="p">({</span> <span class="nx">params</span> <span class="p">},</span> <span class="nx">replace</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">replace</span><span class="p">(</span><span class="err">`</span><span class="o">/</span><span class="nx">messages</span><span class="o">/</span><span class="nx">$</span><span class="p">{</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="err">`</span><span class="p">)</span>
+      <span class="p">}]</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nx">component</span><span class="o">:</span> <span class="nx">Inbox</span><span class="p">,</span>
+      <span class="nx">childRoutes</span><span class="o">:</span> <span class="p">[{</span>
+        <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;messages/:id&#39;</span><span class="p">,</span> <span class="nx">component</span><span class="o">:</span> <span class="nx">Message</span>
+      <span class="p">}]</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>然后，构建时 webpack 就会把所以依赖静态分析后打到指定的 bundle 里。</p>
+
+<h2 id="section-3">路由拆分配置</h2>
+<p>react-router 利用 webpack 支持的 <code>require.ensure</code> 来实现延迟加载。基本思路是将需要拆分的路由注册到路由配置里，将依赖的 react 组件通过 require.ensure 来加载，听过 getChildRoutes 和 getComponents 这样的黑科技。</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// 组件和其路由</span>
+<span class="c1">// Announcement/Announcement.js </span>
+<span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
+
+<span class="kr">class</span> <span class="nx">Announcement</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="p">{</span> <span class="nx">courseId</span><span class="p">,</span> <span class="nx">announcementId</span> <span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">params</span>
+    <span class="kd">let</span> <span class="p">{</span> <span class="nx">title</span><span class="p">,</span> <span class="nx">body</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">COURSES</span><span class="p">[</span><span class="nx">courseId</span><span class="p">].</span><span class="nx">announcements</span><span class="p">[</span><span class="nx">announcementId</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">h4</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">title</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/h4&gt;</span>
+        <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">body</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+      <span class="o">&lt;</span><span class="err">/div&gt;</span>
+    <span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">Announcement</span>
+
+<span class="c1">// 对应路由封装和暴露</span>
+<span class="c1">// Announcement/index.js</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;:announcementId&#39;</span><span class="p">,</span>
+
+  <span class="nx">getComponent</span><span class="p">(</span><span class="nx">location</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">require</span><span class="p">.</span><span class="nx">ensure</span><span class="p">([],</span> <span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">cb</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./components/Announcement&#39;</span><span class="p">))</span>
+    <span class="p">})</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 路由配置 </span>
+<span class="kr">const</span> <span class="nx">rootRoute</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">component</span><span class="o">:</span> <span class="s1">&#39;div&#39;</span><span class="p">,</span>
+  <span class="nx">childRoutes</span><span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+    <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span>
+    <span class="nx">component</span><span class="o">:</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./components/App&#39;</span><span class="p">),</span>
+    <span class="nx">childRoutes</span><span class="o">:</span> <span class="p">[</span>
+      <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes/Announcement&#39;</span><span class="p">)</span>
+    <span class="p">]</span>
+  <span class="p">}</span> <span class="p">]</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>简单来说，就是</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">rootRoute</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">component</span><span class="o">:</span> <span class="s1">&#39;div&#39;</span><span class="p">,</span>
+  <span class="nx">childRoutes</span><span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+    <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span>
+    <span class="nx">component</span><span class="o">:</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./components/App&#39;</span><span class="p">),</span>
+    <span class="nx">childRoutes</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;:announcementId&#39;</span><span class="p">,</span>
+
+        <span class="nx">getComponent</span><span class="p">(</span><span class="nx">location</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">require</span><span class="p">.</span><span class="nx">ensure</span><span class="p">([],</span> <span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="nx">cb</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./components/Announcement&#39;</span><span class="p">))</span>
+          <span class="p">})</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">}</span> <span class="p">]</span>
+<span class="p">}</span></code></pre></figure>
+
+<h2 id="webpack-2x-">webpack 2.x 下的加载方式</h2>
+<p>上面是 webpack 1.x 的配置方式，而在 2.x 下，需要进行一些修改，主要是用 <code>import</code> 替换 <code>require.ensure</code> 。</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// Announcement/index.js</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;:announcementId&#39;</span><span class="p">,</span>
+
+  <span class="nx">getComponent</span><span class="p">(</span><span class="nx">location</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kr">import</span><span class="p">(</span><span class="s1">&#39;./components/Announcement&#39;</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">module</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span><span class="nx">cb</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">module</span><span class="p">.</span><span class="k">default</span><span class="p">);})</span>
+      <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)});</span>
+    <span class="c1">// require.ensure([], (require) =&gt; {</span>
+    <span class="c1">//   cb(null, require(&#39;./components/Announcement&#39;))</span>
+    <span class="c1">// })</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<h1 id="todos">TODOs</h1>
+<ul>
+  <li>懒加载划分和加载异常处理。</li>
+</ul>
+
+              <footer>
+                <ul class="stats">
+                
+                  <li><a href="#">webpack</a></li>
+                
+                  <li><a href="#">webpack2</a></li>
+                
+                  <li><a href="#">react-router</a></li>
+                
+        <!--
+        <li><a href="#">General</a></li>
+        <li><a href="#" class="icon fa-heart">28</a></li>
+        <li><a href="#" class="icon fa-comment">128</a></li>
+        -->
+                </ul>
+              </footer>
+           </article>
+  					<ul class="actions pagination">
+  					  
+  	  				  <li><a href="/2017/02/18/%E5%9C%A8-html-%E4%B8%AD%E4%BD%BF%E7%94%A8-react-%E5%92%8C-jsx-%E4%B8%8D%E4%BD%BF%E7%94%A8-nodejs.html" class="button big previous">Previous Post</a></li>
+  						
+							
+  						  <li><a href="#" class="disabled button big next">Next Post</a></li>
+  						
+  					</ul>
+					</div>
+
+				<!-- Sidebar -->
+					<section id="sidebar">
+
+						<!-- Intro -->
+						<section id="intro">
+  <a href="https://techctu.github.io/" class="logo"><img src="/images/logo.jpg" alt="" /></a>
+	<header>
+    <h2>Avalon</h2>
+		<p>反正不要钱 多少写一点
+    </p>
+	</header>
+</section>
+
+
+						<!-- Mini Posts -->
+						<section>
+  <div class="mini-posts">
+    
+      <article class="mini-post">
+  	    <header>
+  		    <h3><a href="/2017/02/24/webpack-2-%E5%92%8C-react-router-%E5%AE%9E%E7%8E%B0%E6%8C%89%E9%9C%80%E5%8A%A0%E8%BD%BD.html">webpack 2 和 react-router 实现按需加载</a></h3>
+		      <time class="published" datetime="2017-02-24">February 24, 2017</time>
+						<!--<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>-->
+			  </header>
+        
+		  </article>
+									<!-- Mini Post -->
+									  <!--
+										<article class="mini-post">
+											<header>
+												<h3><a href="#">Vitae sed condimentum</a></h3>
+												<time class="published" datetime="2015-10-20">October 20, 2015</time>
+												<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>
+											</header>
+											<a href="#" class="image"><img src="/images/pic04.jpg" alt="" /></a>
+										</article>
+									-->
+    
+      <article class="mini-post">
+  	    <header>
+  		    <h3><a href="/2017/02/18/%E5%9C%A8-html-%E4%B8%AD%E4%BD%BF%E7%94%A8-react-%E5%92%8C-jsx-%E4%B8%8D%E4%BD%BF%E7%94%A8-nodejs.html">在 html 中使用 react 和 jsx —— 不使用 nodejs</a></h3>
+		      <time class="published" datetime="2017-02-18">February 18, 2017</time>
+						<!--<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>-->
+			  </header>
+        
+		  </article>
+									<!-- Mini Post -->
+									  <!--
+										<article class="mini-post">
+											<header>
+												<h3><a href="#">Vitae sed condimentum</a></h3>
+												<time class="published" datetime="2015-10-20">October 20, 2015</time>
+												<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>
+											</header>
+											<a href="#" class="image"><img src="/images/pic04.jpg" alt="" /></a>
+										</article>
+									-->
+    
+      <article class="mini-post">
+  	    <header>
+  		    <h3><a href="/2017/02/18/%E4%BD%BF%E7%94%A8-nodejs-zip-tar-%E7%9B%AE%E5%BD%95-%E6%96%87%E4%BB%B6%E5%A4%B9.html">使用 nodejs zip / tar 目录 / 文件夹</a></h3>
+		      <time class="published" datetime="2017-02-18">February 18, 2017</time>
+						<!--<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>-->
+			  </header>
+        
+		  </article>
+									<!-- Mini Post -->
+									  <!--
+										<article class="mini-post">
+											<header>
+												<h3><a href="#">Vitae sed condimentum</a></h3>
+												<time class="published" datetime="2015-10-20">October 20, 2015</time>
+												<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>
+											</header>
+											<a href="#" class="image"><img src="/images/pic04.jpg" alt="" /></a>
+										</article>
+									-->
+    
+      <article class="mini-post">
+  	    <header>
+  		    <h3><a href="/2017/02/18/%E4%BB%8E-webpack-1x-%E8%BF%81%E7%A7%BB%E5%88%B0-webpack-2x.html">从 webpack 1.x 迁移到 webpack 2.x</a></h3>
+		      <time class="published" datetime="2017-02-18">February 18, 2017</time>
+						<!--<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>-->
+			  </header>
+        
+		  </article>
+									<!-- Mini Post -->
+									  <!--
+										<article class="mini-post">
+											<header>
+												<h3><a href="#">Vitae sed condimentum</a></h3>
+												<time class="published" datetime="2015-10-20">October 20, 2015</time>
+												<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>
+											</header>
+											<a href="#" class="image"><img src="/images/pic04.jpg" alt="" /></a>
+										</article>
+									-->
+    
+  </div>
+</section>
+
+
+						<!-- Posts List -->
+
+						<!-- About -->
+					  <section class="blurb">
+	<p>抱朴 守拙
+</p>
+</section>
+
+
+						<!-- Footer -->
+						<section id="footer">
+  <ul class="icons">
+		<li><a href="https://github.com/techctu" class="fa-github"><span class="label">GitHub</span></a></li>
+		<li><a href="/feed.xml" class="fa-rss"><span class="label">RSS</span></a></li>
+		<li><a href="mailto:unlitechc@yahoo.com" class="fa-envelope"><span class="label">Email</span></a></li>
+	</ul>
+  <p class="copyright">Copyright &copy; 2015 techctu</p>
+</section>
+
+					</section>
+			</div>
+		<!-- Scripts -->
+		<script src="/js/jquery.min.js"></script>
+<script src="/js/skel.min.js"></script>
+<script src="/js/util.js"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="/js/main.js"></script>
+
+	</body>
+</html>
