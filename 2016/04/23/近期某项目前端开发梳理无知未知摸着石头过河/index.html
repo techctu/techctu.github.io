@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="项目背景目前大部分传统行业互联网项目都是由于大型互联网公司携用户量，上了新的威胁传统行业的项目，不得不上，本银行项目也不外如是，简称为项目Y吧。项目Y是迫于互联网压力产生的一系列项目群中的一个子项目，说起来很简单，想要实现的功能就是通过加强银行和商户目标用户群的联系来加强银行和商户间的合作关系（项目还没上线，姑且用一种比较晦涩的说法）。 项目启动项目启动时一般需要确定的有大体需求、概要设计、需要对">
+<meta name="keywords" content="Java,JavaScript,ReactJS,Spring,摄影">
+<meta property="og:type" content="article">
+<meta property="og:title" content="近期某项目前端开发梳理——无知、未知、摸着石头过河">
+<meta property="og:url" content="https://zhaozeyu.space/2016/04/23/近期某项目前端开发梳理无知未知摸着石头过河/index.html">
+<meta property="og:site_name" content="Avalon">
+<meta property="og:description" content="项目背景目前大部分传统行业互联网项目都是由于大型互联网公司携用户量，上了新的威胁传统行业的项目，不得不上，本银行项目也不外如是，简称为项目Y吧。项目Y是迫于互联网压力产生的一系列项目群中的一个子项目，说起来很简单，想要实现的功能就是通过加强银行和商户目标用户群的联系来加强银行和商户间的合作关系（项目还没上线，姑且用一种比较晦涩的说法）。 项目启动项目启动时一般需要确定的有大体需求、概要设计、需要对">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-05-17T11:45:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="近期某项目前端开发梳理——无知、未知、摸着石头过河">
+<meta name="twitter:description" content="项目背景目前大部分传统行业互联网项目都是由于大型互联网公司携用户量，上了新的威胁传统行业的项目，不得不上，本银行项目也不外如是，简称为项目Y吧。项目Y是迫于互联网压力产生的一系列项目群中的一个子项目，说起来很简单，想要实现的功能就是通过加强银行和商户目标用户群的联系来加强银行和商户间的合作关系（项目还没上线，姑且用一种比较晦涩的说法）。 项目启动项目启动时一般需要确定的有大体需求、概要设计、需要对">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zhaozeyu.space/2016/04/23/近期某项目前端开发梳理无知未知摸着石头过河/"/>
+
+
+
+
+
+  <title>近期某项目前端开发梳理——无知、未知、摸着石头过河 | Avalon</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Avalon</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">域名要收费，多少写一点</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhaozeyu.space/2016/04/23/近期某项目前端开发梳理无知未知摸着石头过河/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zeyu Zhao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Avalon">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">近期某项目前端开发梳理——无知、未知、摸着石头过河</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-23T00:00:00+08:00">
+                2016-04-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h1><p>目前大部分传统行业互联网项目都是由于大型互联网公司携用户量，上了新的威胁传统行业的项目，不得不上，本银行项目也不外如是，简称为项目Y吧。项目Y是迫于互联网压力产生的一系列项目群中的一个子项目，说起来很简单，想要实现的功能就是通过加强银行和商户目标用户群的联系来加强银行和商户间的合作关系（项目还没上线，姑且用一种比较晦涩的说法）。</p>
+<h1 id="项目启动"><a href="#项目启动" class="headerlink" title="项目启动"></a>项目启动</h1><p>项目启动时一般需要确定的有大体需求、概要设计、需要对接的外系统。分别对应的就是业务、开发、部门合作。</p>
+<h2 id="流程和接口"><a href="#流程和接口" class="headerlink" title="流程和接口"></a>流程和接口</h2><ul>
+<li>业务和开发：以需求文档为基础，以UE原型为具体交流工具。</li>
+<li>对接外系统：行内系统M、行内系统P、行内系统C。</li>
+</ul>
+<h2 id="技术架构"><a href="#技术架构" class="headerlink" title="技术架构"></a>技术架构</h2><p>前端：ReactJS、动静分离、Spring-MVC以及某不知名移动端APP框架。<br>后台业务层：Dubbo、Zookeeper等。</p>
+<h1 id="设计开发"><a href="#设计开发" class="headerlink" title="设计开发"></a>设计开发</h1><h2 id="业务需求"><a href="#业务需求" class="headerlink" title="业务需求"></a>业务需求</h2><p>由业务部门提出需求，在UE组的帮助下设计原型，然后和开发进行沟通，讨论是否能实现相关业务需求，设置需求的优先级。讨论过程中设计的外部因素也需要和外部业务和技术部门进行沟通。</p>
+<h2 id="技术架构-1"><a href="#技术架构-1" class="headerlink" title="技术架构"></a>技术架构</h2><h3 id="后端service"><a href="#后端service" class="headerlink" title="后端service"></a>后端service</h3><p>分层架构，包括数据层（一堆访问本系统数据库的dao和收发外系统报文的接口程序）、基础服务层（包装dao和一些基础接口的服务层）、业务服务层（和业务逻辑相关的服务，主要为本系统的服务）。业务服务层通过Dubbo对外暴露。</p>
+<h3 id="前端动态资源"><a href="#前端动态资源" class="headerlink" title="前端动态资源"></a>前端动态资源</h3><p>使用Spring-MVC来进行动态资源管理，主要处理ajax请求。暂时不适用shiro、session等技术。使用redis来访问所需的外系统数据。</p>
+<h3 id="前端静态资源"><a href="#前端静态资源" class="headerlink" title="前端静态资源"></a>前端静态资源</h3><p>使用ReactJS和相关技术来开发前端UI，暂时没有使用redux等技术方案。ReactJS网页嵌入外部系统的APP客户端中。</p>
+<h1 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h1><h2 id="UE原型由业务绘制"><a href="#UE原型由业务绘制" class="headerlink" title="UE原型由业务绘制"></a>UE原型由业务绘制</h2><ul>
+<li>业务人员的主要工作并不是绘制UE原型，学习Axure需要一段时间。</li>
+<li>业务人员的日常工作是处理大体的、非具象、需要多方沟通的事务，或是有既定规章可循的常规事务，而不是设计和确认新事物流程细节，更不是设计用户体验。</li>
+<li>时间紧迫的情况下，不论什么理由，还是由专业的人做专门的事情，效率比较高。</li>
+</ul>
+<h2 id="未知的技术难度"><a href="#未知的技术难度" class="headerlink" title="未知的技术难度"></a>未知的技术难度</h2><ul>
+<li>工期紧迫，却因为技术研究小组的推荐放弃了熟悉的基于JQuery前端技术方案，采用更新更适合移动端但学习成本较高的ReactJS。而且由于一些如需要支持优先级更高的事项或是人事变动等原因，技术研究小组的支持力度并不足以支撑开发小组使用新技术。</li>
+<li>开发小组组员技术实力参差不齐。大部分研究、示例、实践都表明，增加人员并不一定会提升开发效率，尤其是新增人员本身能力跟不上开发进度时，沟通、指导、修正等成本大大增加。同时，技术实力较强的人员由于这些事务的打断，切换工作状态花费了更多的时间。</li>
+<li>较多的正在升级更新的外接系统。如果外接系统稳定，且剧本稳定的可控的测试条件，这部分只是一个比较耗时的工作，难度不是特别大；但在外系统整体需要升级，测试环境不稳定的情况下进行系统对接，对接复杂度直接就变成了f(n) = t^n。而且每个系统都有自己的升级更新打包时间，测试账号可能对多个对接系统提供，系统升级时测试环境可能不同步等，每个系统的协调时间可能需要十分钟到半个小时不等，极大降低开发效率。<em>一个购买选卡支付的流程两周没有走通</em>。</li>
+<li>额外的设计和开发。如为了验证开发结果，需要绕过外接系统进行验证，同时还有对相关数据的维护，以及区分目标生产系统代码和解决环境问题（如业务测试环境、压力测试环境）等产生的额外代码。</li>
+<li>传统适配问题。在使用ReactJS且嵌入使用了由于众所周知的原因采用的应用范围极窄的未知框架开发的APP的情况的，适配问题的解决成为了需要众多环节合作的一个流程很长的问题。</li>
+<li>ReactJS和其他传统技术合作的问题。比如，难以向UI和静态页面制作方描述清楚需求说明和规格要求；对于一般人员学习成本较高。</li>
+<li>传统的设计模式和新的动静分离模式带来的变化，以及前端组件化带来的一系列前端程序设计和优化问题，如代码包结构、压缩、各个环境的资源替换等。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/09/使用reactjs简单封装baidumap/" rel="next" title="使用ReactJS简单封装BaiduMap">
+                <i class="fa fa-chevron-left"></i> 使用ReactJS简单封装BaiduMap
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/08/第一次reactjs前端开发记录/" rel="prev" title="第一次ReactJS前端开发记录">
+                第一次ReactJS前端开发记录 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zeyu Zhao</p>
+              <p class="site-description motion-element" itemprop="description">中年危机攻城狮的小圆子，Java，JavaScript，Spring，ReactJS，摄影，一些小东西。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#项目背景"><span class="nav-number">1.</span> <span class="nav-text">项目背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#项目启动"><span class="nav-number">2.</span> <span class="nav-text">项目启动</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#流程和接口"><span class="nav-number">2.1.</span> <span class="nav-text">流程和接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#技术架构"><span class="nav-number">2.2.</span> <span class="nav-text">技术架构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设计开发"><span class="nav-number">3.</span> <span class="nav-text">设计开发</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#业务需求"><span class="nav-number">3.1.</span> <span class="nav-text">业务需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#技术架构-1"><span class="nav-number">3.2.</span> <span class="nav-text">技术架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#后端service"><span class="nav-number">3.2.1.</span> <span class="nav-text">后端service</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前端动态资源"><span class="nav-number">3.2.2.</span> <span class="nav-text">前端动态资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前端静态资源"><span class="nav-number">3.2.3.</span> <span class="nav-text">前端静态资源</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#坑"><span class="nav-number">4.</span> <span class="nav-text">坑</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#UE原型由业务绘制"><span class="nav-number">4.1.</span> <span class="nav-text">UE原型由业务绘制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#未知的技术难度"><span class="nav-number">4.2.</span> <span class="nav-text">未知的技术难度</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zeyu Zhao</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

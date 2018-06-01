@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="react,gsap,pull to refresh,push to load more," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="项目上线后看着列表不能下拉刷新不能上拉加载非常不爽，就做了个简单的实现。 为什么自己造轮子？用react不想添加jQuery，同时GitHub上的大部分代码都不能同时支持上拉和下拉。 准备找个现成的项目新建一个页面，写个timeout模拟异步请求。 1234567891011refresh() &amp;#123;  setTimeout(()=&amp;gt;&amp;#123;this.setState(&amp;#123;">
+<meta name="keywords" content="react,gsap,pull to refresh,push to load more">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用GSAP简单实现react列表中的下拉刷新和上拉加载更多">
+<meta property="og:url" content="https://zhaozeyu.space/2017/01/11/使用gsap简单实现react列表中的下拉刷新和上拉加载更多/index.html">
+<meta property="og:site_name" content="Avalon">
+<meta property="og:description" content="项目上线后看着列表不能下拉刷新不能上拉加载非常不爽，就做了个简单的实现。 为什么自己造轮子？用react不想添加jQuery，同时GitHub上的大部分代码都不能同时支持上拉和下拉。 准备找个现成的项目新建一个页面，写个timeout模拟异步请求。 1234567891011refresh() &amp;#123;  setTimeout(()=&amp;gt;&amp;#123;this.setState(&amp;#123;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-06-01T05:18:01.562Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用GSAP简单实现react列表中的下拉刷新和上拉加载更多">
+<meta name="twitter:description" content="项目上线后看着列表不能下拉刷新不能上拉加载非常不爽，就做了个简单的实现。 为什么自己造轮子？用react不想添加jQuery，同时GitHub上的大部分代码都不能同时支持上拉和下拉。 准备找个现成的项目新建一个页面，写个timeout模拟异步请求。 1234567891011refresh() &amp;#123;  setTimeout(()=&amp;gt;&amp;#123;this.setState(&amp;#123;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zhaozeyu.space/2017/01/11/使用gsap简单实现react列表中的下拉刷新和上拉加载更多/"/>
+
+
+
+
+
+  <title>使用GSAP简单实现react列表中的下拉刷新和上拉加载更多 | Avalon</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Avalon</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">域名要收费，多少写一点</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhaozeyu.space/2017/01/11/使用gsap简单实现react列表中的下拉刷新和上拉加载更多/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zeyu Zhao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Avalon">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用GSAP简单实现react列表中的下拉刷新和上拉加载更多</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-11T00:00:00+08:00">
+                2017-01-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>项目上线后看着列表不能下拉刷新不能上拉加载非常不爽，就做了个简单的实现。</p>
+<p><em>为什么自己造轮子？用react不想添加jQuery，同时GitHub上的大部分代码都不能同时支持上拉和下拉。</em></p>
+<h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><p>找个现成的项目新建一个页面，写个timeout模拟异步请求。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">refresh() &#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;<span class="keyword">this</span>.setState(&#123;</span><br><span class="line">    items: [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">  &#125;)&#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">loadMore() &#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;<span class="keyword">this</span>.setState(&#123;</span><br><span class="line">    items: <span class="keyword">this</span>.state.items.concat([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>])</span><br><span class="line">  &#125;)&#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>再整个生成列表。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">renderList</span>(<span class="params">list</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function">(<span class="params">list.map((v, i</span>) =&gt;</span> (</span><br><span class="line">    &lt;li key=&#123;i&#125; onClick=&#123;<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;browserHistory.push(<span class="string">'/MerchantDetail/'</span> + v.id + <span class="string">'/'</span> + v.distance);&#125;&#125;&gt;</span><br><span class="line">      &lt;div styleName=<span class="string">"m-shop-right"</span>&gt;</span><br><span class="line">        &lt;h1&gt;</span><br><span class="line">          &#123;i&#125;</span><br><span class="line">        &lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>div&gt;</span><br><span class="line">    &lt;<span class="regexp">/li&gt;)</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>然后开始搞事情。</p>
+<h1 id="实现下拉和上拉"><a href="#实现下拉和上拉" class="headerlink" title="实现下拉和上拉"></a>实现下拉和上拉</h1><h2 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h2><p>现在的上拉和下拉大部分是：</p>
+<ol>
+<li>监听ontouchstart, ontouchmove, ontouchend三个事件。</li>
+<li>判断上拉下拉边界，进行对应的CSS transform和transition。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// sample，监听list的事件，修改list-header</span></span><br><span class="line">&lt;div id=<span class="string">"list"</span>&gt;</span><br><span class="line">    &lt;div id=<span class="string">"list-header"</span> /&gt;</span><br><span class="line">    &lt;div id=<span class="string">"list-items"</span> /&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>最开始想用 <code>react-css-transition-group</code> 或 <code>react-transition-group</code> 来实现上拉和下拉效果，像这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;reactcsstransitiongroup ref=&#123;(el) =&gt; <span class="keyword">this</span>._ref = el&#125;&gt;</span><br><span class="line">    &lt;div id=<span class="string">"list-header"</span> /&gt;</span><br><span class="line">    &lt;div id=<span class="string">"list-items"</span> /&gt;</span><br><span class="line">&lt;<span class="regexp">/reactcsstransitiongroup&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然而仔细阅读了之后，发现只能在 <code>mount</code> 和 <code>unmount</code> 这两个关键点触发动画，在 <code>update</code> 的时候无法触发。</p>
+<p>我非常不希望通过 <figure class="highlight plain"><figcaption><span>style</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">这个就非常微妙了，既然如此，我为何一定要用 `react-css-transition-group` 或 `react-transition-group` 呢？简单点不好么？直接把这部分动画操作放在直接的DOM操作里绕开react，然后在ontouchend里回调，也是一种不错的思路。</span><br><span class="line"></span><br><span class="line">```js</span><br><span class="line">&lt;div id=&quot;g-wrap&quot; onTouchStart=&#123;(e) =&gt; this.handleTouchStart(e)&#125;</span><br><span class="line">  onTouchMove=&#123;(e) =&gt; this.handleTouchMove(e)&#125;</span><br><span class="line">  onTouchEnd=&#123;(e) =&gt; this.handleTouchEnd(e)&#125;&gt;</span><br><span class="line">    // ...</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">handleTouchStart(e) &#123;</span><br><span class="line">  <span class="keyword">this</span>._touchStartPosY = e.touches[<span class="number">0</span>].pageY;<span class="comment">//记录触摸开始位置</span></span><br><span class="line">  <span class="keyword">this</span>._gmainDefaultPaddingTopRem = <span class="string">'1.8rem'</span>;<span class="comment">//记录初始列表头部位置，可改成接收参数</span></span><br><span class="line">  <span class="keyword">this</span>._gmainDefaultPaddingTop = <span class="built_in">parseInt</span>(</span><br><span class="line">    <span class="keyword">this</span>._gmainDefaultPaddingTopRem.substr(<span class="number">0</span>, <span class="keyword">this</span>._gmainDefaultPaddingTopRem.length - <span class="number">3</span>));</span><br><span class="line">  <span class="keyword">this</span>._gmainDefaultPaddingBottom = <span class="number">0</span>;<span class="comment">//底部</span></span><br><span class="line">  <span class="keyword">this</span>._lastScrollY = <span class="number">-1</span>;<span class="comment">//用于记录上一次滚动位置</span></span><br><span class="line">  <span class="keyword">this</span>._equalScroll = <span class="literal">false</span>;<span class="comment">//用于标记上拉到了底部</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">handleTouchMove(e) &#123;</span><br><span class="line">  <span class="keyword">this</span>._touchEndPosY = e.touches[<span class="number">0</span>].pageY;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 下拉到顶</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">window</span>.scrollY &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>._lastScrollY = <span class="built_in">window</span>.scrollY;</span><br><span class="line">    <span class="comment">// 拉且限制拉的距离</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>._touchEndPosY - <span class="keyword">this</span>._touchStartPosY &gt; <span class="number">0</span> &amp;&amp; <span class="keyword">this</span>._touchEndPosY - <span class="keyword">this</span>._touchStartPosY &lt; <span class="number">100</span>) &#123;</span><br><span class="line">      <span class="keyword">let</span> gmain = findDOMNode(<span class="keyword">this</span>._gmain);</span><br><span class="line">      <span class="comment">// 偷懒使用TweenMax来生成动画</span></span><br><span class="line">      TweenMax.to(gmain, <span class="number">0</span>,</span><br><span class="line">        &#123;<span class="attr">paddingTop</span>: <span class="keyword">this</span>._gmainDefaultPaddingTop +</span><br><span class="line">            (<span class="keyword">this</span>._touchEndPosY - <span class="keyword">this</span>._touchStartPosY)/<span class="number">20</span> + <span class="string">'rem'</span>,</span><br><span class="line">            ease: Power0.easeInOut&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 上拉到底</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.scrollY == <span class="keyword">this</span>._lastScrollY) &#123;</span><br><span class="line">      <span class="keyword">if</span> (!<span class="keyword">this</span>._equalScroll) &#123;</span><br><span class="line">        <span class="keyword">this</span>._equalScroll = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">this</span>._equalScrollY = <span class="built_in">window</span>.scrollY;</span><br><span class="line">        <span class="keyword">this</span>._equalClientY = e.touches[<span class="number">0</span>].clientY;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">let</span> gmain = findDOMNode(<span class="keyword">this</span>._gmain);</span><br><span class="line">      e.preventDefault();</span><br><span class="line">      <span class="comment">// 限制上拉距离生成动画</span></span><br><span class="line">      <span class="keyword">let</span> offsetY = <span class="keyword">this</span>._touchEndPosY&gt;<span class="number">100</span>?<span class="number">100</span>:<span class="keyword">this</span>._touchEndPosY;</span><br><span class="line">      TweenMax.to(gmain, <span class="number">0</span>,</span><br><span class="line">        &#123;<span class="attr">paddingBottom</span>: <span class="keyword">this</span>._gmainDefaultPaddingBottom + offsetY/<span class="number">20</span>&gt; + <span class="string">'rem'</span>,</span><br><span class="line">        ease: Power0.easeInOut&#125;);</span><br><span class="line"></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>._lastScrollY = <span class="built_in">window</span>.scrollY;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">handleTouchEnd(e) &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">window</span>.scrollY &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>._touchEndPosY - <span class="keyword">this</span>._touchStartPosY &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">let</span> gmain = findDOMNode(<span class="keyword">this</span>._gmain);</span><br><span class="line">      <span class="comment">// 弹回</span></span><br><span class="line">      TweenMax.to(gmain, <span class="number">1</span>,</span><br><span class="line">        &#123;<span class="attr">paddingTop</span>: <span class="keyword">this</span>._gmainDefaultPaddingTopRem,</span><br><span class="line">            ease: Back.easeInOut&#125;);</span><br><span class="line">      <span class="keyword">this</span>.refresh();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>._equalScroll) &#123;</span><br><span class="line">      <span class="keyword">let</span> gmain = findDOMNode(<span class="keyword">this</span>._gmain);</span><br><span class="line">      <span class="comment">// 弹回</span></span><br><span class="line">      TweenMax.to(gmain, <span class="number">1</span>,</span><br><span class="line">        &#123;<span class="attr">paddingBottom</span>: <span class="keyword">this</span>._gmainDefaultPaddingBottom,</span><br><span class="line">            ease: Power3.easeInOut&#125;);</span><br><span class="line">      <span class="keyword">this</span>.loadMore();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>整个思路就是：通过起始 <code>pageY</code> 和结束 <code>pageY</code> 判断用户垂直滑动方向，在根据 <code>window.scrollY</code> 和保存的上一次滑动位置来判断是否到顶（或者到底），到顶（或者到底）后执行 tansform，touchEnd的时候进行回调。</p>
+<p>当然这只是个简单实践，还需要进一步优化，比如：</p>
+<ul>
+<li>支持传入回调函数。</li>
+<li>支持定义限制的上拉下拉高度。</li>
+<li>支持上拉下拉时载入自定义的静态资源，如活动动画或是刷新效果等。</li>
+<li>设置默认参数。</li>
+<li>将TweenMax改为原生方法实现减少大小。</li>
+<li>抽取为high-order-component。</li>
+<li>最近这种纯前端的东西做的有点多，是时候拿 nodejs 和 express/koa 搞事情了。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/react/" rel="tag"># react</a>
+          
+            <a href="/tags/gsap/" rel="tag"># gsap</a>
+          
+            <a href="/tags/pull-to-refresh/" rel="tag"># pull to refresh</a>
+          
+            <a href="/tags/push-to-load-more/" rel="tag"># push to load more</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/10/在babel6中使用es7-decorator/" rel="next" title="在Babel6中使用ES7 Decorator">
+                <i class="fa fa-chevron-left"></i> 在Babel6中使用ES7 Decorator
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/04/停止更新使用issues来记录/" rel="prev" title="停止更新，使用issues来记录">
+                停止更新，使用issues来记录 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zeyu Zhao</p>
+              <p class="site-description motion-element" itemprop="description">中年危机攻城狮的小圆子，Java，JavaScript，Spring，ReactJS，摄影，一些小东西。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#准备"><span class="nav-number">1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现下拉和上拉"><span class="nav-number">2.</span> <span class="nav-text">实现下拉和上拉</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#设计"><span class="nav-number">2.1.</span> <span class="nav-text">设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">2.2.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zeyu Zhao</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

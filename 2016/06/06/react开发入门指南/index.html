@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="用Jekyll和Markdown写的，使用的pygment的代码高亮没有调整，react相关代码会出现红框，无视就好，懒癌发作暂时不想研究。 代码是示例，仅作为参考。 不知不觉写了很多东西，有点杂，见谅。 React是什么React是基于JavaScript的，状态驱动的，操作虚拟DOM的UI框架。使用该框架有很多好处，对我来说，核心是将对DOM的操作隔离开，让开发人员专注于业务流程和状态。 与传">
+<meta name="keywords" content="Java,JavaScript,ReactJS,Spring,摄影">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React开发入门指南">
+<meta property="og:url" content="https://zhaozeyu.space/2016/06/06/react开发入门指南/index.html">
+<meta property="og:site_name" content="Avalon">
+<meta property="og:description" content="用Jekyll和Markdown写的，使用的pygment的代码高亮没有调整，react相关代码会出现红框，无视就好，懒癌发作暂时不想研究。 代码是示例，仅作为参考。 不知不觉写了很多东西，有点杂，见谅。 React是什么React是基于JavaScript的，状态驱动的，操作虚拟DOM的UI框架。使用该框架有很多好处，对我来说，核心是将对DOM的操作隔离开，让开发人员专注于业务流程和状态。 与传">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://7xogz7.com1.z0.glb.clouddn.com/CookieHistoryBeta1.png">
+<meta property="og:updated_time" content="2018-06-01T05:07:12.447Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React开发入门指南">
+<meta name="twitter:description" content="用Jekyll和Markdown写的，使用的pygment的代码高亮没有调整，react相关代码会出现红框，无视就好，懒癌发作暂时不想研究。 代码是示例，仅作为参考。 不知不觉写了很多东西，有点杂，见谅。 React是什么React是基于JavaScript的，状态驱动的，操作虚拟DOM的UI框架。使用该框架有很多好处，对我来说，核心是将对DOM的操作隔离开，让开发人员专注于业务流程和状态。 与传">
+<meta name="twitter:image" content="http://7xogz7.com1.z0.glb.clouddn.com/CookieHistoryBeta1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zhaozeyu.space/2016/06/06/react开发入门指南/"/>
+
+
+
+
+
+  <title>React开发入门指南 | Avalon</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Avalon</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">域名要收费，多少写一点</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhaozeyu.space/2016/06/06/react开发入门指南/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zeyu Zhao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Avalon">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">React开发入门指南</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-06T00:00:00+08:00">
+                2016-06-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><em>用Jekyll和Markdown写的，使用的pygment的代码高亮没有调整，react相关代码会出现红框，无视就好，懒癌发作暂时不想研究。</em></p>
+<p><em>代码是示例，仅作为参考。</em></p>
+<p><em>不知不觉写了很多东西，有点杂，见谅。</em></p>
+<h1 id="React是什么"><a href="#React是什么" class="headerlink" title="React是什么"></a><a href="http://facebook.github.io/react/docs/getting-started.html" target="_blank" rel="noopener">React</a>是什么</h1><p>React是基于JavaScript的，状态驱动的，操作虚拟DOM的UI框架。使用该框架有很多好处，对我来说，核心是将对DOM的操作隔离开，让开发人员专注于业务流程和状态。</p>
+<h2 id="与传统开发比较"><a href="#与传统开发比较" class="headerlink" title="与传统开发比较"></a>与传统开发比较</h2><p>在传统的前端页面开发中，我们一般会给一个标签设置一个id或是类似的东西，以便对其进行操作，如：<br><figure class="highlight gams"><figcaption><span>lang: javascript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="built-in">div</span> id=<span class="string">'id_xxx'</span>&gt;这是一个标签&lt;/<span class="built-in">div</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 纯JS</span></span><br><span class="line">document.getElementByID(<span class="string">'id_xxx'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// JQuery</span></span><br><span class="line"><span class="symbol">$</span>(<span class="string">'#id_xxx'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 再去操作</span></span><br></pre></td></tr></table></figure></p>
+<p>而在React中，一般这么做：<br><figure class="highlight javascript"><figcaption><span>lang: javascript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// import省略</span></span><br><span class="line"><span class="comment">// 为了比较完整展现一下结构，比上面偷懒写的代码多了很多</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ComponentA</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">        <span class="keyword">super</span>(props)</span><br><span class="line">        <span class="keyword">this</span>.state = &#123;</span><br><span class="line">            stateTag: <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        <span class="comment">// 进行一些预处理操作</span></span><br><span class="line">        <span class="keyword">let</span> title = <span class="keyword">this</span>.state.stateTag? <span class="string">'这是一个标签'</span>:<span class="string">'这不是一个标签'</span></span><br><span class="line">        <span class="keyword">let</span> arrayInfo = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">5</span>).fill(<span class="literal">false</span>)</span><br><span class="line">        <span class="keyword">let</span> elems = []</span><br><span class="line">        arrayInfo.forEach(<span class="function">(<span class="params">v,i</span>) =&gt;</span> (elems.push(<span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span> &#123;i + '-' + v&#125; <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>)))</span><br><span class="line">        <span class="keyword">return</span>(<span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;title&#125;<span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;elems&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样我们只需要关注什么样的场景下需要进行title值的修改，不需要关注ID之类的维护亦或一些复杂繁琐的DOM操作。想象一下如果是一个复杂的多级下拉选择框，选完了之后对应的列表需要进行自动更新。</p>
+<h2 id="React结构入门"><a href="#React结构入门" class="headerlink" title="React结构入门"></a>React结构入门</h2><p>以上面的代码为例。Java从接触的时候的1.5发展到了1.8，多了很多并行运算、模板、闭包、线程安全等新特性，Python也不是一成不变，JavaScript也发展到了es6，es7正在路上。上面的代码，是基于es6。</p>
+<figure class="highlight javascript"><figcaption><span>lang: javascript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 和大部分语音一致，引用依赖包/库，如Java、Python的import，C系列的include等</span></span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义一个React组件</span></span><br><span class="line"><span class="comment">// 如果做过其他胖客户端的开发的话，类似Android、VB、C#等，extend View</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ComponentA</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">    <span class="comment">// 非常熟悉的面向对象的概念中的构造函数</span></span><br><span class="line">    <span class="comment">// props即使用ComponentA时传入的初始化参数</span></span><br><span class="line">    <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">        <span class="keyword">super</span>(props)</span><br><span class="line">        <span class="comment">// 设置该组件构造时的状态</span></span><br><span class="line">        <span class="keyword">this</span>.state = &#123;</span><br><span class="line">            stateTag: <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 初始化完成开始渲染DOM，React在这里计算需要修改哪些DOM节点并进行更新</span></span><br><span class="line">    render()&#123;</span><br><span class="line">        <span class="comment">// es6的关键字，不再使用var，var的作用域不好控制</span></span><br><span class="line">        <span class="comment">// let声明变量，const声明常量</span></span><br><span class="line">        <span class="keyword">let</span> title = <span class="keyword">this</span>.state.stateTag? <span class="string">'这是一个标签'</span>:<span class="string">'这不是一个标签'</span></span><br><span class="line">        <span class="keyword">let</span> arrayInfo = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">5</span>).fill(<span class="literal">false</span>)</span><br><span class="line">        <span class="keyword">let</span> elems = []</span><br><span class="line">        <span class="comment">// forEach为es6中的数组遍历</span></span><br><span class="line">        <span class="comment">// (param)=&gt;(expression(param))为新的操作符，param为形参，表示对param立刻执行expression(param)</span></span><br><span class="line">        <span class="comment">// (v,i)是forEach的可变形参列表，可以为1-3个参数，分别是数组项值、下表、数组引用</span></span><br><span class="line">        <span class="comment">// 都是语法糖，整个含义就是遍历数组，对于每个数组项执行一个操作</span></span><br><span class="line">        arrayInfo.forEach(<span class="function">(<span class="params">v,i</span>) =&gt;</span> (elems.push(&lt;div&gt; &#123;i + '-' + v&#125; &lt;/div&gt;)))</span><br><span class="line">        <span class="comment">// return中写静态页面，HTML。需要注意的主要有三点：</span></span><br><span class="line">        <span class="comment">// html关键字class修改为className</span></span><br><span class="line">        <span class="comment">// style通过对象传入，带有“-”的修改为驼峰命名，如style="padding-top:1rem"修改为style=&#123;&#123;paddingTop:'1rem'&#125;&#125;</span></span><br><span class="line">        <span class="comment">// 列表需要加入唯一key，如key = &#123;列表名 + 页号 + 下标&#125;</span></span><br><span class="line">        <span class="keyword">return</span>(&lt;div&gt;&#123;title&#125;&lt;div&gt;&#123;elems&#125;&lt;/div&gt;&lt;/div&gt;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用方式如下，传入一个对象到init属性，在ComponentA中通过this.props.init访问</span></span><br><span class="line">&lt;ComponentA init=&#123;&#123;<span class="attr">foo</span>:bar&#125;&#125; /&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="常用声明周期函数"><a href="#常用声明周期函数" class="headerlink" title="常用声明周期函数"></a>常用声明周期函数</h3><figure class="highlight stylus"><figcaption><span>lang: javascript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// render之前调用</span></span><br><span class="line"><span class="function"><span class="title">componentWillMount</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">// 修改state</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// render之后调用</span></span><br><span class="line"><span class="function"><span class="title">componentDidMount</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">// 发送异步请求</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 销毁之前调用</span></span><br><span class="line"><span class="function"><span class="title">componentWillUnmount</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">// 清理定时器、中断请求等</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>更多详情参考<a href="http://www.ruanyifeng.com/blog/2015/03/react.html" target="_blank" rel="noopener">阮一峰的React介绍（es5版代码）</a><a href="http://facebook.github.io/react/docs/getting-started.html" target="_blank" rel="noopener">或者官网（还是es5）</a></p>
+<p><em>注：</em>阮一峰的博客是15年3月写的，部分内容react可能更新后取消了。比如不再使用JSX，拥抱es6。</p>
+<h2 id="像React一样思考"><a href="#像React一样思考" class="headerlink" title="像React一样思考"></a>像React一样思考</h2><p>React中，props和state是很容易混淆的。什么时候使用props？什么时候使用state？哪些需要在组件内部的state进行管理？都是设计到组件设计的问题。</p>
+<p>React最佳实践中，将UI组件分为两种：纯展示类组件和业务类组件。其中，纯展示类组件只负责展示，没有自己的state，如：使用宽a高b位置多少的页面空间展示一种来源为xxx的图片。而父组件负责处理组件状态，如由图片、剪头、分页等组成的轮播图组件，负责处理显示哪张图片，点击的回调是什么，什么时候切换图片，是否可以滑动等。</p>
+<p>那么，一个基于react的web app可能就是这样：</p>
+<figure class="highlight xml"><figcaption><span>lang: html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 入口index.</span><br><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>入口<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"...app.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight scala"><figcaption><span>lang: javascript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.js</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ComponentA</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">    constructor(props) &#123;</span><br><span class="line">        <span class="keyword">super</span>(props)</span><br><span class="line">        <span class="keyword">this</span>.state = &#123;</span><br><span class="line">            <span class="comment">//  初始化</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 注入子组件进行调用更新父组件状态</span></span><br><span class="line">    updateState(param) &#123;</span><br><span class="line">        <span class="keyword">this</span>.setState(param)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render () &#123;</span><br><span class="line">        <span class="comment">// 许多状态和cases，以判定页面应该显示成什么样，拼装对应的组件，之后填充到页面</span></span><br><span class="line">        let componentArrayA = []</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.state) &#123;</span><br><span class="line">            componentArrayA.push(&lt;<span class="type">ComponentX</span> callbackFunction=&#123;<span class="keyword">this</span>.updateState.bind(<span class="keyword">this</span>)&#125;&gt;&lt;/<span class="type">ComponentX</span>&gt;)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            &lt;div&gt;&#123;componentArrayA&#125;&lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>很快，就会出现几个问题：</p>
+<ol>
+<li>浏览器里我复制链接，我可以在新的浏览器里粘贴就可以打开对应页面，如果没有登录跳到登录页，使用react如何做到？</li>
+<li>使用react，页面一多，状态的维护难度会不会爆炸？</li>
+</ol>
+<p>要解决这些问题，需要引入新的框架。</p>
+<h1 id="相关知识技术"><a href="#相关知识技术" class="headerlink" title="相关知识技术"></a>相关知识技术</h1><h2 id="React-router"><a href="#React-router" class="headerlink" title="React-router"></a><a href="https://github.com/reactjs/react-router" target="_blank" rel="noopener">React-router</a></h2><p>第一个问题，其实是路由方面的问题。</p>
+<p>在以前接触的Java前端网页开发中，我们是通过Spring-MVC来进行一些基础路由设置，然后将路由处理映射到Controller，在Controller中处理请求并返回对应页面。其中，在请求到Controller之前，会通过一些filter进行处理，比如shiro来进行权限验证（登录与否等）。这样就需要引入react-router。</p>
+<p>react-router是一个前端路由框架，监听浏览器的url请求，并进行相应的处理。<br><figure class="highlight typescript"><figcaption><span>lang: html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;Router history=&#123;hashHistory&#125;&gt;</span><br><span class="line">    &lt;Route path=<span class="string">"/"</span> component=&#123;Home&#125;</span><br><span class="line">      onEnter=&#123;<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">document</span>.getElementById(<span class="string">'g-header-line'</span>).style.height = <span class="string">'0px'</span>;<span class="comment">/*Home页面需要进行特殊处理*/</span></span><br><span class="line">        <span class="keyword">let</span> TRUE = <span class="literal">true</span></span><br><span class="line">        pushPageTrace(TRUE, <span class="built_in">escape</span>(<span class="string">'http://web2native|channel=goto_xhtml*path=login/xhtml/unlogin_menu_location.xhtml'</span>))</span><br><span class="line">      &#125;&#125;</span><br><span class="line">      onLeave=&#123;<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> height = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">let</span> parser = <span class="keyword">new</span> UAParser();</span><br><span class="line">        <span class="keyword">let</span> result = parser.getResult();</span><br><span class="line">        <span class="keyword">if</span> (result.os.name === <span class="string">'iOS'</span>) &#123;</span><br><span class="line">          <span class="keyword">if</span> (result.os.version.substr(<span class="number">0</span>, result.os.version.indexOf(<span class="string">'.'</span>)) &gt; <span class="number">6</span>) &#123;</span><br><span class="line">            height = <span class="number">20</span> * (<span class="built_in">document</span>.documentElement.clientWidth / <span class="number">320</span>);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">document</span>.getElementById(<span class="string">'g-header-line'</span>).style.height = height + <span class="string">'px'</span>;</span><br><span class="line">      &#125;&#125;/&gt;</span><br><span class="line">&lt;<span class="regexp">/Router&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>hashHistory用的是react-router提供的基于浏览器自带history制作的history.js的一个历史记录数据结构，使用的是<a href="http://xxx/#/xxx?hash=xxx的形式。" target="_blank" rel="noopener">http://xxx/#/xxx?hash=xxx的形式。</a></p>
+<p><route>标签中path即#/path，component即自己写的react组件，onEnter即进入页面前的处理，可以在此对路由进行预处理，onLeave同理。通过这种方式，能解决前端路由问题。</route></p>
+<h3 id="题外"><a href="#题外" class="headerlink" title="题外"></a>题外</h3><p>hashHistory的#总是有点奇怪的，表现上有点像把html的锚点重定义了。在现在H5的语义化大环境下，这并不是一个好的解决方案。所以，react-router提供了browserHistory这样传统的解决方案。</p>
+<p>在之前的项目中没有使用browserHistory的原因有：</p>
+<ol>
+<li>前期调研不充分。</li>
+<li>时间紧张，没有时间进行对应改造。</li>
+</ol>
+<p>闲暇时间尝试过修改为browserHistory，涉及到了一些代码目录结构修改和路由重定向的问题，还有一些部署优化的问题，暂时没有动手。</p>
+<h2 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a><a href="http://redux.js.org/" target="_blank" rel="noopener">Redux</a></h2><p><em>还好我们的应用不是很大，使用react-router拆分后，页面状态没有爆炸，暂时用不到redux。</em></p>
+<p>redux是一个状态树管理框架，主要解决的问题就是状态的管理，可以类似理解为一个状态管理中心。不理解可以参考接触的各种注册/提供/消费模式，如Dubbo，在redux中注册，标明谁来更新状态，状态更新后通知谁更新。</p>
+<p>暂时只阅读了相关文档没有实际使用，不再赘述。</p>
+<h2 id="npm和webpack及其他"><a href="#npm和webpack及其他" class="headerlink" title="npm和webpack及其他"></a>npm和webpack及其他</h2><p>用之前的项目理解，npm和webpack共同构成了一个maven。</p>
+<h3 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h3><p>包管理工具，依赖管理工具，下载包，执行配置命令等。</p>
+<h3 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h3><p>发布工具，发布前预处理等。</p>
+<h3 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h3><p>作用类似pom.xml</p>
+<h2 id="开发工具"><a href="#开发工具" class="headerlink" title="开发工具"></a>开发工具</h2><p>一般就是sublime text和atom，两种都是非常好的编辑器，并且开发es6+react时并没有太多差别，都有相关插件。</p>
+<h3 id="sublime-text3"><a href="#sublime-text3" class="headerlink" title="sublime text3"></a>sublime text3</h3><p>离线安装插件需要安装PyV8，步骤参考<a href="https://packagecontrol.io/installation" target="_blank" rel="noopener">这里</a>。</p>
+<ol>
+<li>打开Preferences &gt; Browse Packages。</li>
+<li>向上一级，找到Installed Packages/目录，没有则手动创建。</li>
+<li>下载<a href="https://packagecontrol.io/Package%20Control.sublime-package" target="_blank" rel="noopener">Package Control.sublime-package</a>，复制到Installed Packages/。</li>
+<li>重启sublime text3。</li>
+</ol>
+<h3 id="atom"><a href="#atom" class="headerlink" title="atom"></a>atom</h3><p>atom可以直接问(度娘)[<a href="http://jingyan.baidu.com/article/375c8e19c3105a25f2a22901.html]，初始步骤只有一个：" target="_blank" rel="noopener">http://jingyan.baidu.com/article/375c8e19c3105a25f2a22901.html]，初始步骤只有一个：</a></p>
+<figure class="highlight sql"><figcaption><span>lang: javascript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> <span class="keyword">language</span>-asciidoc</span><br></pre></td></tr></table></figure>
+<h3 id="相关插件"><a href="#相关插件" class="headerlink" title="相关插件"></a>相关插件</h3><p>离线下载插件包安装地址：<a href="https://packagecontrol.io/" target="_blank" rel="noopener">sublime相关</a>，<a href="https://atom.io/packages" target="_blank" rel="noopener">atom相关</a>。请阅读英文介绍，使用es6相关的，使用人数较多的插件。</p>
+<p>两种编辑器需要的插件基本相同，找关键字，：</p>
+<ul>
+<li>babel：es6语法插件。</li>
+<li>emmet：HTML标签自动补全。</li>
+<li>autocomplete：代码自动补全。</li>
+<li>react snippets：react代码片段。</li>
+</ul>
+<p>其他暂时没有想到，可以自行在网站检索。</p>
+<p>因为GBK字符集问题，sublime额外需要ConvertToUTF8和Encoding Helper插件。atom没有使用过暂不清楚。</p>
+<h1 id="和掌银框架、APP使用"><a href="#和掌银框架、APP使用" class="headerlink" title="和掌银框架、APP使用"></a>和掌银框架、APP使用</h1><p>和掌银结合时，主要有两个问题需要解决：</p>
+<ol>
+<li>1x、2x和3x缩放和iOS沉浸式webview适配。</li>
+<li>Android物理返回键处理。</li>
+</ol>
+<h2 id="缩放和沉浸式webview适配"><a href="#缩放和沉浸式webview适配" class="headerlink" title="缩放和沉浸式webview适配"></a>缩放和沉浸式webview适配</h2><p>缩放和适配相对比较简单：</p>
+<figure class="highlight javascript"><figcaption><span>lang: javascript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> docEl = <span class="built_in">document</span>.documentElement,</span><br><span class="line">      resizeEvt = <span class="string">'orientationchange'</span> <span class="keyword">in</span> <span class="built_in">window</span> ? <span class="string">'orientationchange'</span> : <span class="string">'resize'</span>,</span><br><span class="line">      recalc = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> parser = <span class="keyword">new</span> UAParser();</span><br><span class="line">        <span class="keyword">var</span> result = parser.getResult();</span><br><span class="line">        <span class="keyword">var</span> clientWidth = docEl.clientWidth;</span><br><span class="line">        <span class="keyword">if</span> (!clientWidth) <span class="keyword">return</span>;</span><br><span class="line">        baseSize = <span class="number">20</span> * (clientWidth / <span class="number">320</span>)</span><br><span class="line">        docEl.style.fontSize = baseSize + <span class="string">'px'</span></span><br><span class="line">        <span class="comment">// iOS 7以上的都为沉浸式，需要额外的高度</span></span><br><span class="line">        <span class="keyword">if</span> (result.os.name === <span class="string">'iOS'</span>) &#123;</span><br><span class="line">          <span class="keyword">if</span> (result.os.version.substr(<span class="number">0</span>, result.os.version.indexOf(<span class="string">'.'</span>)) &gt; <span class="number">6</span>) &#123;</span><br><span class="line">            <span class="built_in">document</span>.getElementById(<span class="string">'g-header-line'</span>).style.height = baseSize + <span class="string">'px'</span>;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">      &#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="Android物理返回键处理"><a href="#Android物理返回键处理" class="headerlink" title="Android物理返回键处理"></a>Android物理返回键处理</h2><p>物理返回键比较复杂，原因主要为，需要切换webview。这里不得不说，有些页面，如登录、支付，还是能做成native弹框以便到处调用比较好，那样就不会有这个问题了。</p>
+<p><strong>使用webview cookie来实现返回</strong></p>
+<p>在该APP中，多个webview之间共享cookie。利用cookie，我们可以实现类似于native的返回。目前使用的技术有：react、react-router、react-cookie。</p>
+<p>第一版思路：</p>
+<ol>
+<li>各个页面专注自己的业务逻辑，将返回封装到NavBar。</li>
+<li>压栈操作放在react-router的onEnter方法中来进行操作。</li>
+</ol>
+<p>流程如图：</p>
+<p><img src="http://7xogz7.com1.z0.glb.clouddn.com/CookieHistoryBeta1.png" alt="歌王争霸栈v0.0.1"></p>
+<p>代码如下：<br><figure class="highlight zephir"><figcaption><span>lang: javascript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 压栈函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pushPageTrace</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> trace = Cookie.load(<span class="keyword">Global</span>.PAGE_TRACE) ? Cookie.load(<span class="keyword">Global</span>.PAGE_TRACE) : <span class="keyword">new</span> <span class="keyword">Array</span>()</span><br><span class="line">  <span class="keyword">let</span> storeUrl = window.location.href</span><br><span class="line">  trace.push(storeUrl)</span><br><span class="line">  Cookie.save(<span class="keyword">Global</span>.PAGE_TRACE, trace)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 压栈</span></span><br><span class="line">&lt;Route path=<span class="string">'route'</span> component=&#123;Com&#125; onEnter=&#123;<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;pushPageTrace()&#125;&#125;/&gt;</span><br><span class="line"><span class="comment">// 返回按钮</span></span><br><span class="line">export <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">NavBar</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    goBack() &#123;</span><br><span class="line">        <span class="keyword">let</span> pageTrace = Cookie.load(<span class="keyword">Global</span>.PAGE_TRACE)</span><br><span class="line">        <span class="keyword">let</span> backUrl</span><br><span class="line">        pageTrace.pop()</span><br><span class="line">        backUrl = pageTrace.pop()</span><br><span class="line">        Cookie.save(<span class="keyword">Global</span>.PAGE_TRACE, pageTrace)</span><br><span class="line">        window.location.href = backUrl</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在实际使用的过程中，有几个问题：</p>
+<ol>
+<li>需要有个时机来清空栈。</li>
+<li>部分页面需要设置特殊的返回页面，如支付结果页面不再回到支付订单详情确认页面而是回到商品信息页面。</li>
+<li>对栈底需要进行特殊处理，不能空栈。</li>
+</ol>
+<p>修改如下：<br><figure class="highlight gauss"><figcaption><span>lang: javascript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 压栈函数</span></span><br><span class="line">function pushPageTrace(<span class="keyword">clear</span> = false, specialUrl = <span class="built_in">null</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> <span class="keyword">trace</span> = <span class="keyword">clear</span> ? <span class="keyword">new</span> Array() : Cookie.<span class="keyword">load</span>(Global.PAGE_TRACE) ? Cookie.<span class="keyword">load</span>(Global.PAGE_TRACE) : <span class="keyword">new</span> Array()</span><br><span class="line">  <span class="keyword">let</span> storeUrl = specialUrl ? specialUrl : <span class="built_in">window</span>.location.href</span><br><span class="line">  <span class="keyword">trace</span>.<span class="keyword">push</span>(storeUrl)</span><br><span class="line">  Cookie.<span class="keyword">save</span>(Global.PAGE_TRACE, <span class="keyword">trace</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 返回按钮</span></span><br><span class="line">export default class NavBar extends React.Component &#123;</span><br><span class="line">    goBack() &#123;</span><br><span class="line">        <span class="keyword">if</span> (!this.state.clicked) &#123;</span><br><span class="line">            this.setState(&#123;</span><br><span class="line">                clicked: true</span><br><span class="line">            &#125;)</span><br><span class="line">            <span class="keyword">let</span> pageTrace = Cookie.<span class="keyword">load</span>(Global.PAGE_TRACE)</span><br><span class="line">            <span class="keyword">let</span> backUrl</span><br><span class="line">            <span class="keyword">if</span> (pageTrace.length == <span class="number">1</span>) &#123;</span><br><span class="line">                backUrl = pageTrace[<span class="number">0</span>]</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (pageTrace.length == <span class="number">2</span>) &#123;</span><br><span class="line">                pageTrace.<span class="keyword">pop</span>()</span><br><span class="line">                backUrl = pageTrace[<span class="number">0</span>]</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                pageTrace.<span class="keyword">pop</span>()</span><br><span class="line">                backUrl = pageTrace.<span class="keyword">pop</span>()</span><br><span class="line">            &#125;</span><br><span class="line">            Cookie.<span class="keyword">save</span>(Global.PAGE_TRACE, pageTrace)</span><br><span class="line">            <span class="built_in">window</span>.location.href = backUrl</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h1><ul>
+<li>如何使用browserHistory。</li>
+<li>使用Redux。</li>
+<li>制作自己的组件库，支持自定义样式。</li>
+<li>css压缩优化。</li>
+<li>scss和less。</li>
+<li>淘宝在移动端和chrome等使用webp，在其他端使用jpeg和png，如何做到。</li>
+<li>Controller层session和shiro/JWT与前端路由的使用。</li>
+<li>使用webpack插件做到如maven的各个环境独立配置，文本替换，加入js等文件的hash值。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/19/hybird模式下webview中的物理返回键问题的解决方法/" rel="next" title="Hybird模式下webview中的物理返回键问题的解决方法">
+                <i class="fa fa-chevron-left"></i> Hybird模式下webview中的物理返回键问题的解决方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/22/阶段性前端开发项目待解决问题总结/" rel="prev" title="阶段性前端开发项目待解决问题总结">
+                阶段性前端开发项目待解决问题总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zeyu Zhao</p>
+              <p class="site-description motion-element" itemprop="description">中年危机攻城狮的小圆子，Java，JavaScript，Spring，ReactJS，摄影，一些小东西。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#React是什么"><span class="nav-number">1.</span> <span class="nav-text">React是什么</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#与传统开发比较"><span class="nav-number">1.1.</span> <span class="nav-text">与传统开发比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React结构入门"><span class="nav-number">1.2.</span> <span class="nav-text">React结构入门</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用声明周期函数"><span class="nav-number">1.2.1.</span> <span class="nav-text">常用声明周期函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#像React一样思考"><span class="nav-number">1.3.</span> <span class="nav-text">像React一样思考</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#相关知识技术"><span class="nav-number">2.</span> <span class="nav-text">相关知识技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#React-router"><span class="nav-number">2.1.</span> <span class="nav-text">React-router</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题外"><span class="nav-number">2.1.1.</span> <span class="nav-text">题外</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redux"><span class="nav-number">2.2.</span> <span class="nav-text">Redux</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#npm和webpack及其他"><span class="nav-number">2.3.</span> <span class="nav-text">npm和webpack及其他</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#npm"><span class="nav-number">2.3.1.</span> <span class="nav-text">npm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webpack"><span class="nav-number">2.3.2.</span> <span class="nav-text">webpack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#package-json"><span class="nav-number">2.3.3.</span> <span class="nav-text">package.json</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发工具"><span class="nav-number">2.4.</span> <span class="nav-text">开发工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sublime-text3"><span class="nav-number">2.4.1.</span> <span class="nav-text">sublime text3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#atom"><span class="nav-number">2.4.2.</span> <span class="nav-text">atom</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关插件"><span class="nav-number">2.4.3.</span> <span class="nav-text">相关插件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#和掌银框架、APP使用"><span class="nav-number">3.</span> <span class="nav-text">和掌银框架、APP使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#缩放和沉浸式webview适配"><span class="nav-number">3.1.</span> <span class="nav-text">缩放和沉浸式webview适配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android物理返回键处理"><span class="nav-number">3.2.</span> <span class="nav-text">Android物理返回键处理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TODO"><span class="nav-number">4.</span> <span class="nav-text">TODO</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zeyu Zhao</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
