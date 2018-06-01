@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="项目上线后看着列表不能下拉刷新不能上拉加载非常不爽，就做了个简单的实现。 为什么自己造轮子？用react不想添加jQuery，同时GitHub上的大部分代码都不能同时支持上拉和下拉。 准备找个现成的项目新建一个页面，写个timeout模拟异步请求。 1234567891011refresh() &amp;#123;  setTimeout(()=&amp;gt;&amp;#123;this.setState(&amp;#123;">
+<meta name="description" content="项目上线后看着列表不能下拉刷新不能上拉加载非常不爽，就做了个简单的实现。 为什么自己造轮子？用react不想添加jQuery，同时GitHub上的大部分代码都不能同时支持上拉和下拉。 准备找个现成的项目新建一个页面，写个timeout模拟异步请求。">
 <meta name="keywords" content="react,gsap,pull to refresh,push to load more">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用GSAP简单实现react列表中的下拉刷新和上拉加载更多">
 <meta property="og:url" content="https://zhaozeyu.space/2017/01/11/使用gsap简单实现react列表中的下拉刷新和上拉加载更多/index.html">
 <meta property="og:site_name" content="Avalon">
-<meta property="og:description" content="项目上线后看着列表不能下拉刷新不能上拉加载非常不爽，就做了个简单的实现。 为什么自己造轮子？用react不想添加jQuery，同时GitHub上的大部分代码都不能同时支持上拉和下拉。 准备找个现成的项目新建一个页面，写个timeout模拟异步请求。 1234567891011refresh() &amp;#123;  setTimeout(()=&amp;gt;&amp;#123;this.setState(&amp;#123;">
+<meta property="og:description" content="项目上线后看着列表不能下拉刷新不能上拉加载非常不爽，就做了个简单的实现。 为什么自己造轮子？用react不想添加jQuery，同时GitHub上的大部分代码都不能同时支持上拉和下拉。 准备找个现成的项目新建一个页面，写个timeout模拟异步请求。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-01T05:18:01.562Z">
+<meta property="og:updated_time" content="2018-06-01T06:41:00.202Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用GSAP简单实现react列表中的下拉刷新和上拉加载更多">
-<meta name="twitter:description" content="项目上线后看着列表不能下拉刷新不能上拉加载非常不爽，就做了个简单的实现。 为什么自己造轮子？用react不想添加jQuery，同时GitHub上的大部分代码都不能同时支持上拉和下拉。 准备找个现成的项目新建一个页面，写个timeout模拟异步请求。 1234567891011refresh() &amp;#123;  setTimeout(()=&amp;gt;&amp;#123;this.setState(&amp;#123;">
+<meta name="twitter:description" content="项目上线后看着列表不能下拉刷新不能上拉加载非常不爽，就做了个简单的实现。 为什么自己造轮子？用react不想添加jQuery，同时GitHub上的大部分代码都不能同时支持上拉和下拉。 准备找个现成的项目新建一个页面，写个timeout模拟异步请求。">
 
 
 
@@ -187,6 +187,16 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
           </a>
         </li>
       
@@ -302,8 +312,7 @@
       
         <p>项目上线后看着列表不能下拉刷新不能上拉加载非常不爽，就做了个简单的实现。</p>
 <p><em>为什么自己造轮子？用react不想添加jQuery，同时GitHub上的大部分代码都不能同时支持上拉和下拉。</em></p>
-<h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><p>找个现成的项目新建一个页面，写个timeout模拟异步请求。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">refresh() &#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;<span class="keyword">this</span>.setState(&#123;</span><br><span class="line">    items: [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">  &#125;)&#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">loadMore() &#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;<span class="keyword">this</span>.setState(&#123;</span><br><span class="line">    items: <span class="keyword">this</span>.state.items.concat([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>])</span><br><span class="line">  &#125;)&#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><p>找个现成的项目新建一个页面，写个timeout模拟异步请求。<br><a id="more"></a><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">refresh() &#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;<span class="keyword">this</span>.setState(&#123;</span><br><span class="line">    items: [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">  &#125;)&#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">loadMore() &#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;<span class="keyword">this</span>.setState(&#123;</span><br><span class="line">    items: <span class="keyword">this</span>.state.items.concat([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>])</span><br><span class="line">  &#125;)&#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>再整个生成列表。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">renderList</span>(<span class="params">list</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function">(<span class="params">list.map((v, i</span>) =&gt;</span> (</span><br><span class="line">    &lt;li key=&#123;i&#125; onClick=&#123;<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;browserHistory.push(<span class="string">'/MerchantDetail/'</span> + v.id + <span class="string">'/'</span> + v.distance);&#125;&#125;&gt;</span><br><span class="line">      &lt;div styleName=<span class="string">"m-shop-right"</span>&gt;</span><br><span class="line">        &lt;h1&gt;</span><br><span class="line">          &#123;i&#125;</span><br><span class="line">        &lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>div&gt;</span><br><span class="line">    &lt;<span class="regexp">/li&gt;)</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
 <p>然后开始搞事情。</p>

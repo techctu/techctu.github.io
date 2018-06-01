@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="用Jekyll和Markdown写的，使用的pygment的代码高亮没有调整，react相关代码会出现红框，无视就好，懒癌发作暂时不想研究。 代码是示例，仅作为参考。 不知不觉写了很多东西，有点杂，见谅。 React是什么React是基于JavaScript的，状态驱动的，操作虚拟DOM的UI框架。使用该框架有很多好处，对我来说，核心是将对DOM的操作隔离开，让开发人员专注于业务流程和状态。 与传">
+<meta name="description" content="用Jekyll和Markdown写的，使用的pygment的代码高亮没有调整，react相关代码会出现红框，无视就好，懒癌发作暂时不想研究。 代码是示例，仅作为参考。 不知不觉写了很多东西，有点杂，见谅。">
 <meta name="keywords" content="Java,JavaScript,ReactJS,Spring,摄影">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React开发入门指南">
 <meta property="og:url" content="https://zhaozeyu.space/2016/06/06/react开发入门指南/index.html">
 <meta property="og:site_name" content="Avalon">
-<meta property="og:description" content="用Jekyll和Markdown写的，使用的pygment的代码高亮没有调整，react相关代码会出现红框，无视就好，懒癌发作暂时不想研究。 代码是示例，仅作为参考。 不知不觉写了很多东西，有点杂，见谅。 React是什么React是基于JavaScript的，状态驱动的，操作虚拟DOM的UI框架。使用该框架有很多好处，对我来说，核心是将对DOM的操作隔离开，让开发人员专注于业务流程和状态。 与传">
+<meta property="og:description" content="用Jekyll和Markdown写的，使用的pygment的代码高亮没有调整，react相关代码会出现红框，无视就好，懒癌发作暂时不想研究。 代码是示例，仅作为参考。 不知不觉写了很多东西，有点杂，见谅。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://7xogz7.com1.z0.glb.clouddn.com/CookieHistoryBeta1.png">
-<meta property="og:updated_time" content="2018-06-01T05:07:12.447Z">
+<meta property="og:updated_time" content="2018-06-01T06:35:38.390Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React开发入门指南">
-<meta name="twitter:description" content="用Jekyll和Markdown写的，使用的pygment的代码高亮没有调整，react相关代码会出现红框，无视就好，懒癌发作暂时不想研究。 代码是示例，仅作为参考。 不知不觉写了很多东西，有点杂，见谅。 React是什么React是基于JavaScript的，状态驱动的，操作虚拟DOM的UI框架。使用该框架有很多好处，对我来说，核心是将对DOM的操作隔离开，让开发人员专注于业务流程和状态。 与传">
+<meta name="twitter:description" content="用Jekyll和Markdown写的，使用的pygment的代码高亮没有调整，react相关代码会出现红框，无视就好，懒癌发作暂时不想研究。 代码是示例，仅作为参考。 不知不觉写了很多东西，有点杂，见谅。">
 <meta name="twitter:image" content="http://7xogz7.com1.z0.glb.clouddn.com/CookieHistoryBeta1.png">
 
 
@@ -189,6 +189,16 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
           </a>
         </li>
       
@@ -305,6 +315,7 @@
         <p><em>用Jekyll和Markdown写的，使用的pygment的代码高亮没有调整，react相关代码会出现红框，无视就好，懒癌发作暂时不想研究。</em></p>
 <p><em>代码是示例，仅作为参考。</em></p>
 <p><em>不知不觉写了很多东西，有点杂，见谅。</em></p>
+<a id="more"></a>
 <h1 id="React是什么"><a href="#React是什么" class="headerlink" title="React是什么"></a><a href="http://facebook.github.io/react/docs/getting-started.html" target="_blank" rel="noopener">React</a>是什么</h1><p>React是基于JavaScript的，状态驱动的，操作虚拟DOM的UI框架。使用该框架有很多好处，对我来说，核心是将对DOM的操作隔离开，让开发人员专注于业务流程和状态。</p>
 <h2 id="与传统开发比较"><a href="#与传统开发比较" class="headerlink" title="与传统开发比较"></a>与传统开发比较</h2><p>在传统的前端页面开发中，我们一般会给一个标签设置一个id或是类似的东西，以便对其进行操作，如：<br><figure class="highlight gams"><figcaption><span>lang: javascript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="built-in">div</span> id=<span class="string">'id_xxx'</span>&gt;这是一个标签&lt;/<span class="built-in">div</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 纯JS</span></span><br><span class="line">document.getElementByID(<span class="string">'id_xxx'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// JQuery</span></span><br><span class="line"><span class="symbol">$</span>(<span class="string">'#id_xxx'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 再去操作</span></span><br></pre></td></tr></table></figure></p>
 <p>而在React中，一般这么做：<br><figure class="highlight javascript"><figcaption><span>lang: javascript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// import省略</span></span><br><span class="line"><span class="comment">// 为了比较完整展现一下结构，比上面偷懒写的代码多了很多</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ComponentA</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">        <span class="keyword">super</span>(props)</span><br><span class="line">        <span class="keyword">this</span>.state = &#123;</span><br><span class="line">            stateTag: <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        <span class="comment">// 进行一些预处理操作</span></span><br><span class="line">        <span class="keyword">let</span> title = <span class="keyword">this</span>.state.stateTag? <span class="string">'这是一个标签'</span>:<span class="string">'这不是一个标签'</span></span><br><span class="line">        <span class="keyword">let</span> arrayInfo = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">5</span>).fill(<span class="literal">false</span>)</span><br><span class="line">        <span class="keyword">let</span> elems = []</span><br><span class="line">        arrayInfo.forEach(<span class="function">(<span class="params">v,i</span>) =&gt;</span> (elems.push(<span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span> &#123;i + '-' + v&#125; <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>)))</span><br><span class="line">        <span class="keyword">return</span>(<span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;title&#125;<span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;elems&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>

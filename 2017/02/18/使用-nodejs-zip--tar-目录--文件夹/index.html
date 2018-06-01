@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="有某个大佬想要搞自动发布，问我能不能搞一个 zip 静态资源目录的脚本。我瞅了瞅他，看在 windows 环境的面子上，就没有要求他自己写 shell 脚本了。 去 npm 找一个库万能的 npm 上有个 archiver ，正好可以打包目录，和那些只能 appendFile 的妖艳贱货都不一样呢。 写打包脚本 你会写nodejs吗？我也不知道什么算会写啊，写个这个脚本打包个目录算不算？  直接上">
+<meta name="description" content="有某个大佬想要搞自动发布，问我能不能搞一个 zip 静态资源目录的脚本。我瞅了瞅他，看在 windows 环境的面子上，就没有要求他自己写 shell 脚本了。 去 npm 找一个库万能的 npm 上有个 archiver ，正好可以打包目录，和那些只能 appendFile 的妖艳贱货都不一样呢。">
 <meta name="keywords" content="nodejs">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用 nodejs zip &#x2F; tar 目录 &#x2F; 文件夹">
 <meta property="og:url" content="https://zhaozeyu.space/2017/02/18/使用-nodejs-zip--tar-目录--文件夹/index.html">
 <meta property="og:site_name" content="Avalon">
-<meta property="og:description" content="有某个大佬想要搞自动发布，问我能不能搞一个 zip 静态资源目录的脚本。我瞅了瞅他，看在 windows 环境的面子上，就没有要求他自己写 shell 脚本了。 去 npm 找一个库万能的 npm 上有个 archiver ，正好可以打包目录，和那些只能 appendFile 的妖艳贱货都不一样呢。 写打包脚本 你会写nodejs吗？我也不知道什么算会写啊，写个这个脚本打包个目录算不算？  直接上">
+<meta property="og:description" content="有某个大佬想要搞自动发布，问我能不能搞一个 zip 静态资源目录的脚本。我瞅了瞅他，看在 windows 环境的面子上，就没有要求他自己写 shell 脚本了。 去 npm 找一个库万能的 npm 上有个 archiver ，正好可以打包目录，和那些只能 appendFile 的妖艳贱货都不一样呢。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-01T05:10:32.867Z">
+<meta property="og:updated_time" content="2018-06-01T06:40:42.787Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 nodejs zip &#x2F; tar 目录 &#x2F; 文件夹">
-<meta name="twitter:description" content="有某个大佬想要搞自动发布，问我能不能搞一个 zip 静态资源目录的脚本。我瞅了瞅他，看在 windows 环境的面子上，就没有要求他自己写 shell 脚本了。 去 npm 找一个库万能的 npm 上有个 archiver ，正好可以打包目录，和那些只能 appendFile 的妖艳贱货都不一样呢。 写打包脚本 你会写nodejs吗？我也不知道什么算会写啊，写个这个脚本打包个目录算不算？  直接上">
+<meta name="twitter:description" content="有某个大佬想要搞自动发布，问我能不能搞一个 zip 静态资源目录的脚本。我瞅了瞅他，看在 windows 环境的面子上，就没有要求他自己写 shell 脚本了。 去 npm 找一个库万能的 npm 上有个 archiver ，正好可以打包目录，和那些只能 appendFile 的妖艳贱货都不一样呢。">
 
 
 
@@ -187,6 +187,16 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
           </a>
         </li>
       
@@ -301,7 +311,7 @@
 
       
         <p>有某个大佬想要搞自动发布，问我能不能搞一个 zip 静态资源目录的脚本。我瞅了瞅他，看在 windows 环境的面子上，就没有要求他自己写 shell 脚本了。</p>
-<h1 id="去-npm-找一个库"><a href="#去-npm-找一个库" class="headerlink" title="去 npm 找一个库"></a>去 npm 找一个库</h1><p>万能的 npm 上有个 <a href="https://www.npmjs.com/package/archiver" target="_blank" rel="noopener">archiver</a> ，正好可以打包目录，和那些只能 appendFile 的妖艳贱货都不一样呢。</p>
+<h1 id="去-npm-找一个库"><a href="#去-npm-找一个库" class="headerlink" title="去 npm 找一个库"></a>去 npm 找一个库</h1><p>万能的 npm 上有个 <a href="https://www.npmjs.com/package/archiver" target="_blank" rel="noopener">archiver</a> ，正好可以打包目录，和那些只能 appendFile 的妖艳贱货都不一样呢。<br><a id="more"></a></p>
 <h1 id="写打包脚本"><a href="#写打包脚本" class="headerlink" title="写打包脚本"></a>写打包脚本</h1><blockquote>
 <p>你会写nodejs吗？<br>我也不知道什么算会写啊，写个这个脚本打包个目录算不算？</p>
 </blockquote>

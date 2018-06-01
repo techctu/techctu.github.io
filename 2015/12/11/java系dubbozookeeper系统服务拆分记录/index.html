@@ -90,7 +90,7 @@
 <meta property="og:image" content="http://7xogz7.com1.z0.glb.clouddn.com/ServiceRef.png?imageMogr2/thumbnail/770x">
 <meta property="og:image" content="http://7xogz7.com1.z0.glb.clouddn.com/domainandserviceinfection.png?imageMogr2/thumbnail/770x">
 <meta property="og:image" content="http://7xogz7.com1.z0.glb.clouddn.com/improved.png?imageMogr2/thumbnail/770x">
-<meta property="og:updated_time" content="2015-12-13T06:52:04.000Z">
+<meta property="og:updated_time" content="2018-06-01T06:34:54.578Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java系Dubbo、Zookeeper系统服务拆分记录">
 <meta name="twitter:description" content="事情发展情况总是偏离人的预想，尤其是业务发展和系统架构设计。一段时间后，一个新业务功能的上线往往伴随着几个相关功能的开发小组加班。同时甲组功能A可能依赖乙组功能B，乙组由于某个需求要更改功能B，而甲组开发新功能需要继续依赖功能B，且分配的开发时间并不一致。这样，协调起来会非常麻烦，效率也十分低下。于是，服务拆分的呼声越来越烈。经过几个月的研究、拆分、测试、上线，终于初步解决了服务间相互依赖的问题，">
@@ -191,6 +191,16 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
           </a>
         </li>
       
@@ -327,9 +337,10 @@
 
       
         <p>事情发展情况总是偏离人的预想，尤其是业务发展和系统架构设计。一段时间后，一个新业务功能的上线往往伴随着几个相关功能的开发小组加班。同时甲组功能A可能依赖乙组功能B，乙组由于某个需求要更改功能B，而甲组开发新功能需要继续依赖功能B，且分配的开发时间并不一致。这样，协调起来会非常麻烦，效率也十分低下。于是，服务拆分的呼声越来越烈。经过几个月的研究、拆分、测试、上线，终于初步解决了服务间相互依赖的问题，便记录一下。</p>
+<a id="more"></a>
 <h1 id="理想并不丰满"><a href="#理想并不丰满" class="headerlink" title="理想并不丰满"></a>理想并不丰满</h1><p>任何业务系统的架构都是和业务紧密关联的，当时拟定有几个业务产品，一个后台管理，自己建立用户体系和账户体系，对接外系统接口，底层提供一系列日志、事务等平台服务。这个时候，分层逻辑是这样的：</p>
 <ul>
-<li>页面展现层：web、Controller。 </li>
+<li>页面展现层：web、Controller。</li>
 <li>业务逻辑层：services。</li>
 <li>平台服务层：Utils。</li>
 <li>基础设施层：Database、Logs。</li>
@@ -405,8 +416,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/06/热情欣赏诚实头脑风暴成果演讲反思/" rel="next" title="热情、欣赏、诚实——头脑风暴成果演讲反思">
-                <i class="fa fa-chevron-left"></i> 热情、欣赏、诚实——头脑风暴成果演讲反思
+              <a href="/2015/12/06/在mac上配置使用git/" rel="next" title="在Mac上配置使用git">
+                <i class="fa fa-chevron-left"></i> 在Mac上配置使用git
               </a>
             
           </div>

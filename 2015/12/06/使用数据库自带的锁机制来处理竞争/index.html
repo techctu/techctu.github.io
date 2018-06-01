@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Avalon">
 <meta property="og:description" content="2013年刚入职的时候，做的p2p项目，有这么个需求。 众所周知，p2p需要去投标，投标就会有竞争。比如阿猫和阿狗都看到一个项目只剩1份了，两个人同时投标。这时候系统就会判断阿猫买一份，余额刚好一份，可以买；在系统确定了这次购买订单，更新余额前，阿狗的请求也到了，系统还没更新余额，这时系统也让阿狗买了一份。这就导致实际上一份卖出了两份，这样并不好，会出现一系列问题，具体什么问题，出门右转找运营。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-01T04:39:27.000Z">
+<meta property="og:updated_time" content="2018-06-01T06:34:35.933Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用数据库自带的锁机制来处理竞争">
 <meta name="twitter:description" content="2013年刚入职的时候，做的p2p项目，有这么个需求。 众所周知，p2p需要去投标，投标就会有竞争。比如阿猫和阿狗都看到一个项目只剩1份了，两个人同时投标。这时候系统就会判断阿猫买一份，余额刚好一份，可以买；在系统确定了这次购买订单，更新余额前，阿狗的请求也到了，系统还没更新余额，这时系统也让阿狗买了一份。这就导致实际上一份卖出了两份，这样并不好，会出现一系列问题，具体什么问题，出门右转找运营。">
@@ -187,6 +187,16 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
           </a>
         </li>
       
@@ -304,12 +314,13 @@
 <p>众所周知，p2p需要去投标，投标就会有竞争。比如阿猫和阿狗都看到一个项目只剩1份了，两个人同时投标。这时候系统就会判断阿猫买一份，余额刚好一份，可以买；在系统确定了这次购买订单，更新余额前，阿狗的请求也到了，系统还没更新余额，这时系统也让阿狗买了一份。这就导致实际上一份卖出了两份，这样并不好，会出现一系列问题，具体什么问题，出门右转找运营。</p>
 <p>那么怎么办呢？就是经典的并发情况下锁机制的设计了。</p>
 <p>当时负责我们p2p组的组长决定利用数据库的锁机制来处理，具体就是在数据库中增加一个字段key，通过对a的值的比对来保证投标的顺利进行。</p>
-<figure class="highlight arduino"><figcaption><span>lang: java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">oldKey = <span class="built_in">getKey</span>(); <span class="comment">// 获取锁值 </span></span><br><span class="line">processing(); <span class="comment">// 处理 </span></span><br><span class="line"><span class="built_in">if</span> (checkKey()) &#123; <span class="comment">// 检查锁没有变更则更新锁，否则回滚操作 </span></span><br><span class="line">	updateKey();  </span><br><span class="line">&#125; <span class="built_in">else</span> &#123; </span><br><span class="line">	rollback(); </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<figure class="highlight arduino"><figcaption><span>lang: java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">oldKey = <span class="built_in">getKey</span>(); <span class="comment">// 获取锁值</span></span><br><span class="line">processing(); <span class="comment">// 处理</span></span><br><span class="line"><span class="built_in">if</span> (checkKey()) &#123; <span class="comment">// 检查锁没有变更则更新锁，否则回滚操作</span></span><br><span class="line">	updateKey();</span><br><span class="line">&#125; <span class="built_in">else</span> &#123;</span><br><span class="line">	rollback();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这样其实会有个问题，即在chenkKey()和updateKey()之间，会有可能有人也投标成功了。</p>
 <p>怎么修改呢？其实很简单。我把chenkKey()和updateKey()合作一个方法checkAndUpdateKey()，直接在数据库中</p>
 <figure class="highlight n1ql"><figcaption><span>lang: sql</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> a <span class="keyword">set</span> <span class="keyword">key</span> = newKey <span class="keyword">where</span> <span class="keyword">key</span> = oldKey</span><br></pre></td></tr></table></figure>
 <p>这样代码逻辑就变成了</p>
-<figure class="highlight arduino"><figcaption><span>lang: java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">oldKey = <span class="built_in">getKey</span>(); <span class="comment">// 获取锁值 </span></span><br><span class="line">processing(); <span class="comment">// 处理 </span></span><br><span class="line"><span class="built_in">if</span> (!checkAndUpdateKey()) &#123; <span class="comment">// 检查锁值变化并更新锁，失败则回滚操作 </span></span><br><span class="line">	rollback(); </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<figure class="highlight arduino"><figcaption><span>lang: java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">oldKey = <span class="built_in">getKey</span>(); <span class="comment">// 获取锁值</span></span><br><span class="line">processing(); <span class="comment">// 处理</span></span><br><span class="line"><span class="built_in">if</span> (!checkAndUpdateKey()) &#123; <span class="comment">// 检查锁值变化并更新锁，失败则回滚操作</span></span><br><span class="line">	rollback();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>搞定。</p>
 <p>P.S.当然这样有个很大的问题，竞争多的时候很容易就投不中标。最好还是类似12306先把请求排队进入一个队列，然后再依次处理——比如一个先进先出队列。</p>
 
@@ -336,8 +347,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/06/一些好用的小玩意/" rel="next" title="一些好用的小玩意">
-                <i class="fa fa-chevron-left"></i> 一些好用的小玩意
+              <a href="/2015/12/06/purejsonepagescrolljavascript单页滚动插件/" rel="next" title="PureJSOnePageScroll——JavaScript单页滚动插件">
+                <i class="fa fa-chevron-left"></i> PureJSOnePageScroll——JavaScript单页滚动插件
               </a>
             
           </div>
@@ -346,8 +357,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/12/06/purejsonepagescrolljavascript单页滚动插件/" rel="prev" title="PureJSOnePageScroll——JavaScript单页滚动插件">
-                PureJSOnePageScroll——JavaScript单页滚动插件 <i class="fa fa-chevron-right"></i>
+              <a href="/2015/12/06/热情欣赏诚实头脑风暴成果演讲反思/" rel="prev" title="热情、欣赏、诚实——头脑风暴成果演讲反思">
+                热情、欣赏、诚实——头脑风暴成果演讲反思 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

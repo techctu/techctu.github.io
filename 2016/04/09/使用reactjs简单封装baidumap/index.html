@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="最近需要使用百度地图来获取地理位置定位，用ReactJS封装了一下。 要点：  希望百度地图加载不影响ReactJS生命周期 将百度地图回调方法和ReactJS融合  目前百度地图没有离线API，官网上方式为 lang: html1&amp;lt;script type=&quot;text/javascript&quot; src=&quot;http://api.map.baidu.com/api?v=2.0&amp;amp;ak=您的密">
+<meta name="description" content="最近需要使用百度地图来获取地理位置定位，用ReactJS封装了一下。 要点：  希望百度地图加载不影响ReactJS生命周期 将百度地图回调方法和ReactJS融合  目前百度地图没有离线API，官网上方式为">
 <meta name="keywords" content="Java,JavaScript,ReactJS,Spring,摄影">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用ReactJS简单封装BaiduMap">
 <meta property="og:url" content="https://zhaozeyu.space/2016/04/09/使用reactjs简单封装baidumap/index.html">
 <meta property="og:site_name" content="Avalon">
-<meta property="og:description" content="最近需要使用百度地图来获取地理位置定位，用ReactJS封装了一下。 要点：  希望百度地图加载不影响ReactJS生命周期 将百度地图回调方法和ReactJS融合  目前百度地图没有离线API，官网上方式为 lang: html1&amp;lt;script type=&quot;text/javascript&quot; src=&quot;http://api.map.baidu.com/api?v=2.0&amp;amp;ak=您的密">
+<meta property="og:description" content="最近需要使用百度地图来获取地理位置定位，用ReactJS封装了一下。 要点：  希望百度地图加载不影响ReactJS生命周期 将百度地图回调方法和ReactJS融合  目前百度地图没有离线API，官网上方式为">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-01T04:39:27.000Z">
+<meta property="og:updated_time" content="2018-06-01T06:35:12.570Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用ReactJS简单封装BaiduMap">
-<meta name="twitter:description" content="最近需要使用百度地图来获取地理位置定位，用ReactJS封装了一下。 要点：  希望百度地图加载不影响ReactJS生命周期 将百度地图回调方法和ReactJS融合  目前百度地图没有离线API，官网上方式为 lang: html1&amp;lt;script type=&quot;text/javascript&quot; src=&quot;http://api.map.baidu.com/api?v=2.0&amp;amp;ak=您的密">
+<meta name="twitter:description" content="最近需要使用百度地图来获取地理位置定位，用ReactJS封装了一下。 要点：  希望百度地图加载不影响ReactJS生命周期 将百度地图回调方法和ReactJS融合  目前百度地图没有离线API，官网上方式为">
 
 
 
@@ -187,6 +187,16 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
           </a>
         </li>
       
@@ -307,6 +317,7 @@
 <li>将百度地图回调方法和ReactJS融合</li>
 </ul>
 <p>目前百度地图没有离线API，官网上方式为</p>
+<a id="more"></a>
 <figure class="highlight xml"><figcaption><span>lang: html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://api.map.baidu.com/api?v=2.0&amp;ak=您的密钥&amp;callback=回调方法"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>在页面嵌入了百度地图后，会异步获取一些js脚本，实现地图功能的加载，且加载成功与否难以控制。因此，需要在React组件加载完成的时候加载百度地图。</p>
 <figure class="highlight stylus"><figcaption><span>lang: javascript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">componentDidMount</span><span class="params">()</span></span> &#123;</span><br><span class="line">    window<span class="selector-class">.initBaiduMap</span> = null</span><br><span class="line">    let script = document.createElement(<span class="string">'script'</span>)</span><br><span class="line">    script<span class="selector-class">.type</span> = <span class="string">'text/javascript'</span></span><br><span class="line">    script<span class="selector-class">.src</span> = this<span class="selector-class">.state</span><span class="selector-class">.url</span> + <span class="string">'&amp;ak='</span> + this<span class="selector-class">.state</span><span class="selector-class">.ak</span> + <span class="string">'&amp;callback=initBaiduMap'</span></span><br><span class="line">    window<span class="selector-class">.initBaiduMap</span> = this<span class="selector-class">.locate</span><span class="selector-class">.bind</span>(this)</span><br><span class="line">    document<span class="selector-class">.body</span><span class="selector-class">.appendChild</span>(script)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">componentWillUnmount</span><span class="params">()</span></span> &#123;</span><br><span class="line">    window<span class="selector-class">.initBaiduMap</span> = null</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

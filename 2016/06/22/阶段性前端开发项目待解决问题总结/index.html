@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="最近项目即将上线，终于有时间回顾这个以基于第三方框架制作的APP的webview为基础环境的webpack-react项目了。 待解决的问题配置管理开始使用webpack时对其不了解，也没有进行过开发环境、各个测试环境和生产环境方面的配置，对这方面不太了解，一些在不同环境下应该进行不同配置的全局变量需要在各个环境手动修改。该部分应该通过webpack的DefinePlugin进行设置，如 lang">
+<meta name="description" content="最近项目即将上线，终于有时间回顾这个以基于第三方框架制作的APP的webview为基础环境的webpack-react项目了。 待解决的问题配置管理开始使用webpack时对其不了解，也没有进行过开发环境、各个测试环境和生产环境方面的配置，对这方面不太了解，一些在不同环境下应该进行不同配置的全局变量需要在各个环境手动修改。该部分应该通过webpack的DefinePlugin进行设置，如">
 <meta name="keywords" content="webpack,hybird,react,前端优化">
 <meta property="og:type" content="article">
 <meta property="og:title" content="阶段性前端开发项目待解决问题总结">
 <meta property="og:url" content="https://zhaozeyu.space/2016/06/22/阶段性前端开发项目待解决问题总结/index.html">
 <meta property="og:site_name" content="Avalon">
-<meta property="og:description" content="最近项目即将上线，终于有时间回顾这个以基于第三方框架制作的APP的webview为基础环境的webpack-react项目了。 待解决的问题配置管理开始使用webpack时对其不了解，也没有进行过开发环境、各个测试环境和生产环境方面的配置，对这方面不太了解，一些在不同环境下应该进行不同配置的全局变量需要在各个环境手动修改。该部分应该通过webpack的DefinePlugin进行设置，如 lang">
+<meta property="og:description" content="最近项目即将上线，终于有时间回顾这个以基于第三方框架制作的APP的webview为基础环境的webpack-react项目了。 待解决的问题配置管理开始使用webpack时对其不了解，也没有进行过开发环境、各个测试环境和生产环境方面的配置，对这方面不太了解，一些在不同环境下应该进行不同配置的全局变量需要在各个环境手动修改。该部分应该通过webpack的DefinePlugin进行设置，如">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-01T04:39:27.000Z">
+<meta property="og:updated_time" content="2018-06-01T06:35:44.906Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="阶段性前端开发项目待解决问题总结">
-<meta name="twitter:description" content="最近项目即将上线，终于有时间回顾这个以基于第三方框架制作的APP的webview为基础环境的webpack-react项目了。 待解决的问题配置管理开始使用webpack时对其不了解，也没有进行过开发环境、各个测试环境和生产环境方面的配置，对这方面不太了解，一些在不同环境下应该进行不同配置的全局变量需要在各个环境手动修改。该部分应该通过webpack的DefinePlugin进行设置，如 lang">
+<meta name="twitter:description" content="最近项目即将上线，终于有时间回顾这个以基于第三方框架制作的APP的webview为基础环境的webpack-react项目了。 待解决的问题配置管理开始使用webpack时对其不了解，也没有进行过开发环境、各个测试环境和生产环境方面的配置，对这方面不太了解，一些在不同环境下应该进行不同配置的全局变量需要在各个环境手动修改。该部分应该通过webpack的DefinePlugin进行设置，如">
 
 
 
@@ -187,6 +187,16 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
           </a>
         </li>
       
@@ -324,6 +334,7 @@
       
         <p>最近项目即将上线，终于有时间回顾这个以基于第三方框架制作的APP的webview为基础环境的webpack-react项目了。</p>
 <h1 id="待解决的问题"><a href="#待解决的问题" class="headerlink" title="待解决的问题"></a>待解决的问题</h1><h2 id="配置管理"><a href="#配置管理" class="headerlink" title="配置管理"></a>配置管理</h2><p>开始使用webpack时对其不了解，也没有进行过开发环境、各个测试环境和生产环境方面的配置，对这方面不太了解，一些在不同环境下应该进行不同配置的全局变量需要在各个环境手动修改。该部分应该通过webpack的<a href="http://webpack.github.io/docs/list-of-plugins.html#defineplugin" target="_blank" rel="noopener">DefinePlugin</a>进行设置，如</p>
+<a id="more"></a>
 <figure class="highlight css"><figcaption><span>lang: javascript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">new</span> <span class="selector-tag">webpack</span><span class="selector-class">.DefinePlugin</span>(&#123;</span><br><span class="line">    <span class="attribute">VERSION</span>: JSON.<span class="built_in">stringify</span>(<span class="string">"5fa3b9"</span>),</span><br><span class="line">    BROWSER_SUPPORTS_HTML5: true,</span><br><span class="line">    TWO: <span class="string">"1+1"</span>,</span><br><span class="line">    <span class="string">"typeof window"</span>: JSON.<span class="built_in">stringify</span>(<span class="string">"object"</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>同时对于入口文件html引用的路径，使用模板的方式，如html-webpack-plugin来处理，以在不同环境下进行不同的配置。</p>
 <h2 id="三方库管理"><a href="#三方库管理" class="headerlink" title="三方库管理"></a>三方库管理</h2><p>在目前的实现中，为了实现安卓的物理键功能，在入口页面html文件中引用了几个第三方js库。这些第三方库在js中也重复引入了，仅仅因为JS压缩等原因无法复用。</p>

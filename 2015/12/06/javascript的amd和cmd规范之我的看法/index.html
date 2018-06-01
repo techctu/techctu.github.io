@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="首先列出相关文献： AMD规范) CMD规范 AMD实现之RequireJS CMD实现之SeaJS 与RequireJS的异同 SeaJS与RequireJS最大的区别 AMD 的 CommonJS wrapping 时值双十一之后，贵宝又在忽悠NodeJS多么多么好，准备研究一下，便避不开这俩规范之争。 这俩规范的区别是对于这段代码（感谢Jerry Qu的代码） lang: javascrip">
+<meta name="description" content="首先列出相关文献： AMD规范) CMD规范 AMD实现之RequireJS CMD实现之SeaJS 与RequireJS的异同 SeaJS与RequireJS最大的区别 AMD 的 CommonJS wrapping 时值双十一之后，贵宝又在忽悠NodeJS多么多么好，准备研究一下，便避不开这俩规范之争。">
 <meta name="keywords" content="JavaScript,AMD,CMD">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript的AMD和CMD规范之我的看法">
 <meta property="og:url" content="https://zhaozeyu.space/2015/12/06/javascript的amd和cmd规范之我的看法/index.html">
 <meta property="og:site_name" content="Avalon">
-<meta property="og:description" content="首先列出相关文献： AMD规范) CMD规范 AMD实现之RequireJS CMD实现之SeaJS 与RequireJS的异同 SeaJS与RequireJS最大的区别 AMD 的 CommonJS wrapping 时值双十一之后，贵宝又在忽悠NodeJS多么多么好，准备研究一下，便避不开这俩规范之争。 这俩规范的区别是对于这段代码（感谢Jerry Qu的代码） lang: javascrip">
+<meta property="og:description" content="首先列出相关文献： AMD规范) CMD规范 AMD实现之RequireJS CMD实现之SeaJS 与RequireJS的异同 SeaJS与RequireJS最大的区别 AMD 的 CommonJS wrapping 时值双十一之后，贵宝又在忽悠NodeJS多么多么好，准备研究一下，便避不开这俩规范之争。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-01T04:48:27.449Z">
+<meta property="og:updated_time" content="2018-06-01T06:32:39.652Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript的AMD和CMD规范之我的看法">
-<meta name="twitter:description" content="首先列出相关文献： AMD规范) CMD规范 AMD实现之RequireJS CMD实现之SeaJS 与RequireJS的异同 SeaJS与RequireJS最大的区别 AMD 的 CommonJS wrapping 时值双十一之后，贵宝又在忽悠NodeJS多么多么好，准备研究一下，便避不开这俩规范之争。 这俩规范的区别是对于这段代码（感谢Jerry Qu的代码） lang: javascrip">
+<meta name="twitter:description" content="首先列出相关文献： AMD规范) CMD规范 AMD实现之RequireJS CMD实现之SeaJS 与RequireJS的异同 SeaJS与RequireJS最大的区别 AMD 的 CommonJS wrapping 时值双十一之后，贵宝又在忽悠NodeJS多么多么好，准备研究一下，便避不开这俩规范之争。">
 
 
 
@@ -187,6 +187,16 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
           </a>
         </li>
       
@@ -331,8 +341,9 @@
 <p><a href="http://www.douban.com/note/283566440/" title="注意评论" target="_blank" rel="noopener">SeaJS与RequireJS最大的区别</a></p>
 <p><a href="https://imququ.com/post/amd-simplified-commonjs-wrapping.html" target="_blank" rel="noopener">AMD 的 CommonJS wrapping</a></p>
 <p>时值双十一之后，贵宝又在忽悠NodeJS多么多么好，准备研究一下，便避不开这俩规范之争。</p>
+<a id="more"></a>
 <p>这俩规范的区别是对于这段代码（感谢<a href="https://imququ.com/post/amd-simplified-commonjs-wrapping.html" target="_blank" rel="noopener">Jerry Qu的代码</a>）</p>
-<figure class="highlight javascript"><figcaption><span>lang: javascript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//mod1.js </span></span><br><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;        </span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'require module: mod1'</span>);       </span><br><span class="line">	<span class="keyword">return</span> &#123;          </span><br><span class="line">		hello: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;             </span><br><span class="line">			<span class="built_in">console</span>.log(<span class="string">"hello mod1"</span>);          </span><br><span class="line">		&#125;       </span><br><span class="line">	&#125;; </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//mod2.js </span></span><br><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'require module: mod2'</span>); </span><br><span class="line">	<span class="keyword">return</span> &#123; </span><br><span class="line">		hello: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">			<span class="built_in">console</span>.log(<span class="string">"hello mod2"</span>); </span><br><span class="line">		&#125; </span><br><span class="line">	&#125;; </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//main.js </span></span><br><span class="line">define([<span class="string">'mod1'</span>, <span class="string">'mod2'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">mod1, mod2</span>) </span>&#123; </span><br><span class="line">	<span class="comment">//运行至此，mod1.js 和 mod2.js 已经下载完成； </span></span><br><span class="line">	<span class="comment">//mod1、mod2 两个模块已经执行完，直接可用；  </span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'require module: main'</span>);  </span><br><span class="line">mod1.hello(); </span><br><span class="line">mod2.hello();  </span><br><span class="line"><span class="keyword">return</span> &#123; <span class="attr">hello</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'hello main'</span>); &#125; &#125;; &#125;);</span><br><span class="line"></span><br><span class="line">&lt;!--index.html--&gt; </span><br><span class="line">&lt;script&gt; </span><br><span class="line">	<span class="built_in">require</span>([<span class="string">'main'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">main</span>) </span>&#123; main.hello(); &#125;); </span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><figcaption><span>lang: javascript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//mod1.js</span></span><br><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'require module: mod1'</span>);</span><br><span class="line">	<span class="keyword">return</span> &#123;</span><br><span class="line">		hello: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="string">"hello mod1"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//mod2.js</span></span><br><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'require module: mod2'</span>);</span><br><span class="line">	<span class="keyword">return</span> &#123;</span><br><span class="line">		hello: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="string">"hello mod2"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//main.js</span></span><br><span class="line">define([<span class="string">'mod1'</span>, <span class="string">'mod2'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">mod1, mod2</span>) </span>&#123;</span><br><span class="line">	<span class="comment">//运行至此，mod1.js 和 mod2.js 已经下载完成；</span></span><br><span class="line">	<span class="comment">//mod1、mod2 两个模块已经执行完，直接可用；</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'require module: main'</span>);</span><br><span class="line">mod1.hello();</span><br><span class="line">mod2.hello();</span><br><span class="line"><span class="keyword">return</span> &#123; <span class="attr">hello</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'hello main'</span>); &#125; &#125;; &#125;);</span><br><span class="line"></span><br><span class="line">&lt;!--index.html--&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">	<span class="built_in">require</span>([<span class="string">'main'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">main</span>) </span>&#123; main.hello(); &#125;);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
 <p>行为不一样。</p>
 <p>在AMD规范下会先加载mod1、mod2、main（加载完成的时间顺序可能不一致），然后依次hello。</p>
 <p>require module: mod1 require module: mod2 require module: main hello mod1 hello mod2 hello main<br>在CMD规范下必须是谁要hello就加载对应和依赖的module。</p>
@@ -375,8 +386,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/06/Maven使用记录（二）——在Eclipse中使用Maven来进行项目管理/" rel="next" title="Maven使用记录（二）——在Eclipse中使用Maven来进行项目管理">
-                <i class="fa fa-chevron-left"></i> Maven使用记录（二）——在Eclipse中使用Maven来进行项目管理
+              <a href="/2015/12/05/登长城记/" rel="next" title="登长城记">
+                <i class="fa fa-chevron-left"></i> 登长城记
               </a>
             
           </div>
@@ -385,8 +396,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/12/06/一些好用的小玩意/" rel="prev" title="一些好用的小玩意">
-                一些好用的小玩意 <i class="fa fa-chevron-right"></i>
+              <a href="/2015/12/06/Maven使用记录（二）——在Eclipse中使用Maven来进行项目管理/" rel="prev" title="Maven使用记录（二）——在Eclipse中使用Maven来进行项目管理">
+                Maven使用记录（二）——在Eclipse中使用Maven来进行项目管理 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

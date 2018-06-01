@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="项目开始使用react-router时由于工期原因，使用了hashHistory，在url末尾会形成1234567891011121314151617# hashHistory和queryKey在一些旧的浏览器中，不支持H5提供的新的接口如pushState，则使用了该方法生成key来读写window.sessionStorage的内容，实现页面跳转和回退时保持页面状态的功能，如类似新浪微博列表页">
+<meta name="description" content="项目开始使用react-router时由于工期原因，使用了hashHistory，在url末尾会形成/#/user/haishanh?_k=adseis中_k=adseis的query字符串。这在浏览器中打开时会让用户感到迷惑。 hashHistory和queryKey在一些旧的浏览器中，不支持H5提供的新的接口如pushState，则使用了该方法生成key来读写window.sessionSto">
 <meta name="keywords" content="react,react-router">
 <meta property="og:type" content="article">
 <meta property="og:title" content="react-router：从hashHistory到browserHistory">
 <meta property="og:url" content="https://zhaozeyu.space/2016/07/31/react-router从hashhistory到browserhistory/index.html">
 <meta property="og:site_name" content="Avalon">
-<meta property="og:description" content="项目开始使用react-router时由于工期原因，使用了hashHistory，在url末尾会形成1234567891011121314151617# hashHistory和queryKey在一些旧的浏览器中，不支持H5提供的新的接口如pushState，则使用了该方法生成key来读写window.sessionStorage的内容，实现页面跳转和回退时保持页面状态的功能，如类似新浪微博列表页">
+<meta property="og:description" content="项目开始使用react-router时由于工期原因，使用了hashHistory，在url末尾会形成/#/user/haishanh?_k=adseis中_k=adseis的query字符串。这在浏览器中打开时会让用户感到迷惑。 hashHistory和queryKey在一些旧的浏览器中，不支持H5提供的新的接口如pushState，则使用了该方法生成key来读写window.sessionSto">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2016-07-31T06:28:36.000Z">
+<meta property="og:updated_time" content="2018-06-01T06:43:00.658Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="react-router：从hashHistory到browserHistory">
-<meta name="twitter:description" content="项目开始使用react-router时由于工期原因，使用了hashHistory，在url末尾会形成1234567891011121314151617# hashHistory和queryKey在一些旧的浏览器中，不支持H5提供的新的接口如pushState，则使用了该方法生成key来读写window.sessionStorage的内容，实现页面跳转和回退时保持页面状态的功能，如类似新浪微博列表页">
+<meta name="twitter:description" content="项目开始使用react-router时由于工期原因，使用了hashHistory，在url末尾会形成/#/user/haishanh?_k=adseis中_k=adseis的query字符串。这在浏览器中打开时会让用户感到迷惑。 hashHistory和queryKey在一些旧的浏览器中，不支持H5提供的新的接口如pushState，则使用了该方法生成key来读写window.sessionSto">
 
 
 
@@ -187,6 +187,16 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
           </a>
         </li>
       
@@ -300,9 +310,12 @@
       
 
       
-        <p>项目开始使用react-router时由于工期原因，使用了hashHistory，在url末尾会形成<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># hashHistory和queryKey</span><br><span class="line">在一些旧的浏览器中，不支持H5提供的新的接口如pushState，则使用了该方法生成key来读写window.sessionStorage的内容，实现页面跳转和回退时保持页面状态的功能，如类似新浪微博列表页请求了几次更多微博，进入详情页面后返回到列表页之前获取的微博仍然在里面无需重复之前的请求；又或者一个流程多个复杂表格填写，在前进、后退过程中保持之前填写的内容。</span><br><span class="line"></span><br><span class="line">在[【react-router】hashhistory 与 browserhistory有什么区别](http://react-china.org/t/react-router-hashhistory-browserhistory/6799/4)中有简单设置以去掉```_k=abc123```。</span><br><span class="line"></span><br><span class="line">```js </span><br><span class="line">import &#123; createHashHistory &#125; from &apos;history&apos;;</span><br><span class="line"></span><br><span class="line">const appHistory = useRouterHistory(createHashHistory)(&#123; queryKey: false &#125;);</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;Router history=&#123;appHistory&#125;&gt;</span><br><span class="line">    &#123;routes&#125;</span><br><span class="line">  &lt;/Router&gt;,</span><br><span class="line">  document.getElementById(&apos;app&apos;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
+        <p>项目开始使用react-router时由于工期原因，使用了hashHistory，在url末尾会形成<code>/#/user/haishanh?_k=adseis</code>中<code>_k=adseis</code>的query字符串。这在浏览器中打开时会让用户感到迷惑。</p>
+<h1 id="hashHistory和queryKey"><a href="#hashHistory和queryKey" class="headerlink" title="hashHistory和queryKey"></a>hashHistory和queryKey</h1><p>在一些旧的浏览器中，不支持H5提供的新的接口如pushState，则使用了该方法生成key来读写window.sessionStorage的内容，实现页面跳转和回退时保持页面状态的功能，如类似新浪微博列表页请求了几次更多微博，进入详情页面后返回到列表页之前获取的微博仍然在里面无需重复之前的请求；又或者一个流程多个复杂表格填写，在前进、后退过程中保持之前填写的内容。</p>
+<a id="more"></a>
+<p>在<a href="http://react-china.org/t/react-router-hashhistory-browserhistory/6799/4" target="_blank" rel="noopener">【react-router】hashhistory 与 browserhistory有什么区别</a>中有简单设置以去掉<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">```js</span><br><span class="line">import &#123; createHashHistory &#125; from &apos;history&apos;;</span><br><span class="line"></span><br><span class="line">const appHistory = useRouterHistory(createHashHistory)(&#123; queryKey: false &#125;);</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;Router history=&#123;appHistory&#125;&gt;</span><br><span class="line">    &#123;routes&#125;</span><br><span class="line">  &lt;/Router&gt;,</span><br><span class="line">  document.getElementById(&apos;app&apos;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
 <p>问题：无法使用state保持页面状态，无法使用state来渲染链接对应页面，如</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = &#123;</span><br><span class="line">  pathname: <span class="string">'business/BaiduSearch/update'</span>,</span><br><span class="line">  state: &#123; <span class="attr">id</span>: record.id &#125; </span><br><span class="line">&#125;</span><br><span class="line">&lt;Link to=&#123;path&#125;&gt;修改&lt;<span class="regexp">/Link&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = &#123;</span><br><span class="line">  pathname: <span class="string">'business/BaiduSearch/update'</span>,</span><br><span class="line">  state: &#123; <span class="attr">id</span>: record.id &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;Link to=&#123;path&#125;&gt;修改&lt;<span class="regexp">/Link&gt;</span></span><br></pre></td></tr></table></figure>
 <h1 id="使用browserHistory"><a href="#使用browserHistory" class="headerlink" title="使用browserHistory"></a>使用browserHistory</h1><p>在一些框架、库提供的糖面前，我倾向于不使用改变更广泛的标准的做法。如上面通过使用hashHistory和queryKey来获取state来渲染页面的方法，我更倾向于使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 创建browserHistory</span><br><span class="line">本来可以直接使用```react-router```提供的```browserHistory```，但考虑到该项目对应的域名为```xxx.xxx.com/xx```，而且本地开发环境使用localhost:port访问，所以引入[history](https://www.npmjs.com/package/history)。</span><br><span class="line"></span><br><span class="line">```js</span><br><span class="line">import &#123;createHistory&#125; from &apos;history&apos;</span><br><span class="line">import &#123;</span><br><span class="line">  Router,</span><br><span class="line">  Route,</span><br><span class="line">  useRouterHistory</span><br><span class="line">&#125;</span><br><span class="line">const browserHistory = useRouterHistory(createHistory)(&#123;basename: process.env.NODE_ENV === &apos;production&apos;? &apos;/xx&apos;: &apos;&apos;&#125;)</span><br><span class="line">const routes = (</span><br><span class="line">  &lt;Router history=&#123;browserHistory&#125;&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;/Router&gt;</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
 <p>同时，需要修改对应的web容器配置，使其知道/xx/下的所有uri路由到单页面应用。目前使用的nginx。</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">location <span class="regexp">/xx/</span> &#123;</span><br><span class="line">    try_files <span class="variable">$uri</span> <span class="regexp">/xx/i</span>ndex.html;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -483,7 +496,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#使用browserHistory"><span class="nav-number">1.</span> <span class="nav-text">使用browserHistory</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#state"><span class="nav-number">1.1.</span> <span class="nav-text">state</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#hashHistory和queryKey"><span class="nav-number">1.</span> <span class="nav-text">hashHistory和queryKey</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用browserHistory"><span class="nav-number">2.</span> <span class="nav-text">使用browserHistory</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#state"><span class="nav-number">2.1.</span> <span class="nav-text">state</span></a></li></ol></li></ol></div>
             
 
           </div>

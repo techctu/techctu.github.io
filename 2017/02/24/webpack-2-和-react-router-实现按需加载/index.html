@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="产品上线了一段时日，偷偷摸摸把 webpack 升级到了 2.x ，出现了很多优化需求，意味着很多新的库、新的代码，以及，更大的 bundle 。怎么办呢？ Code Splitting 呗！按需加载、懒加载┏ (゜ω゜)=☞。 Code Splitting 的方式前端代码一般需要进行拆分的地方有：  公共代码拆分，如所有代码共用的三方库，某些业务模块或页面用的三方库。 特定业务场景加速，如首页，">
+<meta name="description" content="产品上线了一段时日，偷偷摸摸把 webpack 升级到了 2.x ，出现了很多优化需求，意味着很多新的库、新的代码，以及，更大的 bundle 。怎么办呢？ Code Splitting 呗！按需加载、懒加载┏ (゜ω゜)=☞。 Code Splitting 的方式前端代码一般需要进行拆分的地方有：">
 <meta name="keywords" content="webpack,react-router,babel,webpack2,延迟加载,按需加载">
 <meta property="og:type" content="article">
 <meta property="og:title" content="webpack 2 和 react-router 实现按需加载">
 <meta property="og:url" content="https://zhaozeyu.space/2017/02/24/webpack-2-和-react-router-实现按需加载/index.html">
 <meta property="og:site_name" content="Avalon">
-<meta property="og:description" content="产品上线了一段时日，偷偷摸摸把 webpack 升级到了 2.x ，出现了很多优化需求，意味着很多新的库、新的代码，以及，更大的 bundle 。怎么办呢？ Code Splitting 呗！按需加载、懒加载┏ (゜ω゜)=☞。 Code Splitting 的方式前端代码一般需要进行拆分的地方有：  公共代码拆分，如所有代码共用的三方库，某些业务模块或页面用的三方库。 特定业务场景加速，如首页，">
+<meta property="og:description" content="产品上线了一段时日，偷偷摸摸把 webpack 升级到了 2.x ，出现了很多优化需求，意味着很多新的库、新的代码，以及，更大的 bundle 。怎么办呢？ Code Splitting 呗！按需加载、懒加载┏ (゜ω゜)=☞。 Code Splitting 的方式前端代码一般需要进行拆分的地方有：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-01T05:11:41.360Z">
+<meta property="og:updated_time" content="2018-06-01T06:40:25.729Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="webpack 2 和 react-router 实现按需加载">
-<meta name="twitter:description" content="产品上线了一段时日，偷偷摸摸把 webpack 升级到了 2.x ，出现了很多优化需求，意味着很多新的库、新的代码，以及，更大的 bundle 。怎么办呢？ Code Splitting 呗！按需加载、懒加载┏ (゜ω゜)=☞。 Code Splitting 的方式前端代码一般需要进行拆分的地方有：  公共代码拆分，如所有代码共用的三方库，某些业务模块或页面用的三方库。 特定业务场景加速，如首页，">
+<meta name="twitter:description" content="产品上线了一段时日，偷偷摸摸把 webpack 升级到了 2.x ，出现了很多优化需求，意味着很多新的库、新的代码，以及，更大的 bundle 。怎么办呢？ Code Splitting 呗！按需加载、懒加载┏ (゜ω゜)=☞。 Code Splitting 的方式前端代码一般需要进行拆分的地方有：">
 
 
 
@@ -187,6 +187,16 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
           </a>
         </li>
       
@@ -301,7 +311,7 @@
 
       
         <p>产品上线了一段时日，偷偷摸摸把 webpack 升级到了 2.x ，出现了很多优化需求，意味着很多新的库、新的代码，以及，更大的 bundle 。怎么办呢？ Code Splitting 呗！按需加载、懒加载┏ (゜ω゜)=☞。</p>
-<h1 id="Code-Splitting-的方式"><a href="#Code-Splitting-的方式" class="headerlink" title="Code Splitting 的方式"></a>Code Splitting 的方式</h1><p>前端代码一般需要进行拆分的地方有：</p>
+<h1 id="Code-Splitting-的方式"><a href="#Code-Splitting-的方式" class="headerlink" title="Code Splitting 的方式"></a>Code Splitting 的方式</h1><p>前端代码一般需要进行拆分的地方有：<a id="more"></a></p>
 <ul>
 <li>公共代码拆分，如所有代码共用的三方库，某些业务模块或页面用的三方库。</li>
 <li>特定业务场景加速，如首页，或者多页面入口时的入口页面加速。比如现在老板要你做个地理位置的AR，总不能直接把这个包和常规业务代码丢一块加载吧。</li>

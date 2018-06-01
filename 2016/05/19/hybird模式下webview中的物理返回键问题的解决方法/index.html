@@ -88,7 +88,7 @@
 <meta property="og:description" content="最近做的一个移动端H5项目，需要嵌入某个移动APP中。为了达到近似APP的效果，在H5页面顶部设计了标题栏和返回键。 使用history.goback的问题在网页浏览器中，一般使用浏览器的自带回退来返回上一页，网站一般开发只对回退时是否提交上一页表单等问题进行处理，并不修改浏览器的回退行为。而在Hybird模式下，部分功能，如登录、绑卡、支付等流程都是在native下进行，这样就会出现native">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://7xogz7.com1.z0.glb.clouddn.com/CookieHistoryBeta1.png">
-<meta property="og:updated_time" content="2018-06-01T04:39:27.000Z">
+<meta property="og:updated_time" content="2018-06-01T06:35:29.615Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hybird模式下webview中的物理返回键问题的解决方法">
 <meta name="twitter:description" content="最近做的一个移动端H5项目，需要嵌入某个移动APP中。为了达到近似APP的效果，在H5页面顶部设计了标题栏和返回键。 使用history.goback的问题在网页浏览器中，一般使用浏览器的自带回退来返回上一页，网站一般开发只对回退时是否提交上一页表单等问题进行处理，并不修改浏览器的回退行为。而在Hybird模式下，部分功能，如登录、绑卡、支付等流程都是在native下进行，这样就会出现native">
@@ -189,6 +189,16 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
           </a>
         </li>
       
@@ -304,6 +314,7 @@
       
         <p>最近做的一个移动端H5项目，需要嵌入某个移动APP中。为了达到近似APP的效果，在H5页面顶部设计了标题栏和返回键。</p>
 <h1 id="使用history-goback的问题"><a href="#使用history-goback的问题" class="headerlink" title="使用history.goback的问题"></a>使用history.goback的问题</h1><p>在网页浏览器中，一般使用浏览器的自带回退来返回上一页，网站一般开发只对回退时是否提交上一页表单等问题进行处理，并不修改浏览器的回退行为。而在Hybird模式下，部分功能，如登录、绑卡、支付等流程都是在native下进行，这样就会出现native和webview之间的跳转，会导致history.goback失效。所以需要自己实现一套返回机制。</p>
+<a id="more"></a>
 <h1 id="使用webview-cookie来实现返回"><a href="#使用webview-cookie来实现返回" class="headerlink" title="使用webview cookie来实现返回"></a>使用webview cookie来实现返回</h1><p>在该APP中，多个webview之间共享cookie。利用cookie，我们可以实现类似于native的返回。目前使用的技术有：react、react-router、react-cookie。</p>
 <h2 id="歌王争霸栈v0-0-1"><a href="#歌王争霸栈v0-0-1" class="headerlink" title="歌王争霸栈v0.0.1"></a>歌王争霸栈v0.0.1</h2><p>第一版思路：</p>
 <ol>
