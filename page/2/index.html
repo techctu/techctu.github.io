@@ -233,6 +233,130 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhaozeyu.space/2016/11/08/在ios-app内部使用js访问webview时uri的查询参数需要encode两次/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zeyu Zhao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Avalon">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/11/08/在ios-app内部使用js访问webview时uri的查询参数需要encode两次/" itemprop="url">在iOS APP内部使用JS访问webview时uri的查询参数需要encode两次</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-08T00:00:00+08:00">
+                2016-11-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>最近在使用开发运行于第三方APP内的SPA时，需要打开浏览器访问百度地图。APP提供了一个 <figure class="highlight plain"><figcaption><span>的格式，可以在webview内使用 ```window.location.href </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 问题</span><br><span class="line">使用 ```[prefix-to-open-browser]/https://www.baidu.com``` 时没有问题，但uri中包含中文参数时，使用 ```encodeURI([uri])``` 无法打开浏览器。</span><br><span class="line"></span><br><span class="line"># 跟踪</span><br><span class="line">在浏览器中进行测试，```encodeURI``` 确实能将uri中的字符串进行编码：</span><br></pre></td></tr></table></figure></p>
+<p>encodeURI之前：<a href="https://www.baidu.com/s?wd=编码" target="_blank" rel="noopener">https://www.baidu.com/s?wd=编码</a></p>
+<p>encodeURI之后：<a href="https://www.baidu.com/s?wd=%E7%BC%96%E7%A0%81" target="_blank" rel="noopener">https://www.baidu.com/s?wd=%E7%BC%96%E7%A0%81</a><br><code>`</code></p>
+<p>而在APP内部获取到的却是 <code>https://www.baidu.com/s?wd=编码</code>，导致APP无法打开浏览器。</p>
+<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p>最后在浏览器中发现，<strong>encodeURI之后，在浏览器中访问时，会自动decodeURI一次</strong>。在使用两次encodeURI之后，就解决了这个问题。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://zhaozeyu.space/2016/10/10/为什么使用react使用react有什么好处/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1614,133 +1738,6 @@ render() {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhaozeyu.space/2016/05/08/第一次reactjs前端开发记录/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zeyu Zhao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Avalon">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/05/08/第一次reactjs前端开发记录/" itemprop="url">第一次ReactJS前端开发记录</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-05-08T00:00:00+08:00">
-                2016-05-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><code>这是一个坑</code></p>
-<h1 id="从UI和静态页面到组件"><a href="#从UI和静态页面到组件" class="headerlink" title="从UI和静态页面到组件"></a>从UI和静态页面到组件</h1><p>ReactJS结构和普遍的前端web技术非常不一样。从流程上来说，一个页面的更新，是跟业务相关的：从后台取到初始化数据，进行业务流程的判断，然后将数据加工处理到页面上。而当前很多专门做前端的公司，并不注重技术更新，用的还是JQuery速成培训那一套；同时第一次采用ReactJS并没有设计前端静态页面要求的经验，导致合作起来问题比较多。同时，很多问题在测试时才暴露出来。而且，很多也不够<a href="http://www.tuicool.com/articles/vuYjUfM" target="_blank" rel="noopener">语义化</a>。</p>
-<h2 id="TIPS"><a href="#TIPS" class="headerlink" title="TIPS"></a>TIPS</h2><ul>
-<li><a href="http://blog.csdn.net/yisuowushinian/article/details/50404450" target="_blank" rel="noopener">H5 CSS设置</a></li>
-<li><a href="http://www.tuicool.com/articles/vuYjUfM" target="_blank" rel="noopener">语义化</a></li>
-<li><a href="http://aseoe.baijia.baidu.com/article/169270" target="_blank" rel="noopener">组件化</a></li>
-<li><a href="http://isux.tencent.com/h5-performance.html" target="_blank" rel="noopener">性能优化</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1791,7 +1788,7 @@ render() {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1813,7 +1810,7 @@ render() {
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">49</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
