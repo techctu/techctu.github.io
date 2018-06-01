@@ -82,14 +82,14 @@
 <meta name="description" content="手贱又买了个域名，还用的自己姓名拼音，儿童节快乐。  参考资料 在 GitHub Pages 搭建个人博客 在 Godaddy 购买域名">
 <meta name="keywords" content="Jekyll,Hexo,Godaddy,GitHub Pages">
 <meta property="og:type" content="article">
-<meta property="og:title" content="从 Jekyll 到 Hexo">
+<meta property="og:title" content="从 Jekyll 到 Hexo，GitHub 到 VSTS，自动构建博客发布">
 <meta property="og:url" content="https://zhaozeyu.space/2018/06/01/从-Jekyll-到-Hexo/index.html">
 <meta property="og:site_name" content="Avalon">
 <meta property="og:description" content="手贱又买了个域名，还用的自己姓名拼音，儿童节快乐。  参考资料 在 GitHub Pages 搭建个人博客 在 Godaddy 购买域名">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-01T08:40:57.466Z">
+<meta property="og:updated_time" content="2018-06-01T08:59:39.471Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="从 Jekyll 到 Hexo">
+<meta name="twitter:title" content="从 Jekyll 到 Hexo，GitHub 到 VSTS，自动构建博客发布">
 <meta name="twitter:description" content="手贱又买了个域名，还用的自己姓名拼音，儿童节快乐。  参考资料 在 GitHub Pages 搭建个人博客 在 Godaddy 购买域名">
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <title>从 Jekyll 到 Hexo | Avalon</title>
+  <title>从 Jekyll 到 Hexo，GitHub 到 VSTS，自动构建博客发布 | Avalon</title>
   
 
 
@@ -260,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">从 Jekyll 到 Hexo</h1>
+          <h1 class="post-title" itemprop="name headline">从 Jekyll 到 Hexo，GitHub 到 VSTS，自动构建博客发布</h1>
         
 
         <div class="post-meta">
@@ -321,17 +321,20 @@
 <li><a href="https://jekyllrb.com/" target="_blank" rel="noopener">Jekyll</a></li>
 <li><a href="https://blog.csdn.net/u011475210/article/details/79023429" target="_blank" rel="noopener">从 Jekyll 到 Hexo</a></li>
 <li><a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">使用 Next</a></li>
+<li><a href="https://www.cnblogs.com/ups216/p/5475389.html" target="_blank" rel="noopener">GitHub 和 VSTS 双向同步源代码</a></li>
+<li><a href="https://www.cnblogs.com/zjoch/p/6088935.html" target="_blank" rel="noopener">使用VSTS/TFS搭建iOS持续集成环境</a></li>
 </ul>
 <h1 id="再次搭建博客的缘由"><a href="#再次搭建博客的缘由" class="headerlink" title="再次搭建博客的缘由"></a>再次搭建博客的缘由</h1><ul>
 <li><a href="https://zhuanlan.zhihu.com/techctu" target="_blank" rel="noopener">知乎专栏</a>太杂，一点都不 geek，我想写 markdown。</li>
 <li><a href="https://www.jianshu.com/u/20e5dee72047" target="_blank" rel="noopener">简书</a>传播性不好，也很杂。</li>
 <li>GitHub 太小气了，私有仓库要付钱，我要把源文件私有，把生成的博客发布，还是不用 Jekyll 直接在公共仓库放 Markdown 了。</li>
 <li>Jekyll highlight 语法再见！</li>
-<li>VSTS 大法好，私有仓库免费，自动构建，微软黑转粉。</li>
+<li>VSTS 大法好，私有仓库免费，自动构建，自动发布到 GitHub Pages，微软黑转粉。</li>
 </ul>
-<h1 id="痛苦的失败"><a href="#痛苦的失败" class="headerlink" title="痛苦的失败"></a>痛苦的失败</h1><ul>
-<li>妈耶，谁能告诉我在 VSTS 上自动构建后，怎么把生成的文件推送到 GitHub Pages 的仓库。</li>
-</ul>
+<h1 id="VSTS-构建，GitHub-发布"><a href="#VSTS-构建，GitHub-发布" class="headerlink" title="VSTS 构建，GitHub 发布"></a>VSTS 构建，GitHub 发布</h1><p>首先，需要一个 <a href="https://www.visualstudio.com/zh-hans/team-services/" target="_blank" rel="noopener">VSTS</a> 账号，免费申请。</p>
+<p>然后，用 VSTS 作为自己博客的仓库，创建构建任务，参考<a href="https://www.cnblogs.com/zjoch/p/6088935.html" target="_blank" rel="noopener">使用VSTS/TFS搭建iOS持续集成环境</a>。</p>
+<p>在构建任务里，在 hexo 生成好的文件夹（默认 public）内，push 到 GitHub。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br><span class="line">git init</span><br><span class="line">git <span class="keyword">config</span> --<span class="keyword">global</span> user<span class="variable">.name</span> $(github_name)</span><br><span class="line">git <span class="keyword">config</span> --<span class="keyword">global</span> user<span class="variable">.email</span> $(github_email)</span><br><span class="line">git pull https:<span class="comment">//$(github_token)@github.com/***/***.github.io.git master</span></span><br><span class="line">hexo <span class="keyword">generate</span></span><br><span class="line">git add -A</span><br><span class="line">git commit -m <span class="string">"$(build.buildNumber)"</span></span><br><span class="line">git push -f https:<span class="comment">//$(github_token)@github.com/***/***.github.io.git head:master</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -502,7 +505,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">1.</span> <span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#再次搭建博客的缘由"><span class="nav-number">2.</span> <span class="nav-text">再次搭建博客的缘由</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#痛苦的失败"><span class="nav-number">3.</span> <span class="nav-text">痛苦的失败</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">1.</span> <span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#再次搭建博客的缘由"><span class="nav-number">2.</span> <span class="nav-text">再次搭建博客的缘由</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#VSTS-构建，GitHub-发布"><span class="nav-number">3.</span> <span class="nav-text">VSTS 构建，GitHub 发布</span></a></li></ol></div>
             
 
           </div>
