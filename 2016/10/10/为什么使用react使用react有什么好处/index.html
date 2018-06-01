@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="react," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="接手前端后，摸着石头过河，采用推荐的新的react框架，踩过不少坑，终于项目平稳上线。随之而来就会有许多人问：  为什么要使用react？react有什么好处？和jQuery/velocity/bootstrap/AngularJS/Vue.js相比有什么优点？">
+<meta name="keywords" content="react">
+<meta property="og:type" content="article">
+<meta property="og:title" content="为什么使用react&#x2F;使用react有什么好处？">
+<meta property="og:url" content="https://zhaozeyu.space/2016/10/10/为什么使用react使用react有什么好处/index.html">
+<meta property="og:site_name" content="Avalon">
+<meta property="og:description" content="接手前端后，摸着石头过河，采用推荐的新的react框架，踩过不少坑，终于项目平稳上线。随之而来就会有许多人问：  为什么要使用react？react有什么好处？和jQuery/velocity/bootstrap/AngularJS/Vue.js相比有什么优点？">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-06-01T07:55:57.717Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="为什么使用react&#x2F;使用react有什么好处？">
+<meta name="twitter:description" content="接手前端后，摸着石头过河，采用推荐的新的react框架，踩过不少坑，终于项目平稳上线。随之而来就会有许多人问：  为什么要使用react？react有什么好处？和jQuery/velocity/bootstrap/AngularJS/Vue.js相比有什么优点？">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zhaozeyu.space/2016/10/10/为什么使用react使用react有什么好处/"/>
+
+
+
+
+
+  <title>为什么使用react/使用react有什么好处？ | Avalon</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Avalon</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">域名要收费，多少写一点</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhaozeyu.space/2016/10/10/为什么使用react使用react有什么好处/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zeyu Zhao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Avalon">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">为什么使用react/使用react有什么好处？</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-10T00:00:00+00:00">
+                2016-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>接手前端后，摸着石头过河，采用推荐的新的react框架，踩过不少坑，终于项目平稳上线。随之而来就会有许多人问：</p>
+<blockquote>
+<p>为什么要使用react？react有什么好处？和jQuery/velocity/bootstrap/AngularJS/Vue.js相比有什么优点？<br><a id="more"></a><br>其中我只用过jQuery+velocity，用过一点bootstrap，AngularJS和Vue.js都是道听途说，没有真正接触，不敢妄加评论，只能从自身经历，提供一点浅见。</p>
+</blockquote>
+<h1 id="问题的本质"><a href="#问题的本质" class="headerlink" title="问题的本质"></a>问题的本质</h1><p>这个问题的应该需求分析一下：</p>
+<ol>
+<li>使用react开发H5页面复杂吗？对新人的学习曲线怎么样？开发是否方便快捷？调试是否方便？</li>
+<li>react能解决哪些方面的问题？不能解决哪些方面的问题？还需要什么补充？</li>
+<li>好像没有3了。</li>
+</ol>
+<h1 id="React和现在使用的相关技术"><a href="#React和现在使用的相关技术" class="headerlink" title="React和现在使用的相关技术"></a>React和现在使用的相关技术</h1><p>首先，重申一点，react是一个UI框架，更正确的说法，应该只是提供了构建自己的UI框架的底层库。举个栗子，蚂蚁金服的ant design和啊妹子UI，都可以说是基于react构建的UI框架，包含了大家熟悉的按钮、轮播图、单选按钮组等组件。</p>
+<p>而前端的客户端部分，也是存在MVC，或者流行的MV*结构的。所以，react肯定是需要其他方面技术补充的。</p>
+<blockquote>
+<p>为什么不直接使用ant design/Amaze UI？</p>
+</blockquote>
+<pre><code>我们构建的是面客系统，会有自己的设计风格，而使用ant design或是其他框架，其框架太重，不适合按照我们的特殊需求进行定制。这类框架比较适合内部系统或者是管理系统使用。
+</code></pre><p>由于React只是一个底层库，所以react需要一些其他的技术来构建SPA（单页面应用），如：依赖管理和打包的webpack、前端路由react-router、状态管理flux/redux/reflux等。</p>
+<p>下面从我的经验介绍一下React及其系列相关技术的优缺点。</p>
+<h1 id="React开发的优点"><a href="#React开发的优点" class="headerlink" title="React开发的优点"></a>React开发的优点</h1><p>React的开发其实是一件非常简单的事情。React的开发除了一个由于保留字需要把HTML的 <figure class="highlight plain"><figcaption><span>替换成 ```className```，剩下的就是专注于使用流程和状态来控制页面（JavaScript），以及将状态对应到正确的样式上（JSX）。</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 简单，封装</span><br><span class="line">如果使用过jQuery的第三方组件，或者bootstrap等，一旦页面比较复杂，就会碰到重命名、选择器等问题；如果使用过AngularJS，或者一些其他模板引擎，一定会学习这些库特有的一些语法，或是标签，如：</span><br><span class="line"></span><br><span class="line">&#123;% codeblock lang: js %&#125;</span><br><span class="line">// AngularJS的循环遍历</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li *ngFor=&quot;#hero of heroes&quot;&gt;</span><br><span class="line">    &#123;&#123;hero.name&#125;&#125;</span><br><span class="line">  &lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&#123;% endcodeblock %&#125;</span><br><span class="line"></span><br><span class="line">而在react里，你只需要会HTML和JavaScript。什么是jsx？</span><br><span class="line"></span><br><span class="line">这是html：</span><br><span class="line"></span><br><span class="line">&#123;% codeblock lang: html %&#125;</span><br><span class="line">    &lt;div style=&quot;background-color: #fff;&quot;&gt;这是HTML&lt;/div&gt;</span><br><span class="line">&#123;% endcodeblock %&#125;</span><br><span class="line"></span><br><span class="line">这是JavaScript（ECMAScript 2015/ES6）：</span><br><span class="line"></span><br><span class="line">&#123;% codeblock lang: js %&#125;</span><br><span class="line">class SomeClass &#123;</span><br><span class="line">    functionA() &#123;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#123;% endcodeblock %&#125;</span><br><span class="line"></span><br><span class="line">这是JSX：</span><br></pre></td></tr></table></figure></p>
+<p>let myDivElement = <div classname="foo">;<br>ReactDOM.render(myDivElement, document.getElementById(‘example’));</div></p>
+<p>// 更高级一点，自定义组件<br>class MyComponent extends React.Component {<br>    // 面向对象中眼熟的继承<br>    constructor(props) {<br>        // react封装的自定义组件的参数传递方式<br>        this.state = {<br>            hello: this.props.hello<br>        };<br>    }</p>
+<pre><code>// react的组件渲染方法
+render() {
+    return(
+        &lt;div&gt;
+            &lt;label&gt;自定义react组件&lt;/label&gt;&lt;lable&gt;{this.state.hello}&lt;/lable&gt;
+        &lt;/div&gt;)
+}
+</code></pre><p>}</p>
+<p>let hello = ‘world’;<br>let myDivElement = <mycomponent hello="{hello}/">; // 给自定义组件传参<br>ReactDOM.render(myDivElement, document.getElementById(‘example’));<br><code>`</code></mycomponent></p>
+<p>JSX很简单，就是在js中使用HTML标签组成的HTML片段，<strong>没有奇怪的属性，标签，方法</strong>，<strong>没有奇怪的属性，标签，方法</strong>，<strong>没有奇怪的属性，标签，方法</strong>，我喜欢的特性说三遍。</p>
+<p>所以，react的核心思想就是，让开发人员关注业务流程变化导致的状态变化，将状态对应到具体的页面展示上，而对DOM的操作，交给react来进行。这样的方式，非常适用于目前由第三方出静态页面，我们的开发人员来实现最终效果的分工方式。</p>
+<h2 id="强大的开发工具"><a href="#强大的开发工具" class="headerlink" title="强大的开发工具"></a>强大的开发工具</h2><p>在Java开发的时候，我们已经习惯了代码高亮、自动补全、语法提示、源码定位、规范检查、压缩混淆打包等功能，react开发自然也是有这一系列工具的，涵盖了Sublime、Atom、VSCode等多种编辑器，还具有在Chrome、Firefox进行调试的插件。</p>
+<p>虽然经常有人吹牛说能用记事本写出千行代码，然而那只是个人能力，总不能要求所有人都具备这种能力，所以有好用的工具为何不用呢？自动化工具的使用，才利于项目的工程化，提高项目组整体的实施水平，极大提高开发效率，甚至一个好的代码高亮主题还能吸引妹子在你身后围观你编码。</p>
+<h2 id="UNIX哲学"><a href="#UNIX哲学" class="headerlink" title="UNIX哲学"></a>UNIX哲学</h2><p>专注于解决一个问题，小而精，而非大而全。</p>
+<p>尤其是在我们目前使用SpringMVC处理动态请求，使用nginx处理静态请求的架构下；具有自己的UE和UI设计的条件下，那些大而全的现有框架的一些隐蔽的使用条件，如某些库所需的支持等，和按照设计对一些内容进行改造等，非常繁琐不便利。</p>
+<p>React提供了一个完整的UI渲染更新流程，设计了一个组件封装的生命周期。使用react，将DOM操作交给react，能使开发人员专注于业务流程，减少繁琐的DOM操作的开发，降低由于DOM操作导致的bug（在使用jQuery的年代很常见，bootstrap也是，很多以HTML为设计核心的难以封装模板引擎也是）。</p>
+<p>使用小而精的工具，能使我们对手中的项目了若指掌，避免莫名的问题。</p>
+<h2 id="丰富的库支持"><a href="#丰富的库支持" class="headerlink" title="丰富的库支持"></a>丰富的库支持</h2><p><a href="https://www.npmjs.com/search?q=react" target="_blank" rel="noopener">21465 results for ‘react’.</a></p>
+<h2 id="社区和文档支持等"><a href="#社区和文档支持等" class="headerlink" title="社区和文档支持等"></a>社区和文档支持等</h2><p>React具有<a href="https://facebook.github.io/react/docs/getting-started.html" target="_blank" rel="noopener">比较详细的文档</a>、<a href="https://facebook.github.io/react/docs/videos.html" target="_blank" rel="noopener">教学视频</a>和大量的<a href="https://github.com/facebook/react/wiki/Examples" target="_blank" rel="noopener">示例代码、脚手架</a>，在<a href="https://github.com/" target="_blank" rel="noopener">某知名大型国际同性交友网站</a>上能找到<a href="https://github.com/search?utf8=%E2%9C%93&amp;q=react" target="_blank" rel="noopener">10W+相关代码</a>。</p>
+<h1 id="React开发的缺点"><a href="#React开发的缺点" class="headerlink" title="React开发的缺点"></a>React开发的缺点</h1><p>大致说完了优点，来说说缺点。</p>
+<h2 id="JavaScript发展快速，导致了混乱"><a href="#JavaScript发展快速，导致了混乱" class="headerlink" title="JavaScript发展快速，导致了混乱"></a>JavaScript发展快速，导致了混乱</h2><p>这几年是JavaScript，嗯，ECMAScript发展迅速的一年，前端相关们都各有各的野心，浏览器厂商和标准组织合纵连横，谷歌微软苹果互相掐架，微软Mozilla眉来眼去，两年就从ES5到了ES6眼看着又要马不停蹄奔向ES7了，这就导致目前百度搜索到的react示例大部分使用ES5，一部分使用ES6，少量使用ES7，<strong>不利于初学者学习</strong>，尤其是大部分人都是从学习<a href="http://www.ruanyifeng.com/blog/2015/03/react.html" target="_blank" rel="noopener">写blog写到阿里的某大牛</a>开始。</p>
+<p>而我们，使用的是ES6。</p>
+<p><em>注：JavaScript是ECMA-262标准的实现和扩展，我们使用的ES6基于ECMA-262 6th Edition。</em></p>
+<h2 id="太多工具"><a href="#太多工具" class="headerlink" title="太多工具"></a>太多工具</h2><p>既然要拥抱UNIX哲学，那么就会面临大量工具选择的问题：编辑器、构建、脚手架、规则校验、测试等，都需要进行选择、配置，以便项目组进行开发。</p>
+<p><em>虽然我写了一些工具配置使用说明，但不知为何很多人还是使用一个没有安装任何插件的Sublime/Atom进行开发，难道都是记事本写十万行不出bug的大牛？</em></p>
+<h2 id="React设计思想"><a href="#React设计思想" class="headerlink" title="React设计思想"></a>React设计思想</h2><p>React和相关系列技术的设计思想，是开发人员使用react的最大门槛。</p>
+<p>React的willMount-didMount-willReceiveProps-shouldUpdate-willUpdate-didUpdate-willUnmount的生命周期，规范了DOM的更新，同时也提高了学习门槛。开发人员需要了解何时重写生命周期方法，这就要求开发人员对页面可能发生的状态迁移和目标结果有充分了解。事实上，我觉得，开发人员也应该清楚页面的状态迁移和目标结果——至少是大部分的。</p>
+<p>同时，react支持多种创建组件的方式：React.createClass、ES6 Classes和stateless functional components（无状态组件）。</p>
+<p>应该使用哪个方式？开发人员会面临混乱。</p>
+<p>React官方指出应该分为两层：使用无状态组件渲染页面各个部分；使用ES6 Classes保持页面状态；React.createClass是ES5及其之前的东西，请勿使用——恰巧这是目前国内大部分示例使用的方式。</p>
+<p>同时目前由于页面不是很复杂所以没有采用的各大状态管理机制，也暂时降低了开发难度。</p>
+<p><em>从开发的支持筛选、搜索的商户列表页来看，似乎马上也要使用flux/redux/reflux一类了，蓝瘦，香菇。</em></p>
+<h2 id="语言障碍"><a href="#语言障碍" class="headerlink" title="语言障碍"></a>语言障碍</h2><p>目前国内大部分示例停留在ES5，已过期，需要翻墙去寻找示例。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>在项目从2015年底需求研究开始到2016年4月开始一个月开发一个月测试投产上线，再到10月的二期期间，经历了接触react、webpack、ES6、react-router等到利用空档偷偷摸摸重构项目、修改目录结构、修改代码编写范例、利用非工作时间充电等，对这一系列技术有了一定的了解。</p>
+<p>总的来说，react的使用和大部分技术一样，在一个团队里，只需要一个技术比较好的人搭建了boilerplate，写了几个sample，其他人依样画葫芦就可以了。而项目质量，从来不是一门语言、一个库或者框架就能决定的。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/react/" rel="tag"># react</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/31/react-router从hashhistory到browserhistory/" rel="next" title="react-router：从hashHistory到browserHistory">
+                <i class="fa fa-chevron-left"></i> react-router：从hashHistory到browserHistory
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/08/在ios-app内部使用js访问webview时uri的查询参数需要encode两次/" rel="prev" title="在iOS APP内部使用JS访问webview时uri的查询参数需要encode两次">
+                在iOS APP内部使用JS访问webview时uri的查询参数需要encode两次 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zeyu Zhao</p>
+              <p class="site-description motion-element" itemprop="description">中年危机攻城狮的小圆子，Java，JavaScript，Spring，ReactJS，摄影，一些小东西。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题的本质"><span class="nav-number">1.</span> <span class="nav-text">问题的本质</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#React和现在使用的相关技术"><span class="nav-number">2.</span> <span class="nav-text">React和现在使用的相关技术</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#React开发的优点"><span class="nav-number">3.</span> <span class="nav-text">React开发的优点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#强大的开发工具"><span class="nav-number">3.1.</span> <span class="nav-text">强大的开发工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UNIX哲学"><span class="nav-number">3.2.</span> <span class="nav-text">UNIX哲学</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#丰富的库支持"><span class="nav-number">3.3.</span> <span class="nav-text">丰富的库支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#社区和文档支持等"><span class="nav-number">3.4.</span> <span class="nav-text">社区和文档支持等</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#React开发的缺点"><span class="nav-number">4.</span> <span class="nav-text">React开发的缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript发展快速，导致了混乱"><span class="nav-number">4.1.</span> <span class="nav-text">JavaScript发展快速，导致了混乱</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#太多工具"><span class="nav-number">4.2.</span> <span class="nav-text">太多工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React设计思想"><span class="nav-number">4.3.</span> <span class="nav-text">React设计思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语言障碍"><span class="nav-number">4.4.</span> <span class="nav-text">语言障碍</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zeyu Zhao</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
