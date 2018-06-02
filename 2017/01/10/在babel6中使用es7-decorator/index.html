@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="在做下拉的时候搜寻到的资料。 增加decorator支持假设你已经安装过 babel-preset-2015 和 babel-preset-react 等，并配置完毕。 1npm install --save-dev babel-plugin-transform-decorators-legacy">
+<meta name="description" content="在做下拉的时候搜寻到的资料。 增加decorator支持假设你已经安装过 babel-preset-2015 和 babel-preset-react 等，并配置完毕。 npm install --save-dev babel-plugin-transform-decorators-legacy 然后在 .babelrc 中添加：">
 <meta name="keywords" content="babel,decorator">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在Babel6中使用ES7 Decorator">
 <meta property="og:url" content="https://zhaozeyu.space/2017/01/10/在babel6中使用es7-decorator/index.html">
 <meta property="og:site_name" content="Avalon">
-<meta property="og:description" content="在做下拉的时候搜寻到的资料。 增加decorator支持假设你已经安装过 babel-preset-2015 和 babel-preset-react 等，并配置完毕。 1npm install --save-dev babel-plugin-transform-decorators-legacy">
+<meta property="og:description" content="在做下拉的时候搜寻到的资料。 增加decorator支持假设你已经安装过 babel-preset-2015 和 babel-preset-react 等，并配置完毕。 npm install --save-dev babel-plugin-transform-decorators-legacy 然后在 .babelrc 中添加：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-02T06:02:12.756Z">
+<meta property="og:updated_time" content="2018-06-02T06:54:34.933Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在Babel6中使用ES7 Decorator">
-<meta name="twitter:description" content="在做下拉的时候搜寻到的资料。 增加decorator支持假设你已经安装过 babel-preset-2015 和 babel-preset-react 等，并配置完毕。 1npm install --save-dev babel-plugin-transform-decorators-legacy">
+<meta name="twitter:description" content="在做下拉的时候搜寻到的资料。 增加decorator支持假设你已经安装过 babel-preset-2015 和 babel-preset-react 等，并配置完毕。 npm install --save-dev babel-plugin-transform-decorators-legacy 然后在 .babelrc 中添加：">
 
 
 
@@ -208,6 +208,16 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
           </a>
         </li>
       
@@ -377,11 +387,14 @@
       
         <p>在做下拉的时候搜寻到的<a href="http://technologyadvice.github.io/es7-decorators-babel6/" target="_blank" rel="noopener">资料</a>。</p>
 <h1 id="增加decorator支持"><a href="#增加decorator支持" class="headerlink" title="增加decorator支持"></a>增加decorator支持</h1><p><em>假设你已经安装过 <code>babel-preset-2015</code> 和 <code>babel-preset-react</code> 等，并配置完毕。</em></p>
-<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --<span class="built_in">save</span>-dev babel-plugin-<span class="built_in">transform</span>-decorators-legacy</span><br></pre></td></tr></table></figure>
+<p><code>npm install --save-dev babel-plugin-transform-decorators-legacy</code></p>
+<p>然后在 <code>.babelrc</code> 中添加：</p>
 <a id="more"></a>
-<p>然后在 <figure class="highlight plain"><figcaption><span>中添加：</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
-<p>{<br>  “plugins”: [“transform-decorators-legacy”]<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">或者在webpack配置文件中：</span><br></pre></td></tr></table></figure></p>
-<p>module: {<br>  loaders: [<br>    {<br>      test: /.js$/,<br>      exclude: /node_modules\/(?!(stardust))/,<br>      loader: ‘babel’,<br>      query: {<br>        plugins: [<br>          ‘transform-decorators-legacy’,<br>        ]<br>      },<br>    }<br>  ]<br>}<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 使用方式</span><br><span class="line">在我项目代码中使用了[react-css-modules](https:<span class="comment">//github.com/gajus/react-css-modules)。原来是这样的：</span></span><br><span class="line"></span><br><span class="line">```js</span><br><span class="line"><span class="keyword">import</span> <span class="type">CSSModules</span> from <span class="symbol">'react</span>-css-modules';</span><br><span class="line"><span class="keyword">import</span> styles from <span class="symbol">'app</span>.css';</span><br><span class="line"><span class="keyword">import</span> &#123;<span class="type">Component</span>&#125; from <span class="symbol">'reac</span>t'</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export <span class="keyword">default</span> <span class="type">CSSModules</span>(<span class="type">A</span>, styles, &#123;allowMultiple: <span class="literal">true</span>&#125;);</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"plugins"</span>: [<span class="string">"transform-decorators-legacy"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>或者在webpack配置文件中：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">module:</span> <span class="string">&#123;</span></span><br><span class="line"><span class="attr">  loaders:</span> <span class="string">[</span></span><br><span class="line">    <span class="string">&#123;</span></span><br><span class="line"><span class="attr">      test:</span> <span class="string">/\.js$/,</span></span><br><span class="line"><span class="attr">      exclude:</span> <span class="string">/node_modules\/(?!(stardust))/,</span></span><br><span class="line"><span class="attr">      loader:</span> <span class="string">'babel'</span><span class="string">,</span></span><br><span class="line"><span class="attr">      query:</span> <span class="string">&#123;</span></span><br><span class="line"><span class="attr">        plugins:</span> <span class="string">[</span></span><br><span class="line">          <span class="string">'transform-decorators-legacy'</span><span class="string">,</span></span><br><span class="line">        <span class="string">]</span></span><br><span class="line">      <span class="string">&#125;,</span></span><br><span class="line">    <span class="string">&#125;</span></span><br><span class="line">  <span class="string">]</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+<h1 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h1><p>在我项目代码中使用了<a href="https://github.com/gajus/react-css-modules" target="_blank" rel="noopener">react-css-modules</a>。原来是这样的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> CSSModules <span class="keyword">from</span> <span class="string">'react-css-modules'</span>;</span><br><span class="line"><span class="keyword">import</span> styles <span class="keyword">from</span> <span class="string">'app.css'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;Component&#125; <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> CSSModules(A, styles, &#123;<span class="attr">allowMultiple</span>: <span class="literal">true</span>&#125;);</span><br></pre></td></tr></table></figure>
 <p>使用之后是这样的：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> CSSModules <span class="keyword">from</span> <span class="string">'react-css-modules'</span>;</span><br><span class="line"><span class="keyword">import</span> styles <span class="keyword">from</span> <span class="string">'app.css'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;Component&#125; <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"></span><br><span class="line">@CSSModules(styles, &#123;<span class="attr">allowMultiple</span>: <span class="literal">true</span>&#125;)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> A;</span><br></pre></td></tr></table></figure>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>为什么要用decorator？在实现下拉的时候，我就在想，如果能在实现一个动画效果后，能应用到任意组件上就好了，所以才找到了decorator。</p>
@@ -620,7 +633,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#增加decorator支持"><span class="nav-number">1.</span> <span class="nav-text">增加decorator支持</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#增加decorator支持"><span class="nav-number">1.</span> <span class="nav-text">增加decorator支持</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用方式"><span class="nav-number">2.</span> <span class="nav-text">使用方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>

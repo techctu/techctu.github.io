@@ -212,6 +212,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -642,7 +652,10 @@
 <ul>
 <li>组件封装在 js 里，使用 react 封装。</li>
 <li>访问某个页面时，返回对应的 html 文件，文件中引入 js ，非 SPA 。</li>
-<li>绝对不使用 node 、 npm 、 webpack 。
+<li>绝对不使用 node 、 npm 、 webpack 。</li>
+</ul>
+<p>Try。</p>
+<h1 id="在-html-中使用-react"><a href="#在-html-中使用-react" class="headerlink" title="在 html 中使用 react"></a>在 html 中使用 react</h1><p>可以参考 <a href="https://www.sitepoint.com/getting-started-react-jsx/" target="_blank" rel="noopener">Getting Started with React</a>  （<em>不能访问请翻墙</em>）。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/02/18/在-html-中使用-react-和-jsx--不使用-nodejs/#more" rel="contents">
@@ -1265,7 +1278,8 @@
         
           <p>在做下拉的时候搜寻到的<a href="http://technologyadvice.github.io/es7-decorators-babel6/" target="_blank" rel="noopener">资料</a>。</p>
 <h1 id="增加decorator支持"><a href="#增加decorator支持" class="headerlink" title="增加decorator支持"></a>增加decorator支持</h1><p><em>假设你已经安装过 <code>babel-preset-2015</code> 和 <code>babel-preset-react</code> 等，并配置完毕。</em></p>
-<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --<span class="built_in">save</span>-dev babel-plugin-<span class="built_in">transform</span>-decorators-legacy</span><br></pre></td></tr></table></figure>
+<p><code>npm install --save-dev babel-plugin-transform-decorators-legacy</code></p>
+<p>然后在 <code>.babelrc</code> 中添加：</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/01/10/在babel6中使用es7-decorator/#more" rel="contents">

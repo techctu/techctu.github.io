@@ -212,6 +212,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -378,14 +388,14 @@
 
       
         
-          
-            <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>最近在使用开发运行于第三方APP内的SPA时，需要打开浏览器访问百度地图。APP提供了一个 <figure class="highlight plain"><figcaption><span>的格式，可以在webview内使用 ```window.location.href </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- more --&gt;</span><br><span class="line"># 问题</span><br><span class="line">使用 ```[prefix-to-open-browser]/https://www.baidu.com``` 时没有问题，但uri中包含中文参数时，使用 ```encodeURI([uri])``` 无法打开浏览器。</span><br><span class="line"></span><br><span class="line"># 跟踪</span><br><span class="line">在浏览器中进行测试，```encodeURI``` 确实能将uri中的字符串进行编码：</span><br></pre></td></tr></table></figure></p>
-<p>encodeURI之前：<a href="https://www.baidu.com/s?wd=编码" target="_blank" rel="noopener">https://www.baidu.com/s?wd=编码</a></p>
-<p>encodeURI之后：<a href="https://www.baidu.com/s?wd=%E7%BC%96%E7%A0%81" target="_blank" rel="noopener">https://www.baidu.com/s?wd=%E7%BC%96%E7%A0%81</a><br><code>`</code></p>
-<p>而在APP内部获取到的却是 <code>https://www.baidu.com/s?wd=编码</code>，导致APP无法打开浏览器。</p>
-<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p>最后在浏览器中发现，<strong>encodeURI之后，在浏览器中访问时，会自动decodeURI一次</strong>。在使用两次encodeURI之后，就解决了这个问题。</p>
-
-          
+          <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>最近在使用开发运行于第三方APP内的SPA时，需要打开浏览器访问百度地图。APP提供了一个 <code>[prefix-to-open-browser]/[url-to-visit]</code> 的格式，可以在webview内使用 <code>window.location.href = &#39;[prefix-to-open-browser]/[url-to-visit]&#39;</code> 的方法来打开浏览器。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/11/08/在ios-app内部使用js访问webview时uri的查询参数需要encode两次/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
