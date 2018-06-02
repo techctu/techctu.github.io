@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="Avalon">
 <meta property="og:description" content="啰嗦的背景最近有人问我像Coding.net啊这样的首页效果是不是很难。当然你让我从零开始弄一个确实很麻烦咯，不过这种肯定是有人做过了。于是找了找，便翻到了OnePageScroll。 最开始搜到的这个是基于JQuery的版本，在作者的仓库里还翻到了基于zepto的版本。不过我更喜欢不使用JQuery、Zepto等的更纯净的库，这就是本文介绍的PureJSOnePageScroll。点击查看特效">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-02T06:54:34.933Z">
+<meta property="og:updated_time" content="2018-06-02T09:02:31.544Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PureJSOnePageScroll——JavaScript单页滚动插件">
 <meta name="twitter:description" content="啰嗦的背景最近有人问我像Coding.net啊这样的首页效果是不是很难。当然你让我从零开始弄一个确实很麻烦咯，不过这种肯定是有人做过了。于是找了找，便翻到了OnePageScroll。 最开始搜到的这个是基于JQuery的版本，在作者的仓库里还翻到了基于zepto的版本。不过我更喜欢不使用JQuery、Zepto等的更纯净的库，这就是本文介绍的PureJSOnePageScroll。点击查看特效">
@@ -507,6 +507,23 @@
 
     <div class="post-spread">
       
+        <!--MOB SHARE BEGIN-->
+<div class="-mob-share-ui-button -mob-share-open">分享</div>
+<div class="-mob-share-ui" style="display: none">
+    <ul class="-mob-share-list">
+        <li class="-mob-share-weibo"><p>新浪微博</p></li>
+        <li class="-mob-share-qzone"><p>QQ空间</p></li>
+        <li class="-mob-share-pocket"><p>Pocket</p></li>
+        <li class="-mob-share-facebook"><p>Facebook</p></li>
+        <li class="-mob-share-twitter"><p>Twitter</p></li>
+    </ul>
+    <div class="-mob-share-close">取消</div>
+</div>
+<div class="-mob-share-ui-bg"></div>
+<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=2626fe8868c90"></script>
+<!--MOB SHARE END-->
+
+      
     </div>
   </div>
 
@@ -730,6 +747,10 @@
   }
 </script>
 
+<script>
+  var themecanvascount=document.documentElement.clientWidth/80
+</script>
+
 
 
 
@@ -740,8 +761,6 @@
 
   
 
-
-  
 
 
 
@@ -781,11 +800,6 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
