@@ -320,7 +320,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhaozeyu.space/2018/06/11/首次-iOS-Objective-C-开发记录/">
+    <link itemprop="mainEntityOfPage" href="https://zhaozeyu.space/2018/06/11/H5-改造成-Native-开发记录/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zeyu Zhao">
@@ -339,7 +339,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/11/首次-iOS-Objective-C-开发记录/" itemprop="url">首次 iOS Objective-C 开发记录</a></h2>
+                <a class="post-title-link" href="/2018/06/11/H5-改造成-Native-开发记录/" itemprop="url">H5 改造成 Native 开发记录</a></h2>
         
 
         <div class="post-meta">
@@ -391,7 +391,36 @@
       
         
           
-            
+            <p>近日因为要参加某媒体公司举办的金融行业 APP 评比，领导要求提升 APP 整体性能，猜测指标包括 APP 启动速度、兼容性、首屏加载速度等。因为我们职能组在 5 个一级页签中占据了一个入口，但采用 H5 编写，存在首次加载时请求后台的白屏问题，要求改造成 Native。</p>
+<p>既然是改造成 Native，则需要针对 iOS 和 Android 分别进行改造。</p>
+<h1 id="需求和现状"><a href="#需求和现状" class="headerlink" title="需求和现状"></a>需求和现状</h1><h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><ul>
+<li>接收 LBS 信息。</li>
+<li>改造成 Native。</li>
+<li>H5 和 web api 兼容新旧两版掌银。</li>
+<li>首页配置化。</li>
+</ul>
+<h2 id="现状"><a href="#现状" class="headerlink" title="现状"></a>现状</h2><ul>
+<li>因为职能组划分，已经存在部分功能（如 js 回调）缺乏支持，H5页面针对路由编写了路由栈。</li>
+<li>H5 是单个渠道入口，此次评比同时首页入口改版，需要支持多个渠道入口。</li>
+<li>页面跳转存在<code>需要登录</code>和<code>无需登录</code>两种跳转方式，两种方式对 URL 传参的支持方式和支持程度（能不能用查询字符串？能不能 POST 传参？）不一样。</li>
+</ul>
+<h1 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h1><h2 id="难点"><a href="#难点" class="headerlink" title="难点"></a>难点</h2><ul>
+<li>又是因为职能组划分，存在代码库权限、分支合并、构建发布等方面的问题，采用的是单目录权限本地开发页面（UIView）测试，APP 主要职能组（M 组）合并代码打包再进行集成测试的方式，流程较长，问题跟踪和解决较慢，时常需要到 M 组就地跟踪解决问题。</li>
+<li>未开发过 iOS，需要对相关技能进行学习，如存储、网络、线程、常用设计模式、常用工具库等的最佳实践。虽然从后端和 H5 的开发经验上来说，只要能抽象出问题点，都能找到对应的解决办法，但需要时间。</li>
+<li>首页配置化，参考了<a href="https://www.jianshu.com/p/a728ae289d0d" target="_blank" rel="noopener">iOS一种动态栅格布局方案</a>做了一个劣化的方案。</li>
+<li>页面路由增加参数对不同渠道进行标识。</li>
+<li>缺少依赖库管理，没有使用 CocoaPods 等工作，多个团队引入依赖库时因为版本不一导致冲突难以处理。</li>
+</ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li>听说 CocoaPods 支持本地依赖打包来解决版本冲突问题，如 A_v1.h 和 A_v2.h，把 A_v1.h 以某种方式魔改打进源码再进行合并，尚未研究。</li>
+<li>Native 不适用于需要频繁修改功能和布局的组织。</li>
+<li>iOS Objective-C 开发用 <code>dispatch_async</code> 来更新 UI。</li>
+<li>AZEncodeURIComponent、SDWebImage、iCarousel 几个库不错。</li>
+<li><code>DLog(fmt, ...) NSLog((@&quot;\n[File:%s]\n&quot; &quot;[Function:%s]\n&quot; &quot;[Line:%d] \n&quot; fmt), __FILE__, __FUNCTION__, __LINE__, ##__VA_ARGS__);</code>。</li>
+<li>使用协议和委托。</li>
+<li>使用 <code>IBAction</code> 一类或者 <code>UITapGestureRecognizer</code> 处理事件，<code>[btn addTarget:self action:@selector(btnTapped:) forControlEvents:UIControlEventTouchUpInside];</code>或者<code>UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(staticZoneBtnTapped:)];[btn addGestureRecognizer:tapGesture];</code>。</li>
+</ul>
+
           
         
       
@@ -1659,7 +1688,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">58</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

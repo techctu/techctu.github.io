@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[首次 iOS Objective-C 开发记录]]></title>
-    <url>%2F2018%2F06%2F11%2F%E9%A6%96%E6%AC%A1-iOS-Objective-C-%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95%2F</url>
-    <content type="text"></content>
+    <title><![CDATA[H5 改造成 Native 开发记录]]></title>
+    <url>%2F2018%2F06%2F11%2FH5-%E6%94%B9%E9%80%A0%E6%88%90-Native-%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95%2F</url>
+    <content type="text"><![CDATA[近日因为要参加某媒体公司举办的金融行业 APP 评比，领导要求提升 APP 整体性能，猜测指标包括 APP 启动速度、兼容性、首屏加载速度等。因为我们职能组在 5 个一级页签中占据了一个入口，但采用 H5 编写，存在首次加载时请求后台的白屏问题，要求改造成 Native。 既然是改造成 Native，则需要针对 iOS 和 Android 分别进行改造。 需求和现状需求 接收 LBS 信息。 改造成 Native。 H5 和 web api 兼容新旧两版掌银。 首页配置化。 现状 因为职能组划分，已经存在部分功能（如 js 回调）缺乏支持，H5页面针对路由编写了路由栈。 H5 是单个渠道入口，此次评比同时首页入口改版，需要支持多个渠道入口。 页面跳转存在需要登录和无需登录两种跳转方式，两种方式对 URL 传参的支持方式和支持程度（能不能用查询字符串？能不能 POST 传参？）不一样。 开发难点 又是因为职能组划分，存在代码库权限、分支合并、构建发布等方面的问题，采用的是单目录权限本地开发页面（UIView）测试，APP 主要职能组（M 组）合并代码打包再进行集成测试的方式，流程较长，问题跟踪和解决较慢，时常需要到 M 组就地跟踪解决问题。 未开发过 iOS，需要对相关技能进行学习，如存储、网络、线程、常用设计模式、常用工具库等的最佳实践。虽然从后端和 H5 的开发经验上来说，只要能抽象出问题点，都能找到对应的解决办法，但需要时间。 首页配置化，参考了iOS一种动态栅格布局方案做了一个劣化的方案。 页面路由增加参数对不同渠道进行标识。 缺少依赖库管理，没有使用 CocoaPods 等工作，多个团队引入依赖库时因为版本不一导致冲突难以处理。 总结 听说 CocoaPods 支持本地依赖打包来解决版本冲突问题，如 A_v1.h 和 A_v2.h，把 A_v1.h 以某种方式魔改打进源码再进行合并，尚未研究。 Native 不适用于需要频繁修改功能和布局的组织。 iOS Objective-C 开发用 dispatch_async 来更新 UI。 AZEncodeURIComponent、SDWebImage、iCarousel 几个库不错。 DLog(fmt, ...) NSLog((@&quot;\n[File:%s]\n&quot; &quot;[Function:%s]\n&quot; &quot;[Line:%d] \n&quot; fmt), __FILE__, __FUNCTION__, __LINE__, ##__VA_ARGS__);。 使用协议和委托。 使用 IBAction 一类或者 UITapGestureRecognizer 处理事件，[btn addTarget:self action:@selector(btnTapped:) forControlEvents:UIControlEventTouchUpInside];或者UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(staticZoneBtnTapped:)];[btn addGestureRecognizer:tapGesture];。]]></content>
       <tags>
         <tag>iOS, Objective-C</tag>
       </tags>
@@ -270,17 +270,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Maven使用记录（一）——maven的安装和基础配置]]></title>
-    <url>%2F2015%2F12%2F06%2FMaven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94maven%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE%2F</url>
-    <content type="text"><![CDATA[Maven是一款非常好用的项目管理软件，主要用于项目构建，依赖管理等，简介出门右转参见百度百科，亦或去官方网站。 使用和配置这里主要介绍windows下maven的使用和配置。 要使用maven，首先确保安装了JDK，然后再去官方网站下载maven。根据情况——一般是操作系统和解压工具——选择zip或者tar.gz下载，然后解压到自己选择的目录或是文件夹下，即为maven的根目录。比如，我解压出来的目录结构是D:\LittleThings\apache-maven-3.2.5，包含bin、conf、lib、README.txt等目录和文件。所以，D:\LittleThings\apache-maven-3.2.5即我的maven根目录。​配置环境变量，以Windows为例。新增环境变量M2_HOME，我这里值为D:\LittleThings\apache-maven-3.2.5，修改为自己的根目录。在环境变量Path后增加;%M2_HOME%\bin;。这样，就完成了配置。在命令行窗口输入mvn -version，能看到maven的基本信息，如maven home、java version等。​​ 修改settings.xml。settings.xml位于根目录/conf下。一般settings需要修改的有两处：本地仓库的位置和中央仓库的镜像。本地仓库一般默认安装在系统盘下，这样，新增的jar包都会下载安装到系统盘。为了避免这个，找到settings.xml中localRepository的注释，添加 lang: xml1&lt;localRepository&gt;D:/LittleThings/mvnrepo&lt;/localRepository&gt; 这里改成自己的本地仓库目录即可。一般由于众所周知的原因，很难从maven中央仓库下载下来jar包，因此，一般会添加镜像。 lang: xml12345678&lt;mirrors&gt; &lt;mirror&gt;&lt;id&gt;CN&lt;/id&gt; &lt;name&gt;OSChina Central&lt;/name&gt; &lt;url&gt;http://maven.oschina.net/content/groups/public/&lt;/url&gt; &lt;mirrorOf&gt;central&lt;/mirrorOf&gt; &lt;/mirror&gt; &lt;mirror&gt; &lt;id&gt;ibiblio.org&lt;/id&gt; &lt;name&gt;ibiblio Mirror of http://repo1.maven.org/maven2/&lt;/name&gt; &lt;url&gt;http://mirrors.ibiblio.org/pub/mirrors/maven2&lt;/url&gt; &lt;mirrorOf&gt;central&lt;/mirrorOf&gt; &lt;!-- United States, North Carolina --&gt; &lt;/mirror&gt; &lt;mirror&gt; &lt;id&gt;cica.es&lt;/id&gt; &lt;url&gt;http://ftp.cica.es/mirrors/maven2&lt;/url&gt; &lt;mirrorOf&gt;central&lt;/mirrorOf&gt; &lt;!-- Spain, Sevilla --&gt; &lt;/mirror&gt; &lt;mirror&gt; &lt;id&gt;maven.org&lt;/id&gt; &lt;url&gt;http://repo1.maven.org/maven2/&lt;/url&gt; &lt;mirrorOf&gt;central&lt;/mirrorOf&gt; &lt;/mirror&gt; &lt;mirror&gt; &lt;id&gt;jboss.com&lt;/id&gt; &lt;url&gt;http://repository.jboss.com/maven2/&lt;/url&gt; &lt;mirrorOf&gt;central&lt;/mirrorOf&gt; &lt;/mirror&gt; &lt;mirror&gt; &lt;id&gt;sonatype.org&lt;/id&gt; &lt;url&gt;http://repository.sonatype.org/content/groups/public/&lt;/url&gt; &lt;mirrorOf&gt;central&lt;/mirrorOf&gt; &lt;/mirror&gt; &lt;!-- mirror | Specifies a repository mirror site to use instead of a given repository. The repository that | this mirror serves has an ID that matches the mirrorOf element of this mirror. IDs are used | for inheritance and direct lookup purposes, and must be unique across the set of mirrors. | &lt;mirror&gt; &lt;id&gt;mirrorId&lt;/id&gt; &lt;mirrorOf&gt;repositoryId&lt;/mirrorOf&gt; &lt;name&gt;Human Readable Name for this Mirror.&lt;/name&gt; &lt;url&gt;http://my.repository.com/repo/path&lt;/url&gt; &lt;/mirror&gt; --&gt;&lt;/mirrors&gt; 至此，maven就初步安装完成可以使用了。]]></content>
-      <categories>
-        <category>maven</category>
-      </categories>
-      <tags>
-        <tag>maven</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[热情、欣赏、诚实——头脑风暴成果演讲反思]]></title>
     <url>%2F2015%2F12%2F06%2F%E7%83%AD%E6%83%85%E6%AC%A3%E8%B5%8F%E8%AF%9A%E5%AE%9E%E5%A4%B4%E8%84%91%E9%A3%8E%E6%9A%B4%E6%88%90%E6%9E%9C%E6%BC%94%E8%AE%B2%E5%8F%8D%E6%80%9D%2F</url>
     <content type="text"><![CDATA[最近，Team Leader一直在搞头脑风暴，想要摩擦出火花，采集闪光的瞬间，集齐七个……嗯，就是想解放思想、实事求是。遂，每逢周三，组内汇聚一堂，坐而论道。 大头目：“TL，你们搞出啥子幺蛾子了吗？” TL：“我们展示一下呗！” 大头目：“好好好！搞搞搞！” 然后，这个锅我背了。小组分拨，我被分到了天灾。最后deadline到了，居然让我这个五号位划水辅助当carry。最后不负众望，嗝屁了。不过看到近卫的carry台风，很是欣赏，觉得需要学习一下，知耻而后勇嘛。 悲剧的开始作为一个高贵冷艳的程序员，在头脑风暴的时候就是各种划水，只因觉得这种会议太过务虚了。做出一个“惊艳”的产品？什么鬼，简直无法直视。也许是我太挑剔了，也许是我老了，我很少觉得什么东西我会用惊艳这个词去形容。大部分的时候，看到美女会欣赏，看到工具会判断是不是想要的，很少有那种非洲农业不发达看到金坷垃的感觉。而且，也使我想起了每天写文档写了N年还喜欢搞传销的某人。 大概就是这么反感了，失去了热情，最后自己都不信自己演讲时说的东西了。没有了热情，不相信自己写的东西，演说的时候就会无精打采，这也是演说失败的原因之一。 其实这样很不好，毕竟在team中，不管这个target对不对，得尽自己一份力。既然过于务虚，那就把它务实，这才是应有之义。 仓促的准备头脑风暴小组就这么分成了气宗和剑宗。气宗每天都在进行头脑风暴，还掏出了神器Mac Pro，使出了Keynote大法，还不停刺探我宗情报，并进行了一系列反间谍工作。然而我宗认为领导在对面，本身这个事情又是务虚，所有人都没有放在心上，组员都没有积极参与，无法进行有效的组织。最后，我只能临危受命，将组员最近在研究的一项技术进行介绍。毕竟这项技术和我们演讲的主题有着一定的关联。 此时，我们手里的材料只有这个未完成待验证的项目；我们知道的是气宗要使用酷炫的Keynote；气宗已经做了一周，而我们的准备时间是从现在起到明天下午开始演讲为止。WTF！没办法，只能想办法吹了。 正所谓知己知彼，百战不殆。敌方情报工作那么到位，想要与之一战，就只能从了解己方着手了。 跑了跑那个项目，果然是个未完成品，唯一拿得出手的只有概念——自动化测试了。此时的我已经开始质疑这个项目的重要性——我自己都不能说服自己，拿什么去说服别人呢？只能取巧，依靠一些技法了。 为了让展示不逊于Keynote，便求助于impress.js，使效果更加酷炫；同时开始计划讲稿，让听众忘记询问项目的不足和完成情况，专注于项目代表的意义。除此之外，最重要的是要我能相信这个项目。然而，我做不到，我不欣赏这个项目。 悲剧的演讲上台演讲时，确实成功地让听众惊艳于impress.js的效果，专注于项目的意义，从某种意义上来说，是成功的。然而由于我能明显感到和对手台风的巨大差距，这对我来说并不是一个成功的演讲。我并没有说服我自己去欣赏这个项目，所以演讲的时候我无法感动我自己，也无法感染听众。 痛定思痛，入手了《像TED一样演讲》。 于2015年8月阅毕。]]></content>
@@ -303,11 +292,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[使用数据库自带的锁机制来处理竞争]]></title>
-    <url>%2F2015%2F12%2F06%2F%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E8%87%AA%E5%B8%A6%E7%9A%84%E9%94%81%E6%9C%BA%E5%88%B6%E6%9D%A5%E5%A4%84%E7%90%86%E7%AB%9E%E4%BA%89%2F</url>
-    <content type="text"><![CDATA[2013年刚入职的时候，做的p2p项目，有这么个需求。 众所周知，p2p需要去投标，投标就会有竞争。比如阿猫和阿狗都看到一个项目只剩1份了，两个人同时投标。这时候系统就会判断阿猫买一份，余额刚好一份，可以买；在系统确定了这次购买订单，更新余额前，阿狗的请求也到了，系统还没更新余额，这时系统也让阿狗买了一份。这就导致实际上一份卖出了两份，这样并不好，会出现一系列问题，具体什么问题，出门右转找运营。 那么怎么办呢？就是经典的并发情况下锁机制的设计了。 当时负责我们p2p组的组长决定利用数据库的锁机制来处理，具体就是在数据库中增加一个字段key，通过对a的值的比对来保证投标的顺利进行。 lang: java1234567oldKey = getKey(); // 获取锁值processing(); // 处理if (checkKey()) &#123; // 检查锁没有变更则更新锁，否则回滚操作 updateKey();&#125; else &#123; rollback();&#125; 这样其实会有个问题，即在chenkKey()和updateKey()之间，会有可能有人也投标成功了。 怎么修改呢？其实很简单。我把chenkKey()和updateKey()合作一个方法checkAndUpdateKey()，直接在数据库中 lang: sql1update a set key = newKey where key = oldKey 这样代码逻辑就变成了 lang: java12345oldKey = getKey(); // 获取锁值processing(); // 处理if (!checkAndUpdateKey()) &#123; // 检查锁值变化并更新锁，失败则回滚操作 rollback();&#125; 搞定。 P.S.当然这样有个很大的问题，竞争多的时候很容易就投不中标。最好还是类似12306先把请求排队进入一个队列，然后再依次处理——比如一个先进先出队列。]]></content>
-  </entry>
-  <entry>
     <title><![CDATA[在Mac上配置使用git]]></title>
     <url>%2F2015%2F12%2F06%2F%E5%9C%A8mac%E4%B8%8A%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8git%2F</url>
     <content type="text"><![CDATA[在 git下载Mac安装程序。 傻瓜安装git。 打开Terminal，输入git –version来检查。 下载 SourceTree。 傻瓜安装SourceTree并配置本地库和远程库。]]></content>
@@ -318,6 +302,11 @@
         <tag>mac</tag>
         <tag>git</tag>
       </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[使用数据库自带的锁机制来处理竞争]]></title>
+    <url>%2F2015%2F12%2F06%2F%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E8%87%AA%E5%B8%A6%E7%9A%84%E9%94%81%E6%9C%BA%E5%88%B6%E6%9D%A5%E5%A4%84%E7%90%86%E7%AB%9E%E4%BA%89%2F</url>
+    <content type="text"><![CDATA[2013年刚入职的时候，做的p2p项目，有这么个需求。 众所周知，p2p需要去投标，投标就会有竞争。比如阿猫和阿狗都看到一个项目只剩1份了，两个人同时投标。这时候系统就会判断阿猫买一份，余额刚好一份，可以买；在系统确定了这次购买订单，更新余额前，阿狗的请求也到了，系统还没更新余额，这时系统也让阿狗买了一份。这就导致实际上一份卖出了两份，这样并不好，会出现一系列问题，具体什么问题，出门右转找运营。 那么怎么办呢？就是经典的并发情况下锁机制的设计了。 当时负责我们p2p组的组长决定利用数据库的锁机制来处理，具体就是在数据库中增加一个字段key，通过对a的值的比对来保证投标的顺利进行。 lang: java1234567oldKey = getKey(); // 获取锁值processing(); // 处理if (checkKey()) &#123; // 检查锁没有变更则更新锁，否则回滚操作 updateKey();&#125; else &#123; rollback();&#125; 这样其实会有个问题，即在chenkKey()和updateKey()之间，会有可能有人也投标成功了。 怎么修改呢？其实很简单。我把chenkKey()和updateKey()合作一个方法checkAndUpdateKey()，直接在数据库中 lang: sql1update a set key = newKey where key = oldKey 这样代码逻辑就变成了 lang: java12345oldKey = getKey(); // 获取锁值processing(); // 处理if (!checkAndUpdateKey()) &#123; // 检查锁值变化并更新锁，失败则回滚操作 rollback();&#125; 搞定。 P.S.当然这样有个很大的问题，竞争多的时候很容易就投不中标。最好还是类似12306先把请求排队进入一个队列，然后再依次处理——比如一个先进先出队列。]]></content>
   </entry>
   <entry>
     <title><![CDATA[一些好用的小玩意]]></title>
@@ -359,6 +348,17 @@
     <title><![CDATA[Maven使用记录（二）——在Eclipse中使用Maven来进行项目管理]]></title>
     <url>%2F2015%2F12%2F06%2FMaven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E5%9C%A8Eclipse%E4%B8%AD%E4%BD%BF%E7%94%A8Maven%E6%9D%A5%E8%BF%9B%E8%A1%8C%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%2F</url>
     <content type="text"><![CDATA[在maven使用记录（一）-maven的安装和基础配置中下载和安装好maven后，使用Eclipse来对项目进行管理。默认使用了J2EE插件。如图。]]></content>
+      <categories>
+        <category>maven</category>
+      </categories>
+      <tags>
+        <tag>maven</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Maven使用记录（一）——maven的安装和基础配置]]></title>
+    <url>%2F2015%2F12%2F06%2FMaven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94maven%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE%2F</url>
+    <content type="text"><![CDATA[Maven是一款非常好用的项目管理软件，主要用于项目构建，依赖管理等，简介出门右转参见百度百科，亦或去官方网站。 使用和配置这里主要介绍windows下maven的使用和配置。 要使用maven，首先确保安装了JDK，然后再去官方网站下载maven。根据情况——一般是操作系统和解压工具——选择zip或者tar.gz下载，然后解压到自己选择的目录或是文件夹下，即为maven的根目录。比如，我解压出来的目录结构是D:\LittleThings\apache-maven-3.2.5，包含bin、conf、lib、README.txt等目录和文件。所以，D:\LittleThings\apache-maven-3.2.5即我的maven根目录。​配置环境变量，以Windows为例。新增环境变量M2_HOME，我这里值为D:\LittleThings\apache-maven-3.2.5，修改为自己的根目录。在环境变量Path后增加;%M2_HOME%\bin;。这样，就完成了配置。在命令行窗口输入mvn -version，能看到maven的基本信息，如maven home、java version等。​​ 修改settings.xml。settings.xml位于根目录/conf下。一般settings需要修改的有两处：本地仓库的位置和中央仓库的镜像。本地仓库一般默认安装在系统盘下，这样，新增的jar包都会下载安装到系统盘。为了避免这个，找到settings.xml中localRepository的注释，添加 lang: xml1&lt;localRepository&gt;D:/LittleThings/mvnrepo&lt;/localRepository&gt; 这里改成自己的本地仓库目录即可。一般由于众所周知的原因，很难从maven中央仓库下载下来jar包，因此，一般会添加镜像。 lang: xml12345678&lt;mirrors&gt; &lt;mirror&gt;&lt;id&gt;CN&lt;/id&gt; &lt;name&gt;OSChina Central&lt;/name&gt; &lt;url&gt;http://maven.oschina.net/content/groups/public/&lt;/url&gt; &lt;mirrorOf&gt;central&lt;/mirrorOf&gt; &lt;/mirror&gt; &lt;mirror&gt; &lt;id&gt;ibiblio.org&lt;/id&gt; &lt;name&gt;ibiblio Mirror of http://repo1.maven.org/maven2/&lt;/name&gt; &lt;url&gt;http://mirrors.ibiblio.org/pub/mirrors/maven2&lt;/url&gt; &lt;mirrorOf&gt;central&lt;/mirrorOf&gt; &lt;!-- United States, North Carolina --&gt; &lt;/mirror&gt; &lt;mirror&gt; &lt;id&gt;cica.es&lt;/id&gt; &lt;url&gt;http://ftp.cica.es/mirrors/maven2&lt;/url&gt; &lt;mirrorOf&gt;central&lt;/mirrorOf&gt; &lt;!-- Spain, Sevilla --&gt; &lt;/mirror&gt; &lt;mirror&gt; &lt;id&gt;maven.org&lt;/id&gt; &lt;url&gt;http://repo1.maven.org/maven2/&lt;/url&gt; &lt;mirrorOf&gt;central&lt;/mirrorOf&gt; &lt;/mirror&gt; &lt;mirror&gt; &lt;id&gt;jboss.com&lt;/id&gt; &lt;url&gt;http://repository.jboss.com/maven2/&lt;/url&gt; &lt;mirrorOf&gt;central&lt;/mirrorOf&gt; &lt;/mirror&gt; &lt;mirror&gt; &lt;id&gt;sonatype.org&lt;/id&gt; &lt;url&gt;http://repository.sonatype.org/content/groups/public/&lt;/url&gt; &lt;mirrorOf&gt;central&lt;/mirrorOf&gt; &lt;/mirror&gt; &lt;!-- mirror | Specifies a repository mirror site to use instead of a given repository. The repository that | this mirror serves has an ID that matches the mirrorOf element of this mirror. IDs are used | for inheritance and direct lookup purposes, and must be unique across the set of mirrors. | &lt;mirror&gt; &lt;id&gt;mirrorId&lt;/id&gt; &lt;mirrorOf&gt;repositoryId&lt;/mirrorOf&gt; &lt;name&gt;Human Readable Name for this Mirror.&lt;/name&gt; &lt;url&gt;http://my.repository.com/repo/path&lt;/url&gt; &lt;/mirror&gt; --&gt;&lt;/mirrors&gt; 至此，maven就初步安装完成可以使用了。]]></content>
       <categories>
         <category>maven</category>
       </categories>
