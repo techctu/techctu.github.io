@@ -319,7 +319,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://techctu.github.io/2015/12/06/Maven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94maven%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE/">
+    <link itemprop="mainEntityOfPage" href="https://techctu.github.io/2015/12/06/Maven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E5%9C%A8Eclipse%E4%B8%AD%E4%BD%BF%E7%94%A8Maven%E6%9D%A5%E8%BF%9B%E8%A1%8C%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -338,7 +338,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2015/12/06/Maven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94maven%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE/" itemprop="url">Maven使用记录（一）——maven的安装和基础配置</a></h2>
+                <a class="post-title-link" href="/2015/12/06/Maven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E5%9C%A8Eclipse%E4%B8%AD%E4%BD%BF%E7%94%A8Maven%E6%9D%A5%E8%BF%9B%E8%A1%8C%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/" itemprop="url">Maven使用记录（二）——在Eclipse中使用Maven来进行项目管理</a></h2>
         
 
         <div class="post-meta">
@@ -411,18 +411,12 @@
 
       
         
-          <p>Maven是一款非常好用的项目管理软件，主要用于项目构建，依赖管理等，简介出门右转参见<a href="http://baike.baidu.com/link?url=Y3LqFKxw2f3uLhfNeAfLscCNtqwhFxjzSKpu9_FCx1YKh2FhzyFSvn-0vT5XCIQf9AJX_R9cL9ztDlPgr0RnXK">百度百科</a>，亦或去<a href="http://maven.apache.org/">官方网站</a>。</p>
-<h1 id="使用和配置"><a href="#使用和配置" class="headerlink" title="使用和配置"></a>使用和配置</h1><p>这里主要介绍windows下maven的使用和配置。</p>
-<ol>
-<li>要使用maven，首先确保安装了JDK，然后再去官方网站下载maven。根据情况——一般是操作系统和解压工具——选择zip或者tar.gz下载，然后解压到自己选择的目录或是文件夹下，即为maven的根目录。比如，我解压出来的目录结构是D:\LittleThings\apache-maven-3.2.5，包含bin、conf、lib、README.txt等目录和文件。所以，D:\LittleThings\apache-maven-3.2.5即我的maven根目录。​<br>配置环境变量，以Windows为例。新增环境变量M2_HOME，我这里值为D:\LittleThings\apache-maven-3.2.5，修改为自己的根目录。在环境变量Path后增加;%M2_HOME%\bin;。这样，就完成了配置。在命令行窗口输入mvn -version，能看到maven的基本信息，如maven home、java version等。​​</li>
-</ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2015/12/06/Maven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94maven%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <p>在<a href="!--swig%EF%BF%BC0--">maven使用记录（一）-maven的安装和基础配置中下载和安装好maven</a>后，使用Eclipse来对项目进行管理。默认使用了J2EE插件。如图。</p>
+<p><img src="http://7xogz7.com1.z0.glb.clouddn.com/%E6%B7%BB%E5%8A%A0maven%E8%AE%BE%E7%BD%AE-300x244.png" alt="配置1"></p>
+<p><img src="http://7xogz7.com1.z0.glb.clouddn.com/%E6%B7%BB%E5%8A%A0maven-300x247.png" alt="配置2"></p>
+
+          
         
       
     </div>
