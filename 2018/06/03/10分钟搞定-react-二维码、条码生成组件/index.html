@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next muse use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -83,25 +83,25 @@
 
 
 
-<meta name="description" content="条码生成首先去万能的 npm 上找到一个库安装。 npm install jsbarcode --save 然后写一个简单的 react 组件。需要转换成条码的原始字符串来源可能有很多，我们在这里就弄个输入框好了。 输入 =&amp;gt; 转换 =&amp;gt; SVG条形码">
-<meta name="keywords" content="react,qrcode,barcode">
+<meta name="description" content="条码生成首先去万能的 npm 上找到一个库安装。 npm install jsbarcode --save 然后写一个简单的 react 组件。需要转换成条码的原始字符串来源可能有很多，我们在这里就弄个输入框好了。 输入 &#x3D;&gt; 转换 &#x3D;&gt; SVG条形码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="10分钟搞定 react 二维码、条码生成组件">
-<meta property="og:url" content="https://zhaozeyu.space/2018/06/03/10分钟搞定-react-二维码、条码生成组件/index.html">
+<meta property="og:url" content="https://techctu.github.io/2018/06/03/10%E5%88%86%E9%92%9F%E6%90%9E%E5%AE%9A-react-%E4%BA%8C%E7%BB%B4%E7%A0%81%E3%80%81%E6%9D%A1%E7%A0%81%E7%94%9F%E6%88%90%E7%BB%84%E4%BB%B6/index.html">
 <meta property="og:site_name" content="Avalon">
-<meta property="og:description" content="条码生成首先去万能的 npm 上找到一个库安装。 npm install jsbarcode --save 然后写一个简单的 react 组件。需要转换成条码的原始字符串来源可能有很多，我们在这里就弄个输入框好了。 输入 =&amp;gt; 转换 =&amp;gt; SVG条形码">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-18T08:51:00.883Z">
+<meta property="og:description" content="条码生成首先去万能的 npm 上找到一个库安装。 npm install jsbarcode --save 然后写一个简单的 react 组件。需要转换成条码的原始字符串来源可能有很多，我们在这里就弄个输入框好了。 输入 &#x3D;&gt; 转换 &#x3D;&gt; SVG条形码">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-06-03T10:45:55.000Z">
+<meta property="article:modified_time" content="2024-06-20T07:09:23.691Z">
+<meta property="article:author" content="Zeyu Zhao">
+<meta property="article:tag" content="react,qrcode,barcode">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="10分钟搞定 react 二维码、条码生成组件">
-<meta name="twitter:description" content="条码生成首先去万能的 npm 上找到一个库安装。 npm install jsbarcode --save 然后写一个简单的 react 组件。需要转换成条码的原始字符串来源可能有很多，我们在这里就弄个输入框好了。 输入 =&amp;gt; 转换 =&amp;gt; SVG条形码">
 
 
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/',
+    root: '',
     scheme: 'Muse',
     version: '5.1.4',
     sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
@@ -110,7 +110,7 @@
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
-      author: '博主'
+      author: 'Author'
     },
     algolia: {
       applicationID: '',
@@ -124,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="https://zhaozeyu.space/2018/06/03/10分钟搞定-react-二维码、条码生成组件/"/>
+  <link rel="canonical" href="https://techctu.github.io/2018/06/03/10分钟搞定-react-二维码、条码生成组件/"/>
 
 
 
@@ -159,9 +159,9 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 7.2.0"></head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -184,7 +184,7 @@
       </a>
     </div>
       
-        <h1 class="site-subtitle" itemprop="description">域名要收费，多少写一点</h1>
+        <h1 class="site-subtitle" itemprop="description">世界很浮躁，多少写一点</h1>
       
   </div>
 
@@ -205,51 +205,51 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            首页
+            Home
           </a>
         </li>
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+          <a href="/about/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            关于
+            About
           </a>
         </li>
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+          <a href="/tags/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            标签
+            Tags
           </a>
         </li>
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            归档
+            Archives
           </a>
         </li>
       
         
         <li class="menu-item menu-item-commonweal">
-          <a href="/404.html" rel="section">
+          <a href="/404.html%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
             
-            公益404
+            Commonweal 404
           </a>
         </li>
       
@@ -262,7 +262,7 @@
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
-            搜索
+            Search
           </a>
         </li>
       
@@ -282,7 +282,7 @@
     </span>
     <div class="local-search-input-wrapper">
       <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
+             placeholder="Searching..." spellcheck="false"
              type="text" id="local-search-input">
     </div>
   </div>
@@ -320,10 +320,10 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhaozeyu.space/2018/06/03/10分钟搞定-react-二维码、条码生成组件/">
+    <link itemprop="mainEntityOfPage" href="https://techctu.github.io/2018/06/03/10%E5%88%86%E9%92%9F%E6%90%9E%E5%AE%9A-react-%E4%BA%8C%E7%BB%B4%E7%A0%81%E3%80%81%E6%9D%A1%E7%A0%81%E7%94%9F%E6%88%90%E7%BB%84%E4%BB%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zeyu Zhao">
+      <meta itemprop="name" content="">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -347,9 +347,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-03T10:45:55+00:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-03T10:45:55+00:00">
                 2018-06-03
               </time>
             
@@ -391,13 +391,17 @@
 <p><code>npm install jsbarcode --save</code></p>
 <p>然后写一个简单的 react 组件。需要转换成条码的原始字符串来源可能有很多，我们在这里就弄个输入框好了。</p>
 <p><code>输入 =&gt; 转换 =&gt; SVG条形码</code></p>
-<a id="more"></a>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> JsBarcode <span class="keyword">from</span> <span class="string">'jsbarcode'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CodePainterExample</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;input type=<span class="string">"text"</span> placeholder=<span class="string">"请输入原始字符串"</span></span><br><span class="line">          onChange=&#123;(e)=&gt;&#123;</span><br><span class="line">            <span class="comment">//  在 this._barcodeSVG 下使用输入的数值来生成条码</span></span><br><span class="line">            JsBarcode(<span class="keyword">this</span>._barcodeSVG, e.target.value,</span><br><span class="line">              &#123;</span><br><span class="line">                displayValue: <span class="literal">false</span>,  <span class="comment">//  不显示原始值</span></span><br><span class="line">                background: <span class="string">'#4b8b7f'</span>,  <span class="comment">//  背景色</span></span><br><span class="line">                lineColor: <span class="string">'rgba(255,255,255,0.5)'</span>, <span class="comment">// 线条颜色</span></span><br><span class="line">                width: <span class="number">1</span>  <span class="comment">// 线条宽度</span></span><br><span class="line">              &#125;</span><br><span class="line">            );</span><br><span class="line">          &#125;&#125;/&gt;</span><br><span class="line">        &lt;br/&gt;</span><br><span class="line">        &lt;label&gt;条码&lt;<span class="regexp">/label&gt;&lt;br/</span>&gt;</span><br><span class="line">        &lt;svg ref=&#123;(ref)=&gt;<span class="keyword">this</span>._barcodeSVG = ref&#125;&gt;<span class="xml"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span></span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default CodePainterExample;</span></span><br></pre></td></tr></table></figure>
-<h1 id="二维码生成"><a href="#二维码生成" class="headerlink" title="二维码生成"></a>二维码生成</h1><p>一样在 npm 找到库 <a href="http://qr-image/" target="_blank" rel="noopener">qr-image</a> 安装。<br><code>npm install --save qr-image</code></p>
+<span id="more"></span>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">JsBarcode</span> <span class="keyword">from</span> <span class="string">&#x27;jsbarcode&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CodePainterExample</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Component</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">props</span>) &#123;</span><br><span class="line">    <span class="variable language_">super</span>(props);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;请输入原始字符串&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">onChange</span>=<span class="string">&#123;(e)</span>=&gt;</span>&#123;</span></span><br><span class="line"><span class="language-xml">            //  在 this._barcodeSVG 下使用输入的数值来生成条码</span></span><br><span class="line"><span class="language-xml">            JsBarcode(this._barcodeSVG, e.target.value,</span></span><br><span class="line"><span class="language-xml">              &#123;</span></span><br><span class="line"><span class="language-xml">                displayValue: false,  //  不显示原始值</span></span><br><span class="line"><span class="language-xml">                background: &#x27;#4b8b7f&#x27;,  //  背景色</span></span><br><span class="line"><span class="language-xml">                lineColor: &#x27;rgba(255,255,255,0.5)&#x27;, // 线条颜色</span></span><br><span class="line"><span class="language-xml">                width: 1  // 线条宽度</span></span><br><span class="line"><span class="language-xml">              &#125;</span></span><br><span class="line"><span class="language-xml">            );</span></span><br><span class="line"><span class="language-xml">          &#125;&#125;/&gt;</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">br</span>/&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">label</span>&gt;</span>条码<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">svg</span> <span class="attr">ref</span>=<span class="string">&#123;(ref)</span>=&gt;</span>this._barcodeSVG = ref&#125;&gt;<span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">CodePainterExample</span>;</span><br></pre></td></tr></table></figure>
+
+<h1 id="二维码生成"><a href="#二维码生成" class="headerlink" title="二维码生成"></a>二维码生成</h1><p>一样在 npm 找到库 <a href="http://qr-image/">qr-image</a> 安装。<br><code>npm install --save qr-image</code></p>
 <p>同样，在上面的例子里加一个新的 <code>svg</code> 标签，来放我们的二维码。由于这个库主要是用在 nodejs 中，我们使用其中提供的 <code>svgObject.path</code> 来绘制二维码。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> svgpath <span class="keyword">from</span> <span class="string">'svgpath'</span>;</span><br><span class="line"><span class="keyword">import</span> qr <span class="keyword">from</span> <span class="string">'qr-image'</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CodePainterExample</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">      path: <span class="literal">null</span> <span class="comment">// 保存二维码SVG的path</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;input type=<span class="string">"text"</span> placeholder=<span class="string">"请输入"</span></span><br><span class="line">          onChange=&#123;(e)=&gt;&#123;</span><br><span class="line">            <span class="keyword">const</span> originPath = qr.svgObject(e.target.value).path; <span class="comment">//  获得二维码的绘制路径</span></span><br><span class="line">            <span class="keyword">this</span>.setState(&#123;<span class="attr">path</span>: originPath&#125;);</span><br><span class="line">          &#125;&#125;/&gt;</span><br><span class="line">        &lt;br/&gt;</span><br><span class="line">        &lt;label&gt;二维码&lt;<span class="regexp">/label&gt;&lt;br/</span>&gt;</span><br><span class="line">        &lt;svg width=<span class="string">"100%"</span> height=<span class="string">"300"</span> ref=&#123;(ref)=&gt;<span class="keyword">this</span>._qrcodeSVG = ref&#125; transform=<span class="string">"scale(2)"</span>&gt;</span><br><span class="line">          &lt;path d=&#123;<span class="keyword">this</span>.state.path?<span class="keyword">this</span>.state.path:<span class="literal">null</span>&#125;/&gt;</span><br><span class="line">        &lt;<span class="regexp">/svg&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> svgpath <span class="keyword">from</span> <span class="string">&#x27;svgpath&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> qr <span class="keyword">from</span> <span class="string">&#x27;qr-image&#x27;</span>;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CodePainterExample</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Component</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">props</span>) &#123;</span><br><span class="line">    <span class="variable language_">super</span>(props);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">state</span> = &#123;</span><br><span class="line">      <span class="attr">path</span>: <span class="literal">null</span> <span class="comment">// 保存二维码SVG的path</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;请输入&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">onChange</span>=<span class="string">&#123;(e)</span>=&gt;</span>&#123;</span></span><br><span class="line"><span class="language-xml">            const originPath = qr.svgObject(e.target.value).path; //  获得二维码的绘制路径</span></span><br><span class="line"><span class="language-xml">            this.setState(&#123;path: originPath&#125;);</span></span><br><span class="line"><span class="language-xml">          &#125;&#125;/&gt;</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">br</span>/&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">label</span>&gt;</span>二维码<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">svg</span> <span class="attr">width</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">height</span>=<span class="string">&quot;300&quot;</span> <span class="attr">ref</span>=<span class="string">&#123;(ref)</span>=&gt;</span>this._qrcodeSVG = ref&#125; transform=&quot;scale(2)&quot;&gt;</span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">&#123;this.state.path?this.state.path:null&#125;/</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>这样生成的二维码图形意外的小，还得找个库来放大一下我们的二维码。<br><code>npm install --save svgpath</code><br>然后，试着放大一下我们的二维码。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> scaledPath = svgpath(originPath).scale(<span class="number">5</span>, <span class="number">5</span>).toString();</span><br><span class="line"><span class="keyword">this</span>.setState(&#123;<span class="attr">path</span>: scaledPath&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> scaledPath = <span class="title function_">svgpath</span>(originPath).<span class="title function_">scale</span>(<span class="number">5</span>, <span class="number">5</span>).<span class="title function_">toString</span>();</span><br><span class="line"><span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123;<span class="attr">path</span>: scaledPath&#125;);</span><br></pre></td></tr></table></figure>
+
 <p>完美。<br>​</p>
 
       
@@ -413,21 +417,21 @@
         <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
   <div>时间就是金钱，我的朋友！</div>
   <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
+    <span>Donate</span>
   </button>
   <div id="QR" style="display: none;">
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="http://7xogz7.com1.z0.glb.clouddn.com/wechatpay.png" alt="Zeyu Zhao 微信支付"/>
-        <p>微信支付</p>
+        <img id="wechat_qr" src="http://7xogz7.com1.z0.glb.clouddn.com/wechatpay.png" alt=" WeChat Pay"/>
+        <p>WeChat Pay</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="http://7xogz7.com1.z0.glb.clouddn.com/alipay.png" alt="Zeyu Zhao 支付宝"/>
-        <p>支付宝</p>
+        <img id="alipay_qr" src="http://7xogz7.com1.z0.glb.clouddn.com/alipay.png" alt=" Alipay"/>
+        <p>Alipay</p>
       </div>
     
 
@@ -458,7 +462,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/01/从-Jekyll-到-Hexo/" rel="next" title="从 Jekyll 到 Hexo，GitHub 到 VSTS，自动构建博客发布">
+              <a href="/2018/06/01/%E4%BB%8E-Jekyll-%E5%88%B0-Hexo/" rel="next" title="从 Jekyll 到 Hexo，GitHub 到 VSTS，自动构建博客发布">
                 <i class="fa fa-chevron-left"></i> 从 Jekyll 到 Hexo，GitHub 到 VSTS，自动构建博客发布
               </a>
             
@@ -468,7 +472,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/03/非潮流前端项目架构-Java和ReactJS/" rel="prev" title="非潮流前端项目架构-Java和ReactJS ">
+              <a href="/2018/06/03/%E9%9D%9E%E6%BD%AE%E6%B5%81%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84-Java%E5%92%8CReactJS/" rel="prev" title="非潮流前端项目架构-Java和ReactJS ">
                 非潮流前端项目架构-Java和ReactJS  <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -546,10 +550,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
+            Overview
           </li>
         </ul>
       
@@ -558,7 +562,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">Zeyu Zhao</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -567,10 +571,10 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">42</span>
-                  <span class="site-state-item-name">日志</span>
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
@@ -580,8 +584,8 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">8</span>
-                  <span class="site-state-item-name">分类</span>
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">categories</span>
                 
               </div>
             
@@ -591,8 +595,8 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">58</span>
-                  <span class="site-state-item-name">标签</span>
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">tags</span>
                 </a>
               </div>
             
@@ -665,7 +669,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#条码生成"><span class="nav-number">1.</span> <span class="nav-text">条码生成</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二维码生成"><span class="nav-number">2.</span> <span class="nav-text">二维码生成</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9D%A1%E7%A0%81%E7%94%9F%E6%88%90"><span class="nav-number">1.</span> <span class="nav-text">条码生成</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E7%BB%B4%E7%A0%81%E7%94%9F%E6%88%90"><span class="nav-number">2.</span> <span class="nav-text">二维码生成</span></a></li></ol></div>
             
 
           </div>
@@ -685,7 +689,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -695,7 +699,7 @@
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
@@ -703,7 +707,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
 
 
 

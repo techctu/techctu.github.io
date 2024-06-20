@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next muse use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -83,25 +83,27 @@
 
 
 
-<meta name="description" content="首先列出相关文献： AMD规范) CMD规范 AMD实现之RequireJS CMD实现之SeaJS 与RequireJS的异同 SeaJS与RequireJS最大的区别 AMD 的 CommonJS wrapping 时值双十一之后，贵宝又在忽悠NodeJS多么多么好，准备研究一下，便避不开这俩规范之争。">
-<meta name="keywords" content="JavaScript,AMD,CMD">
+<meta name="description" content="首先列出相关文献： AMD规范 CMD规范 AMD实现之RequireJS CMD实现之SeaJS 与RequireJS的异同 SeaJS与RequireJS最大的区别 AMD 的 CommonJS wrapping 时值双十一之后，贵宝又在忽悠NodeJS多么多么好，准备研究一下，便避不开这俩规范之争。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript的AMD和CMD规范之我的看法">
-<meta property="og:url" content="https://zhaozeyu.space/2015/12/06/javascript的amd和cmd规范之我的看法/index.html">
+<meta property="og:url" content="https://techctu.github.io/2015/12/06/javascript%E7%9A%84amd%E5%92%8Ccmd%E8%A7%84%E8%8C%83%E4%B9%8B%E6%88%91%E7%9A%84%E7%9C%8B%E6%B3%95/index.html">
 <meta property="og:site_name" content="Avalon">
-<meta property="og:description" content="首先列出相关文献： AMD规范) CMD规范 AMD实现之RequireJS CMD实现之SeaJS 与RequireJS的异同 SeaJS与RequireJS最大的区别 AMD 的 CommonJS wrapping 时值双十一之后，贵宝又在忽悠NodeJS多么多么好，准备研究一下，便避不开这俩规范之争。">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-18T08:51:00.876Z">
+<meta property="og:description" content="首先列出相关文献： AMD规范 CMD规范 AMD实现之RequireJS CMD实现之SeaJS 与RequireJS的异同 SeaJS与RequireJS最大的区别 AMD 的 CommonJS wrapping 时值双十一之后，贵宝又在忽悠NodeJS多么多么好，准备研究一下，便避不开这俩规范之争。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2015-12-06T00:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-20T07:09:23.675Z">
+<meta property="article:author" content="Zeyu Zhao">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="AMD">
+<meta property="article:tag" content="CMD">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript的AMD和CMD规范之我的看法">
-<meta name="twitter:description" content="首先列出相关文献： AMD规范) CMD规范 AMD实现之RequireJS CMD实现之SeaJS 与RequireJS的异同 SeaJS与RequireJS最大的区别 AMD 的 CommonJS wrapping 时值双十一之后，贵宝又在忽悠NodeJS多么多么好，准备研究一下，便避不开这俩规范之争。">
 
 
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/',
+    root: '',
     scheme: 'Muse',
     version: '5.1.4',
     sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
@@ -110,7 +112,7 @@
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
-      author: '博主'
+      author: 'Author'
     },
     algolia: {
       applicationID: '',
@@ -124,7 +126,7 @@
 
 
 
-  <link rel="canonical" href="https://zhaozeyu.space/2015/12/06/javascript的amd和cmd规范之我的看法/"/>
+  <link rel="canonical" href="https://techctu.github.io/2015/12/06/javascript的amd和cmd规范之我的看法/"/>
 
 
 
@@ -159,9 +161,9 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 7.2.0"></head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -184,7 +186,7 @@
       </a>
     </div>
       
-        <h1 class="site-subtitle" itemprop="description">域名要收费，多少写一点</h1>
+        <h1 class="site-subtitle" itemprop="description">世界很浮躁，多少写一点</h1>
       
   </div>
 
@@ -205,51 +207,51 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            首页
+            Home
           </a>
         </li>
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+          <a href="/about/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            关于
+            About
           </a>
         </li>
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+          <a href="/tags/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            标签
+            Tags
           </a>
         </li>
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            归档
+            Archives
           </a>
         </li>
       
         
         <li class="menu-item menu-item-commonweal">
-          <a href="/404.html" rel="section">
+          <a href="/404.html%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
             
-            公益404
+            Commonweal 404
           </a>
         </li>
       
@@ -262,7 +264,7 @@
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
-            搜索
+            Search
           </a>
         </li>
       
@@ -282,7 +284,7 @@
     </span>
     <div class="local-search-input-wrapper">
       <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
+             placeholder="Searching..." spellcheck="false"
              type="text" id="local-search-input">
     </div>
   </div>
@@ -320,10 +322,10 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhaozeyu.space/2015/12/06/javascript的amd和cmd规范之我的看法/">
+    <link itemprop="mainEntityOfPage" href="https://techctu.github.io/2015/12/06/javascript%E7%9A%84amd%E5%92%8Ccmd%E8%A7%84%E8%8C%83%E4%B9%8B%E6%88%91%E7%9A%84%E7%9C%8B%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zeyu Zhao">
+      <meta itemprop="name" content="">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -347,9 +349,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-12-06T00:00:00+00:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-12-06T00:00:00+00:00">
                 2015-12-06
               </time>
             
@@ -368,7 +370,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -410,17 +412,19 @@
 
       
         <p>首先列出相关文献：</p>
-<p><a href="https://github.com/amdjs/amdjs-api/wiki/AMD-(%E4%B8%AD%E6%96%87%E7%89%88" target="_blank" rel="noopener">AMD规范</a>)</p>
-<p><a href="https://github.com/seajs/seajs/issues/242" target="_blank" rel="noopener">CMD规范</a></p>
-<p><a href="http://requirejs.org/" target="_blank" rel="noopener">AMD实现之RequireJS</a></p>
-<p><a href="http://seajs.org/docs/" target="_blank" rel="noopener">CMD实现之SeaJS</a></p>
-<p><a href="https://github.com/seajs/seajs/issues/277" target="_blank" rel="noopener">与RequireJS的异同</a></p>
-<p><a href="http://www.douban.com/note/283566440/" title="注意评论" target="_blank" rel="noopener">SeaJS与RequireJS最大的区别</a></p>
-<p><a href="https://imququ.com/post/amd-simplified-commonjs-wrapping.html" target="_blank" rel="noopener">AMD 的 CommonJS wrapping</a></p>
+<p><a href="https://github.com/amdjs/amdjs-api/wiki/AMD-(%E4%B8%AD%E6%96%87%E7%89%88)">AMD规范</a></p>
+<p><a href="https://github.com/seajs/seajs/issues/242">CMD规范</a></p>
+<p><a href="http://requirejs.org/">AMD实现之RequireJS</a></p>
+<p><a href="http://seajs.org/docs/">CMD实现之SeaJS</a></p>
+<p><a href="https://github.com/seajs/seajs/issues/277">与RequireJS的异同</a></p>
+<p><a href="http://www.douban.com/note/283566440/" title="注意评论">SeaJS与RequireJS最大的区别</a></p>
+<p><a href="https://imququ.com/post/amd-simplified-commonjs-wrapping.html">AMD 的 CommonJS wrapping</a></p>
 <p>时值双十一之后，贵宝又在忽悠NodeJS多么多么好，准备研究一下，便避不开这俩规范之争。</p>
-<a id="more"></a>
-<p>这俩规范的区别是对于这段代码（感谢<a href="https://imququ.com/post/amd-simplified-commonjs-wrapping.html" target="_blank" rel="noopener">Jerry Qu的代码</a>）</p>
-<figure class="highlight javascript"><figcaption><span>lang: javascript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//mod1.js</span></span><br><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'require module: mod1'</span>);</span><br><span class="line">	<span class="keyword">return</span> &#123;</span><br><span class="line">		hello: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="string">"hello mod1"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//mod2.js</span></span><br><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'require module: mod2'</span>);</span><br><span class="line">	<span class="keyword">return</span> &#123;</span><br><span class="line">		hello: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="string">"hello mod2"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//main.js</span></span><br><span class="line">define([<span class="string">'mod1'</span>, <span class="string">'mod2'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">mod1, mod2</span>) </span>&#123;</span><br><span class="line">	<span class="comment">//运行至此，mod1.js 和 mod2.js 已经下载完成；</span></span><br><span class="line">	<span class="comment">//mod1、mod2 两个模块已经执行完，直接可用；</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'require module: main'</span>);</span><br><span class="line">mod1.hello();</span><br><span class="line">mod2.hello();</span><br><span class="line"><span class="keyword">return</span> &#123; <span class="attr">hello</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'hello main'</span>); &#125; &#125;; &#125;);</span><br><span class="line"></span><br><span class="line">&lt;!--index.html--&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">	<span class="built_in">require</span>([<span class="string">'main'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">main</span>) </span>&#123; main.hello(); &#125;);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+
+<p>这俩规范的区别是对于这段代码（感谢<a href="https://imququ.com/post/amd-simplified-commonjs-wrapping.html">Jerry Qu的代码</a>）</p>
+<figure class="highlight arcade"><figcaption><span>javascript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//mod1.js</span></span><br><span class="line">define(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">	<span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">&#x27;require module: mod1&#x27;</span>);</span><br><span class="line">	<span class="keyword">return</span> &#123;</span><br><span class="line">		<span class="attr">hello</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">			<span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">&quot;hello mod1&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//mod2.js</span></span><br><span class="line">define(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">	<span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">&#x27;require module: mod2&#x27;</span>);</span><br><span class="line">	<span class="keyword">return</span> &#123;</span><br><span class="line">		<span class="attr">hello</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">			<span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">&quot;hello mod2&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//main.js</span></span><br><span class="line">define([<span class="string">&#x27;mod1&#x27;</span>, <span class="string">&#x27;mod2&#x27;</span>], <span class="keyword">function</span>(<span class="params">mod1, mod2</span>) &#123;</span><br><span class="line">	<span class="comment">//运行至此，mod1.js 和 mod2.js 已经下载完成；</span></span><br><span class="line">	<span class="comment">//mod1、mod2 两个模块已经执行完，直接可用；</span></span><br><span class="line"><span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">&#x27;require module: main&#x27;</span>);</span><br><span class="line">mod1.hello();</span><br><span class="line">mod2.hello();</span><br><span class="line"><span class="keyword">return</span> &#123; <span class="attr">hello</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123; <span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">&#x27;hello main&#x27;</span>); &#125; &#125;; &#125;);</span><br><span class="line"></span><br><span class="line">&lt;!--index.html--&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">	require([<span class="string">&#x27;main&#x27;</span>], <span class="keyword">function</span>(<span class="params">main</span>) &#123; main.hello(); &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
 <p>行为不一样。</p>
 <p>在AMD规范下会先加载mod1、mod2、main（加载完成的时间顺序可能不一致），然后依次hello。</p>
 <p>require module: mod1 require module: mod2 require module: main hello mod1 hello mod2 hello main<br>在CMD规范下必须是谁要hello就加载对应和依赖的module。</p>
@@ -443,21 +447,21 @@
         <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
   <div>时间就是金钱，我的朋友！</div>
   <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
+    <span>Donate</span>
   </button>
   <div id="QR" style="display: none;">
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="http://7xogz7.com1.z0.glb.clouddn.com/wechatpay.png" alt="Zeyu Zhao 微信支付"/>
-        <p>微信支付</p>
+        <img id="wechat_qr" src="http://7xogz7.com1.z0.glb.clouddn.com/wechatpay.png" alt=" WeChat Pay"/>
+        <p>WeChat Pay</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="http://7xogz7.com1.z0.glb.clouddn.com/alipay.png" alt="Zeyu Zhao 支付宝"/>
-        <p>支付宝</p>
+        <img id="alipay_qr" src="http://7xogz7.com1.z0.glb.clouddn.com/alipay.png" alt=" Alipay"/>
+        <p>Alipay</p>
       </div>
     
 
@@ -492,8 +496,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/06/Maven使用记录（二）——在Eclipse中使用Maven来进行项目管理/" rel="next" title="Maven使用记录（二）——在Eclipse中使用Maven来进行项目管理">
-                <i class="fa fa-chevron-left"></i> Maven使用记录（二）——在Eclipse中使用Maven来进行项目管理
+              <a href="/2015/12/06/purejsonepagescrolljavascript%E5%8D%95%E9%A1%B5%E6%BB%9A%E5%8A%A8%E6%8F%92%E4%BB%B6/" rel="next" title="PureJSOnePageScroll——JavaScript单页滚动插件">
+                <i class="fa fa-chevron-left"></i> PureJSOnePageScroll——JavaScript单页滚动插件
               </a>
             
           </div>
@@ -502,8 +506,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/12/06/purejsonepagescrolljavascript单页滚动插件/" rel="prev" title="PureJSOnePageScroll——JavaScript单页滚动插件">
-                PureJSOnePageScroll——JavaScript单页滚动插件 <i class="fa fa-chevron-right"></i>
+              <a href="/2015/12/06/Maven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94maven%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE/" rel="prev" title="Maven使用记录（一）——maven的安装和基础配置">
+                Maven使用记录（一）——maven的安装和基础配置 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -583,7 +587,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">Zeyu Zhao</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -592,10 +596,10 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">42</span>
-                  <span class="site-state-item-name">日志</span>
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
@@ -605,8 +609,8 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">8</span>
-                  <span class="site-state-item-name">分类</span>
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">categories</span>
                 
               </div>
             
@@ -616,8 +620,8 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">58</span>
-                  <span class="site-state-item-name">标签</span>
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">tags</span>
                 </a>
               </div>
             
@@ -694,7 +698,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -704,7 +708,7 @@
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
@@ -712,7 +716,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
 
 
 

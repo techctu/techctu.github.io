@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next muse use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -83,25 +83,25 @@
 
 
 
-<meta name="description" content="目前除了 Spring 4 的 boot 和 Spring 5 里提供了相关应用层面的 Gzip 压缩，其他大部分时候都是通过容器（Tomcat、WAS、Jetty等）来开启 Gzip 压缩，剩下的都是 out of date 的自己写一个 filter 来实现这个功能。这里介绍一个开源的第三方库来实现这个功能。 加入依赖使用 maven 导入依赖。123456&amp;lt;!-- https://mv">
-<meta name="keywords" content="Java,gzip">
+<meta name="description" content="目前除了 Spring 4 的 boot 和 Spring 5 里提供了相关应用层面的 Gzip 压缩，其他大部分时候都是通过容器（Tomcat、WAS、Jetty等）来开启 Gzip 压缩，剩下的都是 out of date 的自己写一个 filter 来实现这个功能。这里介绍一个开源的第三方库来实现这个功能。 加入依赖使用 maven 导入依赖。 123456&lt;!-- https:&#x2F;&#x2F;m">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java web application 使用 ziplet 来开启gzip压缩">
-<meta property="og:url" content="https://zhaozeyu.space/2018/06/03/Java-web-application-使用-ziplet-来开启gzip压缩/index.html">
+<meta property="og:url" content="https://techctu.github.io/2018/06/03/Java-web-application-%E4%BD%BF%E7%94%A8-ziplet-%E6%9D%A5%E5%BC%80%E5%90%AFgzip%E5%8E%8B%E7%BC%A9/index.html">
 <meta property="og:site_name" content="Avalon">
-<meta property="og:description" content="目前除了 Spring 4 的 boot 和 Spring 5 里提供了相关应用层面的 Gzip 压缩，其他大部分时候都是通过容器（Tomcat、WAS、Jetty等）来开启 Gzip 压缩，剩下的都是 out of date 的自己写一个 filter 来实现这个功能。这里介绍一个开源的第三方库来实现这个功能。 加入依赖使用 maven 导入依赖。123456&amp;lt;!-- https://mv">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-18T08:51:00.883Z">
+<meta property="og:description" content="目前除了 Spring 4 的 boot 和 Spring 5 里提供了相关应用层面的 Gzip 压缩，其他大部分时候都是通过容器（Tomcat、WAS、Jetty等）来开启 Gzip 压缩，剩下的都是 out of date 的自己写一个 filter 来实现这个功能。这里介绍一个开源的第三方库来实现这个功能。 加入依赖使用 maven 导入依赖。 123456&lt;!-- https:&#x2F;&#x2F;m">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-06-03T11:04:47.000Z">
+<meta property="article:modified_time" content="2024-06-20T07:09:23.691Z">
+<meta property="article:author" content="Zeyu Zhao">
+<meta property="article:tag" content="Java,gzip">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java web application 使用 ziplet 来开启gzip压缩">
-<meta name="twitter:description" content="目前除了 Spring 4 的 boot 和 Spring 5 里提供了相关应用层面的 Gzip 压缩，其他大部分时候都是通过容器（Tomcat、WAS、Jetty等）来开启 Gzip 压缩，剩下的都是 out of date 的自己写一个 filter 来实现这个功能。这里介绍一个开源的第三方库来实现这个功能。 加入依赖使用 maven 导入依赖。123456&amp;lt;!-- https://mv">
 
 
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/',
+    root: '',
     scheme: 'Muse',
     version: '5.1.4',
     sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
@@ -110,7 +110,7 @@
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
-      author: '博主'
+      author: 'Author'
     },
     algolia: {
       applicationID: '',
@@ -124,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="https://zhaozeyu.space/2018/06/03/Java-web-application-使用-ziplet-来开启gzip压缩/"/>
+  <link rel="canonical" href="https://techctu.github.io/2018/06/03/Java-web-application-使用-ziplet-来开启gzip压缩/"/>
 
 
 
@@ -159,9 +159,9 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 7.2.0"></head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -184,7 +184,7 @@
       </a>
     </div>
       
-        <h1 class="site-subtitle" itemprop="description">域名要收费，多少写一点</h1>
+        <h1 class="site-subtitle" itemprop="description">世界很浮躁，多少写一点</h1>
       
   </div>
 
@@ -205,51 +205,51 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            首页
+            Home
           </a>
         </li>
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+          <a href="/about/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            关于
+            About
           </a>
         </li>
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+          <a href="/tags/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            标签
+            Tags
           </a>
         </li>
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            归档
+            Archives
           </a>
         </li>
       
         
         <li class="menu-item menu-item-commonweal">
-          <a href="/404.html" rel="section">
+          <a href="/404.html%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
             
-            公益404
+            Commonweal 404
           </a>
         </li>
       
@@ -262,7 +262,7 @@
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
-            搜索
+            Search
           </a>
         </li>
       
@@ -282,7 +282,7 @@
     </span>
     <div class="local-search-input-wrapper">
       <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
+             placeholder="Searching..." spellcheck="false"
              type="text" id="local-search-input">
     </div>
   </div>
@@ -320,10 +320,10 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhaozeyu.space/2018/06/03/Java-web-application-使用-ziplet-来开启gzip压缩/">
+    <link itemprop="mainEntityOfPage" href="https://techctu.github.io/2018/06/03/Java-web-application-%E4%BD%BF%E7%94%A8-ziplet-%E6%9D%A5%E5%BC%80%E5%90%AFgzip%E5%8E%8B%E7%BC%A9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zeyu Zhao">
+      <meta itemprop="name" content="">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -347,9 +347,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-03T11:04:47+00:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-03T11:04:47+00:00">
                 2018-06-03
               </time>
             
@@ -387,24 +387,30 @@
       
 
       
-        <p>目前除了 Spring 4 的 boot 和 Spring 5 里提供了相关应用层面的 <a href="https://spring.io/search?q=gzip" target="_blank" rel="noopener">Gzip 压缩</a>，其他大部分时候都是通过容器（Tomcat、WAS、Jetty等）来开启 Gzip 压缩，剩下的都是 out of date 的自己写一个 filter 来实现这个功能。这里介绍一个开源的第三方库来实现这个功能。</p>
-<h1 id="加入依赖"><a href="#加入依赖" class="headerlink" title="加入依赖"></a>加入依赖</h1><p>使用 maven 导入依赖。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/com.github.ziplet/ziplet --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.github.ziplet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>ziplet<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<a id="more"></a>
-<p>其他方式可以在 <a href="https://mvnrepository.com/artifact/com.github.ziplet/ziplet/2.1.2" target="_blank" rel="noopener">mvnrepository</a> 找到。</p>
+        <p>目前除了 Spring 4 的 boot 和 Spring 5 里提供了相关应用层面的 <a href="https://spring.io/search?q=gzip">Gzip 压缩</a>，其他大部分时候都是通过容器（Tomcat、WAS、Jetty等）来开启 Gzip 压缩，剩下的都是 out of date 的自己写一个 filter 来实现这个功能。这里介绍一个开源的第三方库来实现这个功能。</p>
+<h1 id="加入依赖"><a href="#加入依赖" class="headerlink" title="加入依赖"></a>加入依赖</h1><p>使用 maven 导入依赖。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/com.github.ziplet/ziplet --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.github.ziplet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>ziplet<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<p>其他方式可以在 <a href="https://mvnrepository.com/artifact/com.github.ziplet/ziplet/2.1.2">mvnrepository</a> 找到。</p>
 <h1 id="增加-filter-配置"><a href="#增加-filter-配置" class="headerlink" title="增加 filter 配置"></a>增加 filter 配置</h1><p>在 web.xml 中增加配置。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>CompressingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>com.github.ziplet.filter.compression.CompressingFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>CompressingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h1 id="配置项"><a href="#配置项" class="headerlink" title="配置项"></a>配置项</h1><p>示例。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>CompressingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>com.github.ziplet.filter.compression.CompressingFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>debug<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+
+<h1 id="配置项"><a href="#配置项" class="headerlink" title="配置项"></a>配置项</h1><p>示例。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>CompressingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>com.github.ziplet.filter.compression.CompressingFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>debug<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 <p><strong>debug</strong> (optional): 是否输出 debug 信息，默认 false 。</p>
 <p><strong>compressionThreshold</strong> (optional): 设置开启压缩的最小 response 大小，单位 byte 。设置为 0 时永远开启压缩。默认 1024 。</p>
 <p><strong>statsEnabled</strong> (optional): 是否统计，详情见 CompressingFilterStats 。</p>
-<p><strong>includeContentTypes</strong> (optional): 设置针对某种 content type 开启压缩，如 text/html 。在 response 设置了 content type 之后调用。</p>
+<p><strong>includeContentTypes</strong> (optional): 设置针对某种 content type 开启压缩，如 text&#x2F;html 。在 response 设置了 content type 之后调用。</p>
 <p><strong>excludeContentTypes</strong> (optional): include 和 exclude 是反义词，所以是设置排除某些 content type 的压缩。</p>
 <p><strong>includePathPatterns</strong> (optional): 类似 includeContentTypes ，不过是针对的 uri 。支持正则表达式，如 ‘.static.’ 。</p>
 <p><strong>excludePathPatterns</strong> (optional): 排除特定 uri 的压缩。</p>
 <p><strong>includeUserAgentPatterns</strong> (optional): 针对特定 UA 的压缩。</p>
 <p><strong>excludeUserAgentPatterns</strong> (optional): 排除特定 UA 的压缩。</p>
 <p><strong>noVaryHeaderPatterns</strong> (optional): 类似 includeUserAgentPatterns 。请求中符合配置的 UA 的响应不会包含 vary header 。</p>
-<p><a href="https://github.com/ziplet/ziplet/blob/master/README.md" target="_blank" rel="noopener">=&gt; github.com/ziplet</a></p>
+<p><a href="https://github.com/ziplet/ziplet/blob/master/README.md">&#x3D;&gt; github.com&#x2F;ziplet</a></p>
 
       
     </div>
@@ -419,21 +425,21 @@
         <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
   <div>时间就是金钱，我的朋友！</div>
   <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
+    <span>Donate</span>
   </button>
   <div id="QR" style="display: none;">
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="http://7xogz7.com1.z0.glb.clouddn.com/wechatpay.png" alt="Zeyu Zhao 微信支付"/>
-        <p>微信支付</p>
+        <img id="wechat_qr" src="http://7xogz7.com1.z0.glb.clouddn.com/wechatpay.png" alt=" WeChat Pay"/>
+        <p>WeChat Pay</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="http://7xogz7.com1.z0.glb.clouddn.com/alipay.png" alt="Zeyu Zhao 支付宝"/>
-        <p>支付宝</p>
+        <img id="alipay_qr" src="http://7xogz7.com1.z0.glb.clouddn.com/alipay.png" alt=" Alipay"/>
+        <p>Alipay</p>
       </div>
     
 
@@ -464,7 +470,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/03/React-ES6-入门指引/" rel="next" title="React ES6+ 入门指引">
+              <a href="/2018/06/03/React-ES6-%E5%85%A5%E9%97%A8%E6%8C%87%E5%BC%95/" rel="next" title="React ES6+ 入门指引">
                 <i class="fa fa-chevron-left"></i> React ES6+ 入门指引
               </a>
             
@@ -474,7 +480,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/11/H5-改造成-Native-开发记录/" rel="prev" title="H5 改造成 Native 开发记录">
+              <a href="/2018/06/11/H5-%E6%94%B9%E9%80%A0%E6%88%90-Native-%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/" rel="prev" title="H5 改造成 Native 开发记录">
                 H5 改造成 Native 开发记录 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -552,10 +558,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
+            Overview
           </li>
         </ul>
       
@@ -564,7 +570,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">Zeyu Zhao</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -573,10 +579,10 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">42</span>
-                  <span class="site-state-item-name">日志</span>
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
@@ -586,8 +592,8 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">8</span>
-                  <span class="site-state-item-name">分类</span>
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">categories</span>
                 
               </div>
             
@@ -597,8 +603,8 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">58</span>
-                  <span class="site-state-item-name">标签</span>
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">tags</span>
                 </a>
               </div>
             
@@ -671,7 +677,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#加入依赖"><span class="nav-number">1.</span> <span class="nav-text">加入依赖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#增加-filter-配置"><span class="nav-number">2.</span> <span class="nav-text">增加 filter 配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置项"><span class="nav-number">3.</span> <span class="nav-text">配置项</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8A%A0%E5%85%A5%E4%BE%9D%E8%B5%96"><span class="nav-number">1.</span> <span class="nav-text">加入依赖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A2%9E%E5%8A%A0-filter-%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">增加 filter 配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E9%A1%B9"><span class="nav-number">3.</span> <span class="nav-text">配置项</span></a></li></ol></div>
             
 
           </div>
@@ -691,7 +697,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -701,7 +707,7 @@
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
@@ -709,7 +715,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
 
 
 

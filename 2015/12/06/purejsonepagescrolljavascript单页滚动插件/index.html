@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next muse use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -84,24 +84,25 @@
 
 
 <meta name="description" content="啰嗦的背景最近有人问我像Coding.net啊这样的首页效果是不是很难。当然你让我从零开始弄一个确实很麻烦咯，不过这种肯定是有人做过了。于是找了找，便翻到了OnePageScroll。 最开始搜到的这个是基于JQuery的版本，在作者的仓库里还翻到了基于zepto的版本。不过我更喜欢不使用JQuery、Zepto等的更纯净的库，这就是本文介绍的PureJSOnePageScroll。点击查看特效">
-<meta name="keywords" content="JavaScript,PureJSOnePageScroll">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PureJSOnePageScroll——JavaScript单页滚动插件">
-<meta property="og:url" content="https://zhaozeyu.space/2015/12/06/purejsonepagescrolljavascript单页滚动插件/index.html">
+<meta property="og:url" content="https://techctu.github.io/2015/12/06/purejsonepagescrolljavascript%E5%8D%95%E9%A1%B5%E6%BB%9A%E5%8A%A8%E6%8F%92%E4%BB%B6/index.html">
 <meta property="og:site_name" content="Avalon">
 <meta property="og:description" content="啰嗦的背景最近有人问我像Coding.net啊这样的首页效果是不是很难。当然你让我从零开始弄一个确实很麻烦咯，不过这种肯定是有人做过了。于是找了找，便翻到了OnePageScroll。 最开始搜到的这个是基于JQuery的版本，在作者的仓库里还翻到了基于zepto的版本。不过我更喜欢不使用JQuery、Zepto等的更纯净的库，这就是本文介绍的PureJSOnePageScroll。点击查看特效">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-18T08:51:00.877Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2015-12-06T00:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-20T07:09:23.675Z">
+<meta property="article:author" content="Zeyu Zhao">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="PureJSOnePageScroll">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PureJSOnePageScroll——JavaScript单页滚动插件">
-<meta name="twitter:description" content="啰嗦的背景最近有人问我像Coding.net啊这样的首页效果是不是很难。当然你让我从零开始弄一个确实很麻烦咯，不过这种肯定是有人做过了。于是找了找，便翻到了OnePageScroll。 最开始搜到的这个是基于JQuery的版本，在作者的仓库里还翻到了基于zepto的版本。不过我更喜欢不使用JQuery、Zepto等的更纯净的库，这就是本文介绍的PureJSOnePageScroll。点击查看特效">
 
 
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/',
+    root: '',
     scheme: 'Muse',
     version: '5.1.4',
     sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
@@ -110,7 +111,7 @@
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
-      author: '博主'
+      author: 'Author'
     },
     algolia: {
       applicationID: '',
@@ -124,7 +125,7 @@
 
 
 
-  <link rel="canonical" href="https://zhaozeyu.space/2015/12/06/purejsonepagescrolljavascript单页滚动插件/"/>
+  <link rel="canonical" href="https://techctu.github.io/2015/12/06/purejsonepagescrolljavascript单页滚动插件/"/>
 
 
 
@@ -159,9 +160,9 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 7.2.0"></head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -184,7 +185,7 @@
       </a>
     </div>
       
-        <h1 class="site-subtitle" itemprop="description">域名要收费，多少写一点</h1>
+        <h1 class="site-subtitle" itemprop="description">世界很浮躁，多少写一点</h1>
       
   </div>
 
@@ -205,51 +206,51 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            首页
+            Home
           </a>
         </li>
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+          <a href="/about/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            关于
+            About
           </a>
         </li>
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+          <a href="/tags/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            标签
+            Tags
           </a>
         </li>
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            归档
+            Archives
           </a>
         </li>
       
         
         <li class="menu-item menu-item-commonweal">
-          <a href="/404.html" rel="section">
+          <a href="/404.html%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
             
-            公益404
+            Commonweal 404
           </a>
         </li>
       
@@ -262,7 +263,7 @@
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
-            搜索
+            Search
           </a>
         </li>
       
@@ -282,7 +283,7 @@
     </span>
     <div class="local-search-input-wrapper">
       <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
+             placeholder="Searching..." spellcheck="false"
              type="text" id="local-search-input">
     </div>
   </div>
@@ -320,10 +321,10 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhaozeyu.space/2015/12/06/purejsonepagescrolljavascript单页滚动插件/">
+    <link itemprop="mainEntityOfPage" href="https://techctu.github.io/2015/12/06/purejsonepagescrolljavascript%E5%8D%95%E9%A1%B5%E6%BB%9A%E5%8A%A8%E6%8F%92%E4%BB%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zeyu Zhao">
+      <meta itemprop="name" content="">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -347,9 +348,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-12-06T00:00:00+00:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-12-06T00:00:00+00:00">
                 2015-12-06
               </time>
             
@@ -368,7 +369,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -409,14 +410,18 @@
       
 
       
-        <h1 id="啰嗦的背景"><a href="#啰嗦的背景" class="headerlink" title="啰嗦的背景"></a>啰嗦的背景</h1><p>最近有人问我像<a href="https://coding.net/" target="_blank" rel="noopener">Coding.net</a>啊这样的首页效果是不是很难。当然你让我从零开始弄一个确实很麻烦咯，不过这种肯定是有人做过了。于是找了找，便翻到了<a href="https://github.com/peachananr/onepage-scroll" target="_blank" rel="noopener">OnePageScroll</a>。</p>
-<p>最开始搜到的这个是基于JQuery的版本，在<a href="https://github.com/peachananr" target="_blank" rel="noopener">作者</a>的仓库里还翻到了<a href="https://github.com/peachananr/zepto-onepage-scroll" target="_blank" rel="noopener">基于zepto的版本</a>。不过我更喜欢不使用JQuery、Zepto等的更纯净的库，这就是本文介绍的<a href="https://github.com/peachananr/purejs-onepage-scroll" target="_blank" rel="noopener">PureJSOnePageScroll</a>。<a href="http://www.thepetedesign.com/demos/purejs_onepage_scroll_demo.html" target="_blank" rel="noopener">点击查看特效</a></p>
-<h1 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h1><a id="more"></a>
-<h2 id="引入文件"><a href="#引入文件" class="headerlink" title="引入文件"></a>引入文件</h2><figure class="highlight routeros"><figcaption><span>lang: html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;script <span class="attribute">type</span>=<span class="string">"text/javascript"</span> <span class="attribute">src</span>=<span class="string">"onepagescroll.js"</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;link <span class="attribute">href</span>=<span class="string">'onepage-scroll.css'</span> <span class="attribute">rel</span>=<span class="string">'stylesheet'</span> <span class="attribute">type</span>=<span class="string">'text/css'</span>&gt;</span><br></pre></td></tr></table></figure>
+        <h1 id="啰嗦的背景"><a href="#啰嗦的背景" class="headerlink" title="啰嗦的背景"></a>啰嗦的背景</h1><p>最近有人问我像<a href="https://coding.net/">Coding.net</a>啊这样的首页效果是不是很难。当然你让我从零开始弄一个确实很麻烦咯，不过这种肯定是有人做过了。于是找了找，便翻到了<a href="https://github.com/peachananr/onepage-scroll">OnePageScroll</a>。</p>
+<p>最开始搜到的这个是基于JQuery的版本，在<a href="https://github.com/peachananr">作者</a>的仓库里还翻到了<a href="https://github.com/peachananr/zepto-onepage-scroll">基于zepto的版本</a>。不过我更喜欢不使用JQuery、Zepto等的更纯净的库，这就是本文介绍的<a href="https://github.com/peachananr/purejs-onepage-scroll">PureJSOnePageScroll</a>。<a href="http://www.thepetedesign.com/demos/purejs_onepage_scroll_demo.html">点击查看特效</a></p>
+<h1 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h1><span id="more"></span>
+
+<h2 id="引入文件"><a href="#引入文件" class="headerlink" title="引入文件"></a>引入文件</h2><figure class="highlight routeros"><figcaption><span>html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;script <span class="attribute">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attribute">src</span>=<span class="string">&quot;onepagescroll.js&quot;</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;link <span class="attribute">href</span>=<span class="string">&#x27;onepage-scroll.css&#x27;</span> <span class="attribute">rel</span>=<span class="string">&#x27;stylesheet&#x27;</span> <span class="attribute">type</span>=<span class="string">&#x27;text/css&#x27;</span>&gt;</span><br></pre></td></tr></table></figure>
+
 <p>当然你也可以通过require等来插入，贵客都会require了自然也不需要看这部分。</p>
-<h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><figure class="highlight xml"><figcaption><span>lang: html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span> ...</span><br><span class="line">	<span class="comment">&lt;!-- main只是作为选择器用，语法是HTML5的document.querySelector，不会请百度 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"main"</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- section标签可以自定义 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">section</span>&gt;</span>...<span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">section</span>&gt;</span>...<span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">		 ...</span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	 ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">	onePageScroll(<span class="string">".main"</span>, &#123;</span></span><br><span class="line"><span class="actionscript">		sectionContainer: <span class="string">"section"</span>,</span></span><br><span class="line"><span class="actionscript">		loop: <span class="literal">true</span>,</span></span><br><span class="line"><span class="actionscript">		responsiveFallback: <span class="literal">false</span></span></span><br><span class="line"><span class="undefined">	&#125;);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="参数介绍"><a href="#参数介绍" class="headerlink" title="参数介绍"></a>参数介绍</h2><figure class="highlight groovy"><figcaption><span>lang: javascript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 选择器，可以用class、id等</span></span><br><span class="line">onePageScroll(<span class="string">".main"</span>, &#123;</span><br><span class="line"><span class="comment">// 标签名字，随意起，确保是页面容器，不与其它同名即可</span></span><br><span class="line"><span class="string">sectionContainer:</span> <span class="string">"section"</span>,</span><br><span class="line"><span class="comment">// CSS3动画效果，"ease", "linear", "ease-in", "ease-out", "ease-in-out",</span></span><br><span class="line"><span class="comment">// 或者"cubic-bezier(0.175, 0.885, 0.420, 1.310)"</span></span><br><span class="line"><span class="string">easing:</span> <span class="string">"ease"</span>,</span><br><span class="line"><span class="string">animationTime:</span> <span class="number">1000</span>, <span class="comment">// 动画时间</span></span><br><span class="line"><span class="string">pagination:</span> <span class="literal">true</span>, <span class="comment">// true显示分页，false隐藏分页</span></span><br><span class="line"><span class="string">updateURL:</span> <span class="literal">false</span>, <span class="comment">// 是否更新页面url锚</span></span><br><span class="line"><span class="string">beforeMove:</span> function(index, next_el) &#123;&#125;, <span class="comment">// 页面滚动前调用函数，编号从1开始，移动向第n页则index为n</span></span><br><span class="line"><span class="string">afterMove:</span> function(index, next_el) &#123;&#125;, <span class="comment">// 页面滚动后调用函数，移动到第n页index为n</span></span><br><span class="line"><span class="string">loop:</span> <span class="literal">false</span>, <span class="comment">// 是否可以从底部下移到顶部 keyboard: true, // 是否用键盘控制</span></span><br><span class="line"><span class="string">responsiveFallback:</span> <span class="literal">false</span> <span class="comment">// 滚动页面宽度小于定值时，宽度外使用浏览器自带滚动条 &#125;);</span></span><br></pre></td></tr></table></figure>
-<h2 id="公共方法"><a href="#公共方法" class="headerlink" title="公共方法"></a>公共方法</h2><p>moveUp(“.main”); moveDown(“.main”); moveTo(“.main”, 3); // 这些没啥好解释的，上移、下移和移动到某页</p>
+<h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><figure class="highlight xml"><figcaption><span>html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span> ...</span><br><span class="line">	<span class="comment">&lt;!-- main只是作为选择器用，语法是HTML5的document.querySelector，不会请百度 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;main&quot;</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- section标签可以自定义 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">section</span>&gt;</span>...<span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">section</span>&gt;</span>...<span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">		 ...</span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	 ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">	<span class="title function_">onePageScroll</span>(<span class="string">&quot;.main&quot;</span>, &#123;</span></span><br><span class="line"><span class="language-javascript">		<span class="attr">sectionContainer</span>: <span class="string">&quot;section&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">		<span class="attr">loop</span>: <span class="literal">true</span>,</span></span><br><span class="line"><span class="language-javascript">		<span class="attr">responsiveFallback</span>: <span class="literal">false</span></span></span><br><span class="line"><span class="language-javascript">	&#125;);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="参数介绍"><a href="#参数介绍" class="headerlink" title="参数介绍"></a>参数介绍</h2><figure class="highlight php"><figcaption><span>javascript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 选择器，可以用class、id等</span></span><br><span class="line"><span class="title function_ invoke__">onePageScroll</span>(<span class="string">&quot;.main&quot;</span>, &#123;</span><br><span class="line">// 标签名字，随意起，确保是页面容器，不与其它同名即可</span><br><span class="line"><span class="attr">sectionContainer</span>: <span class="string">&quot;section&quot;</span>,</span><br><span class="line">// CSS3动画效果，<span class="string">&quot;ease&quot;</span>, <span class="string">&quot;linear&quot;</span>, <span class="string">&quot;ease-in&quot;</span>, <span class="string">&quot;ease-out&quot;</span>, <span class="string">&quot;ease-in-out&quot;</span>,</span><br><span class="line">// 或者<span class="string">&quot;cubic-bezier(0.175, 0.885, 0.420, 1.310)&quot;</span></span><br><span class="line"><span class="attr">easing</span>: <span class="string">&quot;ease&quot;</span>,</span><br><span class="line"><span class="attr">animationTime</span>: <span class="number">1000</span>, // 动画时间</span><br><span class="line"><span class="attr">pagination</span>: <span class="literal">true</span>, // <span class="literal">true</span>显示分页，<span class="literal">false</span>隐藏分页</span><br><span class="line"><span class="attr">updateURL</span>: <span class="literal">false</span>, // 是否更新页面url锚</span><br><span class="line"><span class="attr">beforeMove</span>: function(index, next_el) &#123;&#125;, <span class="comment">// 页面滚动前调用函数，编号从1开始，移动向第n页则index为n</span></span><br><span class="line">afterMove: <span class="function"><span class="keyword">function</span>(<span class="params">index, next_el</span>) </span>&#123;&#125;, <span class="comment">// 页面滚动后调用函数，移动到第n页index为n</span></span><br><span class="line">loop: <span class="literal">false</span>, <span class="comment">// 是否可以从底部下移到顶部 keyboard: true, // 是否用键盘控制</span></span><br><span class="line">responsiveFallback: <span class="literal">false</span> <span class="comment">// 滚动页面宽度小于定值时，宽度外使用浏览器自带滚动条 &#125;);</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="公共方法"><a href="#公共方法" class="headerlink" title="公共方法"></a>公共方法</h2><p>moveUp(“.main”); moveDown(“.main”); moveTo(“.main”, 3); &#x2F;&#x2F; 这些没啥好解释的，上移、下移和移动到某页</p>
 
       
     </div>
@@ -431,21 +436,21 @@
         <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
   <div>时间就是金钱，我的朋友！</div>
   <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
+    <span>Donate</span>
   </button>
   <div id="QR" style="display: none;">
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="http://7xogz7.com1.z0.glb.clouddn.com/wechatpay.png" alt="Zeyu Zhao 微信支付"/>
-        <p>微信支付</p>
+        <img id="wechat_qr" src="http://7xogz7.com1.z0.glb.clouddn.com/wechatpay.png" alt=" WeChat Pay"/>
+        <p>WeChat Pay</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="http://7xogz7.com1.z0.glb.clouddn.com/alipay.png" alt="Zeyu Zhao 支付宝"/>
-        <p>支付宝</p>
+        <img id="alipay_qr" src="http://7xogz7.com1.z0.glb.clouddn.com/alipay.png" alt=" Alipay"/>
+        <p>Alipay</p>
       </div>
     
 
@@ -478,8 +483,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/06/javascript的amd和cmd规范之我的看法/" rel="next" title="JavaScript的AMD和CMD规范之我的看法">
-                <i class="fa fa-chevron-left"></i> JavaScript的AMD和CMD规范之我的看法
+              <a href="/2015/12/06/%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F/" rel="next" title="一些好用的小玩意">
+                <i class="fa fa-chevron-left"></i> 一些好用的小玩意
               </a>
             
           </div>
@@ -488,8 +493,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/12/06/一些好用的小玩意/" rel="prev" title="一些好用的小玩意">
-                一些好用的小玩意 <i class="fa fa-chevron-right"></i>
+              <a href="/2015/12/06/javascript%E7%9A%84amd%E5%92%8Ccmd%E8%A7%84%E8%8C%83%E4%B9%8B%E6%88%91%E7%9A%84%E7%9C%8B%E6%B3%95/" rel="prev" title="JavaScript的AMD和CMD规范之我的看法">
+                JavaScript的AMD和CMD规范之我的看法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -566,10 +571,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
+            Overview
           </li>
         </ul>
       
@@ -578,7 +583,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">Zeyu Zhao</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -587,10 +592,10 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">42</span>
-                  <span class="site-state-item-name">日志</span>
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
@@ -600,8 +605,8 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">8</span>
-                  <span class="site-state-item-name">分类</span>
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">categories</span>
                 
               </div>
             
@@ -611,8 +616,8 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">58</span>
-                  <span class="site-state-item-name">标签</span>
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">tags</span>
                 </a>
               </div>
             
@@ -685,7 +690,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#啰嗦的背景"><span class="nav-number">1.</span> <span class="nav-text">啰嗦的背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用方式"><span class="nav-number">2.</span> <span class="nav-text">使用方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#引入文件"><span class="nav-number">2.1.</span> <span class="nav-text">引入文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本用法"><span class="nav-number">2.2.</span> <span class="nav-text">基本用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数介绍"><span class="nav-number">2.3.</span> <span class="nav-text">参数介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#公共方法"><span class="nav-number">2.4.</span> <span class="nav-text">公共方法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%95%B0%E5%97%A6%E7%9A%84%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">啰嗦的背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">使用方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E5%85%A5%E6%96%87%E4%BB%B6"><span class="nav-number">2.1.</span> <span class="nav-text">引入文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">基本用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.3.</span> <span class="nav-text">参数介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AC%E5%85%B1%E6%96%B9%E6%B3%95"><span class="nav-number">2.4.</span> <span class="nav-text">公共方法</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -705,7 +710,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -715,7 +720,7 @@
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
@@ -723,7 +728,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
 
 
 

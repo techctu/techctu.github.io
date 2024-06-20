@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next muse use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -84,20 +84,21 @@
 
 
 <meta name="description" content="事情发展情况总是偏离人的预想，尤其是业务发展和系统架构设计。一段时间后，一个新业务功能的上线往往伴随着几个相关功能的开发小组加班。同时甲组功能A可能依赖乙组功能B，乙组由于某个需求要更改功能B，而甲组开发新功能需要继续依赖功能B，且分配的开发时间并不一致。这样，协调起来会非常麻烦，效率也十分低下。于是，服务拆分的呼声越来越烈。经过几个月的研究、拆分、测试、上线，终于初步解决了服务间相互依赖的问题，">
-<meta name="keywords" content="架构,IoC">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java系Dubbo、Zookeeper系统服务拆分记录">
-<meta property="og:url" content="https://zhaozeyu.space/2015/12/11/java系dubbozookeeper系统服务拆分记录/index.html">
+<meta property="og:url" content="https://techctu.github.io/2015/12/11/java%E7%B3%BBdubbozookeeper%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1%E6%8B%86%E5%88%86%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="Avalon">
 <meta property="og:description" content="事情发展情况总是偏离人的预想，尤其是业务发展和系统架构设计。一段时间后，一个新业务功能的上线往往伴随着几个相关功能的开发小组加班。同时甲组功能A可能依赖乙组功能B，乙组由于某个需求要更改功能B，而甲组开发新功能需要继续依赖功能B，且分配的开发时间并不一致。这样，协调起来会非常麻烦，效率也十分低下。于是，服务拆分的呼声越来越烈。经过几个月的研究、拆分、测试、上线，终于初步解决了服务间相互依赖的问题，">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://7xogz7.com1.z0.glb.clouddn.com/ServiceRef.png?imageMogr2/thumbnail/770x">
 <meta property="og:image" content="http://7xogz7.com1.z0.glb.clouddn.com/domainandserviceinfection.png?imageMogr2/thumbnail/770x">
 <meta property="og:image" content="http://7xogz7.com1.z0.glb.clouddn.com/improved.png?imageMogr2/thumbnail/770x">
-<meta property="og:updated_time" content="2018-09-18T08:51:00.878Z">
+<meta property="article:published_time" content="2015-12-11T00:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-20T07:09:23.675Z">
+<meta property="article:author" content="Zeyu Zhao">
+<meta property="article:tag" content="架构">
+<meta property="article:tag" content="IoC">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java系Dubbo、Zookeeper系统服务拆分记录">
-<meta name="twitter:description" content="事情发展情况总是偏离人的预想，尤其是业务发展和系统架构设计。一段时间后，一个新业务功能的上线往往伴随着几个相关功能的开发小组加班。同时甲组功能A可能依赖乙组功能B，乙组由于某个需求要更改功能B，而甲组开发新功能需要继续依赖功能B，且分配的开发时间并不一致。这样，协调起来会非常麻烦，效率也十分低下。于是，服务拆分的呼声越来越烈。经过几个月的研究、拆分、测试、上线，终于初步解决了服务间相互依赖的问题，">
 <meta name="twitter:image" content="http://7xogz7.com1.z0.glb.clouddn.com/ServiceRef.png?imageMogr2/thumbnail/770x">
 
 
@@ -105,7 +106,7 @@
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/',
+    root: '',
     scheme: 'Muse',
     version: '5.1.4',
     sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
@@ -114,7 +115,7 @@
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
-      author: '博主'
+      author: 'Author'
     },
     algolia: {
       applicationID: '',
@@ -128,7 +129,7 @@
 
 
 
-  <link rel="canonical" href="https://zhaozeyu.space/2015/12/11/java系dubbozookeeper系统服务拆分记录/"/>
+  <link rel="canonical" href="https://techctu.github.io/2015/12/11/java系dubbozookeeper系统服务拆分记录/"/>
 
 
 
@@ -163,9 +164,9 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 7.2.0"></head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -188,7 +189,7 @@
       </a>
     </div>
       
-        <h1 class="site-subtitle" itemprop="description">域名要收费，多少写一点</h1>
+        <h1 class="site-subtitle" itemprop="description">世界很浮躁，多少写一点</h1>
       
   </div>
 
@@ -209,51 +210,51 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            首页
+            Home
           </a>
         </li>
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+          <a href="/about/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            关于
+            About
           </a>
         </li>
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+          <a href="/tags/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            标签
+            Tags
           </a>
         </li>
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            归档
+            Archives
           </a>
         </li>
       
         
         <li class="menu-item menu-item-commonweal">
-          <a href="/404.html" rel="section">
+          <a href="/404.html%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
             
-            公益404
+            Commonweal 404
           </a>
         </li>
       
@@ -266,7 +267,7 @@
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
-            搜索
+            Search
           </a>
         </li>
       
@@ -286,7 +287,7 @@
     </span>
     <div class="local-search-input-wrapper">
       <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
+             placeholder="Searching..." spellcheck="false"
              type="text" id="local-search-input">
     </div>
   </div>
@@ -324,10 +325,10 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhaozeyu.space/2015/12/11/java系dubbozookeeper系统服务拆分记录/">
+    <link itemprop="mainEntityOfPage" href="https://techctu.github.io/2015/12/11/java%E7%B3%BBdubbozookeeper%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1%E6%8B%86%E5%88%86%E8%AE%B0%E5%BD%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zeyu Zhao">
+      <meta itemprop="name" content="">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -351,9 +352,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-12-11T00:00:00+00:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-12-11T00:00:00+00:00">
                 2015-12-11
               </time>
             
@@ -372,11 +373,11 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/架构/" itemprop="url" rel="index">
+                  <a href="/categories/%E6%9E%B6%E6%9E%84/" itemprop="url" rel="index">
                     <span itemprop="name">架构</span>
                   </a>
                 </span>
@@ -414,7 +415,8 @@
 
       
         <p>事情发展情况总是偏离人的预想，尤其是业务发展和系统架构设计。一段时间后，一个新业务功能的上线往往伴随着几个相关功能的开发小组加班。同时甲组功能A可能依赖乙组功能B，乙组由于某个需求要更改功能B，而甲组开发新功能需要继续依赖功能B，且分配的开发时间并不一致。这样，协调起来会非常麻烦，效率也十分低下。于是，服务拆分的呼声越来越烈。经过几个月的研究、拆分、测试、上线，终于初步解决了服务间相互依赖的问题，便记录一下。</p>
-<a id="more"></a>
+<span id="more"></span>
+
 <h1 id="理想并不丰满"><a href="#理想并不丰满" class="headerlink" title="理想并不丰满"></a>理想并不丰满</h1><p>任何业务系统的架构都是和业务紧密关联的，当时拟定有几个业务产品，一个后台管理，自己建立用户体系和账户体系，对接外系统接口，底层提供一系列日志、事务等平台服务。这个时候，分层逻辑是这样的：</p>
 <ul>
 <li>页面展现层：web、Controller。</li>
@@ -475,21 +477,21 @@
         <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
   <div>时间就是金钱，我的朋友！</div>
   <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
+    <span>Donate</span>
   </button>
   <div id="QR" style="display: none;">
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="http://7xogz7.com1.z0.glb.clouddn.com/wechatpay.png" alt="Zeyu Zhao 微信支付"/>
-        <p>微信支付</p>
+        <img id="wechat_qr" src="http://7xogz7.com1.z0.glb.clouddn.com/wechatpay.png" alt=" WeChat Pay"/>
+        <p>WeChat Pay</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="http://7xogz7.com1.z0.glb.clouddn.com/alipay.png" alt="Zeyu Zhao 支付宝"/>
-        <p>支付宝</p>
+        <img id="alipay_qr" src="http://7xogz7.com1.z0.glb.clouddn.com/alipay.png" alt=" Alipay"/>
+        <p>Alipay</p>
       </div>
     
 
@@ -507,7 +509,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/架构/" rel="tag"># 架构</a>
+            <a href="/tags/%E6%9E%B6%E6%9E%84/" rel="tag"># 架构</a>
           
             <a href="/tags/IoC/" rel="tag"># IoC</a>
           
@@ -522,8 +524,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/06/Maven使用记录（一）——maven的安装和基础配置/" rel="next" title="Maven使用记录（一）——maven的安装和基础配置">
-                <i class="fa fa-chevron-left"></i> Maven使用记录（一）——maven的安装和基础配置
+              <a href="/2015/12/06/Maven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E5%9C%A8Eclipse%E4%B8%AD%E4%BD%BF%E7%94%A8Maven%E6%9D%A5%E8%BF%9B%E8%A1%8C%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/" rel="next" title="Maven使用记录（二）——在Eclipse中使用Maven来进行项目管理">
+                <i class="fa fa-chevron-left"></i> Maven使用记录（二）——在Eclipse中使用Maven来进行项目管理
               </a>
             
           </div>
@@ -532,7 +534,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/12/20/组件化web开发和ui设计落地的思考/" rel="prev" title="组件化web开发和UI设计落地的思考">
+              <a href="/2015/12/20/%E7%BB%84%E4%BB%B6%E5%8C%96web%E5%BC%80%E5%8F%91%E5%92%8Cui%E8%AE%BE%E8%AE%A1%E8%90%BD%E5%9C%B0%E7%9A%84%E6%80%9D%E8%80%83/" rel="prev" title="组件化web开发和UI设计落地的思考">
                 组件化web开发和UI设计落地的思考 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -610,10 +612,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
+            Overview
           </li>
         </ul>
       
@@ -622,7 +624,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">Zeyu Zhao</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -631,10 +633,10 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">42</span>
-                  <span class="site-state-item-name">日志</span>
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
@@ -644,8 +646,8 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">8</span>
-                  <span class="site-state-item-name">分类</span>
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">categories</span>
                 
               </div>
             
@@ -655,8 +657,8 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">58</span>
-                  <span class="site-state-item-name">标签</span>
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">tags</span>
                 </a>
               </div>
             
@@ -729,7 +731,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#理想并不丰满"><span class="nav-number">1.</span> <span class="nav-text">理想并不丰满</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#现实很骨感"><span class="nav-number">2.</span> <span class="nav-text">现实很骨感</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#遗留问题"><span class="nav-number">3.</span> <span class="nav-text">遗留问题</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%90%86%E6%83%B3%E5%B9%B6%E4%B8%8D%E4%B8%B0%E6%BB%A1"><span class="nav-number">1.</span> <span class="nav-text">理想并不丰满</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8E%B0%E5%AE%9E%E5%BE%88%E9%AA%A8%E6%84%9F"><span class="nav-number">2.</span> <span class="nav-text">现实很骨感</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%81%97%E7%95%99%E9%97%AE%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">遗留问题</span></a></li></ol></div>
             
 
           </div>
@@ -749,7 +751,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -759,7 +761,7 @@
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
@@ -767,7 +769,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
 
 
 
