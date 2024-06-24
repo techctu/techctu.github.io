@@ -91,7 +91,7 @@
 <meta property="og:description" content="目前除了 Spring 4 的 boot 和 Spring 5 里提供了相关应用层面的 Gzip 压缩，其他大部分时候都是通过容器（Tomcat、WAS、Jetty等）来开启 Gzip 压缩，剩下的都是 out of date 的自己写一个 filter 来实现这个功能。这里介绍一个开源的第三方库来实现这个功能。 加入依赖使用 maven 导入依赖。 123456&lt;!-- https:&#x2F;&#x2F;m">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2018-06-03T11:04:47.000Z">
-<meta property="article:modified_time" content="2024-06-20T07:52:40.659Z">
+<meta property="article:modified_time" content="2024-06-24T00:58:29.280Z">
 <meta property="article:author" content="Zeyu Zhao">
 <meta property="article:tag" content="Java,gzip">
 <meta name="twitter:card" content="summary">
@@ -463,6 +463,21 @@
       
 
       
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
       
       
 
@@ -1230,6 +1245,31 @@
 
 
   
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
   
 
   
