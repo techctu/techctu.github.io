@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="maven," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -83,20 +83,18 @@
 
 
 
-<meta name="description" content="Maven是一款非常好用的项目管理软件，主要用于项目构建，依赖管理等，简介出门右转参见百度百科，亦或去官方网站。 使用和配置这里主要介绍windows下maven的使用和配置。  要使用maven，首先确保安装了JDK，然后再去官方网站下载maven。根据情况——一般是操作系统和解压工具——选择zip或者tar.gz下载，然后解压到自己选择的目录或是文件夹下，即为maven的根目录。比如，我解压出">
+<meta name="description" content="今天在看JVM相关的文章的时候，看到一段话，意思是JVM运行的线程数量和操作系统是1:1运行的。 这里所说的线程指程序执行过程中的一个线程实体。JVM 允许一个应用并发执行多个线程。Hotspot JVM 中的 Java 线程与原生操作系统线程有直接的映射关系。当线程本地存储、缓冲区分配、同步对象、栈、程序计数器等准备好以后，就会创建一个操作系统原生线程。Java 线程结束，原生线程随之被回收。操">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Maven使用记录（一）——maven的安装和基础配置">
-<meta property="og:url" content="https://techctu.github.io/2015/12/06/Maven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94maven%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:title" content="JVM线程和操作系统线程一一对应吗">
+<meta property="og:url" content="https://techctu.github.io/2024/06/25/JVM%E7%BA%BF%E7%A8%8B%E5%92%8C%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BA%BF%E7%A8%8B%E4%B8%80%E4%B8%80%E5%AF%B9%E5%BA%94%E5%90%97/index.html">
 <meta property="og:site_name" content="Avalon">
-<meta property="og:description" content="Maven是一款非常好用的项目管理软件，主要用于项目构建，依赖管理等，简介出门右转参见百度百科，亦或去官方网站。 使用和配置这里主要介绍windows下maven的使用和配置。  要使用maven，首先确保安装了JDK，然后再去官方网站下载maven。根据情况——一般是操作系统和解压工具——选择zip或者tar.gz下载，然后解压到自己选择的目录或是文件夹下，即为maven的根目录。比如，我解压出">
+<meta property="og:description" content="今天在看JVM相关的文章的时候，看到一段话，意思是JVM运行的线程数量和操作系统是1:1运行的。 这里所说的线程指程序执行过程中的一个线程实体。JVM 允许一个应用并发执行多个线程。Hotspot JVM 中的 Java 线程与原生操作系统线程有直接的映射关系。当线程本地存储、缓冲区分配、同步对象、栈、程序计数器等准备好以后，就会创建一个操作系统原生线程。Java 线程结束，原生线程随之被回收。操">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://7xogz7.com1.z0.glb.clouddn.com/mavenconfig.png">
-<meta property="article:published_time" content="2015-12-06T00:00:00.000Z">
-<meta property="article:modified_time" content="2024-06-25T07:34:42.624Z">
+<meta property="article:published_time" content="2024-06-25T15:32:29.000Z">
+<meta property="article:modified_time" content="2024-06-25T07:34:42.640Z">
 <meta property="article:author" content="Zeyu Zhao">
-<meta property="article:tag" content="maven">
+<meta property="article:tag" content="Java,JavaScript,ReactJS,Spring,摄影,投资">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://7xogz7.com1.z0.glb.clouddn.com/mavenconfig.png">
 
 
 
@@ -126,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="https://techctu.github.io/2015/12/06/Maven使用记录（一）——maven的安装和基础配置/"/>
+  <link rel="canonical" href="https://techctu.github.io/2024/06/25/JVM线程和操作系统线程一一对应吗/"/>
 
 
 
 
 
-  <title>Maven使用记录（一）——maven的安装和基础配置 | Avalon</title>
+  <title>JVM线程和操作系统线程一一对应吗 | Avalon</title>
   
 
 
@@ -322,7 +320,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://techctu.github.io/2015/12/06/Maven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94maven%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE/">
+    <link itemprop="mainEntityOfPage" href="https://techctu.github.io/2024/06/25/JVM%E7%BA%BF%E7%A8%8B%E5%92%8C%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BA%BF%E7%A8%8B%E4%B8%80%E4%B8%80%E5%AF%B9%E5%BA%94%E5%90%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -339,7 +337,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Maven使用记录（一）——maven的安装和基础配置</h2>
+          <h2 class="post-title" itemprop="name headline">JVM线程和操作系统线程一一对应吗</h2>
         
 
         <div class="post-meta">
@@ -351,8 +349,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-12-06T00:00:00+00:00">
-                2015-12-06
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2024-06-25T15:32:29+00:00">
+                2024-06-25
               </time>
             
 
@@ -361,28 +359,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/maven/" itemprop="url" rel="index">
-                    <span itemprop="name">maven</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -411,23 +387,19 @@
       
 
       
-        <p>Maven是一款非常好用的项目管理软件，主要用于项目构建，依赖管理等，简介出门右转参见<a href="http://baike.baidu.com/link?url=Y3LqFKxw2f3uLhfNeAfLscCNtqwhFxjzSKpu9_FCx1YKh2FhzyFSvn-0vT5XCIQf9AJX_R9cL9ztDlPgr0RnXK">百度百科</a>，亦或去<a href="http://maven.apache.org/">官方网站</a>。</p>
-<h1 id="使用和配置"><a href="#使用和配置" class="headerlink" title="使用和配置"></a>使用和配置</h1><p>这里主要介绍windows下maven的使用和配置。</p>
-<ol>
-<li>要使用maven，首先确保安装了JDK，然后再去官方网站下载maven。根据情况——一般是操作系统和解压工具——选择zip或者tar.gz下载，然后解压到自己选择的目录或是文件夹下，即为maven的根目录。比如，我解压出来的目录结构是D:\LittleThings\apache-maven-3.2.5，包含bin、conf、lib、README.txt等目录和文件。所以，D:\LittleThings\apache-maven-3.2.5即我的maven根目录。​<br>配置环境变量，以Windows为例。新增环境变量M2_HOME，我这里值为D:\LittleThings\apache-maven-3.2.5，修改为自己的根目录。在环境变量Path后增加;%M2_HOME%\bin;。这样，就完成了配置。在命令行窗口输入mvn -version，能看到maven的基本信息，如maven home、java version等。​​</li>
-</ol>
+        <p>今天在看JVM相关的文章的时候，看到一段话，意思是JVM运行的线程数量和操作系统是1:1运行的。</p>
+<blockquote><p>这里所说的线程指程序执行过程中的一个线程实体。JVM 允许一个应用并发执行多个线程。Hotspot JVM 中的 Java 线程与原生操作系统线程有直接的映射关系。当线程本地存储、缓冲区分配、同步对象、栈、程序计数器等准备好以后，就会创建一个操作系统原生线程。Java 线程结束，原生线程随之被回收。操作系统负责调度所有线程，并把它们分配到任何可用的 CPU 上。当原生线程初始化完毕，就会调用 Java 线程的 run() 方法。当线程结束时，会释放原生线程和 Java 线程的所有资源。</p>
+</blockquote>
+
+<p>然而我印象里Java应该是有自己的虚拟线程池的。到底是什么情况呢？</p>
 <span id="more"></span>
 
-<p><img src="http://7xogz7.com1.z0.glb.clouddn.com/mavenconfig.png" alt="maven配置"></p>
-<ol start="2">
-<li>修改settings.xml。settings.xml位于根目录&#x2F;conf下。一般settings需要修改的有两处：本地仓库的位置和中央仓库的镜像。<br>本地仓库一般默认安装在系统盘下，这样，新增的jar包都会下载安装到系统盘。为了避免这个，找到settings.xml中localRepository的注释，添加</li>
-</ol>
-<figure class="highlight plaintext"><figcaption><span>xml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;localRepository&gt;D:/LittleThings/mvnrepo&lt;/localRepository&gt;</span><br></pre></td></tr></table></figure>
+<p>最简单的方式，是查看<a href="https://openjdk.org/groups/hotspot/docs/RuntimeOverview.html#Thread%20Management|outline">官方文档</a>。该文档内的描述和文章一致。但我感觉哪里没有理清楚。</p>
+<p>仔细看看上面的描述，说明的是JVM和操作系统一一对应。在官方文档中，指出这是基础模式。这也就意味着在一些情况下可能不是一对一的。在网上也能找到佐证，比如到处抄来抄去的<a href="https://www.jianshu.com/p/af3d5eece8c1">Java线程模型</a>文章里就说了，在Solaris可以实现多对多。</p>
+<p>仔细想了想，其实问题是Java的线程模型和JVM的线程模型。Java的线程是依赖JVM的线程进行管理的，Java的线程和JVM的线程的关系，有点类似于用户态线程和内核态线程。Java应用使用的线程池，应该是可以大于操作系统支持的线程数量的。简单代码验证一下。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ThreadConcurrencyDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 获取系统的核心数</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">availableProcessors</span> <span class="operator">=</span> Runtime.getRuntime().availableProcessors();</span><br><span class="line">        System.out.println(<span class="string">&quot;系统的核心数: &quot;</span> + availableProcessors);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建一个线程组来跟踪所有线程</span></span><br><span class="line">        <span class="type">ThreadGroup</span> <span class="variable">threadGroup</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ThreadGroup</span>(<span class="string">&quot;ThreadGroupDemo&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;线程组名称: &quot;</span> + threadGroup.getName());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 记录创建的线程数量</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">threadCount</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建并启动20个线程</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">20</span>; i++) &#123;</span><br><span class="line">            <span class="type">Thread</span> <span class="variable">thread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(threadGroup, <span class="keyword">new</span> <span class="title class_">Runnable</span>() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">                    System.out.println(<span class="string">&quot;线程 &quot;</span> + Thread.currentThread().getName() + <span class="string">&quot; 启动。&quot;</span>);</span><br><span class="line">                    <span class="comment">// 线程执行任务</span></span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        Thread.sleep(<span class="number">60</span> * <span class="number">1000</span>); <span class="comment">// 线程运行60秒</span></span><br><span class="line">                    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                        Thread.currentThread().interrupt(); <span class="comment">// 重新设置中断状态</span></span><br><span class="line">                        System.out.println(<span class="string">&quot;线程 &quot;</span> + Thread.currentThread().getName() + <span class="string">&quot; 被中断。&quot;</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                    System.out.println(<span class="string">&quot;线程 &quot;</span> + Thread.currentThread().getName() + <span class="string">&quot; 执行完毕。&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">            thread.start();</span><br><span class="line">            threadCount++; <span class="comment">// 增加线程计数</span></span><br><span class="line">            System.out.println(<span class="string">&quot;已创建线程数量: &quot;</span> + threadCount);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 等待所有用户线程完成</span></span><br><span class="line">        <span class="keyword">while</span> (threadGroup.activeCount() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                threadGroup.list(); <span class="comment">// 列出所有线程</span></span><br><span class="line">                System.out.println(<span class="string">&quot;活跃线程数量：&quot;</span> + threadGroup.activeCount());</span><br><span class="line">                Thread.sleep(<span class="number">10000</span>); <span class="comment">// 短暂睡眠，避免CPU过载</span></span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;所有线程执行完毕。&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>这里改成自己的本地仓库目录即可。<br>一般由于众所周知的原因，很难从maven中央仓库下载下来jar包，因此，一般会添加镜像。</p>
-<figure class="highlight plaintext"><figcaption><span>xml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;mirrors&gt;</span><br><span class="line">	&lt;mirror&gt;&lt;id&gt;CN&lt;/id&gt; &lt;name&gt;OSChina Central&lt;/name&gt;  &lt;url&gt;http://maven.oschina.net/content/groups/public/&lt;/url&gt; &lt;mirrorOf&gt;central&lt;/mirrorOf&gt; &lt;/mirror&gt;</span><br><span class="line">	&lt;mirror&gt; &lt;id&gt;ibiblio.org&lt;/id&gt; &lt;name&gt;ibiblio Mirror of http://repo1.maven.org/maven2/&lt;/name&gt; &lt;url&gt;http://mirrors.ibiblio.org/pub/mirrors/maven2&lt;/url&gt; &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;  &lt;!-- United States, North Carolina --&gt;  &lt;/mirror&gt;</span><br><span class="line">	&lt;mirror&gt;  &lt;id&gt;cica.es&lt;/id&gt;  &lt;url&gt;http://ftp.cica.es/mirrors/maven2&lt;/url&gt;  &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;  &lt;!-- Spain, Sevilla --&gt;  &lt;/mirror&gt;</span><br><span class="line">	&lt;mirror&gt;  &lt;id&gt;maven.org&lt;/id&gt;  &lt;url&gt;http://repo1.maven.org/maven2/&lt;/url&gt;  &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;  &lt;/mirror&gt;</span><br><span class="line">	&lt;mirror&gt;  &lt;id&gt;jboss.com&lt;/id&gt;  &lt;url&gt;http://repository.jboss.com/maven2/&lt;/url&gt;  &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;  &lt;/mirror&gt;</span><br><span class="line">	&lt;mirror&gt;  &lt;id&gt;sonatype.org&lt;/id&gt;  &lt;url&gt;http://repository.sonatype.org/content/groups/public/&lt;/url&gt;  &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;  &lt;/mirror&gt;  &lt;!-- mirror | Specifies a repository mirror site to use instead of a given repository. The repository that | this mirror serves has an ID that matches the mirrorOf element of this mirror. IDs are used | for inheritance and direct lookup purposes, and must be unique across the set of mirrors. | &lt;mirror&gt; &lt;id&gt;mirrorId&lt;/id&gt; &lt;mirrorOf&gt;repositoryId&lt;/mirrorOf&gt; &lt;name&gt;Human Readable Name for this Mirror.&lt;/name&gt; &lt;url&gt;http://my.repository.com/repo/path&lt;/url&gt; &lt;/mirror&gt; --&gt;</span><br><span class="line">&lt;/mirrors&gt;</span><br></pre></td></tr></table></figure>
-
-<p>至此，maven就初步安装完成可以使用了。</p>
+<p>代码输出显示，活跃线程一直是20个。打开任务管理器看看，实际Java的运行占用并不大，也许这20个线程共用某几个JVM线程吧。</p>
 
       
     </div>
@@ -472,12 +444,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/maven/" rel="tag"># maven</a>
-          
-        </div>
-      
 
       
       
@@ -502,8 +468,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/06/Maven%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E5%9C%A8Eclipse%E4%B8%AD%E4%BD%BF%E7%94%A8Maven%E6%9D%A5%E8%BF%9B%E8%A1%8C%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/" rel="next" title="Maven使用记录（二）——在Eclipse中使用Maven来进行项目管理">
-                <i class="fa fa-chevron-left"></i> Maven使用记录（二）——在Eclipse中使用Maven来进行项目管理
+              <a href="/2024/06/20/%E4%BB%8Eselect%E5%88%B0epoll%E5%88%B0%E7%8E%B0%E5%9C%A8/" rel="next" title="从select到epoll到现在">
+                <i class="fa fa-chevron-left"></i> 从select到epoll到现在
               </a>
             
           </div>
@@ -511,10 +477,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/12/11/java%E7%B3%BBdubbozookeeper%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1%E6%8B%86%E5%88%86%E8%AE%B0%E5%BD%95/" rel="prev" title="Java系Dubbo、Zookeeper系统服务拆分记录">
-                Java系Dubbo、Zookeeper系统服务拆分记录 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -588,17 +550,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -699,22 +652,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%92%8C%E9%85%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">使用和配置</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
