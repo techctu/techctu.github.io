@@ -609,6 +609,12 @@
 <p>回过头来看内存发展，为什么epoll2003年提出的，发展应用这么慢？毕竟2000年有互联网泡沫，内存的需求方泡沫了，发展自然就延后了。记得2008年的时候，笔记本电脑也不过用512MB的内存；2012年的内存还是DDR2&#x2F;3，一般也就能配到4&#x2F;8G。那个时候面试最喜欢问的问题还是C10K和读文件构建大根堆、小根堆。再看Redis，现在也没有太多变化。数据结构方面，里面使用的还是构建树、做哈希，只是做到了内存里。说一句有了<a href="https://darkcoding.net/software/epoll-the-api-that-powers-the-modern-internet/">epoll才有现在互联网</a>也不为过。</p>
 <p>不过，epoll相对于select的缺点，在于小规模要求实时性高的，链接活跃的场景，应该不能使用epoll。可以想象的是，比如军事、游戏。</p>
 ]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
+      <tags>
+        <tag>epoll</tag>
+      </tags>
   </entry>
   <entry>
     <title>JVM线程和操作系统线程一一对应吗</title>
@@ -627,6 +633,10 @@
 
 <p>代码输出显示，活跃线程一直是20个。打开任务管理器看看，实际Java的运行占用并不大，也许这20个线程共用某几个JVM线程吧。</p>
 ]]></content>
+      <tags>
+        <tag>JVM</tag>
+        <tag>线程</tag>
+      </tags>
   </entry>
   <entry>
     <title>技术发展真的很快</title>
@@ -692,5 +702,11 @@
 <p><a href="https://xinchen.blog.csdn.net/article/details/138446192">Spring AI实战之一：快速体验(OpenAI)_springai项目实战-CSDN博客</a></p>
 <p><a href="https://cloud.tencent.com/developer/article/2421901">SpringAI+Ollama三部曲之二：细说开发-腾讯云开发者社区-腾讯云 (tencent.com)</a></p>
 ]]></content>
+      <tags>
+        <tag>Spring</tag>
+        <tag>Spring-AI</tag>
+        <tag>LLM</tag>
+        <tag>Ollama</tag>
+      </tags>
   </entry>
 </search>
