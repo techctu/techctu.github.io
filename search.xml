@@ -600,23 +600,6 @@
       </tags>
   </entry>
   <entry>
-    <title>从select到epoll到现在</title>
-    <url>/2024/06/20/%E4%BB%8Eselect%E5%88%B0epoll%E5%88%B0%E7%8E%B0%E5%9C%A8/</url>
-    <content><![CDATA[<p>最近翻阅Redis等常用技术组件相关文章，比如看这篇<a href="https://juejin.cn/post/7378046072952504354">Redis 全家桶</a>和<a href="https://www.cnblogs.com/jackson0714/p/redisson.html">分布式锁中的王者方案-Redisson</a>，感觉很多东西其实一直没有变。</p>
-<p>比如现在，大家都说Redis快，最关键的是大厂在用，大厂觉得快。而大厂，一般指的是百度、阿里、腾讯等等偏电商的大厂，也就是互联网电商场景下，大规模用户访问浏览，那当然就看着快了。像<a href="https://juejin.cn/post/7378046072952504354">Redis 全家桶</a>中提到的场景，也都是这类场景。这类场景说穿了，就是因为Redis是内存运行的，采用IO多路复用，所以快。其他的特性，比如选举、哨兵、集群，那都是分布式系统的一般性质。</p>
-<p>提到IO多路复用，那就得说起Linux的select、poll、epoll了。现在的一切，都是从epoll开始的。</p>
-<p>记得2010年前后，还没有那么多高并发的问题，讨论的最多的，其实还是<a href="http://kegel.com/c10k.html">C10K问题</a>。对应最喜欢问的面试题，一般都是磁盘多文件读取构造大根堆、小根堆，毕竟那时候内存不够用。C10K问题，是最开始的并发问题，大致是2000年前后提出的。那时候服务器普遍使用select，难以突破瓶颈。直至2000年Jonathan Lemon提出了kqueue&#x2F;kevent，2003年Linux内核2.6版本使用了epoll，这个问题才得以解决。同时，也出现了NGINX、Java NIO这类新特性。</p>
-<p>回过头来看内存发展，为什么epoll2003年提出的，发展应用这么慢？毕竟2000年有互联网泡沫，内存的需求方泡沫了，发展自然就延后了。记得2008年的时候，笔记本电脑也不过用512MB的内存；2012年的内存还是DDR2&#x2F;3，一般也就能配到4&#x2F;8G。那个时候面试最喜欢问的问题还是C10K和读文件构建大根堆、小根堆。再看Redis，现在也没有太多变化。数据结构方面，里面使用的还是构建树、做哈希，只是做到了内存里。说一句有了<a href="https://darkcoding.net/software/epoll-the-api-that-powers-the-modern-internet/">epoll才有现在互联网</a>也不为过。</p>
-<p>不过，epoll相对于select的缺点，在于小规模要求实时性高的，链接活跃的场景，应该不能使用epoll。可以想象的是，比如军事、游戏。</p>
-]]></content>
-      <categories>
-        <category>others</category>
-      </categories>
-      <tags>
-        <tag>epoll</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JVM线程和操作系统线程一一对应吗</title>
     <url>/2024/06/25/JVM%E7%BA%BF%E7%A8%8B%E5%92%8C%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BA%BF%E7%A8%8B%E4%B8%80%E4%B8%80%E5%AF%B9%E5%BA%94%E5%90%97/</url>
     <content><![CDATA[<p>今天在看JVM相关的文章的时候，看到一段话，意思是JVM运行的线程数量和操作系统是1:1运行的。</p>
@@ -636,6 +619,23 @@
       <tags>
         <tag>JVM</tag>
         <tag>线程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从select到epoll到现在</title>
+    <url>/2024/06/20/%E4%BB%8Eselect%E5%88%B0epoll%E5%88%B0%E7%8E%B0%E5%9C%A8/</url>
+    <content><![CDATA[<p>最近翻阅Redis等常用技术组件相关文章，比如看这篇<a href="https://juejin.cn/post/7378046072952504354">Redis 全家桶</a>和<a href="https://www.cnblogs.com/jackson0714/p/redisson.html">分布式锁中的王者方案-Redisson</a>，感觉很多东西其实一直没有变。</p>
+<p>比如现在，大家都说Redis快，最关键的是大厂在用，大厂觉得快。而大厂，一般指的是百度、阿里、腾讯等等偏电商的大厂，也就是互联网电商场景下，大规模用户访问浏览，那当然就看着快了。像<a href="https://juejin.cn/post/7378046072952504354">Redis 全家桶</a>中提到的场景，也都是这类场景。这类场景说穿了，就是因为Redis是内存运行的，采用IO多路复用，所以快。其他的特性，比如选举、哨兵、集群，那都是分布式系统的一般性质。</p>
+<p>提到IO多路复用，那就得说起Linux的select、poll、epoll了。现在的一切，都是从epoll开始的。</p>
+<p>记得2010年前后，还没有那么多高并发的问题，讨论的最多的，其实还是<a href="http://kegel.com/c10k.html">C10K问题</a>。对应最喜欢问的面试题，一般都是磁盘多文件读取构造大根堆、小根堆，毕竟那时候内存不够用。C10K问题，是最开始的并发问题，大致是2000年前后提出的。那时候服务器普遍使用select，难以突破瓶颈。直至2000年Jonathan Lemon提出了kqueue&#x2F;kevent，2003年Linux内核2.6版本使用了epoll，这个问题才得以解决。同时，也出现了NGINX、Java NIO这类新特性。</p>
+<p>回过头来看内存发展，为什么epoll2003年提出的，发展应用这么慢？毕竟2000年有互联网泡沫，内存的需求方泡沫了，发展自然就延后了。记得2008年的时候，笔记本电脑也不过用512MB的内存；2012年的内存还是DDR2&#x2F;3，一般也就能配到4&#x2F;8G。那个时候面试最喜欢问的问题还是C10K和读文件构建大根堆、小根堆。再看Redis，现在也没有太多变化。数据结构方面，里面使用的还是构建树、做哈希，只是做到了内存里。说一句有了<a href="https://darkcoding.net/software/epoll-the-api-that-powers-the-modern-internet/">epoll才有现在互联网</a>也不为过。</p>
+<p>不过，epoll相对于select的缺点，在于小规模要求实时性高的，链接活跃的场景，应该不能使用epoll。可以想象的是，比如军事、游戏。</p>
+]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
+      <tags>
+        <tag>epoll</tag>
       </tags>
   </entry>
   <entry>
@@ -715,6 +715,8 @@
     <title>耐心资本就是要学会空仓</title>
     <url>/2024/07/06/%E8%80%90%E5%BF%83%E8%B5%84%E6%9C%AC%E5%B0%B1%E6%98%AF%E8%A6%81%E5%AD%A6%E4%BC%9A%E7%A9%BA%E4%BB%93/</url>
     <content><![CDATA[<p>上周，也就是6月底，决定空仓。这周一直就放在里面逆回购，然后跑赢指数1.5个点。<br>空仓的原因主要有：</p>
+<span id="more"></span>
+
 <ol>
 <li>只有在指数共振上涨，走主升浪的时候，才有躺赢的可能，否则轮动行情很难盈利；</li>
 <li>指数下跌行情下，个人亏损很容易超过指数；</li>
@@ -724,6 +726,7 @@
 </ol>
 <p>回来看看纳指。</p>
 <img src="/2024/07/06/%E8%80%90%E5%BF%83%E8%B5%84%E6%9C%AC%E5%B0%B1%E6%98%AF%E8%A6%81%E5%AD%A6%E4%BC%9A%E7%A9%BA%E4%BB%93/nasdqetf.png" class="">
+
 <p>再用上证50对比一下标普500ETF</p>
 <img src="/2024/07/06/%E8%80%90%E5%BF%83%E8%B5%84%E6%9C%AC%E5%B0%B1%E6%98%AF%E8%A6%81%E5%AD%A6%E4%BC%9A%E7%A9%BA%E4%BB%93/szzs-m.png" class="">
 
