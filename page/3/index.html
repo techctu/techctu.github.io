@@ -158,17 +158,17 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-count">31</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -190,6 +190,181 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://techctu.github.io/2015/12/06/%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E8%87%AA%E5%B8%A6%E7%9A%84%E9%94%81%E6%9C%BA%E5%88%B6%E6%9D%A5%E5%A4%84%E7%90%86%E7%AB%9E%E4%BA%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zeyu Zhao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Avalon">
+      <meta itemprop="description" content="中年危机攻城狮的小博客，Java，JavaScript，Spring，ReactJS，摄影，一些小东西。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Avalon">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2015/12/06/%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E8%87%AA%E5%B8%A6%E7%9A%84%E9%94%81%E6%9C%BA%E5%88%B6%E6%9D%A5%E5%A4%84%E7%90%86%E7%AB%9E%E4%BA%89/" class="post-title-link" itemprop="url">使用数据库自带的锁机制来处理竞争</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2015-12-06 00:00:00" itemprop="dateCreated datePublished" datetime="2015-12-06T00:00:00+00:00">2015-12-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-07-31 02:21:13" itemprop="dateModified" datetime="2024-07-31T02:21:13+00:00">2024-07-31</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>2013年刚入职的时候，做的p2p项目，有这么个需求。</p>
+<p>众所周知，p2p需要去投标，投标就会有竞争。比如阿猫和阿狗都看到一个项目只剩1份了，两个人同时投标。这时候系统就会判断阿猫买一份，余额刚好一份，可以买；在系统确定了这次购买订单，更新余额前，阿狗的请求也到了，系统还没更新余额，这时系统也让阿狗买了一份。这就导致实际上一份卖出了两份，这样并不好，会出现一系列问题，具体什么问题，出门右转找运营。</p>
+<p>那么怎么办呢？就是经典的并发情况下锁机制的设计了。</p>
+<p>当时负责我们p2p组的组长决定利用数据库的锁机制来处理，具体就是在数据库中增加一个字段key，通过对a的值的比对来保证投标的顺利进行。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2015/12/06/%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E8%87%AA%E5%B8%A6%E7%9A%84%E9%94%81%E6%9C%BA%E5%88%B6%E6%9D%A5%E5%A4%84%E7%90%86%E7%AB%9E%E4%BA%89/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://techctu.github.io/2015/12/06/%E5%9C%A8mac%E4%B8%8A%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8git/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zeyu Zhao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Avalon">
+      <meta itemprop="description" content="中年危机攻城狮的小博客，Java，JavaScript，Spring，ReactJS，摄影，一些小东西。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Avalon">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2015/12/06/%E5%9C%A8mac%E4%B8%8A%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8git/" class="post-title-link" itemprop="url">在Mac上配置使用git</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2015-12-06 00:00:00" itemprop="dateCreated datePublished" datetime="2015-12-06T00:00:00+00:00">2015-12-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-07-31 02:21:13" itemprop="dateModified" datetime="2024-07-31T02:21:13+00:00">2024-07-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在 <a href="http://git-scm.com/download" title="点击穿越">git</a>下载Mac安装程序。</p>
+<p>傻瓜安装git。</p>
+<p>打开Terminal，输入git –version来检查。</p>
+<p>下载 <a href="https://www.sourcetreeapp.com/" title="点击穿越">SourceTree</a>。</p>
+<p>傻瓜安装SourceTree并配置本地库和远程库。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -235,7 +410,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-07-07 01:41:50" itemprop="dateModified" datetime="2024-07-07T01:41:50+00:00">2024-07-07</time>
+      <time title="修改时间：2024-07-31 02:21:13" itemprop="dateModified" datetime="2024-07-31T02:21:13+00:00">2024-07-31</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -326,7 +501,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-07-07 01:41:50" itemprop="dateModified" datetime="2024-07-07T01:41:50+00:00">2024-07-07</time>
+      <time title="修改时间：2024-07-31 02:21:13" itemprop="dateModified" datetime="2024-07-31T02:21:13+00:00">2024-07-31</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
