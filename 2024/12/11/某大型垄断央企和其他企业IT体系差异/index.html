@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="google16c11c376534c796">
+  <meta name="msvalidate.01" content="2BC71AF932B009F21B972844EA17A6E6">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"techctu.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="因为大周期稳中向好的缘故，银行业进行了调整，机缘巧合之下进入了某发改委下大型央企的省公司的下属公司。该公司属于省公司的乙方，做自研和分包管理。在该司我辗转了研发和产品部门，发现银行外的乙方公司和银行内的甲方公司在IT体系上的差异还是比较大的。 组织架构与职责分工银行总行信息技术部在全行 IT 决策权重占比约 60% - 70%，统筹核心事务如系统开发、运维等关键环节规划，确保全行技术战略方向统一。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="某大型垄断央企和其他企业IT体系差异">
+<meta property="og:url" content="https://techctu.github.io/2024/12/11/%E6%9F%90%E5%A4%A7%E5%9E%8B%E5%9E%84%E6%96%AD%E5%A4%AE%E4%BC%81%E5%92%8C%E5%85%B6%E4%BB%96%E4%BC%81%E4%B8%9AIT%E4%BD%93%E7%B3%BB%E5%B7%AE%E5%BC%82/index.html">
+<meta property="og:site_name" content="Avalon">
+<meta property="og:description" content="因为大周期稳中向好的缘故，银行业进行了调整，机缘巧合之下进入了某发改委下大型央企的省公司的下属公司。该公司属于省公司的乙方，做自研和分包管理。在该司我辗转了研发和产品部门，发现银行外的乙方公司和银行内的甲方公司在IT体系上的差异还是比较大的。 组织架构与职责分工银行总行信息技术部在全行 IT 决策权重占比约 60% - 70%，统筹核心事务如系统开发、运维等关键环节规划，确保全行技术战略方向统一。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-12-11T10:39:00.000Z">
+<meta property="article:modified_time" content="2025-01-24T09:37:50.915Z">
+<meta property="article:author" content="Zeyu Zhao">
+<meta property="article:tag" content="PMO">
+<meta property="article:tag" content="DevOps">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://techctu.github.io/2024/12/11/%E6%9F%90%E5%A4%A7%E5%9E%8B%E5%9E%84%E6%96%AD%E5%A4%AE%E4%BC%81%E5%92%8C%E5%85%B6%E4%BB%96%E4%BC%81%E4%B8%9AIT%E4%BD%93%E7%B3%BB%E5%B7%AE%E5%BC%82/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://techctu.github.io/2024/12/11/%E6%9F%90%E5%A4%A7%E5%9E%8B%E5%9E%84%E6%96%AD%E5%A4%AE%E4%BC%81%E5%92%8C%E5%85%B6%E4%BB%96%E4%BC%81%E4%B8%9AIT%E4%BD%93%E7%B3%BB%E5%B7%AE%E5%BC%82/","path":"2024/12/11/某大型垄断央企和其他企业IT体系差异/","title":"某大型垄断央企和其他企业IT体系差异"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>某大型垄断央企和其他企业IT体系差异 | Avalon</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=120215520-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"120215520-1","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?0a3edd62f375ec905dd36ff6f66bb6e6"></script>
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Avalon" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Avalon</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">世界很浮躁，多少写一点</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%84%E7%BB%87%E6%9E%B6%E6%9E%84%E4%B8%8E%E8%81%8C%E8%B4%A3%E5%88%86%E5%B7%A5"><span class="nav-number">1.</span> <span class="nav-text">组织架构与职责分工</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%93%B6%E8%A1%8C"><span class="nav-number">1.1.</span> <span class="nav-text">银行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E8%B5%84%E4%BA%A7%E5%A4%AE%E4%BC%81%E4%B9%99%E6%96%B9%E5%AD%99%E5%85%AC%E5%8F%B8"><span class="nav-number">1.2.</span> <span class="nav-text">重资产央企乙方孙公司</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E4%B8%8E%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">系统架构与技术选型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%93%B6%E8%A1%8C-1"><span class="nav-number">2.1.</span> <span class="nav-text">银行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E8%B5%84%E4%BA%A7%E5%A4%AE%E4%BC%81%E4%B9%99%E6%96%B9%E5%AD%99%E5%85%AC%E5%8F%B8-1"><span class="nav-number">2.2.</span> <span class="nav-text">重资产央企乙方孙公司</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%E4%B8%8E%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5"><span class="nav-number">3.</span> <span class="nav-text">数据管理与安全策略</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%93%B6%E8%A1%8C-2"><span class="nav-number">3.1.</span> <span class="nav-text">银行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E8%B5%84%E4%BA%A7%E5%A4%AE%E4%BC%81%E4%B9%99%E6%96%B9%E5%AD%99%E5%85%AC%E5%8F%B8-2"><span class="nav-number">3.2.</span> <span class="nav-text">重资产央企乙方孙公司</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E4%B8%8E%E4%BA%A4%E4%BB%98%E6%A8%A1%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">项目管理与交付模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%93%B6%E8%A1%8C-3"><span class="nav-number">4.1.</span> <span class="nav-text">银行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E8%B5%84%E4%BA%A7%E5%A4%AE%E4%BC%81%E4%B9%99%E6%96%B9%E5%AD%99%E5%85%AC%E5%8F%B8-3"><span class="nav-number">4.2.</span> <span class="nav-text">重资产央企乙方孙公司</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%BA%E6%89%8D%E9%9C%80%E6%B1%82%E4%B8%8E%E5%9F%B9%E5%85%BB"><span class="nav-number">5.</span> <span class="nav-text">人才需求与培养</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%93%B6%E8%A1%8C-4"><span class="nav-number">5.1.</span> <span class="nav-text">银行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E8%B5%84%E4%BA%A7%E5%A4%AE%E4%BC%81%E4%B9%99%E6%96%B9%E5%AD%99%E5%85%AC%E5%8F%B8-4"><span class="nav-number">5.2.</span> <span class="nav-text">重资产央企乙方孙公司</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%E4%B8%8E%E5%B1%95%E6%9C%9B"><span class="nav-number">6.</span> <span class="nav-text">总结与展望</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zeyu Zhao</p>
+  <div class="site-description" itemprop="description">中年危机攻城狮的小博客，Java，JavaScript，Spring，ReactJS，摄影，一些小东西。</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/techctu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;techctu" rel="noopener me" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://techctu.github.io/2024/12/11/%E6%9F%90%E5%A4%A7%E5%9E%8B%E5%9E%84%E6%96%AD%E5%A4%AE%E4%BC%81%E5%92%8C%E5%85%B6%E4%BB%96%E4%BC%81%E4%B8%9AIT%E4%BD%93%E7%B3%BB%E5%B7%AE%E5%BC%82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zeyu Zhao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Avalon">
+      <meta itemprop="description" content="中年危机攻城狮的小博客，Java，JavaScript，Spring，ReactJS，摄影，一些小东西。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="某大型垄断央企和其他企业IT体系差异 | Avalon">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          某大型垄断央企和其他企业IT体系差异
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-12-11 10:39:00" itemprop="dateCreated datePublished" datetime="2024-12-11T10:39:00+00:00">2024-12-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-01-24 09:37:50" itemprop="dateModified" datetime="2025-01-24T09:37:50+00:00">2025-01-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/IT/" itemprop="url" rel="index"><span itemprop="name">IT</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>因为大周期稳中向好的缘故，银行业进行了调整，机缘巧合之下进入了某发改委下大型央企的省公司的下属公司。该公司属于省公司的乙方，做自研和分包管理。在该司我辗转了研发和产品部门，发现银行外的乙方公司和银行内的甲方公司在IT体系上的差异还是比较大的。</p>
+<h1 id="组织架构与职责分工"><a href="#组织架构与职责分工" class="headerlink" title="组织架构与职责分工"></a>组织架构与职责分工</h1><h2 id="银行"><a href="#银行" class="headerlink" title="银行"></a>银行</h2><p>总行信息技术部在全行 IT 决策权重占比约 60% - 70%，统筹核心事务如系统开发、运维等关键环节规划，确保全行技术战略方向统一。<br>分行科技部门侧重于本地业务支持，人力及资源投入占全行 IT 力量约 30% - 40%，负责特色业务系统对接与日常运维，保障区域业务平稳运行，紧密围绕银行业务线条展开，确保金融交易稳定、高效。</p>
+<span id="more"></span>
+
+<h2 id="重资产央企乙方孙公司"><a href="#重资产央企乙方孙公司" class="headerlink" title="重资产央企乙方孙公司"></a>重资产央企乙方孙公司</h2><p>服务上级母公司数字化管控项目团队占比约 40% - 50%，依据集团整体数字化转型需求，提供诸如数据集中管控、流程标准化系统搭建等服务。<br>面向外部甲方客户定制化项目团队占比 50% - 60%，按项目、产品线灵活划分小组，小组内成员从需求分析、开发到测试全程参与，以适应不同客户多变的项目要求，人力及资源依据项目紧急度、重要性动态调配。</p>
+<h1 id="系统架构与技术选型"><a href="#系统架构与技术选型" class="headerlink" title="系统架构与技术选型"></a>系统架构与技术选型</h1><h2 id="银行-1"><a href="#银行-1" class="headerlink" title="银行"></a>银行</h2><p>核心系统采用大型机或高端小型机作为主机比例超 80%，凭借其高可靠性保障关键金融业务持续运行。搭配成熟商用数据库如 Oracle、DB2 占比约 90%，保障数据强一致性与完整性。<br>在分布式架构转型进程中，试点非关键业务占比约 10% - 20%，逐步向云计算迁移，私有云采纳率超 70%，确保数据合规存储，契合金融监管要求。</p>
+<h2 id="重资产央企乙方孙公司-1"><a href="#重资产央企乙方孙公司-1" class="headerlink" title="重资产央企乙方孙公司"></a>重资产央企乙方孙公司</h2><p>工业制造类项目承接占比若为 30%，则其中约 70%倾向于工业互联网平台结合物联网技术采集设备数据，选用开源数据库与自主研发中间件构建系统占比约 60%，以实现灵活可拓展架构满足生产现场复杂多变需求。<br>建筑工程领域项目承接占比 30% - 40%时，围绕项目管理软件集成 BIM 技术应用占比约 80%，采用混合云部署比例约 60%，兼顾本地处理复杂图形渲染与云端协同办公需求，剩余资源依业务特性调配至其他辅助技术选型。</p>
+<h1 id="数据管理与安全策略"><a href="#数据管理与安全策略" class="headerlink" title="数据管理与安全策略"></a>数据管理与安全策略</h1><h2 id="银行-2"><a href="#银行-2" class="headerlink" title="银行"></a>银行</h2><p>构建严密数据分级分类体系，对客户敏感信息加密存储传输比例达 100%，严格遵循金融监管法规，多中心异地灾备投入资源占比约 15% - 20%确保数据不丢失。<br>实时监控数据访问行为覆盖率 100%，异常即告警，审计流程贯穿数据全生命周期，审计人力投入占 IT 安全团队约 20% - 30%，保障数据安全万无一失。</p>
+<h2 id="重资产央企乙方孙公司-2"><a href="#重资产央企乙方孙公司-2" class="headerlink" title="重资产央企乙方孙公司"></a>重资产央企乙方孙公司</h2><p>保障甲方委托项目数据保密性，按合同约定实施数据隔离项目占比 100%，针对不同保密级别投入安全防护资源梯度配置，高保密项目防护资源占比约 30% - 40%。<br>整合内部运营数据辅助决策，利用数据脱敏技术对外共享部分统计分析成果占比约 30% - 40%，安全防护兼顾内外网边界与项目现场移动终端接入，内外网边界防护投入占比约 40% - 50%，防止数据泄露风险。</p>
+<h1 id="项目管理与交付模式"><a href="#项目管理与交付模式" class="headerlink" title="项目管理与交付模式"></a>项目管理与交付模式</h1><h2 id="银行-3"><a href="#银行-3" class="headerlink" title="银行"></a>银行</h2><p>内部项目采用瀑布式开发比例约 80% - 90%，历经严谨阶段，上线前多轮联调时长占项目总周期约 10% - 15%，确保系统与银行业务流程无缝衔接。<br>对外采购项目注重供应商长期服务能力，合同约定 SLA（服务水平协议）指标精细到交易响应时间、故障率等，验收环节严格把关，验收标准明确度达 100%，对供应商履约考核权重占采购决策约 40% - 50%。</p>
+<h2 id="重资产央企乙方孙公司-3"><a href="#重资产央企乙方孙公司-3" class="headerlink" title="重资产央企乙方孙公司"></a>重资产央企乙方孙公司</h2><p>项目驱动型特征明显，敏捷开发应用占比约 60% - 70%，快速响应客户需求变更，迭代交付 MVP（最小可行产品）获取反馈，迭代周期依项目复杂度平均 1 - 3 周。<br>大型复杂项目常引入项目群管理统筹多子项目协同比例约 30% - 40%，依据客户里程碑付款节点灵活调整交付节奏，资金回笼关键节点监控频率约每周 1 - 2 次，确保资金回笼与项目推进平衡。</p>
+<h1 id="人才需求与培养"><a href="#人才需求与培养" class="headerlink" title="人才需求与培养"></a>人才需求与培养</h1><h2 id="银行-4"><a href="#银行-4" class="headerlink" title="银行"></a>银行</h2><p>金融科技复合型人才需求占比约 60% - 70%，内部培训体系围绕金融产品知识、系统架构升级、合规风控要点展开，培训课程占比分别约 30%、30%、40%，鼓励员工考取 CFA、FRM 等金融证书提升专业素养，报考参与率约 20% - 30%，为数字化转型储备智囊。</p>
+<h2 id="重资产央企乙方孙公司-4"><a href="#重资产央企乙方孙公司-4" class="headerlink" title="重资产央企乙方孙公司"></a>重资产央企乙方孙公司</h2><p>因业务多元渴求跨领域技术人才，如机械电子工程与软件开发双料工程师、建筑信息化建模与大数据分析融合人才等占比约 40% - 50%，与高校产学研合作定向培养专业技能项目占比约 30% - 40%，同时强调项目管理实战经验积累，通过 PMP 认证普及提升项目交付成功率，员工 PMP 持证率约 20% - 30%。</p>
+<h1 id="总结与展望"><a href="#总结与展望" class="headerlink" title="总结与展望"></a>总结与展望</h1><p>概括银行与重资产央企乙方孙公司 IT 体系差异要点，基于行业发展趋势探讨二者未来可能的融合借鉴方向，助力企业优化 IT 布局、提升竞争力。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.jpg" alt="Zeyu Zhao 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="Zeyu Zhao 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/PMO/" rel="tag"># PMO</a>
+              <a href="/tags/DevOps/" rel="tag"># DevOps</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/08/07/%E5%B8%8C%E6%9C%9B%E5%A4%A7%E5%AE%B6%E7%86%AC%E8%BF%87%E5%91%A8%E6%9C%9F/" rel="prev" title="希望大家熬过周期">
+                  <i class="fa fa-angle-left"></i> 希望大家熬过周期
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="lv-container" data-id="city" data-uid="MTAyMC8zNzAwNy8xMzU0Mw=="></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2015 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Zeyu Zhao</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/techctu" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+<script src="/js/third-party/comments/livere.js"></script>
+
+</body>
+</html>
