@@ -812,4 +812,26 @@
         <tag>DevOps</tag>
       </tags>
   </entry>
+  <entry>
+    <title>试用Ollama上的deepseek</title>
+    <url>/2025/02/18/%E8%AF%95%E7%94%A8Ollama%E4%B8%8A%E7%9A%84deepseek/</url>
+    <content><![CDATA[<p>DeepSeek热度很高，今天使用老年机i7-8700和NVIDIA 2060 6GB来部署跑一下。</p>
+<h1 id="32b"><a href="#32b" class="headerlink" title="32b"></a>32b</h1><p>跑不动，根本跑不动。think了一个通宵没有think完。Ollama把自己所在的硬盘都给我打满了。值得注意的是，Windows机器，两个分区都打满，但另外一块硬盘没动。</p>
+<h1 id="14b"><a href="#14b" class="headerlink" title="14b"></a>14b</h1><p>跑得动了，一个一个字往外蹦。</p>
+<img src="/2025/02/18/%E8%AF%95%E7%94%A8Ollama%E4%B8%8A%E7%9A%84deepseek/16b.png" class="">
+
+<h1 id="8b"><a href="#8b" class="headerlink" title="8b"></a>8b</h1><p>是一个普通人的感觉，思考比较流畅。</p>
+<img src="/2025/02/18/%E8%AF%95%E7%94%A8Ollama%E4%B8%8A%E7%9A%84deepseek/8b.png" class="">
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>参考<a href="https://mp.weixin.qq.com/s/dkMg_OHgma1HcPhIwhErmA">本地部署 DeepSeek 硬件配置清单，看到满血版价格想想还是算了</a>，个人用户够得着7b、8b就可以了，可是现在使用还很复杂，做不到安装即用不联网。如果用作家庭住宅管家场景，自建智能助手似乎也可行了。</p>
+]]></content>
+      <categories>
+        <category>LLM</category>
+      </categories>
+      <tags>
+        <tag>LLM</tag>
+        <tag>Ollama</tag>
+        <tag>DeepSeek</tag>
+      </tags>
+  </entry>
 </search>
