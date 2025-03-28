@@ -834,4 +834,35 @@
         <tag>DeepSeek</tag>
       </tags>
   </entry>
+  <entry>
+    <title>7B的人工智障</title>
+    <url>/2025/03/28/7B%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E9%9A%9C/</url>
+    <content><![CDATA[<p>这两天看到有个金融模型，上财的<a href="https://github.com/SUFE-AIFLM-Lab/Fin-R1">Fin-R1</a>发布了，7B的参数，号称金融方面7B比肩671B，我就试一下。</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>本地使用的Ollama，安装很简单。Ollama支持通过本地模型文件创建模型，可以参考<a href="https://github.com/ollama/ollama/blob/main/docs/import.md#Importing-a-GGUF-based-model-or-adapter">Ollama官网文档</a>。</p>
+<h2 id="下载模型"><a href="#下载模型" class="headerlink" title="下载模型"></a>下载模型</h2><p>去抱脸的<a href="https://hf-mirror.com/">官方镜像站</a>，找到Fin-R1的7B模型。这里选择的是这款<a href="https://hf-mirror.com/Mungert/Fin-R1-GGUF?show_file_info=Fin-R1-f16-q4_k.gguf">Fin-R1-f16-q4_k.gguf</a></p>
+<h2 id="导入模型"><a href="#导入模型" class="headerlink" title="导入模型"></a>导入模型</h2><p>在模型的目录下，创建一个文件<code>Modelfile</code>，内容如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">FROM /path/to/file.gguf</span><br></pre></td></tr></table></figure>
+
+<p>然后执行命令<code>ollama create &lt;your model name&gt; --file Modelfile</code>，就可以创建模型了。</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ollama run &lt;your model name&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="幻觉"><a href="#幻觉" class="headerlink" title="幻觉"></a>幻觉</h2><p>结果问了第一句话模型就出现幻觉了，成了人工智障。</p>
+<img src="/2025/03/28/7B%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E9%9A%9C/7b.png" class="">
+
+<p>看样子这种模型可能就像那些读书读傻了还偏科的人，煮熟的鸡蛋都不会剥的那种。<br>可能还是要问问金融相关的问题吧。</p>
+<p>然而第二个问题问一下股市如何每个月获得10%的收益，一开始正常，后面就出现幻觉了。</p>
+<img src="/2025/03/28/7B%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E9%9A%9C/7b-2.png" class="">
+
+<p>调整了一下参数，保留了精度，就写得比较有逻辑性，成了一本正经地胡说八道的自媒体AI助手。</p>
+<img src="/2025/03/28/7B%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E9%9A%9C/7b-3.png" class="">
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>果然7B的模型没有实用价值，14B以上才能用。</p>
+]]></content>
+      <categories>
+        <category>LLM</category>
+      </categories>
+      <tags>
+        <tag>LLM</tag>
+      </tags>
+  </entry>
 </search>
