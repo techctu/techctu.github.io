@@ -817,6 +817,8 @@
     <url>/2025/02/18/%E8%AF%95%E7%94%A8Ollama%E4%B8%8A%E7%9A%84deepseek/</url>
     <content><![CDATA[<p>DeepSeek热度很高，今天使用老年机i7-8700和NVIDIA 2060 6GB来部署跑一下。</p>
 <h1 id="32b"><a href="#32b" class="headerlink" title="32b"></a>32b</h1><p>跑不动，根本跑不动。think了一个通宵没有think完。Ollama把自己所在的硬盘都给我打满了。值得注意的是，Windows机器，两个分区都打满，但另外一块硬盘没动。</p>
+<span id="more"></span>
+
 <h1 id="14b"><a href="#14b" class="headerlink" title="14b"></a>14b</h1><p>跑得动了，一个一个字往外蹦。</p>
 <img src="/2025/02/18/%E8%AF%95%E7%94%A8Ollama%E4%B8%8A%E7%9A%84deepseek/16b.png" class="">
 
@@ -840,6 +842,8 @@
     <content><![CDATA[<p>这两天看到有个金融模型，上财的<a href="https://github.com/SUFE-AIFLM-Lab/Fin-R1">Fin-R1</a>发布了，7B的参数，号称金融方面7B比肩671B，我就试一下。</p>
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>本地使用的Ollama，安装很简单。Ollama支持通过本地模型文件创建模型，可以参考<a href="https://github.com/ollama/ollama/blob/main/docs/import.md#Importing-a-GGUF-based-model-or-adapter">Ollama官网文档</a>。</p>
 <h2 id="下载模型"><a href="#下载模型" class="headerlink" title="下载模型"></a>下载模型</h2><p>去抱脸的<a href="https://hf-mirror.com/">官方镜像站</a>，找到Fin-R1的7B模型。这里选择的是这款<a href="https://hf-mirror.com/Mungert/Fin-R1-GGUF?show_file_info=Fin-R1-f16-q4_k.gguf">Fin-R1-f16-q4_k.gguf</a></p>
+<span id="more"></span>
+
 <h2 id="导入模型"><a href="#导入模型" class="headerlink" title="导入模型"></a>导入模型</h2><p>在模型的目录下，创建一个文件<code>Modelfile</code>，内容如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">FROM /path/to/file.gguf</span><br></pre></td></tr></table></figure>
 
